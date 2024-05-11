@@ -26,3 +26,7 @@ Route::get('profile', function () {
     return view('profile');
 });
 
+Route::get('about', function () {
+    return view('aboutUs');
+});
+

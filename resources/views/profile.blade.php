@@ -142,6 +142,7 @@
             <!-- More products... -->
           </div>
         </div>
+        
     <footer id="footer">
 		<div class="container">
 			<div class="cols">
