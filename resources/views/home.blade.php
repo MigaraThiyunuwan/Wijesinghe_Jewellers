@@ -9,6 +9,9 @@
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+	@php
+      $user = session()->get('user');
+    @endphp
 </head>
 <body>
 
@@ -17,9 +20,17 @@
 			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
 			<div class="right-links">
 				<ul>
+					@if ($user)
+					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
+					@endif
 					
-					<li><a href="#"><span class="ico-account"></span>Account</a></li>
-					<li><a href="{{ asset('user/login') }}"><span class="ico-signout"></span>Login</a></li>
+
+					@if ($user)
+						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
+					@else
+						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+					@endif
+
 				</ul>
 			</div>
 		</div>
