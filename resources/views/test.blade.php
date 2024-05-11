@@ -3,7 +3,7 @@
 <!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Diana’s jewelry</title>
+	<title>Wijesinghe jewelry</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
 	<!--[if lt IE 9]>
@@ -320,7 +320,7 @@
 					<h3>Total to pay: <strong>$4 530.00</strong></h3>
 					<a href="#" class="btn-grey">Finalize and pay</a>
 				</div>
-		
+
 			</div>
 			<!-- / content -->
 		</div>
@@ -871,7 +871,7 @@
 					<h2>dignissimos ducimus blanditiis praesentium</h2>
 					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio <a href="#"><strong>nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit</strong></a> quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.</p>
 				</div>
-		
+
 			</div>
 			<!-- / content -->
 		</div>
