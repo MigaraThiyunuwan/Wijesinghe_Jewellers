@@ -39,6 +39,7 @@ Route::get('user/login', [UserController::class, 'login'])->name('user.login');
 Route::get('user/edit', [UserController::class, 'userEdit'])->name('user.edit');
 Route::post('user/loginuser', [UserController::class, 'loginuser'])->name('user.loginuser');
 Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
+Route::post('user/changepassword', [UserController::class, 'changepassword'])->name('user.changepassword');
 
 //Routes for Manager
 Route::get('manager/profile', [ManagerController::class, 'profile'])->name('manager.profile');

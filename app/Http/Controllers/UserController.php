@@ -129,4 +129,26 @@ class UserController extends Controller
 
         return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput();
     }
+
+    public function changepassword(Request $request)
+    {
+        $rules = [
+
+            'password' => 'required|confirmed|min:6',
+            'new_password' => 'required|min:6',
+
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $oldUser = session()->get('user');
+        $user = $oldUser->changepassword($request->input('new_password'));
+        if ($user) {
+            $request->session()->put('user', $user);
+            return redirect()->route('user.profile');
+        }
+    }
 }
