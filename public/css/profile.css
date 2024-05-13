@@ -1,0 +1,18 @@
+.profileContainer{
+    display: flex;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 640px) {
+    .profileContainer {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+
+    .sideBar{
+        display: none;
+        /* justify-content: center;
+        justify-items: center; */
+    }
+}
