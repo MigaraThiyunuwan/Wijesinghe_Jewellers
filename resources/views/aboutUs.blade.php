@@ -11,31 +11,47 @@
     <link rel="stylesheet" media="all" href="{{ asset('css/about.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    @php
+      $user = session()->get('user');
+      $manager = session()->get('manager');
+    @endphp
     <title>Wijesinghe Jewellers</title>
 </head>
 
 <body>
     <header id="header">
-        <div class="container">
-            <a href="index.html" id="logo" title="Wijesinghe jewelry">Wijesinghe jewelry</a>
-            <div class="right-links">
-                <ul>
-                    <li><a href="cart.html"><span class="ico-products"></span>3 products, $4 500.00</a></li>
-                    <li><a href="#"><span class="ico-account"></span>Account</a></li>
-                    <li><a href="#"><span class="ico-signout"></span>Sign out</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+		<div class="container">
+			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
+			<div class="right-links">
+				<ul>
+					@if ($user)
+					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
+					@endif
+					@if ($manager)
+					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
+					
+					@if ($user || $manager)
+						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
+					@else
+						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+					@endif
+				</ul>
+			</div>
+		</div>
+		<!-- / container -->
+	</header>
+	<!-- / header -->
+
     <nav id="menu">
         <div class="container">
-            <div class="trigger"></div>
+            
             <ul>
                 <li><a href="products.html">New collection</a></li>
                 <li><a href="products.html">necklaces</a></li>
                 <li><a href="products.html">earrings</a></li>
                 <li><a href="products.html">Rings</a></li>
-                <li><a href="products.html">Gift cards</a></li>
+                <li><a href="{{ route('aboutus') }}">About</a></li>
                 <li><a href="products.html">Promotions</a></li>
             </ul>
         </div>
@@ -50,8 +66,8 @@
             <span x-text="images.length"></span>
         </div>
 
-        <template x-for="(image, index) in images">
-            <figure class="h-96" x-show="currentIndex == index + 1"
+        <template x-for="(image) in images">
+            <figure class="h-96" 
                 x-transition:enter="transition transform duration-300" x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100" x-transition:leave="transition transform duration-300"
                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">

@@ -35,7 +35,7 @@
 				<li><a href="products.html">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
-				<li><a href="products.html">Gift cards</a></li>
+				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -171,7 +171,7 @@
 				<li><a href="products.html">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
-				<li><a href="products.html">Gift cards</a></li>
+				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -303,20 +303,16 @@
 				</div>
 				<div class="col contact">
 					<h3>Contact us</h3>
-					<p>Diana’s Jewelry INC.<br>54233 Avenue Street<br>New York</p>
-					<p><span class="ico ico-em"></span><a href="#">contact@dianasjewelry.com</a></p>
-					<p><span class="ico ico-ph"></span>(590) 423 446 924</p>
+					<p>Wijesinghe Jewellers,<br>No 89 Main Street,<br>Mawanella</p>
+					<p><span class="ico ico-em"></span><a href="#">wijesinghejewellers@gmail.com</a></p>
+					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					<h3>Join our newsletter</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
-					<form action="#">
-						<input type="text" placeholder="Your email address...">
-						<button type="submit"></button>
-					</form>
+					
+					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>
-			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
+			<p class="copy">Copyright 2024 wijesinghe Jewellers. All rights reserved.</p>
 		</div>
 		<!-- / container -->
 	</footer>
@@ -377,7 +373,7 @@
 				<li><a href="products.html">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
-				<li><a href="products.html">Gift cards</a></li>
+				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -488,20 +484,16 @@
 				</div>
 				<div class="col contact">
 					<h3>Contact us</h3>
-					<p>Diana’s Jewelry INC.<br>54233 Avenue Street<br>New York</p>
-					<p><span class="ico ico-em"></span><a href="#">contact@dianasjewelry.com</a></p>
-					<p><span class="ico ico-ph"></span>(590) 423 446 924</p>
+					<p>Wijesinghe Jewellers,<br>No 89 Main Street,<br>Mawanella</p>
+					<p><span class="ico ico-em"></span><a href="#">wijesinghejewellers@gmail.com</a></p>
+					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					<h3>Join our newsletter</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
-					<form action="#">
-						<input type="text" placeholder="Your email address...">
-						<button type="submit"></button>
-					</form>
+					
+					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>
-			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
+			<p class="copy">Copyright 2024 wijesinghe Jewellers. All rights reserved.</p>
 		</div>
 		<!-- / container -->
 	</footer>
@@ -567,7 +559,7 @@
 				<li><a href="products.html">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
-				<li><a href="products.html">Gift cards</a></li>
+				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -655,20 +647,16 @@
 				</div>
 				<div class="col contact">
 					<h3>Contact us</h3>
-					<p>Diana’s Jewelry INC.<br>54233 Avenue Street<br>New York</p>
-					<p><span class="ico ico-em"></span><a href="#">contact@dianasjewelry.com</a></p>
-					<p><span class="ico ico-ph"></span>(590) 423 446 924</p>
+					<p>Wijesinghe Jewellers,<br>No 89 Main Street,<br>Mawanella</p>
+					<p><span class="ico ico-em"></span><a href="#">wijesinghejewellers@gmail.com</a></p>
+					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					<h3>Join our newsletter</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
-					<form action="#">
-						<input type="text" placeholder="Your email address...">
-						<button type="submit"></button>
-					</form>
+					
+					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>
-			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
+			<p class="copy">Copyright 2024 wijesinghe Jewellers. All rights reserved.</p>
 		</div>
 		<!-- / container -->
 	</footer>
@@ -734,7 +722,7 @@
 				<li><a href="products.html">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
-				<li><a href="products.html">Gift cards</a></li>
+				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -900,20 +888,16 @@
 				</div>
 				<div class="col contact">
 					<h3>Contact us</h3>
-					<p>Diana’s Jewelry INC.<br>54233 Avenue Street<br>New York</p>
-					<p><span class="ico ico-em"></span><a href="#">contact@dianasjewelry.com</a></p>
-					<p><span class="ico ico-ph"></span>(590) 423 446 924</p>
+					<p>Wijesinghe Jewellers,<br>No 89 Main Street,<br>Mawanella</p>
+					<p><span class="ico ico-em"></span><a href="#">wijesinghejewellers@gmail.com</a></p>
+					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					<h3>Join our newsletter</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
-					<form action="#">
-						<input type="text" placeholder="Your email address...">
-						<button type="submit"></button>
-					</form>
+					
+					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>
-			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
+			<p class="copy">Copyright 2024 wijesinghe Jewellers. All rights reserved.</p>
 		</div>
 		<!-- / container -->
 	</footer>
@@ -971,7 +955,7 @@
 				<li><a href="products.html">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
-				<li><a href="products.html">Gift cards</a></li>
+				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -1039,20 +1023,16 @@
 				</div>
 				<div class="col contact">
 					<h3>Contact us</h3>
-					<p>Diana’s Jewelry INC.<br>54233 Avenue Street<br>New York</p>
-					<p><span class="ico ico-em"></span><a href="#">contact@dianasjewelry.com</a></p>
-					<p><span class="ico ico-ph"></span>(590) 423 446 924</p>
+					<p>Wijesinghe Jewellers,<br>No 89 Main Street,<br>Mawanella</p>
+					<p><span class="ico ico-em"></span><a href="#">wijesinghejewellers@gmail.com</a></p>
+					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					<h3>Join our newsletter</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
-					<form action="#">
-						<input type="text" placeholder="Your email address...">
-						<button type="submit"></button>
-					</form>
+					
+					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>
-			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
+			<p class="copy">Copyright 2024 wijesinghe Jewellers. All rights reserved.</p>
 		</div>
 		<!-- / container -->
 	</footer>

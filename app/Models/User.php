@@ -44,7 +44,7 @@ class User extends Model
 
     public function login($email, $password)
     {
-        $user = $this->where('email', $email)->first();
+        $user = $this->where('email', $email)->first(); 
 
         if ($user) {
             if (Hash::check($password, $user->password)) {
@@ -70,13 +70,6 @@ class User extends Model
 
         $olduser->save();
         
-
-        // if ($user) {
-        //     if (Hash::check($password, $user->password)) {
-        //         return $user;
-        //     }
-        // }
-
         return $olduser;
     }
     

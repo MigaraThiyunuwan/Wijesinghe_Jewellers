@@ -62,7 +62,7 @@
             </div> --}}
             <img src="{{ asset('images/logo_no_bg.png') }}" style="width: 300px; height: 300px; margin-left: 30px" >
         </div>
-        <form action="{{route('user.loginuser')}}" method="POST" class="space-y-6">
+        <form action="{{route('manager.loginmanager')}}" method="POST" class="space-y-6">
             @csrf
 
 			{{-- Login credentials error message --}}
@@ -110,26 +110,7 @@
             
             
        
-            <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
-                
-				<div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
-					<span class="block sm:inline">Don't have an account?</span>
-					<a href="{{ asset('user/register') }}">
-						<strong class="font-bold">REGISTER</strong>
-					</a>
-				</div>
-				
-            </div>
-			<div style="width: 100%; display:flex; justify-content:center; margin-top: 0px">
-                
-				<a href="{{ asset('manager/login') }}">
-					<span class="block sm:inline">Login as Manager</span>
-				</a>
-				
-            </div>
-
-			
-			
+         
        
         </form>
         
