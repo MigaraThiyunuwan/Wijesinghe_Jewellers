@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
     <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+    @php
+      $user = session()->get('user');
+    @endphp
+    
     @if (!$user)
         @php
             $loginUrl = route('user.login') . '?error=You need to login to access this page.';
@@ -45,7 +49,6 @@
 		<!-- / container -->
 	</header>
 	<!-- / header -->
-
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
@@ -54,7 +57,7 @@
 				<li><a href="products.html">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
-				<li><a href="products.html">Gift cards</a></li>
+				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -82,12 +85,12 @@
                 <div class="flex flex-wrap justify-center">
                   <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                     <div class="relative">
-                      <img alt="..." src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px">
+                      <img alt="..." src="{{ asset('images/profile/user_default.png') }}" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px">
                     </div>
                   </div>
                   <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                     <div class="py-6 px-3 mt-32 sm:mt-0">
-                      <a href="{{ asset('user/edit') }}"> <button class="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                      <a href="{{ asset('user/edit') }}"> <button class="bg-yellow-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
                         Edit
                       </button>
                     </a>

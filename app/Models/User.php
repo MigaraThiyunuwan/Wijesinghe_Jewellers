@@ -54,7 +54,7 @@ class User extends Model
 
         return null;
     }
-    
+
     public function editDetails($first_name, $last_name, $username, $email, $address, $city, $country, $contact_no, $about)
     {
         $olduser = session()->get('user');
@@ -69,15 +69,16 @@ class User extends Model
         $olduser->about = $about;
 
         $olduser->save();
-        
-
-        // if ($user) {
-        //     if (Hash::check($password, $user->password)) {
-        //         return $user;
-        //     }
-        // }
 
         return $olduser;
     }
-    
+
+    public function changePassword($new_password)
+    {
+        $olduser = session()->get('user');
+        $olduser->password = Hash::make($new_password);
+        $olduser->save();
+
+        return $olduser;
+    }
 }

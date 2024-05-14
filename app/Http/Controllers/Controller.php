@@ -23,4 +23,10 @@ class Controller extends BaseController
         return redirect()->route('home');
     }
 
+    public function aboutus(){
+        return view('aboutus');
+    }
+
+    
+
 }
