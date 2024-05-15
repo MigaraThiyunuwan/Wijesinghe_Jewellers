@@ -42,7 +42,7 @@
 			<div class="trigger"></div>
 			<ul>
 				<li><a href="products.html">New collection</a></li>
-				<li><a href="products.html">necklaces</a></li>
+				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
@@ -67,6 +67,81 @@
           Edit Details
         </h6>
         
+        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="bg-blue-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
+          Change Password
+        </button>
+       
+        <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+          <div class="relative p-4 w-full max-w-md max-h-full">
+              <!-- Modal content -->
+              <div class="relative bg-white rounded-lg shadow">
+                  <!-- Modal header -->
+                  <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                      <h3 class="text-xl font-semibold text-gray-900">
+                          Change My Password
+                      </h3>
+                      <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
+                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                          </svg>
+                          <span class="sr-only">Close modal</span>
+                      </button>
+                  </div>
+                  <!-- Modal body -->
+                  <div class="p-4 md:p-5">
+                      <form class="space-y-4" action="{{route('manager.changepassword')}}" method="POST">
+                        @csrf
+                          
+                          <div>
+                              <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your Current Password</label>
+                              <input type="password" name="password" id="password" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                          </div>
+
+                          <div>
+                            <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900">Confirm Your Current Password</label>
+                            <input type="password" name="password_confirmation" id="password_confirmation" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                          </div>
+
+                          <div>
+                            <label for="new_password" class="block mb-2 text-sm font-medium text-gray-900">Your New Password</label>
+                            <input type="password" name="new_password" id="new_password" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                          </div>
+                          <div>
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Type this message in the box</label>
+                            <div style="margin-top: 20px; margin-bottom: 20px" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                              <strong class="font-bold">Please Change My Password</strong>
+                            </div>
+                            <input type="text" autocomplete="off" name="textinput" id="colorfulInput" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                          </div>
+                          
+                          <button type="submit" id="submitButton" class="w-full text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Change Password</button>
+                          
+                          <script>
+                            document.getElementById('colorfulInput').addEventListener('input', function(event) {
+                              var inputValue = event.target.value.toLowerCase(); // Convert input value to lowercase for case-insensitive comparison
+                              var inputField = event.target;
+                              var submitButton = document.getElementById('submitButton');
+                             
+                              // Check if input value contains "please change my password"
+                              if (inputValue.includes("please change my password")) {
+                                inputField.style.color = "green"; // Change text color to green
+                                submitButton.disabled = false; // Enable submit button
+                              } else {
+                                inputField.style.color = "red"; // Change text color to red
+                                submitButton.disabled = true; // Disable submit button
+                              }
+                            });
+
+                            // Prevent pasting into the input field
+                            document.getElementById('colorfulInput').addEventListener('paste', function(event) {
+                              event.preventDefault(); // Prevent default paste behavior
+                            });
+                          </script>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
        
 
 

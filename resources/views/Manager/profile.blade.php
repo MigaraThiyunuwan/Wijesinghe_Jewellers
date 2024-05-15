@@ -14,12 +14,12 @@
       $manager = session()->get('manager');
     @endphp
     @if (!$manager)
-    @php
-        $loginUrl = route('manager.login') . '?error=You need to login to access this page.';
-        header("Location: $loginUrl");
-        exit();
-    @endphp
-@endif
+      @php
+          $loginUrl = route('manager.login') . '?error=You need to login to access this page.';
+          header("Location: $loginUrl");
+          exit();
+      @endphp
+    @endif
 
     
     <title>Wijesinghe jewelry</title>
@@ -166,7 +166,7 @@
 				<ul>
 					
           @if ($manager)
-					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
 					@endif
                     @if ($manager)
                     <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
@@ -174,15 +174,7 @@
                     @else
                         <li><a href="{{ asset('manager/login') }}"><span class="ico-signout"></span>Login</a></li>
                     @endif
-					
-					{{-- <li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, Manager</a></li>
-					
-                    
-                    <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
-
-                    
-                        <li><a href="{{ asset('user/login') }}"><span class="ico-signout"></span>Login</a></li> --}}
-                  
+       
 					
 				</ul>
 			</div>
@@ -195,7 +187,7 @@
 			<div class="trigger"></div>
 			<ul>
 				<li><a href="products.html">New collection</a></li>
-				<li><a href="products.html">necklaces</a></li>
+				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
@@ -231,8 +223,11 @@
                   </div>
                   <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                     <div class="py-6 px-3 mt-32 sm:mt-0">
+                      <a href="{{ asset('manager/register') }}"> <button class="bg-yellow-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                        Add New Manager
+                      </button>
                       <a href="{{ asset('manager/edit') }}"> <button class="bg-yellow-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-                        Edit
+                        Edit Profile
                       </button>
                     </a>
                     </div>

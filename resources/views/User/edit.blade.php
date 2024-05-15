@@ -41,7 +41,7 @@
 			<div class="trigger"></div>
 			<ul>
 				<li><a href="products.html">New collection</a></li>
-				<li><a href="products.html">necklaces</a></li>
+				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
@@ -112,21 +112,24 @@
                             <input type="text" autocomplete="off" name="textinput" id="colorfulInput" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
                           </div>
                           
-                          <button type="submit" class="w-full text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Change Password</button>
+                          <button type="submit" id="submitButton" class="w-full text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Change Password</button>
                           
                           <script>
                             document.getElementById('colorfulInput').addEventListener('input', function(event) {
                               var inputValue = event.target.value.toLowerCase(); // Convert input value to lowercase for case-insensitive comparison
                               var inputField = event.target;
-                        
+                              var submitButton = document.getElementById('submitButton');
+                             
                               // Check if input value contains "please change my password"
                               if (inputValue.includes("please change my password")) {
                                 inputField.style.color = "green"; // Change text color to green
+                                submitButton.disabled = false; // Enable submit button
                               } else {
-                                inputField.style.color = "red"; // Change text color to red 
+                                inputField.style.color = "red"; // Change text color to red
+                                submitButton.disabled = true; // Disable submit button
                               }
                             });
-                        
+
                             // Prevent pasting into the input field
                             document.getElementById('colorfulInput').addEventListener('paste', function(event) {
                               event.preventDefault(); // Prevent default paste behavior

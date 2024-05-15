@@ -8,7 +8,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
- 
+    @php
+    $manager = session()->get('manager');
+  @endphp
+  @if (!$manager)
+    @php
+        $loginUrl = route('manager.login') . '?error=You need to login to access this page.';
+        header("Location: $loginUrl");
+        exit();
+    @endphp
+  @endif
 </head>
 <body>
 
@@ -19,13 +28,16 @@
 				<ul>
 					
 					
-					<li><a href="{{ route('user.profile') }}"><span class="ico-account"></span>Hello, Manager</a></li>
-					
-					
-						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
-					
-						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
-					
+          @if ($manager)
+					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
+                    @if ($manager)
+                    <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
+
+                    @else
+                        <li><a href="{{ asset('manager/login') }}"><span class="ico-signout"></span>Login</a></li>
+                    @endif
+       
 				</ul>
 			</div>
 		</div>
@@ -38,7 +50,7 @@
 			<div class="trigger"></div>
 			<ul>
 				<li><a href="products.html">New collection</a></li>
-				<li><a href="products.html">necklaces</a></li>
+				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>

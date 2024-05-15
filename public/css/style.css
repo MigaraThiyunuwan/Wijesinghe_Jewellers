@@ -507,6 +507,8 @@ a:hover {
 }
 
 .products {
+	display: flex;
+	justify-content: space-between;
 	padding-bottom: 1px;
 	overflow: hidden;
 }
