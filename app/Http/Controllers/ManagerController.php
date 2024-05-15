@@ -6,6 +6,7 @@ use App\Models\Manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ManagerController extends Controller
 {
@@ -82,6 +83,7 @@ class ManagerController extends Controller
         $loggedInManager = $manager->login($request->email, $request->password);
 
         if ($loggedInManager) {
+            Session::flush();
             $request->session()->put('manager', $loggedInManager);
             return redirect()->route('manager.profile');
         }
@@ -122,6 +124,28 @@ class ManagerController extends Controller
         return redirect()->route('manager.profile');
     
     
+    }
+
+    public function changepassword(Request $request)
+    {
+        $rules = [
+
+            'password' => 'required|confirmed|min:6',
+            'new_password' => 'required|min:6',
+
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $odlManager = session()->get('manager');
+        $manager = $odlManager->changepassword($request->input('new_password'));
+        if ($manager) {
+            $request->session()->put('manager', $manager);
+            return redirect()->route('manager.profile');
+        }
     }
 
     

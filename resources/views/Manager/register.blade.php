@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
 	<meta charset="utf-8">
 	<title>Jiwesinghe Jewellery</title>
@@ -8,7 +8,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-
+    @php
+    $manager = session()->get('manager');
+  @endphp
+  @if (!$manager)
+    @php
+        $loginUrl = route('manager.login') . '?error=You need to login to access this page.';
+        header("Location: $loginUrl");
+        exit();
+    @endphp
+  @endif
 </head>
 <body>
 
@@ -17,15 +26,18 @@
 			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
 			<div class="right-links">
 				<ul>
+					
+					
+          @if ($manager)
+					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
+                    @if ($manager)
+                    <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 
-
-					<li><a href="{{ route('user.profile') }}"><span class="ico-account"></span>Hello, Manager</a></li>
-
-
-						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
-
-						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
-
+                    @else
+                        <li><a href="{{ asset('manager/login') }}"><span class="ico-signout"></span>Login</a></li>
+                    @endif
+       
 				</ul>
 			</div>
 		</div>
@@ -38,11 +50,10 @@
 			<div class="trigger"></div>
 			<ul>
 				<li><a href="products.html">New collection</a></li>
-				<li><a href="products.html">necklaces</a></li>
+				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
-                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -53,7 +64,7 @@
 
     <!-- component -->
 
-
+    
 
 <section class=" py-1 bg-blueGray-50">
 <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
@@ -63,8 +74,8 @@
         <h6 class="text-blueGray-700 text-xl font-bold">
           Manager Registration
         </h6>
-
-
+        
+       
 
 
       </div>
@@ -77,18 +88,18 @@
                 @foreach ($errors->all() as $error)
                 {{-- <li>{{$error}}</li> --}}
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-
+            
                     <strong class="font-bold">{{$error}}</strong>
-
-
+                    
+                    
                 </div>
-
+                    
                 @endforeach
             </ul>
         </div>
         @endif
 
-
+        
 
       <form action="{{route('manager.save')}}" method="POST">
         @csrf
@@ -128,9 +139,9 @@
                   <input type="text" name="nic" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('nic') }}">
                 </div>
               </div>
-
-
-
+          
+          
+          
         </div>
 
         <hr class="mt-6 border-b-1 border-blueGray-300">
@@ -189,21 +200,21 @@
                   <input type="password" name="password_confirmation" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                 </div>
               </div>
-
-
+         
+          
         </div>
 
         <div class="flex flex-wrap">
-
+          
 
             <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
                 <button type="submit" style="width: 200px" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button">
                     Register
                 </button>
-
+                
             </div>
 
-
+            
 
         </div>
       </form>
@@ -245,7 +256,7 @@
 					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-
+					
 					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>

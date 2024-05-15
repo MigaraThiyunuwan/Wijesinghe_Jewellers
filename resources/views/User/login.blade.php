@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
 	<meta charset="utf-8">
 	<title>Jiwesinghe Jewellery</title>
@@ -19,7 +19,16 @@
 			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
 			<div class="right-links">
 				<ul>
+					<li>
 
+						<a href="{{ asset('manager/login') }}"> 
+							<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+							  Login as Manager
+							</button>
+						</a>
+
+					</li>
+					
 					@if ($user)
 					<li><a href="{{ route('user.profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
@@ -28,7 +37,7 @@
 					@else
 						<li><a href="{{ route('user.register') }}"><span class="ico-signout"></span>Register</a></li>
 					@endif
-
+					
 				</ul>
 			</div>
 		</div>
@@ -41,11 +50,10 @@
 			<div class="trigger"></div>
 			<ul>
 				<li><a href="products.html">New collection</a></li>
-				<li><a href="products.html">necklaces</a></li>
+				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
-                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -53,7 +61,7 @@
 	</nav>
 	<!-- / navigation -->
 
-
+    
 
     <div style="margin-bottom: 30px" class="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-100 dark:text-gray-800">
         <div class="">
@@ -74,7 +82,7 @@
 						<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
 							<strong class="font-bold">{{ $error }}</strong>
 						</div>
-
+							
 						@endforeach
 					</ul>
 				</div>
@@ -82,12 +90,12 @@
 
 			{{-- un authorized access error message --}}
 			@if (request('error'))
-
+			
 			<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
 				<strong class="font-bold">{{ request('error')  }}</strong>
 			</div>
 			@endif
-
+		
 
             <div class="relative w-full mb-3">
                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
@@ -106,34 +114,28 @@
 			<button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" disabled>Login</button>
 
 				@else
-				<button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Login</button>
+				<button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded">Login</button>
 			@endif
-
-
-
+            
+            
+       
             <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
-
-				<div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+                
+				<div class="bg-yellow-100 border border-blue-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
 					<span class="block sm:inline">Don't have an account?</span>
 					<a href="{{ asset('user/register') }}">
 						<strong class="font-bold">REGISTER</strong>
 					</a>
 				</div>
-
+				
             </div>
-			<div style="width: 100%; display:flex; justify-content:center; margin-top: 0px">
+			
 
-				<a href="{{ asset('manager/login') }}">
-					<span class="block sm:inline">Login as Manager</span>
-				</a>
-
-            </div>
-
-
-
-
+			
+			
+       
         </form>
-
+        
     </div>
 
 
@@ -167,7 +169,7 @@
 					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-
+					
 					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\GemBusinessController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +32,9 @@ Route::get('test', function () {
 Route::get('/', [Controller::class, 'home'])->name('home');
 Route::get('logout', [Controller::class, 'logout'])->name('logout');
 Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
-Route::get('contactus', [Controller::class, 'contactus'])->name('contactus');
+
+
+
 
 //Routes for user
 Route::get('user/register', [UserController::class, 'register'])->name('user.register');
@@ -50,3 +54,13 @@ Route::get('manager/login', [ManagerController::class, 'login'])->name('manager.
 Route::post('manager/loginmanager', [ManagerController::class, 'loginmanager'])->name('manager.loginmanager');
 Route::get('manager/edit', [ManagerController::class, 'managerEdit'])->name('manager.edit');
 Route::post('manager/update', [ManagerController::class, 'update'])->name('manager.update');
+
+Route::post('manager/changepassword', [ManagerController::class, 'changepassword'])->name('manager.changepassword');
+
+//Routes for Gem Business Owner
+Route::get('gem/register', [GemBusinessController::class, 'register'])->name('gem.register');
+
+
+
+//Routes for Shop
+Route::get('shop/necklaces', [ShopController::class, 'necklaces'])->name('shop.necklaces');

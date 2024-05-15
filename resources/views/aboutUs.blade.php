@@ -50,7 +50,7 @@
 
             <ul>
                 <li><a href="products.html">New collection</a></li>
-                <li><a href="products.html">necklaces</a></li>
+                <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
                 <li><a href="products.html">earrings</a></li>
                 <li><a href="products.html">Rings</a></li>
                 <li><a href="{{ route('aboutus') }}">About</a></li>
@@ -66,8 +66,7 @@
     <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl"
         style="height: 450px;">
         <div class="rounded-full bg-gray-600 text-white absolute top-5 right-5 text-sm px-2 text-center z-10">
-            <span x-text="currentIndex"></span>/
-            <span x-text="images.length"></span>
+            
         </div>
 
         <template x-for="(image) in images">
@@ -84,22 +83,7 @@
                 </figcaption>
             </figure>
         </template>
-        {{-- <button @click="back()"
-            class="absolute left-14 top-1/2 -translate-y-1/2 w-11 h-11 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200">
-            <svg class=" w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:-translate-x-0.5"
-                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7">
-                </path>
-            </svg>
-        </button>
-
-        <button @click="next()"
-            class="absolute right-14 top-1/2 translate-y-1/2 w-11 h-11 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200">
-            <svg class=" w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:translate-x-0.5"
-                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-        </button> --}}
+       
     </article>
 
     <script>
@@ -110,18 +94,7 @@
                     'images/about/img1.jpg',
                     // 'images/about/img2.jpg',
                 ],
-                // back() {
-                //     if (this.currentIndex > 1) {
-                //         this.currentIndex = this.currentIndex - 1;
-                //     }
-                // },
-                // next() {
-                //     if (this.currentIndex < this.images.length) {
-                //         this.currentIndex = this.currentIndex + 1;
-                //     } else if (this.currentIndex <= this.images.length) {
-                //         this.currentIndex = this.images.length - this.currentIndex + 1
-                //     }
-                // },
+                
             }))
         })
     </script>

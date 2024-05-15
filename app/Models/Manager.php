@@ -49,4 +49,13 @@ class Manager extends Model
         
         return $oldManager;
     }
+
+    public function changePassword($new_password)
+    {
+        $oldManager = session()->get('manager');
+        $oldManager->password = Hash::make($new_password);
+        $oldManager->save();
+
+        return $oldManager;
+    }
 }
