@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Jiwesinghe Jewellery</title>
@@ -24,7 +24,7 @@
 					@if ($manager)
 					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
 					@endif
-					
+
 
 					@if ($user || $manager)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
@@ -48,6 +48,7 @@
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
+                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -96,7 +97,7 @@
                     <button type="button" class="self-start">Action</button>
                 </div>
             </div>
-            
+
         </div>
     </section>
 
@@ -130,7 +131,7 @@
 					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					
+
 					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>

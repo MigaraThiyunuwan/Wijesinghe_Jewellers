@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Jiwesinghe Jewellery</title>
@@ -19,7 +19,7 @@
 			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
 			<div class="right-links">
 				<ul>
-					
+
 					@if ($user)
 					<li><a href="{{ route('user.profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
@@ -44,6 +44,7 @@
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
+                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -54,7 +55,7 @@
 
     <!-- component -->
 
-    
+
 
 <section class=" py-1 bg-blueGray-50">
 <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
@@ -64,8 +65,8 @@
         <h6 class="text-blueGray-700 text-xl font-bold">
           User Registration
         </h6>
-        
-       
+
+
 
 
       </div>
@@ -78,18 +79,18 @@
                 @foreach ($errors->all() as $error)
                 {{-- <li>{{$error}}</li> --}}
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-            
+
                     <strong class="font-bold">{{$error}}</strong>
-                    
-                    
+
+
                 </div>
-                    
+
                 @endforeach
             </ul>
         </div>
         @endif
 
-        
+
 
       <form action="{{route('user.save')}}" method="POST">
         @csrf
@@ -113,7 +114,7 @@
                   <input type="text" name="last_name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('last_name') }}">
                 </div>
               </div>
-          
+
           <div class="w-full lg:w-12/12 px-4">
             <div class="relative w-full mb-3">
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
@@ -122,7 +123,7 @@
               <input type="text" name="username" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('username') }}">
             </div>
           </div>
-          
+
         </div>
 
         <hr class="mt-6 border-b-1 border-blueGray-300">
@@ -148,7 +149,7 @@
             </div>
           </div>
 
-          
+
           <div class="w-full lg:w-4/12 px-4">
             <div class="relative w-full mb-3">
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
@@ -197,8 +198,8 @@
                   <input type="password" name="password_confirmation" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                 </div>
               </div>
-         
-          
+
+
         </div>
 
 
@@ -221,19 +222,19 @@
                 <button type="submit" style="width: 200px" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button">
                     Register
                 </button>
-                
+
             </div>
 
             <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
                 <div class="">
                     <div class="p-2 bg-blue-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-                        
+
                             <span class="font-semibold mr-2 text-left flex-auto">Already have an account?</span>
                             <a href="{{ asset('user/login') }}">
                             <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">LOGIN</span>
                             </a>
                             <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
-                        
+
                     </div>
                 </div>
             </div>
@@ -278,7 +279,7 @@
 					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					
+
 					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>

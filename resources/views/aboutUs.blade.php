@@ -12,7 +12,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     @php
-      $manager = session()->get('manager');
         $user = session()->get('user');
         $manager = session()->get('manager');
     @endphp
@@ -55,6 +54,7 @@
                 <li><a href="products.html">earrings</a></li>
                 <li><a href="products.html">Rings</a></li>
                 <li><a href="{{ route('aboutus') }}">About</a></li>
+                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
                 <li><a href="products.html">Promotions</a></li>
             </ul>
         </div>

@@ -21,7 +21,7 @@
     @endphp
 @endif
 
-    
+
     <title>Wijesinghe jewelry</title>
 
     <style>
@@ -35,9 +35,9 @@
       @media only screen and (min-width: 768px) {
           .header-right {
               width: calc(100% - 16rem);
-          }        
+          }
       }
-  
+
       /* Light theme colors */
       .dark .dark\:divide-gray-700 > :not([hidden]) ~ :not([hidden]) {
           border-color: rgba(107, 114, 128);
@@ -147,16 +147,16 @@
       .dark .dark\:hover\:text-blue-500:hover {
           color: rgba(59, 130, 246);
       }
-  
+
       /* Text color adjustments for light theme */
       .dark .dark\:text-white {
           color: rgb(36, 36, 36); /* Adjusted for light theme */
       }
   </style>
-  
-  
-  
-   
+
+
+
+
 </head>
 <body>
     <header id="header">
@@ -164,7 +164,7 @@
 			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
 			<div class="right-links">
 				<ul>
-					
+
           @if ($manager)
 					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
 					@endif
@@ -174,16 +174,16 @@
                     @else
                         <li><a href="{{ asset('manager/login') }}"><span class="ico-signout"></span>Login</a></li>
                     @endif
-					
+
 					{{-- <li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, Manager</a></li>
-					
-                    
+
+
                     <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 
-                    
+
                         <li><a href="{{ asset('user/login') }}"><span class="ico-signout"></span>Login</a></li> --}}
-                  
-					
+
+
 				</ul>
 			</div>
 		</div>
@@ -199,6 +199,7 @@
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="products.html">Rings</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
+                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -270,15 +271,15 @@
                 <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
                   <div class="flex flex-wrap justify-center">
                     <div class="w-full lg:w-9/12 px-4">
-                      
-                      
+
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-      
+
         </section>
     </main>
 
@@ -286,13 +287,13 @@
 <div x-data="setup()" :class="{ 'dark': isDark }">
     <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
 
-     
-    
-      
-    
+
+
+
+
       <div class="h-full ml-14 mt-14 mb-10 md:ml">
 
-    
+
         <!-- Statistics Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
           <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
@@ -333,9 +334,9 @@
           </div>
         </div>
         <!-- ./Statistics Cards -->
-    
+
         <div class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
-    
+
           <!-- Social Traffic -->
           <div class="relative flex flex-col min-w-0 mb-4 lg:mb-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
             <div class="rounded-t mb-0 px-0 border-0">
@@ -433,7 +434,7 @@
             </div>
           </div>
           <!-- ./Social Traffic -->
-    
+
           <!-- Recent Activities -->
           <div class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-gray-800 w-full shadow-lg rounded">
             <div class="rounded-t mb-0 px-0 border-0">
@@ -512,7 +513,7 @@
           </div>
           <!-- ./Recent Activities -->
         </div>
-    
+
         <!-- Task Summaries -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-4 text-black dark:text-white">
           <div class="md:col-span-2 xl:col-span-3">
@@ -609,7 +610,7 @@
           </div>
         </div>
         <!-- ./Task Summaries -->
-    
+
         <!-- Client Table -->
         <div class="mt-4 mx-4">
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
@@ -771,11 +772,11 @@
           </div>
         </div>
         <!-- ./Client Table -->
-    
-       
+
+
       </div>
     </div>
-  </div>    
+  </div>
 
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
   <script>
