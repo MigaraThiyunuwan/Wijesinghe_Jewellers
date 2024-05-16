@@ -48,20 +48,15 @@ class ManagerController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        
-        $manager = new Manager();
-        $manager->first_name = $request->first_name;
-        $manager->last_name = $request->last_name;
-        $manager->username = $request->username;
-        $manager->address = $request->address;
-        $manager->nic = $request->nic;
-        $manager->contact_no = $request->contact_no;
-        $manager->email = $request->email;
-        $manager->password = Hash::make($request->password);
-
-        $manager->save();
-        return redirect()->route('home');
-        
+        $manager = session()->get('manager');
+        //call addNewManager function in Manager Model
+        if($manager->addNewManager($request)) 
+        {
+            return redirect()->route('manager.profile')->with('managerSuccess', 'Manager added successfully!');
+        }else{
+            return redirect()->route('manager.profile')->with('managerError', 'Manager adding Failed!');
+        }
+           
     }
 
 

@@ -31,7 +31,7 @@ Route::get('test', function () {
 // Route::get('/', function () {return view('home');});
 
 Route::get('/', [Controller::class, 'home'])->name('home');
-Route::get('logout', [Controller::class, 'logout'])->name('logout');
+Route::get('logout', [Controller::class, 'logout'])->middleware('web')->name('logout');
 Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
 
 

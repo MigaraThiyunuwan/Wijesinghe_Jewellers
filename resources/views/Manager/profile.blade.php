@@ -261,6 +261,29 @@
                   <div class="mb-2 text-blueGray-600">
                     <i class="fas fa-phone-volume mr-2 text-lg text-blueGray-400"></i>{{$manager->contact_no}}
                   </div>
+
+                  @if (session('managerSuccess'))
+                      
+                      <div style="display: flex; justify-content: center">
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                  
+                          <strong class="font-bold">{{ session('managerSuccess') }}</strong>
+                          
+                        </div>
+                      </div>
+                  @endif
+
+                  @if (session('managerError'))
+                      
+                      <div style="display: flex; justify-content: center">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                  
+                          <strong class="font-bold">{{ session('managerError') }}</strong>
+                          
+                        </div>
+                      </div>
+                  @endif
+
                 </div>
                 <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
                   <div class="flex flex-wrap justify-center">
@@ -842,5 +865,6 @@
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
 	<script src="../js/plugins.js"></script>
 	<script src="../js/main.js"></script>
+  
 </body>
 </html>

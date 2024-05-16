@@ -99,6 +99,18 @@
         </div>
         @endif
 
+        {{-- Show Registration Success Messsage --}}
+        @if (session('unsuccess'))
+        <div style="display: flex; justify-content: center">
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    
+            <strong class="font-bold">{{ session('unsuccess') }}</strong>
+            
+          </div>
+        </div>
+      @endif
+      {{-- Show Registration Success Messsage End --}}
+
         
 
       <form action="{{route('user.save')}}" method="POST">

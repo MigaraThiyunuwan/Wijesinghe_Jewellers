@@ -53,20 +53,16 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $user = new User();
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->username = $request->username;
-        $user->address = $request->address;
-        $user->city = $request->city;
-        $user->country = $request->country;
-        $user->contact_no = $request->contact_no;
-        $user->about = $request->about;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $tempUser = new User();
+        $user = $tempUser->register($request);
+        if($user)
+        {
+            $request->session()->put('user', $user);
+            return redirect()->route('user.profile')->with('success', 'You have registered successfully');
+        }else{
+            return redirect()->route('user.register')->with('unsuccess', 'Registration Failed');
+        }
 
-        $user->save();
-        return redirect()->route('home');
     }
 
     // function for handling update user details

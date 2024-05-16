@@ -107,11 +107,7 @@
 					meticulously crafted by skilled artisans, blending traditional techniques with modern designs to
 					create unique masterpieces. Our collections showcase a blend of classic and contemporary styles,
 					catering to the diverse tastes of our discerning clientele.</p>
-				<p class="my-4" style="text-align: center">Our dedication to excellence extends beyond the
-					creation of jewelry. We prioritize customer satisfaction, offering personalized services to
-					ensure a seamless and memorable shopping experience. Whether it's a special occasion, a
-					meaningful gift, or a self-indulgent treat, Wijesinghe Jewellers is your trusted destination for
-					luxury jewelry that embodies timeless beauty and exceptional craftsmanship.</p>
+				
 					<div style="display: flex; justify-content: center">
 						<a href="{{ asset('gem/login') }}"> 
 							<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
@@ -122,8 +118,8 @@
 			</div>
 			<div class="p-0 col-md-6">
 				<div>
-					<div> <img class="d-block img-fluid w-100" src="../images/events/wedding.avif"
-							style="height: 400px; margin-top: 40px;">
+					<div> <img class="d-block img-fluid w-100" src="../images/events/wedding1.jpg"
+							style="height: 400px; margin-top: 0px;">
 					</div>
 				</div>
 			</div>
@@ -138,7 +134,7 @@
 				<div class="p-0 col-md-6">
 					<div>
 						<div> <img class="d-block img-fluid w-100" src="../images/events/panchayudha.jpg"
-								style="height: 400px; margin-top: 40px;">
+								style="height: 400px; margin-top: 0px;">
 						</div>
 					</div>
 				</div>
@@ -169,7 +165,7 @@
 		<div class="container">
 			<div class="row animate-in-down">
 				<div class="p-4 col-md-6 align-self-center text-color">
-					<h2 style="color: goldenrod; font-size: 30px; text-align: center;">Our Mission</h2>
+					<h2 style="color: goldenrod; font-size: 30px; text-align: center;">Apala</h2>
 					<p class="my-4" style="text-align: center">Our mission at Wijesinghe Jewellery is to craft
 						extraordinary pieces that transcend trends and time, embodying the unique stories and
 						aspirations of our discerning clientele. We are committed to meticulous attention to
@@ -179,15 +175,54 @@
 						and community engagement. We strive to enrich lives by offering not just jewellery, but
 						cherished heirlooms that symbolize love, celebration, and the essence of life's most
 						precious moments.</p>
+						<div style="display: flex; justify-content: center">
+							<a href="{{ asset('gem/login') }}"> 
+								<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+									Visit
+								</button>
+							</a>
+						</div>
 
 				</div>
 				<div class="p-0 col-md-6">
 					<div>
-						<div> <img class="d-block img-fluid w-100" src="../images/about/img4.jpg"
-								style="height: 400px; margin-top: 40px; margin-bottom: 40px">
+						<div> <img class="d-block img-fluid w-100" src="../images/events/ring.jpeg"
+								style="height: 400px; margin-top: px; ">
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+
+	<div style="background-color:#fffbfb; align-items: auto; margin-bottom: 0px" id="venue">
+		<div class="container">
+			<div class="row animate-in-down">
+				<div class="p-0 col-md-6">
+					<div>
+						<div> <img class="d-block img-fluid w-100" src="../images/events/others.jpeg"
+								style="height: 400px; margin-top: 0px; margin-bottom: 40px">
+						</div>
+					</div>
+				</div>
+				<div class="p-4 col-md-6 align-self-center text-color">
+					<h2 style="color: goldenrod; font-size: 30px; text-align: center;">Others</h2>
+					<p class="my-4" style="text-align: center">At Wijesinghe Jewellery, our vision is to establish
+						ourselves as a globally recognized brand synonymous with unparalleled craftsmanship,
+						exquisite designs, and timeless elegance. We aspire to set new standards in the jewellery
+						industry by continuously innovating, embracing sustainable practices, and creating memorable
+						experiences for our customers. Our vision extends beyond mere transactions; we aim to foster
+						lasting relationships built on trust, integrity, and a shared passion for beauty and
+						craftsmanship.</p>
+						<div style="display: flex; justify-content: center">
+							<a href="{{ asset('gem/login') }}"> 
+								<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+									Visit
+								</button>
+							</a>
+						</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
