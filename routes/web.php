@@ -32,7 +32,7 @@ Route::get('test', function () {
 Route::get('/', [Controller::class, 'home'])->name('home');
 Route::get('logout', [Controller::class, 'logout'])->name('logout');
 Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
-
+Route::get('contactus', [Controller::class, 'contactus'])->name('contactus');
 
 
 
