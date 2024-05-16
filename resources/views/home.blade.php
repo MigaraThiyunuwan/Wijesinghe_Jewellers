@@ -6,11 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-	<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
 	@php
       $user = session()->get('user');
+	  $manager = session()->get('manager');
     @endphp
 </head>
 <body>
@@ -23,9 +21,12 @@
 					@if ($user)
 					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
+					@if ($manager)
+					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
 					
 
-					@if ($user)
+					@if ($user || $manager)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
 						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
@@ -43,10 +44,10 @@
 			<div class="trigger"></div>
 			<ul>
 				<li><a href="products.html">New collection</a></li>
-				<li><a href="products.html">necklaces</a></li>
+				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
-				<li><a href="products.html">Rings</a></li>
-				<li><a href="products.html">Gift cards</a></li>
+				<li><a href="{{ route('events.home') }}">Events</a></li>
+				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -124,20 +125,16 @@
 				</div>
 				<div class="col contact">
 					<h3>Contact us</h3>
-					<p>Diana’s Jewelry INC.<br>54233 Avenue Street<br>New York</p>
-					<p><span class="ico ico-em"></span><a href="#">contact@dianasjewelry.com</a></p>
-					<p><span class="ico ico-ph"></span>(590) 423 446 924</p>
+					<p>Wijesinghe Jewellers,<br>No 89 Main Street,<br>Mawanella</p>
+					<p><span class="ico ico-em"></span><a href="#">wijesinghejewellers@gmail.com</a></p>
+					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					<h3>Join our newsletter</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
-					<form action="#">
-						<input type="text" placeholder="Your email address...">
-						<button type="submit"></button>
-					</form>
+					
+					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>
-			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
+			<p class="copy">Copyright 2024 wijesinghe Jewellers. All rights reserved.</p>
 		</div>
 		<!-- / container -->
 	</footer>
