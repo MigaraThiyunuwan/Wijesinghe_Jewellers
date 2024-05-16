@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 	@php
       $user = session()->get('user');
+	  $manager = session()->get('manager');
     @endphp
 </head>
 <body>
@@ -27,23 +28,29 @@
 							  Login as Customer
 							</button>
 						</a>
+						
 
 					</li>
 					<li>
-						<a href="{{ asset('gem/login') }}"> 
+						<a href="{{ asset('manager/login') }}"> 
 							<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-							  Login as Gem Business
+							  Login as Manager
 							</button>
 						</a>
 					</li>
 					
 					@if ($user)
-					<li><a href="{{ route('user.profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
+					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
-					@if ($user)
+					@if ($manager)
+					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
+					
+
+					@if ($user || $manager)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
-						<li><a href="{{ route('user.register') }}"><span class="ico-signout"></span>Register</a></li>
+						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
 					@endif
 					
 				</ul>
@@ -79,7 +86,7 @@
             </div> --}}
             <img src="{{ asset('images/logo_no_bg.png') }}" style="width: 300px; height: 300px; margin-left: 30px" >
         </div>
-        <form action="{{route('manager.loginmanager')}}" method="POST" class="space-y-6">
+        <form action="{{route('gem.login')}}" method="POST" class="space-y-6">
             @csrf
 
 			{{-- Login credentials error message --}}
@@ -175,7 +182,7 @@
 	<!-- / footer -->
 
 
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
 	<script src="../js/plugins.js"></script>
 	<script src="../js/main.js"></script>

@@ -189,7 +189,7 @@
 				<li><a href="products.html">New collection</a></li>
 				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
-				<li><a href="products.html">Rings</a></li>
+				<li><a href="{{ route('events.home') }}">Events</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
@@ -838,5 +838,9 @@
 			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
 		</div>
 	</footer>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
+	<script src="../js/plugins.js"></script>
+	<script src="../js/main.js"></script>
 </body>
 </html>

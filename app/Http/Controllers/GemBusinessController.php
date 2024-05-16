@@ -10,4 +10,9 @@ class GemBusinessController extends Controller
     {
         return view('GemBusinessOwner.register');
     }
+
+    public function login()
+    {
+        return view('GemBusinessOwner.login');
+    }
 }

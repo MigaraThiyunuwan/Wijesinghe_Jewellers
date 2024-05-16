@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GemBusinessController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ShopController;
@@ -58,8 +59,13 @@ Route::post('manager/changepassword', [ManagerController::class, 'changepassword
 
 //Routes for Gem Business Owner
 Route::get('gem/register', [GemBusinessController::class, 'register'])->name('gem.register');
+Route::get('gem/login', [GemBusinessController::class, 'login'])->name('gem.login');
 
 
 
 //Routes for Shop
 Route::get('shop/necklaces', [ShopController::class, 'necklaces'])->name('shop.necklaces');
+
+
+//Routes for Events
+Route::get('events/home', [EventController::class, 'home'])->name('events.home');
