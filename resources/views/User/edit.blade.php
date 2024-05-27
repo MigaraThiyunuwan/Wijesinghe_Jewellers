@@ -121,7 +121,7 @@
                               var submitButton = document.getElementById('submitButton');
                              
                               // Check if input value contains "please change my password"
-                              if (inputValue.includes("please change my password")) {
+                              if (inputValue === "please change my password") {
                                 inputField.style.color = "green"; // Change text color to green
                                 submitButton.disabled = false; // Enable submit button
                               } else {

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-
     public function profile()
 
     {
@@ -38,12 +37,12 @@ class UserController extends Controller
     public function save(Request $request)
     {
         $rules = [
-            'first_name' => 'string|max:255',
+            'first_name' => 'required|string|max:255',
             'last_name' => 'string|max:255',
-            'username' => 'string|max:255',
+            'username' => 'required|string|max:255',
             'contact_no' => 'regex:/^\+?\d{7,15}$/',
             'address' => 'string|max:255',
-            'email' => 'string|email|unique:users|max:255',
+            'email' => 'required|string|email|unique:users|max:255',
             'password' => 'required|confirmed|min:6',
 
         ];
