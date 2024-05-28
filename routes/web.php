@@ -60,6 +60,7 @@ Route::post('manager/changepassword', [ManagerController::class, 'changepassword
 //Routes for Gem Business Owner
 Route::get('gem/register', [GemBusinessController::class, 'register'])->name('gem.register');
 Route::get('gem/login', [GemBusinessController::class, 'login'])->name('gem.login');
+Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save');
 
 
 
