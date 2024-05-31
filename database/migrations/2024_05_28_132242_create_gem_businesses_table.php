@@ -19,10 +19,11 @@ class CreateGemBusinessesTable extends Migration
             $table->string('owner_name');
             $table->string('gem_asso_num');
             $table->string('business_num')->default('Business_Num');
+            $table->string('verified')->default('false');
             $table->string('address');
             $table->string('contact_no');
             $table->string('email');
-            $table->string('certificate_image');
+            $table->string('certificate_image')->default('null');
             $table->time('time_from');
             $table->time('time_to');
             $table->string('password');

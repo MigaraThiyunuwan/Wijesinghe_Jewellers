@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GemBusiness;
 use App\Models\Manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +13,12 @@ class ManagerController extends Controller
 {
     public function profile()
     {
-        return view('manager.profile');
+        // Get unverified businesses from session
+        // $unverifiedBusinesses = session('unverifiedBusinesses', []);
+
+        $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+
+        return view('manager.profile', compact('unverifiedBusinesses'));
     }
 
     public function register()
@@ -78,6 +84,7 @@ class ManagerController extends Controller
         $loggedInManager = $manager->login($request->email, $request->password);
 
         if ($loggedInManager) {
+            
             Session::flush();
             $request->session()->put('manager', $loggedInManager);
             return redirect()->route('manager.profile');
@@ -143,6 +150,24 @@ class ManagerController extends Controller
         }
     }
 
+    public function confirm(Request $request, $business_id)
+    {
+        $rules = [
+            'decision'=>'required|string',
+            
+        ];
+        $validator = Validator::make($request->all(),$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // $student = Student::where('id',$student_id)->first();
+        $business = GemBusiness::where('id',$business_id)->first();
+        $business->verified =  $request->decision;
+        $business->save();
+        
+        return redirect()->route('manager.profile');
+    }
     
     
 }

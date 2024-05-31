@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class GemBusinessController extends Controller
 {
+
+    public function profile()
+    {
+        return view('GemBusinessOwner.profile');
+    }
+    
     public function register()
     {
         return view('GemBusinessOwner.register');
@@ -39,20 +45,22 @@ class GemBusinessController extends Controller
         }
         
         $tempGemBusiness = new GemBusiness();
+        //call register function
         $gemBusiness = $tempGemBusiness->register($request);
         $ownerId = $gemBusiness->id;
         $file = $request->file('certificate_image');
         $fileName = $ownerId . '.' . $file->getClientOriginalExtension();
-        $filePath = $file->storeAs('uploads', $fileName);
-        $gemBusiness->certificate_image = $filePath;
+        $filePath = $file->storeAs('public/uploads', $fileName);
+        $gemBusiness->certificate_image = 'uploads/' . $fileName;
+        $gemBusiness->verified = 'false';
         $gemBusiness->save();
 
         if($gemBusiness)
         {
             $request->session()->put('gemBusiness', $gemBusiness);
-            return redirect()->route('user.profile')->with('success', 'You have registered successfully');
+            return redirect()->route('gem.profile')->with('success', 'You have registered successfully');
         }else{
-            return redirect()->route('user.register')->with('unsuccess', 'Registration Failed');
+            return redirect()->route('gem.register')->with('unsuccess', 'Registration Failed');
         }
     }
 }

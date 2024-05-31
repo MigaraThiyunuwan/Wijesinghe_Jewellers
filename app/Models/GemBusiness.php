@@ -17,6 +17,7 @@ class GemBusiness extends Model
         'gem_asso_num',
         'business_num',
         'address',
+        'verified',
         'contact_no',
         'email',
         'certificate_image',
@@ -35,7 +36,6 @@ class GemBusiness extends Model
         $gemBusiness->address = $request->address;
         $gemBusiness->contact_no = $request->contact_no;
         $gemBusiness->email = $request->email;
-        $gemBusiness->certificate_image = "";
         $gemBusiness->time_from = $request->time_from;
         $gemBusiness->time_to = $request->time_to;
         $gemBusiness->password = Hash::make($request->password);
@@ -43,5 +43,10 @@ class GemBusiness extends Model
         $gemBusiness->save();
         return $gemBusiness;
        
+    }
+
+    public static function getUnverifiedBusinesses()
+    {
+        return self::where('verified', 'false')->get();
     }
 }
