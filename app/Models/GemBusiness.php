@@ -45,6 +45,19 @@ class GemBusiness extends Model
        
     }
 
+    public function login($email, $password)
+    {
+        $gemBusiness = $this->where('email', $email)->first();
+
+        if ($gemBusiness) {
+            if (Hash::check($password, $gemBusiness->password)) {
+                return $gemBusiness;
+            }
+        }
+
+        return null;
+    }
+
     public static function getUnverifiedBusinesses()
     {
         return self::where('verified', 'false')->get();

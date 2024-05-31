@@ -201,7 +201,7 @@
     <main class="profile-page">
         <section class="relative block h-500-px">
           <div class="absolute top-0 w-full h-full bg-center bg-cover" style="
-                  background-image: url('https://www.bhimagold.com/_next/image?url=https%3A%2F%2Fd1bpnn2a5id540.cloudfront.net%2F1653277918007%2F15b535e0-d50a-11ed-a6b7-2909c1103121.jpg&w=1680&q=75');
+                  background-image: url('https://www.webindiamaster.com/public/uploads/we-help-your-business2.jpg');
                 ">
             <span id="blackOverlay" class="w-full h-full absolute opacity-20 bg-black"></span>
           </div>
@@ -252,11 +252,13 @@
 
                   <div class="flex justify-center mb-3 ">
                     @if ($gemBusiness->verified == "false")
-                    <span class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded white:bg-yellow-900 dark:text-yellow-500">Verification Pending</span>
+                    <span class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded white:bg-yellow-900 dark:text-yellow-500"><i class="fa-regular fa-clock"></i> Verification Pending</span>
 
+                    @elseif ($gemBusiness->verified == "rejected")
+                    <span class="bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded white:bg-red-900 dark:text-red-500"><i class="fa-regular fa-circle-xmark"></i> Verification Rejected</span>
                     @else
                     
-                      <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded white:bg-blue-900 dark:text-blue-300">Verified</span>
+                      <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded white:bg-blue-900 dark:text-blue-700">Verified</span>
                       <span class="inline-flex items-center justify-center w-6 h-6 me-2 text-sm font-semibold text-blue-800 bg-blue-100 rounded-full white:bg-gray-700 dark:text-blue-400">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>

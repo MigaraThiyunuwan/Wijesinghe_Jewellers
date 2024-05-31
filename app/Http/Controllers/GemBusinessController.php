@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GemBusiness;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class GemBusinessController extends Controller
 {
@@ -24,6 +25,7 @@ class GemBusinessController extends Controller
         return view('GemBusinessOwner.login');
     }
 
+    // function for handling register new Grm Business
     public function save(Request $request)
     {
         $rules = [
@@ -62,5 +64,31 @@ class GemBusinessController extends Controller
         }else{
             return redirect()->route('gem.register')->with('unsuccess', 'Registration Failed');
         }
+    }
+
+    // function for handling gem business login
+    public function logingem(Request $request)
+    {
+        $rules = [
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string',
+        ];
+        
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        //Call login function in GemBusiness model
+        $gemBusiness = new GemBusiness();
+        $logedGemBusiness = $gemBusiness->login($request->email, $request->password);
+        
+        if ($logedGemBusiness) {
+            Session::flush();
+            $request->session()->put('gemBusiness', $logedGemBusiness);
+            return redirect()->route('gem.profile');
+        }
+
+        return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput();
     }
 }

@@ -86,7 +86,7 @@
             </div> --}}
             <img src="{{ asset('images/logo_no_bg.png') }}" style="width: 300px; height: 300px; margin-left: 30px" >
         </div>
-        <form action="{{route('gem.login')}}" method="POST" class="space-y-6">
+        <form action="{{route('gem.logingem')}}" method="POST" class="space-y-6">
             @csrf
 
 			{{-- Login credentials error message --}}
