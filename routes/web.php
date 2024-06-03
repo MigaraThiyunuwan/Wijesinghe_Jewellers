@@ -71,6 +71,7 @@ Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save'
 
 //Routes for Shop
 Route::get('shop/necklaces', [ShopController::class, 'necklaces'])->name('shop.necklaces');
+Route::get('shop/productDetails', [ShopController::class, 'productDetails'])->name('shop.productDetails');
 
 
 //Routes for Events

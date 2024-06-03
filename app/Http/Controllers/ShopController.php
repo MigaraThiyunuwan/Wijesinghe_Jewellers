@@ -10,4 +10,9 @@ class ShopController extends Controller
     {
         return view('shop.necklaces');
     }
+
+    public function productDetails()
+    {
+        return view('shop.productDetails');
+    }
 }

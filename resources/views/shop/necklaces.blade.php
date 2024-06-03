@@ -12,6 +12,28 @@
       $user = session()->get('user');
 	  $manager = session()->get('manager');
     @endphp
+
+<style>
+    #content .products .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #content .products .row article {
+        flex: 1 0 20%; /* Five articles per row (20% each) */
+        box-sizing: border-box;
+        padding: 10px; /* Optional: Add some padding */
+        border: 1px solid black; /* Add black border */
+    }
+    #content .products .row article img {
+        width: 100%;
+        height: auto;
+    }
+    /* Optional: Add some styles to ensure it looks good */
+    #content .products {
+        margin: 0 auto;
+        max-width: 1200px; /* Adjust as needed */
+    }
+</style>
 </head>
 <body>
 
@@ -56,7 +78,7 @@
 		<!-- / container -->
 	</nav>
 	<!-- / navigation -->
-
+    
     <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl" style="margin-bottom: 30px">
         <div class="rounded-full bg-gray-600 text-white absolute top-5 right-5 text-sm px-2 text-center z-10">
             
@@ -79,6 +101,16 @@
        
     </article>
 
+    <div id="breadcrumbs" style="margin-top: -30px">
+		<div class="container">
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li>Necklaces</li>
+			</ul>
+		</div>
+		<!-- / container -->
+	</div>
+    
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('slider', () => ({
@@ -93,87 +125,88 @@
     </script>
 
 <div id="body">
-    <div class="container">
-        <div class="last-products">
-            <h2>Last added products</h2>
-            <section class="products">
-                <article>
-                    <img src="../images/1.jpg" alt="">
-                    <h3>Excepteur sint occaecat</h3>
-                    <h4>$1 850.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <img src="../images/11.jpg" alt="">
-                    <h3>Lorem ipsum dolor</h3>
-                    <h4>$990.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <img src="../images/12.jpg" alt="">
-                    <h3>cupidatat non proident</h3>
-                    <h4>$1 200.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <img src="../images/13.jpg" alt="">
-                    <h3>Duis aute irure</h3>
-                    <h4>$2 650.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <img src="../images/14.jpg" alt="">
-                    <h3>magna aliqua</h3>
-                    <h4>$3 500.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <img src="../images/14.jpg" alt="">
-                    <h3>magna aliqua</h3>
-                    <h4>$3 500.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-            </section>
-        </div>
-        {{-- <section class="quick-links">
-            <article style="background-image: url(../images/2.jpg)">
-                <a href="#" class="table">
-                    <div class="cell">
-                        <div class="text">
-                            <h4>Lorem ipsum</h4>
-                            <hr>
-                            <h3>Dolor sit amet</h3>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            <article class="red" style="background-image: url(../images/3.jpg)">
-                <a href="#" class="table">
-                    <div class="cell">
-                        <div class="text">
-                            <h4>consequatur</h4>
-                            <hr>
-                            <h3>voluptatem</h3>
-                            <hr>
-                            <p>Accusantium</p>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            <article style="background-image: url(../images/4.jpg)">
-                <a href="#" class="table">
-                    <div class="cell">
-                        <div class="text">
-                            <h4>culpa qui officia</h4>
-                            <hr>
-                            <h3>magnam aliquam</h3>
-                        </div>
-                    </div>
-                </a>
-            </article>
-        </section> --}}
-    </div>
+    
     <!-- / container -->
+    <div id="content" style="margin: 20px">
+        <section class="products">
+            <div class="row">
+                <article>
+                    <a href="product.html"><img src="../images/12.jpg" alt=""></a>
+                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
+                    <h4><a href="product.html">$990.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <article>
+                    <a href="product.html"><img src="../images/12.jpg" alt=""></a>
+                    <h3><a href="product.html">cupidatat non proident</a></h3>
+                    <h4><a href="product.html">$1 200.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <article>
+                    <a href="product.html"><img src="../images/13.jpg" alt=""></a>
+                    <h3><a href="product.html">Duis aute irure</a></h3>
+                    <h4><a href="product.html">$2 650.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <article>
+                    <a href="product.html"><img src="../images/14.jpg" alt=""></a>
+                    <h3><a href="product.html">magna aliqua</a></h3>
+                    <h4><a href="product.html">$3 500.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <article>
+                    <a href="product.html"><img src="../images/15.jpg" alt=""></a>
+                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
+                    <h4><a href="product.html">$1 500.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <article>
+                    <a href="product.html"><img src="../images/15.jpg" alt=""></a>
+                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
+                    <h4><a href="product.html">$1 500.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <article>
+                    <a href="product.html"><img src="../images/15.jpg" alt=""></a>
+                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
+                    <h4><a href="product.html">$1 500.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                
+                <article>
+                    <a href="product.html"><img src="../images/15.jpg" alt=""></a>
+                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
+                    <h4><a href="product.html">$1 500.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <article>
+                    <a href="product.html"><img src="../images/15.jpg" alt=""></a>
+                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
+                    <h4><a href="product.html">$1 500.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <article>
+                    <a href="product.html"><img src="../images/15.jpg" alt=""></a>
+                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
+                    <h4><a href="product.html">$1 500.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <article>
+                    <a href="product.html"><img src="../images/15.jpg" alt=""></a>
+                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
+                    <h4><a href="product.html">$1 500.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <article>
+                    <a href="product.html"><img src="../images/15.jpg" alt=""></a>
+                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
+                    <h4><a href="product.html">$1 500.00</a></h4>
+                    <a href="cart.html" class="btn-add">Add to cart</a>
+                </article>
+                <!-- Add more articles here -->
+            </div>
+        </section>
+    </div>
 </div>
 <!-- / body -->
 
