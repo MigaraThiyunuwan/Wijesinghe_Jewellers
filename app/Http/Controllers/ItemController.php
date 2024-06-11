@@ -6,16 +6,19 @@ use App\Models\Item;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class ItemController extends Controller
 {
     public function necklaces()
     {
-        return view('shop.necklaces');
+        $item = new Item();
+        $itemList = $item->getItemList("Necklace");
+        return view('shop.necklaces', compact('itemList'));
     }
 
-    public function productDetails()
+    public function productDetails($itemId)
     {
-        return view('shop.productDetails');
+        $item = Item::where('id',$itemId)->first();
+        return view('shop.productDetails', compact('item'));
     }
 
     public function save (Request $request)

@@ -35,4 +35,15 @@ class Item extends Model
         $item->save();
         return $item;
     }
+
+    public function getItemList($type)
+    {
+        if($type = "all")
+        {
+            return self::all(); 
+            
+        }else{
+            return self::where('category', $type)->get();
+        }
+    }
 }

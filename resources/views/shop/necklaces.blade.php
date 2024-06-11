@@ -130,7 +130,15 @@
     <div id="content" style="margin: 20px">
         <section class="products">
             <div class="row">
-                <article>
+                @foreach($itemList as $item)
+                    <article>
+                        <a href="{{ route('shop.productDetails', $item->id) }}"><img src="../images/shop/{{$item->image}}" alt=""></a>
+                        <h3><a href="{{ route('shop.productDetails', $item->id) }}">{{$item->name}}</a></h3>
+                        <h4><a href="{{ route('shop.productDetails', $item->id) }}">{{$item->price}}</a></h4>
+                        <a href="cart.html" class="btn-add">Add to cart</a>
+                    </article>
+                @endforeach
+                {{-- <article>
                     <a href="{{ route('shop.productDetails') }}"><img src="../images/shop/necklaces/1.jpg" alt=""></a>
                     <h3><a href="{{ route('shop.productDetails') }}">Lorem ipsum dolor</a></h3>
                     <h4><a href="{{ route('shop.productDetails') }}">Rs. 14 500.00</a></h4>
@@ -202,7 +210,7 @@
                     <h3><a href="product.html">Lorem ipsum dolor</a></h3>
                     <h4><a href="product.html">$1 500.00</a></h4>
                     <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
+                </article> --}}
                 <!-- Add more articles here -->
             </div>
         </section>
