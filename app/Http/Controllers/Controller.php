@@ -29,6 +29,7 @@ class Controller extends BaseController
         //$request = new Request();
         $request->session()->forget('user');
         $request->session()->forget('manager');
+        session()->forget('orders');
         return redirect()->route('home');
     }
 

@@ -43,6 +43,12 @@ class User extends Model
         'remember_token',
     ];
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    
     public function register(Request $request)
     {
         $user = new User();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -120,6 +121,9 @@ class UserController extends Controller
 
         if ($loggedInUser) {
             Session::flush();
+            $cart = new Cart();
+            $cartDetails = $cart->getCart($loggedInUser->id);
+            session(['orders' => $cartDetails]);
             $request->session()->put('user', $loggedInUser);
             return redirect()->route('user.profile');
         }

@@ -21,6 +21,11 @@ class Item extends Model
         'specification',
     ];
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
     public function addItem(Request $request)
     {
         $item = new Item();
@@ -45,5 +50,10 @@ class Item extends Model
         }else{
             return self::where('category', $type)->get();
         }
+    }
+
+    public function getItemDetails($id)
+    {
+        return self::where('id', $id)->first();
     }
 }

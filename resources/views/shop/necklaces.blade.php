@@ -43,6 +43,7 @@
 			<div class="right-links">
 				<ul>
 					@if ($user)
+                    <li><a href="{{ asset('cart') }}"><span class="ico-products"></span>Cart</a></li>
 					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
 					@if ($manager)
@@ -131,87 +132,19 @@
         <section class="products">
             <div class="row">
                 @foreach($itemList as $item)
-                    <article>
+                    <article >
                         <a href="{{ route('shop.productDetails', $item->id) }}"><img src="../images/shop/{{$item->image}}" alt=""></a>
                         <h3><a href="{{ route('shop.productDetails', $item->id) }}">{{$item->name}}</a></h3>
-                        <h4><a href="{{ route('shop.productDetails', $item->id) }}">{{$item->price}}</a></h4>
-                        <a href="cart.html" class="btn-add">Add to cart</a>
+                        @if ($item->quantity == 0)
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-1 mt-2 rounded relative" role="alert">
+                                <strong class="font-bold">Out of Stock!</strong>
+                            </div>
+                        @endif
+                        <h4><a href="{{ route('shop.productDetails', $item->id) }}">Rs. {{$item->price}}</a></h4>
+                        <a  href="cart.html" class="btn-add">Add to cart</a>
                     </article>
                 @endforeach
-                {{-- <article>
-                    <a href="{{ route('shop.productDetails') }}"><img src="../images/shop/necklaces/1.jpg" alt=""></a>
-                    <h3><a href="{{ route('shop.productDetails') }}">Lorem ipsum dolor</a></h3>
-                    <h4><a href="{{ route('shop.productDetails') }}">Rs. 14 500.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/2.jpg" alt=""></a>
-                    <h3><a href="product.html">cupidatat non proident</a></h3>
-                    <h4><a href="product.html">$1 200.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/3.jpg" alt=""></a>
-                    <h3><a href="product.html">Duis aute irure</a></h3>
-                    <h4><a href="product.html">$2 650.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/4.jpg" alt=""></a>
-                    <h3><a href="product.html">magna aliqua</a></h3>
-                    <h4><a href="product.html">$3 500.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/5.jpg" alt=""></a>
-                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
-                    <h4><a href="product.html">$1 500.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/6.jpg" alt=""></a>
-                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
-                    <h4><a href="product.html">$1 500.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/7.jpg" alt=""></a>
-                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
-                    <h4><a href="product.html">$1 500.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
                 
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/8.jpg" alt=""></a>
-                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
-                    <h4><a href="product.html">$1 500.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/9.jpg" alt=""></a>
-                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
-                    <h4><a href="product.html">$1 500.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/10.jpg" alt=""></a>
-                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
-                    <h4><a href="product.html">$1 500.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/11.jpg" alt=""></a>
-                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
-                    <h4><a href="product.html">$1 500.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <a href="product.html"><img src="../images/shop/necklaces/12.jpg" alt=""></a>
-                    <h3><a href="product.html">Lorem ipsum dolor</a></h3>
-                    <h4><a href="product.html">$1 500.00</a></h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article> --}}
-                <!-- Add more articles here -->
             </div>
         </section>
     </div>

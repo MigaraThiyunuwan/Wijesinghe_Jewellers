@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GemBusinessController;
@@ -74,6 +75,10 @@ Route::get('shop/necklaces', [ItemController::class, 'necklaces'])->name('shop.n
 Route::get('shop/productDetails/{itemId}', [ItemController::class, 'productDetails'])->name('shop.productDetails');
 Route::post('shop/save', [ItemController::class, 'save'])->name('shop.save');
 
+//Routes for Cart
+Route::get('cart', [CartController::class, 'showCart'])->name('cart.cart');
+Route::post('cart/add', [CartController::class, 'addToCart'])->name('cart.add'); 
+Route::post('cart/update', [CartController::class, 'updateCartItem'])->name('cart.update');
 
-//Routes for Events
-Route::get('events/home', [EventController::class, 'home'])->name('events.home');
+//Routes for Events   
+Route::get('events/home', [EventController::class, 'home'])->name('events.home'); 

@@ -444,7 +444,7 @@
 	<div id="body">
 		<div class="container">
 			<div id="content" class="full">
-				<div class="cart-table">
+				<div class="cart-table1">
 					<table>
 						<tr>
 							<th class="items">Items</th>
