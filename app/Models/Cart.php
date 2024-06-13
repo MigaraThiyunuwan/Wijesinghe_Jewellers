@@ -43,7 +43,8 @@ class Cart extends Model
     
     public function deleteItem($user_id, $item_id)
     {
-        return self::where('user_id', $user_id)->where('item_id', $item_id)->delete();
+        self::where('user_id', $user_id)->where('item_id', $item_id)->delete();
+        return true;
     }
 
     public function updateQuantity($user_id, $item_id, $quantity)

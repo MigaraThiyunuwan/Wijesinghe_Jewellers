@@ -15,6 +15,14 @@ class CartController extends Controller
         return view('Cart.cart', compact('item'));
     }
     
+    public function receiver()
+    {
+        $item = new Item();
+        return view('Cart.receiverDetailsForm', compact('item'));
+    }
+
+    
+    
     public function addToCart(Request $request)
     {
         $itemFound = false;
@@ -76,6 +84,30 @@ class CartController extends Controller
         }
         
         return redirect()->route('cart.cart')->with(compact('item'))->with('updateItemError', 'Failed to update item quantity!');
+    }
+
+    public function removeCartItem(Request $request)
+    {
+        $item = new Item();
+        $itemId = request('item_id');
+        $userId = request('user_id');
+        
+        $cart = new Cart();
+        if($cart->deleteItem($userId, $itemId))
+        {
+            $orders = session('orders', []);
+            foreach ($orders as $key => $order) {
+                if ($order['item_id'] == $itemId && $order['user_id'] == $userId ) {
+                    unset($orders[$key]);
+                    break;
+                }
+            }
+            session()->forget('orders');
+            session(['orders' => $orders]);
+            return redirect()->route('cart.cart')->with(compact('item'))->with('removeItemSuccess', 'Item removed from Cart!');
+        }
+        
+        return redirect()->route('cart.cart')->with(compact('item'))->with('removeItemError', 'Failed to remove item from Cart!');
     }
     
     

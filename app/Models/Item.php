@@ -26,6 +26,11 @@ class Item extends Model
         return $this->hasMany(Cart::class);
     }
 
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
     public function addItem(Request $request)
     {
         $item = new Item();

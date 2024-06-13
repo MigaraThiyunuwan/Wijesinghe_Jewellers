@@ -141,7 +141,39 @@
                             </div>
                         @endif
                         <h4><a href="{{ route('shop.productDetails', $item->id) }}">Rs. {{$item->price}}</a></h4>
-                        <a  href="cart.html" class="btn-add">Add to cart</a>
+
+
+						{{-- <div style="display: flex; justify-content: flex-end">
+							<form action="{{ route('cart.add') }}" method="post">
+								@csrf 
+								<input type="hidden" name="item_id" value="{{$item->id}}">
+								@if ($user)
+								<input type="hidden" name="user_id" value="{{$user->id}}">
+								@endif
+								<input type="hidden" name="item_name" value="{{$item->name}}">
+								<input type="hidden" name="item_price" value="{{$item->price}}">
+								<input type="hidden" name="item_image" value="{{$item->image}}">
+								<button type="submit" class="btn-grey">Add to cart</button>
+							</form>
+						</div> --}}
+						
+							<form action="{{ route('cart.add') }}" method="post">
+								@csrf 
+								<input type="hidden" name="item_id" value="{{$item->id}}">
+								@if ($user)
+								<input type="hidden" name="user_id" value="{{$user->id}}">
+								@endif
+								<input type="hidden" name="item_name" value="{{$item->name}}">
+								<input type="hidden" name="item_price" value="{{$item->price}}">
+								<input type="hidden" name="item_image" value="{{$item->image}}">
+								<div style="display: flex; justify-content: center">
+				
+									{{-- <button style="width: 100%" type="submit" class="btn-add">Add to cart</button> --}}
+								<a style="width: 100%" href="{{ route('shop.productDetails', $item->id) }}" class="btn-add" >View Details </a>
+							</div>
+							</form>
+						
+                        
                     </article>
                 @endforeach
                 

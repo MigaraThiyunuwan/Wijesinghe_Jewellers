@@ -8,6 +8,10 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	
+	
+    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 	@php
       $user = session()->get('user');
 	  $manager = session()->get('manager');
@@ -219,11 +223,227 @@
 
 			</div>
 			<!-- / content -->
+			
+			
+			
 		</div>
 		<!-- / container -->
+
+
+
+
+		
+
+
+
+
+
+
+
 	</div>
 	<!-- / body -->
-
+	<section class=" py-1 ">
+		<div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
+		<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+		  <div class="rounded-t bg-white mb-0 px-6 py-6">
+			<div class="text-center flex justify-between">
+			  <h6 class="text-blueGray-700 text-xl font-bold">
+				Delivery Details
+			  </h6>
+	  
+				  
+				
+			  
+	  
+	  
+			</div>
+		  </div>
+		  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+	  
+			  @if($errors->any())
+			  <div class="alert alert-danger">
+				  <ul>
+					  @foreach ($errors->all() as $error)
+					  {{-- <li>{{$error}}</li> --}}
+					  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+				  
+						  <strong class="font-bold">{{$error}}</strong>
+						  
+						  
+					  </div>
+						  
+					  @endforeach
+				  </ul>
+			  </div>
+			  @endif
+	  
+			  {{-- Show Registration Success Messsage --}}
+			  @if (session('unsuccess'))
+			  <div style="display: flex; justify-content: center">
+				<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+		  
+				  <strong class="font-bold">{{ session('unsuccess') }}</strong>
+				  
+				</div>
+			  </div>
+			@endif
+			{{-- Show Registration Success Messsage End --}}
+	  
+			  
+	  
+			<form action="{{route('user.save')}}" method="POST">
+			  @csrf
+			  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+				User Information
+			  </h6>
+			  <div class="flex flex-wrap">
+					<div class="w-full lg:w-6/12 px-4">
+					  <div class="relative w-full mb-3">
+						<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+						  First Name <span style="color: red">*</span>
+						</label>
+						<input type="text" name="first_name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('first_name') }}">
+					  </div>
+					</div>
+					<div class="w-full lg:w-6/12 px-4">
+					  <div class="relative w-full mb-3">
+						<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+						  Last Name
+						</label>
+						<input type="text" name="last_name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('last_name') }}">
+					  </div>
+					</div>
+				
+				<div class="w-full lg:w-12/12 px-4">
+				  <div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  Username <span style="color: red">*</span>
+					</label>
+					<input type="text" name="username" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('username') }}">
+				  </div>
+				</div>
+				
+			  </div>
+	  
+			  <hr class="mt-6 border-b-1 border-blueGray-300">
+	  
+			  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+				Contact Information
+			  </h6>
+			  <div class="flex flex-wrap">
+				<div class="w-full lg:w-6/12 px-4">
+				  <div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  Address
+					</label>
+					<input type="address" name="address" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('address') }}">
+				  </div>
+				</div>
+				<div class="w-full lg:w-6/12 px-4">
+				  <div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  Email <span style="color: red">*</span>
+					</label>
+					<input type="email" name="email" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('email') }}">
+				  </div>
+				</div>
+	  
+				
+				<div class="w-full lg:w-4/12 px-4">
+				  <div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  City
+					</label>
+					<input type="text" name="city" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('city') }}">
+				  </div>
+				</div>
+				<div class="w-full lg:w-4/12 px-4">
+				  <div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  Country
+					</label>
+					<input type="text" name="country" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('country') }}">
+				  </div>
+				</div>
+				<div class="w-full lg:w-4/12 px-4">
+				  <div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  Mobile No
+					</label>
+					<input type="tel" name="contact_no" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('contact_no') }}">
+				  </div>
+				</div>
+	  
+			  </div>
+	  
+			  <hr class="mt-6 border-b-1 border-blueGray-300">
+			  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+				  Password
+				</h6>
+			  <div class="flex flex-wrap">
+				  <div class="w-full lg:w-6/12 px-4">
+					  <div class="relative w-full mb-3">
+						<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+						  Password <span style="color: red">*</span>
+						</label>
+						<input type="password" name="password" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+					  </div>
+					</div>
+					<div class="w-full lg:w-6/12 px-4">
+					  <div class="relative w-full mb-3">
+						<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+						  Confirm Password <span style="color: red">*</span>
+						</label>
+						<input type="password" name="password_confirmation" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+					  </div>
+					</div>
+			   
+				
+			  </div>
+	  
+	  
+			  <hr class="mt-6 border-b-1 border-blueGray-300">
+	  
+			  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+				About Me
+			  </h6>
+			  <div class="flex flex-wrap">
+				<div class="w-full lg:w-12/12 px-4">
+				  <div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  About me
+					</label>
+					<textarea type="text" name="about" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4"> </textarea>
+				  </div>
+				</div>
+	  
+				  <div style="width: 100%; display:flex; justify-content:center">
+					  <button type="submit" style="width: 200px" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded" type="button">
+						  Register
+					  </button>
+					  
+				  </div>
+	  
+				  <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
+	  
+					<div class="bg-yellow-100 border border-blue-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
+					  <span class="block sm:inline">Already have an account?</span>
+					  <a href="{{ asset('user/login') }}">
+						<strong class="font-bold">LOGIN</strong>
+					  </a>
+					</div>
+					  
+				  </div>
+				  
+			  </div>
+	  
+			  
+			</form>
+		  </div>
+		</div>
+	  
+	  </div>
+	  </section>
 
     <footer id="footer">
 		<div class="container">
