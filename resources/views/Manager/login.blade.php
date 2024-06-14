@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
 	<meta charset="utf-8">
 	<title>Jiwesinghe Jewellery</title>
@@ -22,14 +22,21 @@
 
 					<li>
 
-						<a href="{{ asset('user/login') }}">
+						<a href="{{ asset('user/login') }}"> 
 							<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
 							  Login as Customer
 							</button>
 						</a>
 
 					</li>
-
+					<li>
+						<a href="{{ asset('gem/login') }}"> 
+							<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+							  Login as Gem Business
+							</button>
+						</a>
+					</li>
+					
 					@if ($user)
 					<li><a href="{{ route('user.profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
@@ -38,7 +45,7 @@
 					@else
 						<li><a href="{{ route('user.register') }}"><span class="ico-signout"></span>Register</a></li>
 					@endif
-
+					
 				</ul>
 			</div>
 		</div>
@@ -53,9 +60,8 @@
 				<li><a href="products.html">New collection</a></li>
 				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
-				<li><a href="products.html">Rings</a></li>
+				<li><a href="{{ route('events.home') }}">Events</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
-                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -63,7 +69,7 @@
 	</nav>
 	<!-- / navigation -->
 
-
+    
 
     <div style="margin-bottom: 30px" class="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-100 dark:text-gray-800">
         <div class="">
@@ -84,7 +90,7 @@
 						<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
 							<strong class="font-bold">{{ $error }}</strong>
 						</div>
-
+							
 						@endforeach
 					</ul>
 				</div>
@@ -92,12 +98,12 @@
 
 			{{-- un authorized access error message --}}
 			@if (request('error'))
-
+			
 			<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
 				<strong class="font-bold">{{ request('error')  }}</strong>
 			</div>
 			@endif
-
+		
 
             <div class="relative w-full mb-3">
                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
@@ -118,13 +124,13 @@
 				@else
 				<button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded">Login</button>
 			@endif
-
-
-
-
-
+            
+            
+       
+         
+       
         </form>
-
+        
     </div>
 
 
@@ -158,7 +164,7 @@
 					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-
+					
 					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>
@@ -171,6 +177,6 @@
 
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
+	<script src="../js/plugins.js"></script>
+	<script src="../js/main.js"></script>
 </body>

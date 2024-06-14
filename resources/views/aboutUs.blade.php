@@ -12,6 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     @php
+      $manager = session()->get('manager');
         $user = session()->get('user');
         $manager = session()->get('manager');
     @endphp
@@ -20,47 +21,46 @@
 
 <body>
     <header id="header">
-        <div class="container">
-            <a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
-            <div class="right-links">
-                <ul>
-                    @if ($user)
-                        <li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello,
-                                {{ $user->username }}</a></li>
-                    @endif
-                    @if ($manager)
-                        <li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello,
-                                {{ $manager->username }}</a></li>
-                    @endif
+		<div class="container">
+			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
+			<div class="right-links">
+				<ul>
+					@if ($user)
+					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
+					@endif
+					@if ($manager)
+					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
+					
 
-                    @if ($user || $manager)
-                        <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
-                    @else
-                        <li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-        <!-- / container -->
-    </header>
-    <!-- / header -->
+					@if ($user || $manager)
+						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
+					@else
+						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+					@endif
+
+				</ul>
+			</div>
+		</div>
+		<!-- / container -->
+	</header>
+	<!-- / header -->
 
     <nav id="menu">
-        <div class="container">
-
-            <ul>
-                <li><a href="products.html">New collection</a></li>
-                <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-                <li><a href="products.html">earrings</a></li>
-                <li><a href="products.html">Rings</a></li>
-                <li><a href="{{ route('aboutus') }}">About</a></li>
-                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
-                <li><a href="products.html">Promotions</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- component -->
+		<div class="container">
+			<div class="trigger"></div>
+			<ul>
+				<li><a href="products.html">New collection</a></li>
+				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+				<li><a href="products.html">earrings</a></li>
+				<li><a href="{{ route('events.home') }}">Events</a></li>
+				<li><a href="{{ route('aboutus') }}">About</a></li>
+				<li><a href="products.html">Promotions</a></li>
+			</ul>
+		</div>
+		<!-- / container -->
+	</nav>
+	<!-- / navigation -->
 
 
     <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl"
@@ -99,46 +99,39 @@
         })
     </script>
 
-    <div class="py-5" style="background-color:#fffbfb; align-items: auto" id="venue">
+    <div style="background-color:#fffbfb; align-items: auto; padding-top: 70px" id="venue">
         <div class="container">
             <div class="row animate-in-down">
                 <div class="p-4 col-md-6 align-self-center text-color">
                     <h2 style="color: goldenrod; font-size: 30px; text-align: center;">All About Our Company</h2>
-                    <p class="my-4" style="text-align: center">Wijesinghe Jewellers" is a renowned name in the world
-                        of exquisite jewelry craftsmanship, specializing in creating timeless pieces that reflect
-                        elegance, beauty, and sophistication. With a legacy of craftsmanship spanning decades, we take
-                        pride in our commitment to quality, precision, and innovation.</p>
-                    <p class="my-4" style="text-align: center">At Wijesinghe Jewellers, every piece of jewelry is
-                        meticulously crafted by skilled artisans, blending traditional techniques with modern designs to
-                        create unique masterpieces. Our collections showcase a blend of classic and contemporary styles,
-                        catering to the diverse tastes of our discerning clientele.</p>
-                    <p class="my-4" style="text-align: center">Our dedication to excellence extends beyond the
-                        creation of jewelry. We prioritize customer satisfaction, offering personalized services to
-                        ensure a seamless and memorable shopping experience. Whether it's a special occasion, a
-                        meaningful gift, or a self-indulgent treat, Wijesinghe Jewellers is your trusted destination for
-                        luxury jewelry that embodies timeless beauty and exceptional craftsmanship.</p>
+                    <p class="my-4" style="text-align: center">"Wijesinghe Jewellers" is renowned for its exquisite craftsmanship, creating jewelry pieces that exude 
+                        elegance and sophistication. With decades of experience, their skilled artisans blend traditional techniques with contemporary designs, resulting 
+                        in unique and timeless creations. Committed to quality and customer satisfaction, they offer personalized services, ensuring each client receives a
+                         memorable and luxurious shopping experience.</p>
+                    <p class="my-4" style="text-align: center">For decades, "Wijesinghe Jewellers" has been synonymous with elegance and superior craftsmanship. 
+                        Their artisans expertly blend traditional techniques with contemporary designs, crafting timeless pieces that captivate. Committed to excellence, 
+                        they offer personalized services, ensuring each customer enjoys a memorable journey into luxury and sophistication.</p>
+                    
                 </div>
                 <div class="p-0 col-md-6">
                     <div>
                         <div> <img class="d-block img-fluid w-100" src="images/about/img2.jpg"
-                                style="height: 400px; margin-top: 40px;">
+                                style="height: 400px; margin-top: 0px;">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
-    <div>
+    
+   
         <div style="background-color:#fffbfb; align-items: auto; margin-bottom: 0px" id="venue">
             <div class="container">
                 <div class="row animate-in-down">
                     <div class="p-0 col-md-6">
                         <div>
                             <div> <img class="d-block img-fluid w-100" src="images/about/img3.jpg"
-                                    style="height: 400px; margin-top: 40px;">
+                                    style="height: 400px; margin-top: 0px;">
                             </div>
                         </div>
                     </div>
@@ -177,17 +170,15 @@
                     <div class="p-0 col-md-6">
                         <div>
                             <div> <img class="d-block img-fluid w-100" src="images/about/img4.jpg"
-                                    style="height: 400px; margin-top: 40px;">
+                                    style="height: 400px; margin-top: 0px;">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
+    
+
     <br>
     <footer id="footer">
         <div class="container">
@@ -229,6 +220,10 @@
             <p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
         </div>
     </footer>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
+	<script src="js/plugins.js"></script>
+	<script src="js/main.js"></script>
 </body>
 
 </html>

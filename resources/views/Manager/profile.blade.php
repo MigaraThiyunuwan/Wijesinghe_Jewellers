@@ -8,8 +8,8 @@
     <link rel="stylesheet" media="all" href="{{ asset('css/profile.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-    <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     @php
       $manager = session()->get('manager');
     @endphp
@@ -189,7 +189,7 @@
 				<li><a href="products.html">New collection</a></li>
 				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
-				<li><a href="products.html">Rings</a></li>
+				<li><a href="{{ route('events.home') }}">Events</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
@@ -247,6 +247,9 @@
                   </div>
                 </div>
                 <div class="text-center mt-12">
+
+                  {{-- <img class="h-auto max-w-full" src="{{ asset('storage/uploads/2.jpg') }}" alt="image description"> --}}
+
                   <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                     {{$manager->first_name}} {{$manager->last_name}}
                   </h3>
@@ -261,6 +264,46 @@
                   <div class="mb-2 text-blueGray-600">
                     <i class="fas fa-phone-volume mr-2 text-lg text-blueGray-400"></i>{{$manager->contact_no}}
                   </div>
+                  
+                  @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            {{-- <li>{{$error}}</li> --}}
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        
+                                <strong class="font-bold">{{$error}}</strong>
+                                
+                                
+                            </div>
+                                
+                            @endforeach
+                        </ul>
+                    </div>
+                  @endif
+
+                  @if (session('managerSuccess'))
+                      
+                      <div style="display: flex; justify-content: center">
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                  
+                          <strong class="font-bold">{{ session('managerSuccess') }}</strong>
+                          
+                        </div>
+                      </div>
+                  @endif
+
+                  @if (session('managerError'))
+                      
+                      <div style="display: flex; justify-content: center">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                  
+                          <strong class="font-bold">{{ session('managerError') }}</strong>
+                          
+                        </div>
+                      </div>
+                  @endif
+
                 </div>
                 <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
                   <div class="flex flex-wrap justify-center">
@@ -336,10 +379,10 @@
             <div class="rounded-t mb-0 px-0 border-0">
               <div class="flex flex-wrap items-center px-4 py-2">
                 <div class="relative w-full max-w-full flex-grow flex-1">
-                  <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Social Traffic</h3>
+                  <h3 class="font-semibold text-base text-gray-900 dark:text-gray-50">Item Quantity</h3>
                 </div>
                 <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-                  <button class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button>
+                  <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">Add Items</button>
                 </div>
               </div>
               <div class="block w-full overflow-x-auto">
@@ -427,6 +470,78 @@
               </div>
             </div>
           </div>
+
+          <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-md max-h-full">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Add New Item
+                        </h3>
+                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <form class="p-4 md:p-5" action="{{route('shop.save')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                      <div class="grid gap-4 mb-4 grid-cols-2">
+                            <div class="col-span-2">
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="10000.00" required="">
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                              <label for="customize" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customize</label>
+                              
+                              <div class="flex items-center mb-2">
+                                <input type="radio" name="customize" id="true-option" value="true" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-100 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                                <label for="true-option" class="ml-2 text-sm font-medium text-gray-900 dark:text-white">True</label>
+                              </div>
+                            
+                              <div class="flex items-center">
+                                <input type="radio" name="customize" id="false-option" value="false" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-100 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                                <label for="false-option" class="ml-2 text-sm font-medium text-gray-900 dark:text-white">False</label>
+                              </div>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                              <label for="item_image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
+                              <input type="file" name="image" id="item_image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required="">
+                          </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                                <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <option value="Necklace">Necklace</option>
+                                    <option value="Earring">Earring</option>
+                                    <option value="Ring">Ring</option>
+                                    <option value="Bracelet">Bracelet</option>
+                                </select>
+                            </div>
+                            <div class="col-span-2">
+                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
+                                <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-100 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write product description here" required></textarea>                    
+                            </div>
+                            <div class="col-span-2">
+                              <label for="specification" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Specification</label>
+                              <textarea id="specification" name="specification" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-100 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write product specification here" required></textarea>                    
+                            </div>
+                        </div>
+                        <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                          <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                          </svg>
+                          Add new product
+                        </button>
+                  </form>
+                </div>
+            </div>
+          </div>
+                      
           <!-- ./Social Traffic -->
     
           <!-- Recent Activities -->
@@ -606,165 +721,155 @@
         <!-- ./Task Summaries -->
     
         <!-- Client Table -->
-        <div class="mt-4 mx-4">
-          <div class="w-full overflow-hidden rounded-lg shadow-xs">
-            <div class="w-full overflow-x-auto">
-              <table class="w-full">
-                <thead>
-                  <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                    <th class="px-4 py-3">Client</th>
-                    <th class="px-4 py-3">Amount</th>
-                    <th class="px-4 py-3">Status</th>
-                    <th class="px-4 py-3">Date</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
-                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+        @if(count($unverifiedBusinesses) > 0)
+          <div class="mt-4 mx-4">
+            
+            <div class="w-full overflow-hidden rounded-lg shadow-xs">
+              <div class="md:col-span-2 xl:col-span-3">
+                <h3 class="text-lg font-semibold">Pending requests</h3>
+              </div>
+              <div class="w-full overflow-x-auto">
+                <table class="w-full">
+                  <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                      <th class="px-4 py-3">Business</th>
+                      <th class="px-4 py-3">Gem_Asso_num</th>
+                      <th class="px-4 py-3">View Certificate</th>
+                      <th class="px-4 py-3">Accept</th>
+                      <th class="px-4 py-3">Reject</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    @foreach($unverifiedBusinesses as $business)
+
+                    <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          {{-- <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                            <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
+                            <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                          </div> --}}
+                          <div>
+                            <p class="font-semibold">{{ $business->market_name }}</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">{{ $business->owner_name }}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p class="font-semibold">Hans Burger</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">10x Developer</p>
+                      </td>
+                      <td class="px-4 py-3 text-sm">{{$business->gem_asso_num}}</td>
+                      
+                      <td class="px-4 py-3 text-sm"><button data-modal-target="static-modal{{$business->id}}" data-modal-toggle="static-modal{{$business->id}}" > <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700"> View </span> </button></td>
+                      
+                      <div id="static-modal{{$business->id}}" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-full max-w-2xl max-h-full">
+                            <!-- Modal content -->
+                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                <!-- Modal header -->
+                                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                        Certificate Image
+                                    </h3>
+                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal{{$business->id}}">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="p-4 md:p-5 space-y-4">
+                                    
+                                  <img class="h-auto max-w-full" src="{{ asset('storage/' . $business->certificate_image) }}" alt="image description">
+
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                    <button data-modal-hide="static-modal{{$business->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
+                                    <button data-modal-hide="static-modal{{$business->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                      <td class="px-4 py-3 text-xs">
+                        <button data-modal-target="popup-modal1{{$business->id}}" data-modal-toggle="popup-modal1{{$business->id}}"><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> Accept </span> </button>
+                      </td>
+                      <td class="px-4 py-3 text-xs">
+                        <button data-modal-target="popup-modal2{{$business->id}}" data-modal-toggle="popup-modal2{{$business->id}}"><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> Reject </span> </button>
+                      </td>
+                    </tr>
+
+                    {{-- Accept Modal --}}
+                    <div id="popup-modal1{{$business->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                      <form action="{{route('manager.confirm',$business->id)}}" method="POST">
+                        @method('PUT')
+                        @csrf
+
+                      <div class="relative p-4 w-full max-w-md max-h-full">
+                          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                              <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal1{{$business->id}}">
+                                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                  </svg>
+                                  <span class="sr-only">Close modal</span>
+                              </button>
+                              <div class="p-4 md:p-5 text-center">
+                                  <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                  </svg>
+                                  <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to <span style="color: green"> accept </span> this business?</h3>
+                                  <input type="hidden" name="decision" value="accept">
+                                  <button type="submit" data-modal-hide="popup-modal1{{$business->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                      Yes, I'm sure
+                                  </button>
+                                  <button data-modal-hide="popup-modal1{{$business->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                              </div>
+                          </div>
                       </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">$855.85</td>
-                    <td class="px-4 py-3 text-xs">
-                      <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Approved </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">15-01-2021</td>
-                  </tr>
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;facepad=3&amp;fit=facearea&amp;s=707b9c33066bf8808c934c8ab394dff6" alt="" loading="lazy" />
-                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                      </form>
+                  </div>
+
+                  {{-- Reject Modal --}}
+                  <div id="popup-modal2{{$business->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <form action="{{route('manager.confirm',$business->id)}}" method="POST">
+                      @method('PUT')
+                      @csrf
+                    
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal2{{$business->id}}">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                            <div class="p-4 md:p-5 text-center">
+                                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                </svg>
+                                <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to <span style="color: red"> Reject </span> this business?</h3>
+                                <input type="hidden" name="decision" value="reject">
+                                <button type="submit" data-modal-hide="popup-modal2{{$business->id}}" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                    Yes, I'm sure
+                                </button>
+                                <button data-modal-hide="popup-modal2{{$business->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                            </div>
                         </div>
-                        <div>
-                          <p class="font-semibold">Jolina Angelie</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">Unemployed</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">$369.75</td>
-                    <td class="px-4 py-3 text-xs">
-                      <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> Pending </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">23-03-2021</td>
-                  </tr>
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1502720705749-871143f0e671?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;s=b8377ca9f985d80264279f277f3a67f5" alt="" loading="lazy" />
-                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                        </div>
-                        <div>
-                          <p class="font-semibold">Dave Li</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">Influencer</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">$775.45</td>
-                    <td class="px-4 py-3 text-xs">
-                      <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700"> Expired </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">09-02-2021</td>
-                  </tr>
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1551006917-3b4c078c47c9?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
-                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                        </div>
-                        <div>
-                          <p class="font-semibold">Rulia Joberts</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">Actress</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">$1276.75</td>
-                    <td class="px-4 py-3 text-xs">
-                      <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Approved </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">17-04-2021</td>
-                  </tr>
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1566411520896-01e7ca4726af?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
-                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                        </div>
-                        <div>
-                          <p class="font-semibold">Hitney Wouston</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">Singer</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">$863.45</td>
-                    <td class="px-4 py-3 text-xs">
-                      <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"> Denied </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">11-01-2021</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-              <span class="flex items-center col-span-3"> Showing 21-30 of 100 </span>
-              <span class="col-span-2"></span>
-              <!-- Pagination -->
-              <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                <nav aria-label="Table navigation">
-                  <ul class="inline-flex items-center">
-                    <li>
-                      <button class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple" aria-label="Previous">
-                        <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                          <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                        </svg>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">1</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">2</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 text-white dark:text-gray-800 transition-colors duration-150 bg-blue-600 dark:bg-gray-100 border border-r-0 border-blue-600 dark:border-gray-100 rounded-md focus:outline-none focus:shadow-outline-purple">3</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">4</button>
-                    </li>
-                    <li>
-                      <span class="px-3 py-1">...</span>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">8</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">9</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple" aria-label="Next">
-                        <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
-                          <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                        </svg>
-                      </button>
-                    </li>
-                  </ul>
-                </nav>
-              </span>
+                    </div>
+                    </form>
+                </div>
+                  
+
+                    @endforeach
+                    
+                  </tbody>
+                </table>
+              </div>
+              
             </div>
           </div>
-        </div>
+        @else
+          <p>No unverified businesses found.</p>
+        @endif
         <!-- ./Client Table -->
     
        
@@ -838,5 +943,10 @@
 			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
 		</div>
 	</footer>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
+	<script src="../js/plugins.js"></script>
+	<script src="../js/main.js"></script>
+  
 </body>
 </html>

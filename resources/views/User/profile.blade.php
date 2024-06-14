@@ -16,7 +16,7 @@
 
     @if (!$user)
         @php
-            $loginUrl = route('user.login') . '?error=You need to login to access this page.';
+            $loginUrl = route('user.login') . '?error=First You Need to Login to Your Account.';
             header("Location: $loginUrl");
             exit();
         @endphp
@@ -27,6 +27,7 @@
 
 </head>
 <body>
+
     <header id="header">
 		<div class="container">
 			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
@@ -56,7 +57,7 @@
 				<li><a href="products.html">New collection</a></li>
 				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
-				<li><a href="products.html">Rings</a></li>
+				<li><a href="{{ route('events.home') }}">Events</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
                 <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 				<li><a href="products.html">Promotions</a></li>
@@ -112,6 +113,19 @@
                   </div>
                 </div>
                 <div class="text-center mt-12">
+
+                  {{-- Show Registration Success Messsage --}}
+                  @if (session('success'))
+                    <div style="display: flex; justify-content: center">
+                      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                
+                        <strong class="font-bold">{{ session('success') }}</strong>
+                        
+                      </div>
+                    </div>
+                  @endif
+                  {{-- Show Registration Success Messsage End --}}
+             
                   <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                     {{ $user['first_name'] }} {{ $user['last_name'] }}
                   </h3>
@@ -188,5 +202,9 @@
 			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
 		</div>
 	</footer>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
+	<script src="../js/plugins.js"></script>
+	<script src="../js/main.js"></script>
 </body>
 </html>

@@ -43,7 +43,7 @@
 				<li><a href="products.html">New collection</a></li>
 				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
-				<li><a href="products.html">Rings</a></li>
+				<li><a href="{{ route('events.home') }}">Events</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
@@ -121,7 +121,7 @@
                               var submitButton = document.getElementById('submitButton');
                              
                               // Check if input value contains "please change my password"
-                              if (inputValue.includes("please change my password")) {
+                              if (inputValue === "please change my password") {
                                 inputField.style.color = "green"; // Change text color to green
                                 submitButton.disabled = false; // Enable submit button
                               } else {
@@ -345,6 +345,6 @@
 
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
+	<script src="../js/plugins.js"></script>
+	<script src="../js/main.js"></script>
 </body>

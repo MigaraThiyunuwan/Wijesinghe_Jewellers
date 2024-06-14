@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
@@ -41,6 +42,35 @@ class User extends Model
         'password',
         'remember_token',
     ];
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    
+    public function register(Request $request)
+    {
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->username = $request->username;
+        $user->address = $request->address;
+        $user->city = $request->city;
+        $user->country = $request->country;
+        $user->contact_no = $request->contact_no;
+        $user->about = $request->about;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        // Save the user
+        $user->save();
+
+        return $user;
+    }
 
     public function login($email, $password)
     {
