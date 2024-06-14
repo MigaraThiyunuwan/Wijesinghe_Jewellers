@@ -205,7 +205,7 @@
 				<div class="total-count">
 					
 					<h3>Total to pay: <strong>Rs.{{$subTotal}}</strong></h3>
-					<a href="#" class="btn-grey">Finalize and pay</a>
+					<a style="text-decoration: none" href="{{ route('cart.receiver') }}" class="btn-grey">Confirm Order</a>
 				</div>
             
             @else

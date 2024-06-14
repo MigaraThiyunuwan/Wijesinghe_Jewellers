@@ -64,169 +64,384 @@
     
     <div id="body">
         
-		<div class="container">
+		
             
-			<div id="content" class="full">
+			
 
-					@if (session('removeItemError'))
-					  <div style="display: flex; justify-content: center; color: red; background-color: rgb(245, 215, 215)">
-						<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-				  
-						  <strong class="font-bold">{{ session('removeItemError') }}</strong>
-						  
-						</div>
-					  </div>
-					@endif		
-
-					@if (session('removeItemSuccess'))
-                      
-                      <div style="display: flex; justify-content: center; color:green; background-color: rgb(182, 245, 182)">
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                  
-                          <strong class="font-bold">{{ session('removeItemSuccess') }}</strong>
-                          
-                        </div>
-                      </div>
-                  	@endif
-
-               
-                	@if (session('updateItemError'))
-					  <div style="display: flex; justify-content: center; color: red; background-color: rgb(245, 215, 215)">
-						<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-				  
-						  <strong class="font-bold">{{ session('updateItemError') }}</strong>
-						  
-						</div>
-					  </div>
-					@endif		
-
-					@if (session('updateItemSuccess'))
-                      
-                      <div style="display: flex; justify-content: center; color:green; background-color: rgb(182, 245, 182)">
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                  
-                          <strong class="font-bold">{{ session('updateItemSuccess') }}</strong>
-                          
-                        </div>
-                      </div>
-                  	@endif
+					
                 @php
                     
                     $orders = session('orders', []);
-                @endphp
+					$subTotal = 0;
+				@endphp
 
                 @if(count($orders) > 0)
                 
-				<div class="cart-table1">
+					@foreach ($orders as &$existingOrder) 
 					
+						@php
+							$subTotal += ($item->getItemDetails($existingOrder['item_id'])->price) * ($existingOrder['quantity']);
+						@endphp
+					@endforeach
 
+
+					<section class=" py-1 ">
+						<div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
+							<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+							  <div class="rounded-t bg-white mb-0 px-6 py-6">
+								<div class="text-center flex justify-between">
+								  <h6 class="text-blueGray-700 text-xl font-bold">
+									Delivery Details 
+								  </h6>
 					
-                    
-					<table>
-						<tr>
-							<th class="items">Items</th>
-							<th class="price">Price</th>
-							<th class="qnt">Quantity</th>
-							<th class="total">Total</th>
-                            <th class="total">Remove</th>
-						</tr>
-                        @php
-                            $subTotal = 0;
-                        @endphp
-                        @foreach ($orders as &$existingOrder) 
-						<tr>
-                           
-							<td class="items">
-								<div class="image">
-									<img width="100px"; height="100px" src="{{ asset('images/shop/' . $item->getItemDetails($existingOrder['item_id'])->image) }}" alt="">
-								</div>
-								<h3><a style="color: black; text-decoration: none" href="#">{{$item->getItemDetails($existingOrder['item_id'])->name}} </a></h3>
-								<p>{{$item->getItemDetails($existingOrder['item_id'])->description}}</p>
-							</td>
-							<td class="price">Rs.{{$item->getItemDetails($existingOrder['item_id'])->price}}</td>
-                            @php
-                                $subTotal += ($item->getItemDetails($existingOrder['item_id'])->price) * ($existingOrder['quantity']);
-                            @endphp
-							<td class="qnt">
-                                <form id="myForm" action="{{ route('cart.update') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="item_id" value="{{$existingOrder['item_id']}}">
-                                    <input type="hidden" name="user_id" value="{{$user->id}}">
-                                    <select style="width: 100px" onchange='this.form.submit()' id="mySelect" name="mySelect">
-                                        @php
-                                            $maxQuantity = 5;
-                                        @endphp
-                                        @for ($i = 1; $i <= $maxQuantity; $i++)
-                                            <option value="{{ $i }}" @if ($i == $existingOrder['quantity']) selected @endif>{{ $i }}</option>
-                                        @endfor
-                                        
-                                    </select>
-                                    
-                                </form>
-                               
-                            </td>
-                            {{-- <td class="qnt"><input type="number" name="itemQty" max="5"></td> --}}
-							<td class="total">Rs.{{($item->getItemDetails($existingOrder['item_id'])->price) * ($existingOrder['quantity'])}}</td> 
-							{{-- <td class="delete"><a href="#" class="ico-del"></a></td> --}}
-                            <td class="delete"><button type="button" data-toggle="modal" data-target="#myModal{{$existingOrder['item_id']}}" class="ico-del"></button></td>
-
-							{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-								Launch demo modal
-							</button> --}}
-							<!-- Modal -->
-							<div class="modal fade" id="myModal{{$existingOrder['item_id']}}" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered">
-								<div class="modal-content">
-									<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalCenterTitle">Remove Item</h5>
+								  <h1>Total: Rs. {{$subTotal}}.00</h1>
+						  
+									  
 									
-									</div>
-									<div class="modal-body">
-									Are you sure to remove item "{{$item->getItemDetails($existingOrder['item_id'])->name}}" from the cart?
-									</div>
-									<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-									<form action="{{ route('cart.delete') }}" method="post">
-										@csrf 
-										<input type="hidden" name="item_id" value="{{$existingOrder['item_id']}}">
-										@if ($user)
-										<input type="hidden" name="user_id" value="{{$user->id}}">
-										@endif
-										<button type="submit" class="btn btn-danger">Yes I'm Sure</button>
-									</form>
-									</div>
+								  
+						  
+						  
 								</div>
+							  </div>
+							  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+						  
+								  @if($errors->any())
+								  <div class="alert alert-danger">
+									  <ul>
+										  @foreach ($errors->all() as $error)
+										  {{-- <li>{{$error}}</li> --}}
+										  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+									  
+											  <strong class="font-bold">{{$error}}</strong>
+											  
+											  
+										  </div>
+											  
+										  @endforeach
+									  </ul>
+								  </div>
+								  @endif
+						  
+								  {{-- Show Registration Success Messsage --}}
+								  @if (session('unsuccess'))
+								  <div style="display: flex; justify-content: center">
+									<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+							  
+									  <strong class="font-bold">{{ session('unsuccess') }}</strong>
+									  
+									</div>
+								  </div>
+								@endif
+								{{-- Show Registration Success Messsage End --}}
+						  
+								  
+						  
+								<form action="{{route('user.save')}}" method="POST">
+								  @csrf
+								  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+									{{-- Delivery Information --}}
+								  </h6>
+								  <div class="flex flex-wrap">
+										<div class="w-full lg:w-6/12 px-4">
+										  <div class="relative w-full mb-3">
+											<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+											  Reciver's Name <span style="color: red">*</span>
+											</label>
+											<input type="text" name="receiverName" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('receiverName') }}">
+										  </div>
+										</div>
+										<div class="w-full lg:w-6/12 px-4">
+										  <div class="relative w-full mb-3">
+											<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+											  Contact Number <span style="color: red">*</span>
+											</label>
+											<input type="phone" name="contact_no" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('contact_no') }}">
+										  </div>
+										</div>
+									
+									<div class="w-full lg:w-6/12 px-4">
+									  <div class="relative w-full mb-3">
+										<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+										  Delivery Address <span style="color: red">*</span>
+										</label>
+										<input type="address" name="deliveryAddress" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('deliveryAddress') }}">
+									  </div>
+									</div>
+
+									<div class="w-full lg:w-6/12 px-4">
+										<div class="relative w-full mb-3">
+										  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+											Select Your Country <span style="color: red">*</span>
+										  </label>
+										  {{-- <input type="address" name="deliveryAddress" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('deliveryAddress') }}"> --}}
+										  <select name="countries" id="countries" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+											<option value="AF">Afghanistan</option>
+											<option value="AL">Albania</option>
+											<option value="DZ">Algeria</option>
+											<option value="AS">American Samoa</option>
+											<option value="AD">Andorra</option>
+											<option value="AO">Angola</option>
+											<option value="AI">Anguilla</option>
+											<option value="AQ">Antarctica</option>
+											<option value="AG">Antigua and Barbuda</option>
+											<option value="AR">Argentina</option>
+											<option value="AM">Armenia</option>
+											<option value="AW">Aruba</option>
+											<option value="AU">Australia</option>
+											<option value="AT">Austria</option>
+											<option value="AZ">Azerbaijan</option>
+											<option value="BS">Bahamas</option>
+											<option value="BH">Bahrain</option>
+											<option value="BD">Bangladesh</option>
+											<option value="BB">Barbados</option>
+											<option value="BY">Belarus</option>
+											<option value="BE">Belgium</option>
+											<option value="BZ">Belize</option>
+											<option value="BJ">Benin</option>
+											<option value="BM">Bermuda</option>
+											<option value="BT">Bhutan</option>
+											<option value="BO">Bolivia</option>
+											<option value="BA">Bosnia and Herzegovina</option>
+											<option value="BW">Botswana</option>
+											<option value="BR">Brazil</option>
+											<option value="IO">British Indian Ocean Territory</option>
+											<option value="BN">Brunei Darussalam</option>
+											<option value="BG">Bulgaria</option>
+											<option value="BF">Burkina Faso</option>
+											<option value="BI">Burundi</option>
+											<option value="CV">Cabo Verde</option>
+											<option value="KH">Cambodia</option>
+											<option value="CM">Cameroon</option>
+											<option value="CA">Canada</option>
+											<option value="KY">Cayman Islands</option>
+											<option value="CF">Central African Republic</option>
+											<option value="TD">Chad</option>
+											<option value="CL">Chile</option>
+											<option value="CN">China</option>
+											<option value="CO">Colombia</option>
+											<option value="KM">Comoros</option>
+											<option value="CG">Congo</option>
+											<option value="CD">Congo, Democratic Republic of the</option>
+											<option value="CK">Cook Islands</option>
+											<option value="CR">Costa Rica</option>
+											<option value="CI">Côte d'Ivoire</option>
+											<option value="HR">Croatia</option>
+											<option value="CU">Cuba</option>
+											<option value="CW">Curaçao</option>
+											<option value="CY">Cyprus</option>
+											<option value="CZ">Czechia</option>
+											<option value="DK">Denmark</option>
+											<option value="DJ">Djibouti</option>
+											<option value="DM">Dominica</option>
+											<option value="DO">Dominican Republic</option>
+											<option value="EC">Ecuador</option>
+											<option value="EG">Egypt</option>
+											<option value="SV">El Salvador</option>
+											<option value="GQ">Equatorial Guinea</option>
+											<option value="ER">Eritrea</option>
+											<option value="EE">Estonia</option>
+											<option value="SZ">Eswatini</option>
+											<option value="ET">Ethiopia</option>
+											<option value="FJ">Fiji</option>
+											<option value="FI">Finland</option>
+											<option value="FR">France</option>
+											<option value="GF">French Guiana</option>
+											<option value="PF">French Polynesia</option>
+											<option value="GA">Gabon</option>
+											<option value="GM">Gambia</option>
+											<option value="GE">Georgia</option>
+											<option value="DE">Germany</option>
+											<option value="GH">Ghana</option>
+											<option value="GR">Greece</option>
+											<option value="GL">Greenland</option>
+											<option value="GD">Grenada</option>
+											<option value="GP">Guadeloupe</option>
+											<option value="GU">Guam</option>
+											<option value="GT">Guatemala</option>
+											<option value="GN">Guinea</option>
+											<option value="GW">Guinea-Bissau</option>
+											<option value="GY">Guyana</option>
+											<option value="HT">Haiti</option>
+											<option value="HN">Honduras</option>
+											<option value="HK">Hong Kong</option>
+											<option value="HU">Hungary</option>
+											<option value="IS">Iceland</option>
+											<option value="IN">India</option>
+											<option value="ID">Indonesia</option>
+											<option value="IR">Iran</option>
+											<option value="IQ">Iraq</option>
+											<option value="IE">Ireland</option>
+											<option value="IL">Israel</option>
+											<option value="IT">Italy</option>
+											<option value="JM">Jamaica</option>
+											<option value="JP">Japan</option>
+											<option value="JO">Jordan</option>
+											<option value="KZ">Kazakhstan</option>
+											<option value="KE">Kenya</option>
+											<option value="KI">Kiribati</option>
+											<option value="KP">Korea, Democratic People's Republic of</option>
+											<option value="KR">Korea, Republic of</option>
+											<option value="KW">Kuwait</option>
+											<option value="KG">Kyrgyzstan</option>
+											<option value="LA">Lao People's Democratic Republic</option>
+											<option value="LV">Latvia</option>
+											<option value="LB">Lebanon</option>
+											<option value="LS">Lesotho</option>
+											<option value="LR">Liberia</option>
+											<option value="LY">Libya</option>
+											<option value="LI">Liechtenstein</option>
+											<option value="LT">Lithuania</option>
+											<option value="LU">Luxembourg</option>
+											<option value="MO">Macao</option>
+											<option value="MG">Madagascar</option>
+											<option value="MW">Malawi</option>
+											<option value="MY">Malaysia</option>
+											<option value="MV">Maldives</option>
+											<option value="ML">Mali</option>
+											<option value="MT">Malta</option>
+											<option value="MH">Marshall Islands</option>
+											<option value="MQ">Martinique</option>
+											<option value="MR">Mauritania</option>
+											<option value="MU">Mauritius</option>
+											<option value="YT">Mayotte</option>
+											<option value="MX">Mexico</option>
+											<option value="FM">Micronesia (Federated States of)</option>
+											<option value="MD">Moldova (Republic of)</option>
+											<option value="MC">Monaco</option>
+											<option value="MN">Mongolia</option>
+											<option value="ME">Montenegro</option>
+											<option value="MS">Montserrat</option>
+											<option value="MA">Morocco</option>
+											<option value="MZ">Mozambique</option>
+											<option value="MM">Myanmar</option>
+											<option value="NA">Namibia</option>
+											<option value="NR">Nauru</option>
+											<option value="NP">Nepal</option>
+											<option value="NL">Netherlands</option>
+											<option value="NC">New Caledonia</option>
+											<option value="NZ">New Zealand</option>
+											<option value="NI">Nicaragua</option>
+											<option value="NE">Niger</option>
+											<option value="NG">Nigeria</option>
+											<option value="MK">North Macedonia</option>
+											<option value="MP">Northern Mariana Islands</option>
+											<option value="NO">Norway</option>
+											<option value="OM">Oman</option>
+											<option value="PK">Pakistan</option>
+											<option value="PW">Palau</option>
+											<option value="PS">Palestine, State of</option>
+											<option value="PA">Panama</option>
+											<option value="PG">Papua New Guinea</option>
+											<option value="PY">Paraguay</option>
+											<option value="PE">Peru</option>
+											<option value="PH">Philippines</option>
+											<option value="PL">Poland</option>
+											<option value="PT">Portugal</option>
+											<option value="PR">Puerto Rico</option>
+											<option value="QA">Qatar</option>
+											<option value="RO">Romania</option>
+											<option value="RU">Russian Federation</option>
+											<option value="RW">Rwanda</option>
+											<option value="RE">Réunion</option>
+											<option value="BL">Saint Barthélemy</option>
+											<option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+											<option value="KN">Saint Kitts and Nevis</option>
+											<option value="LC">Saint Lucia</option>
+											<option value="MF">Saint Martin (French part)</option>
+											<option value="PM">Saint Pierre and Miquelon</option>
+											<option value="VC">Saint Vincent and the Grenadines</option>
+											<option value="WS">Samoa</option>
+											<option value="SM">San Marino</option>
+											<option value="ST">Sao Tome and Principe</option>
+											<option value="SA">Saudi Arabia</option>
+											<option value="SN">Senegal</option>
+											<option value="RS">Serbia</option>
+											<option value="SC">Seychelles</option>
+											<option value="SL">Sierra Leone</option>
+											<option value="SG">Singapore</option>
+											<option value="SX">Sint Maarten (Dutch part)</option>
+											<option value="SK">Slovakia</option>
+											<option value="SI">Slovenia</option>
+											<option value="SB">Solomon Islands</option>
+											<option value="SO">Somalia</option>
+											<option value="ZA">South Africa</option>
+											<option value="SS">South Sudan</option>
+											<option value="ES">Spain</option>
+											<option value="LK">Sri Lanka</option>
+											<option value="SD">Sudan</option>
+											<option value="SR">Suriname</option>
+											<option value="SE">Sweden</option>
+											<option value="CH">Switzerland</option>
+											<option value="SY">Syrian Arab Republic</option>
+											<option value="TW">Taiwan</option>
+											<option value="TJ">Tajikistan</option>
+											<option value="TZ">Tanzania, United Republic of</option>
+											<option value="TH">Thailand</option>
+											<option value="TL">Timor-Leste</option>
+											<option value="TG">Togo</option>
+											<option value="TK">Tokelau</option>
+											<option value="TO">Tonga</option>
+											<option value="TT">Trinidad and Tobago</option>
+											<option value="TN">Tunisia</option>
+											<option value="TR">Turkey</option>
+											<option value="TM">Turkmenistan</option>
+											<option value="TC">Turks and Caicos Islands</option>
+											<option value="TV">Tuvalu</option>
+											<option value="UG">Uganda</option>
+											<option value="UA">Ukraine</option>
+											<option value="AE">United Arab Emirates</option>
+											<option value="GB">United Kingdom of Great Britain and Northern Ireland</option>
+											<option value="US">United States of America</option>
+											<option value="UY">Uruguay</option>
+											<option value="UZ">Uzbekistan</option>
+											<option value="VU">Vanuatu</option>
+											<option value="VE">Venezuela</option>
+											<option value="VN">Viet Nam</option>
+											<option value="VG">Virgin Islands (British)</option>
+											<option value="VI">Virgin Islands (U.S.)</option>
+											<option value="EH">Western Sahara</option>
+											<option value="YE">Yemen</option>
+											<option value="ZM">Zambia</option>
+											<option value="ZW">Zimbabwe</option>
+										  </select>
+										  
+										</div>
+									  </div>
+									
 								</div>
+						  
+									  <div style="width: 100%; display:flex; justify-content:center">
+										  
+										<a style="text-decoration: none" href="{{ route('cart.receiver') }}" class="btn-grey">Pay Bill</a>
+										
+									  </div>
+						  
+								  </div>
+								</form>
+							  </div>
 							</div>
-						</tr>
-
-                        @endforeach
-						
-					</table>
-                
-				</div>
-
-				<div class="total-count">
+						  
+						  </div>
+						  </section>
 					
-					<h3>Total to pay: <strong>Rs.{{$subTotal}}</strong></h3>
-					<a href="#" class="btn-grey">Finalize and pay</a>
-				</div>
-            
             @else
-            <div class="total-count">
-                
-                <h3><strong>Your Cart is Empty</strong></h3>
-                
-            </div>
-
+			<div class="container">
+				<div id="content" class="full">
+					<div class="total-count">
+						
+						<h3><strong>Your Cart is Empty</strong></h3>
+						
+					</div>
+				</div>
+			</div>
             @endif
 
-			</div>
+			
 			<!-- / content -->
 			
 			
 			
-		</div>
+		
 		<!-- / container -->
 
 
@@ -242,208 +457,7 @@
 
 	</div>
 	<!-- / body -->
-	<section class=" py-1 ">
-		<div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
-		<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-		  <div class="rounded-t bg-white mb-0 px-6 py-6">
-			<div class="text-center flex justify-between">
-			  <h6 class="text-blueGray-700 text-xl font-bold">
-				Delivery Details
-			  </h6>
-	  
-				  
-				
-			  
-	  
-	  
-			</div>
-		  </div>
-		  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-	  
-			  @if($errors->any())
-			  <div class="alert alert-danger">
-				  <ul>
-					  @foreach ($errors->all() as $error)
-					  {{-- <li>{{$error}}</li> --}}
-					  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-				  
-						  <strong class="font-bold">{{$error}}</strong>
-						  
-						  
-					  </div>
-						  
-					  @endforeach
-				  </ul>
-			  </div>
-			  @endif
-	  
-			  {{-- Show Registration Success Messsage --}}
-			  @if (session('unsuccess'))
-			  <div style="display: flex; justify-content: center">
-				<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-		  
-				  <strong class="font-bold">{{ session('unsuccess') }}</strong>
-				  
-				</div>
-			  </div>
-			@endif
-			{{-- Show Registration Success Messsage End --}}
-	  
-			  
-	  
-			<form action="{{route('user.save')}}" method="POST">
-			  @csrf
-			  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-				User Information
-			  </h6>
-			  <div class="flex flex-wrap">
-					<div class="w-full lg:w-6/12 px-4">
-					  <div class="relative w-full mb-3">
-						<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-						  First Name <span style="color: red">*</span>
-						</label>
-						<input type="text" name="first_name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('first_name') }}">
-					  </div>
-					</div>
-					<div class="w-full lg:w-6/12 px-4">
-					  <div class="relative w-full mb-3">
-						<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-						  Last Name
-						</label>
-						<input type="text" name="last_name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('last_name') }}">
-					  </div>
-					</div>
-				
-				<div class="w-full lg:w-12/12 px-4">
-				  <div class="relative w-full mb-3">
-					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-					  Username <span style="color: red">*</span>
-					</label>
-					<input type="text" name="username" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('username') }}">
-				  </div>
-				</div>
-				
-			  </div>
-	  
-			  <hr class="mt-6 border-b-1 border-blueGray-300">
-	  
-			  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-				Contact Information
-			  </h6>
-			  <div class="flex flex-wrap">
-				<div class="w-full lg:w-6/12 px-4">
-				  <div class="relative w-full mb-3">
-					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-					  Address
-					</label>
-					<input type="address" name="address" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('address') }}">
-				  </div>
-				</div>
-				<div class="w-full lg:w-6/12 px-4">
-				  <div class="relative w-full mb-3">
-					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-					  Email <span style="color: red">*</span>
-					</label>
-					<input type="email" name="email" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('email') }}">
-				  </div>
-				</div>
-	  
-				
-				<div class="w-full lg:w-4/12 px-4">
-				  <div class="relative w-full mb-3">
-					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-					  City
-					</label>
-					<input type="text" name="city" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('city') }}">
-				  </div>
-				</div>
-				<div class="w-full lg:w-4/12 px-4">
-				  <div class="relative w-full mb-3">
-					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-					  Country
-					</label>
-					<input type="text" name="country" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('country') }}">
-				  </div>
-				</div>
-				<div class="w-full lg:w-4/12 px-4">
-				  <div class="relative w-full mb-3">
-					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-					  Mobile No
-					</label>
-					<input type="tel" name="contact_no" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('contact_no') }}">
-				  </div>
-				</div>
-	  
-			  </div>
-	  
-			  <hr class="mt-6 border-b-1 border-blueGray-300">
-			  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-				  Password
-				</h6>
-			  <div class="flex flex-wrap">
-				  <div class="w-full lg:w-6/12 px-4">
-					  <div class="relative w-full mb-3">
-						<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-						  Password <span style="color: red">*</span>
-						</label>
-						<input type="password" name="password" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
-					  </div>
-					</div>
-					<div class="w-full lg:w-6/12 px-4">
-					  <div class="relative w-full mb-3">
-						<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-						  Confirm Password <span style="color: red">*</span>
-						</label>
-						<input type="password" name="password_confirmation" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
-					  </div>
-					</div>
-			   
-				
-			  </div>
-	  
-	  
-			  <hr class="mt-6 border-b-1 border-blueGray-300">
-	  
-			  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-				About Me
-			  </h6>
-			  <div class="flex flex-wrap">
-				<div class="w-full lg:w-12/12 px-4">
-				  <div class="relative w-full mb-3">
-					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-					  About me
-					</label>
-					<textarea type="text" name="about" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4"> </textarea>
-				  </div>
-				</div>
-	  
-				  <div style="width: 100%; display:flex; justify-content:center">
-					  <button type="submit" style="width: 200px" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded" type="button">
-						  Register
-					  </button>
-					  
-				  </div>
-	  
-				  <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
-	  
-					<div class="bg-yellow-100 border border-blue-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
-					  <span class="block sm:inline">Already have an account?</span>
-					  <a href="{{ asset('user/login') }}">
-						<strong class="font-bold">LOGIN</strong>
-					  </a>
-					</div>
-					  
-				  </div>
-				  
-			  </div>
-	  
-			  
-			</form>
-		  </div>
-		</div>
-	  
-	  </div>
-	  </section>
+	
 
     <footer id="footer">
 		<div class="container">
