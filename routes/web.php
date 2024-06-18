@@ -31,7 +31,7 @@ Route::get('test', function () {
 // Route::get('/', function () {return view('home');});
 
 Route::get('/', [Controller::class, 'home'])->name('home');
-Route::get('logout', [Controller::class, 'logout'])->name('logout');
+Route::get('logout', [Controller::class, 'logout'])->middleware('web')->name('logout');
 Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
 
 
@@ -56,10 +56,16 @@ Route::post('manager/loginmanager', [ManagerController::class, 'loginmanager'])-
 Route::get('manager/edit', [ManagerController::class, 'managerEdit'])->name('manager.edit');
 Route::post('manager/update', [ManagerController::class, 'update'])->name('manager.update');
 Route::post('manager/changepassword', [ManagerController::class, 'changepassword'])->name('manager.changepassword');
+Route::put('manager/confirm/{business_id}',[ManagerController::class,'confirm'])->name('manager.confirm');
+
 
 //Routes for Gem Business Owner
+Route::get('gem/profile', [GemBusinessController::class, 'profile'])->name('gem.profile');
 Route::get('gem/register', [GemBusinessController::class, 'register'])->name('gem.register');
 Route::get('gem/login', [GemBusinessController::class, 'login'])->name('gem.login');
+Route::post('gem/logingem', [GemBusinessController::class, 'logingem'])->name('gem.logingem');
+Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save');
+
 
 
 

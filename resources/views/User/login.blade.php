@@ -49,7 +49,7 @@
 					@if ($user || $manager)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
-						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+						<li><a href="{{ route('user.register') }}"><span class="ico-signout"></span>Register</a></li>
 					@endif
 
 				</ul>

@@ -100,83 +100,113 @@
 
         
 
-      <form action="{{route('manager.save')}}" method="POST">
+      <form action="{{route('gem.save')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-          Manager Information
+          Business Information
         </h6>
         <div class="flex flex-wrap">
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    First Name
+                    Market Name <span style="opacity: 0.4">(Ex- Vinil Manik)</span>
                   </label>
-                  <input type="text" name="first_name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('first_name') }}">
+                  <input type="text" name="market_name"  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('market_name') }}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Last Name
+                    Owner's Name <span style="color: red">*</span>
                   </label>
-                  <input type="text" name="last_name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('last_name') }}">
+                  <input type="text" name="owner_name" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('owner_name') }}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Username
+                    Jem and Jewellery Association Number <span style="color: red">*</span>
                   </label>
-                  <input type="text" name="username" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('username') }}">
+                  <input type="text" name="gem_asso_num" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('gem_asso_num') }}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    NIC No
+                    Business Registration Number
                   </label>
-                  <input type="text" name="nic" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('nic') }}">
+                  <input type="text" name="business_num" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('business_num') }}">
                 </div>
               </div>
-          
-          
-          
         </div>
 
-        <hr class="mt-6 border-b-1 border-blueGray-300">
+        {{-- <hr class="mt-6 border-b-1 border-blueGray-300">
 
         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
           Contact Information
-        </h6>
+        </h6> --}}
         <div class="flex flex-wrap">
-            <div class="w-full lg:w-12/12 px-4">
+            <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Address
+                    Address <span style="color: red">*</span>
                   </label>
-                  <input type="address" name="address" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('address') }}">
+                  <input type="address" required name="address" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('address') }}">
                 </div>
             </div>
             <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Email
+                    Email <span style="color: red">*</span>
                   </label>
-                  <input type="email" name="email" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('email') }}">
+                  <input type="email" name="email" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('email') }}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Mobile No
+                    Contact No <span style="color: red">*</span>
                   </label>
-                  <input type="tel" name="contact_no" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('contact_no') }}">
+                  <input type="tel" name="contact_no" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('contact_no') }}">
+                </div>
+              </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                    Business Registration Certificate <span style="color: red">*</span>
+                  </label>
+                  <input type="file" name="certificate_image" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('certificate_image') }}">
                 </div>
               </div>
 
-
-
         </div>
+
+        <hr class="mt-6 border-b-1 border-blueGray-300">
+        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            Best Time to Talk
+          </h6>
+        <div class="flex flex-wrap">
+              <div class="w-full lg:w-3/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                    From
+                  </label>
+                  <input type="time" name="time_from" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('start_time') }}">
+                </div>
+              </div>
+              <div class="w-full lg:w-3/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                    To
+                  </label>
+                  <input type="time" name="time_to" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('end_time') }}">
+                </div>
+              </div>
+              
+        </div>
+
+
+
 
         <hr class="mt-6 border-b-1 border-blueGray-300">
         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
@@ -186,7 +216,7 @@
             <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Password
+                    Password <span style="color: red">*</span>
                   </label>
                   <input type="password" name="password" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                 </div>
@@ -194,13 +224,11 @@
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Confirm Password
+                    Confirm Password <span style="color: red">*</span>
                   </label>
                   <input type="password" name="password_confirmation" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                 </div>
               </div>
-         
-          
         </div>
 
         <div class="flex flex-wrap">
@@ -210,7 +238,6 @@
                 <button type="submit" style="width: 200px" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded" type="button">
                     Register
                 </button>
-                
             </div>
 
             

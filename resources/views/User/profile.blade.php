@@ -16,7 +16,7 @@
     
     @if (!$user)
         @php
-            $loginUrl = route('user.login') . '?error=You need to login to access this page.';
+            $loginUrl = route('user.login') . '?error=First You Need to Login to Your Account.';
             header("Location: $loginUrl");
             exit();
         @endphp
@@ -112,6 +112,19 @@
                   </div>
                 </div>
                 <div class="text-center mt-12">
+
+                  {{-- Show Registration Success Messsage --}}
+                  @if (session('success'))
+                    <div style="display: flex; justify-content: center">
+                      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                
+                        <strong class="font-bold">{{ session('success') }}</strong>
+                        
+                      </div>
+                    </div>
+                  @endif
+                  {{-- Show Registration Success Messsage End --}}
+             
                   <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                     {{ $user['first_name'] }} {{ $user['last_name'] }}
                   </h3>

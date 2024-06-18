@@ -99,6 +99,18 @@
         </div>
         @endif
 
+        {{-- Show Registration Success Messsage --}}
+        @if (session('unsuccess'))
+        <div style="display: flex; justify-content: center">
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    
+            <strong class="font-bold">{{ session('unsuccess') }}</strong>
+            
+          </div>
+        </div>
+      @endif
+      {{-- Show Registration Success Messsage End --}}
+
         
 
       <form action="{{route('user.save')}}" method="POST">
@@ -110,7 +122,7 @@
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    First Name
+                    First Name <span style="color: red">*</span>
                   </label>
                   <input type="text" name="first_name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('first_name') }}">
                 </div>
@@ -127,7 +139,7 @@
           <div class="w-full lg:w-12/12 px-4">
             <div class="relative w-full mb-3">
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                Username
+                Username <span style="color: red">*</span>
               </label>
               <input type="text" name="username" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('username') }}">
             </div>
@@ -152,7 +164,7 @@
           <div class="w-full lg:w-6/12 px-4">
             <div class="relative w-full mb-3">
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                Email
+                Email <span style="color: red">*</span>
               </label>
               <input type="email" name="email" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('email') }}">
             </div>
@@ -194,7 +206,7 @@
             <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Password
+                    Password <span style="color: red">*</span>
                   </label>
                   <input type="password" name="password" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                 </div>
@@ -202,7 +214,7 @@
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Confirm Password
+                    Confirm Password <span style="color: red">*</span>
                   </label>
                   <input type="password" name="password_confirmation" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                 </div>

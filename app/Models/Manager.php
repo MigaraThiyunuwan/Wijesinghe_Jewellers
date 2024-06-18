@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class Manager extends Model
 {
@@ -57,5 +58,21 @@ class Manager extends Model
         $oldManager->save();
 
         return $oldManager;
+    }
+
+    public function addNewManager(Request $request)
+    {
+        $newManager = new Manager();
+        $newManager->first_name = $request->first_name;
+        $newManager->last_name = $request->last_name;
+        $newManager->username = $request->username;
+        $newManager->address = $request->address;
+        $newManager->nic = $request->nic;
+        $newManager->contact_no = $request->contact_no;
+        $newManager->email = $request->email;
+        $newManager->password = Hash::make($request->password);
+        $newManager->save();
+
+        return true;
     }
 }
