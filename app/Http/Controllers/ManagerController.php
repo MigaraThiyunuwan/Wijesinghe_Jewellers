@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GemBusiness;
 use App\Models\Manager;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -17,8 +18,8 @@ class ManagerController extends Controller
         // $unverifiedBusinesses = session('unverifiedBusinesses', []);
 
         $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
-
-        return view('manager.profile', compact('unverifiedBusinesses'));
+        $userList = User::getAllUsers();
+        return view('manager.profile', compact('unverifiedBusinesses','userList'));
     }
 
     public function register()
@@ -169,5 +170,24 @@ class ManagerController extends Controller
         return redirect()->route('manager.profile');
     }
     
+    public function deleteuser(Request $request)
+    {
+        $rules = [
+            'user_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $user = User::where('id',$request->user_id)->first();
+        if($user){
+            $user->delete();
+            $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+            $userList = User::getAllUsers();
+            return view('manager.profile', compact('unverifiedBusinesses','userList'));
+        }else{
+            return redirect()->route('manager.profile')->with('managerError', 'User not found!');
+        }
+    }
     
 }

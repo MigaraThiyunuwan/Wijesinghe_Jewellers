@@ -622,6 +622,203 @@
           </div>
           <!-- ./Recent Activities -->
         </div>
+
+
+
+        <!-- User Table -->
+        @if(count($userList) > 0)
+        <div class="mt-4 mx-4">
+          
+          <div class="w-full overflow-hidden rounded-lg shadow-xs">
+            <div class="flex flex-wrap items-center px-4 py-2">
+              <div class="md:col-span-2 xl:col-span-3">
+                <h3 class="text-lg font-semibold">Registered Users</h3> 
+              </div>
+
+              <div class="relative w-full max-w-full flex-grow flex-1 text-right">
+                <button class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button>
+              </div>
+            </div>
+            
+            <div class="w-full overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">Name</th>
+                    <th class="px-4 py-3">country</th>
+                    <th class="px-4 py-3">contact No</th>
+                    <th class="px-4 py-3">View Details</th>
+                    <th class="px-4 py-3">Remove</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                  @php
+                    $count = 0;
+                  @endphp
+                  @foreach($userList as $user)
+                  @if ($count == 6)
+                    @break
+                  @endif
+                  @php
+                    $count = $count + 1;
+                  @endphp
+                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center text-sm">
+                        {{-- <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
+                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                        </div> --}}
+                        <div>
+                          <p class="font-semibold">{{ $user->first_name }}</p>
+                          <p class="text-xs text-gray-600 dark:text-gray-400">{{ $user->last_name }}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-sm">{{$user->country}}</td>
+                    
+                    <td class="px-4 py-3 text-sm">{{$user->contact_no}}</td>
+
+                    <td class="px-4 py-3 text-xs">
+                      <button data-modal-target="popup-modal1{{$user->id}}" data-modal-toggle="popup-modal1{{$user->id}}"><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> View </span> </button>
+                    </td>
+                    <td class="px-4 py-3 text-xs">
+                      <button data-modal-target="popup-modal2{{$user->id}}" data-modal-toggle="popup-modal2{{$user->id}}"><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> Remove </span> </button>
+                    </td>
+                  </tr>
+
+                  {{-- view Modal --}}
+                  <div id="popup-modal1{{$user->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    
+
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                          
+                            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal1{{$user->id}}">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                            <div class="p-4 md:p-5 text-center">
+                                {{-- <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                </svg> --}}
+                                <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">User Details</h3>
+                                <div class="grid gap-4 mb-4 grid-cols-2">
+                                  <div class="col-span-2">
+                                      
+                                      <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Full Name: </strong> {{$user->first_name}} {{$user->last_name}}<p>
+                                  </div>
+
+                                  <div class="col-span-2">
+                                    
+                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Username: </strong>{{$user->username}} <p>
+                                  </div>
+
+                                  <div class="col-span-2">
+                                    
+                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Address: </strong>{{$user->address}}<p>
+                                  </div>
+
+                                  <div class="col-span-2">
+                                    
+                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>City: </strong>{{$user->city}}<p>
+                                  </div>
+                                  
+                                  <div class="col-span-2">
+                                    
+                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Country: </strong>{{$user->country}}<p>
+                                  </div>
+                                  <div class="col-span-2">
+                                    
+                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Contact No: </strong>{{$user->contact_no}}<p>
+                                  </div>
+                                  <div class="col-span-2">
+                                    
+                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Email: </strong>{{$user->email}}<p>
+                                  </div>
+                                </div>
+                                
+                                <button data-modal-hide="popup-modal1{{$user->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                {{-- remove Modal --}}
+                <div id="popup-modal2{{$user->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                  <form action="{{route('manager.deleteuser')}}" method="POST">
+                    @csrf
+                  
+                  <div class="relative p-4 w-full max-w-md max-h-full">
+                      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                          <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal2{{$user->id}}">
+                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                              </svg>
+                              <span class="sr-only">Close modal</span>
+                          </button>
+                          <div class="p-4 md:p-5 text-center">
+                              <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                              </svg>
+                              <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to <span style="color: red"> Remove </span> this User?</h3>
+                              <input type="hidden" name="user_id" value="{{$user->id}}">
+                              <button type="submit" data-modal-hide="popup-modal2{{$user->id}}" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                  Yes, I'm sure
+                              </button>
+                              <button data-modal-hide="popup-modal2{{$user->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                          </div>
+                      </div>
+                  </div>
+                  </form>
+              </div>
+                
+
+                  @endforeach
+                  
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+        </div>
+        @else
+        <p>No Registered Users found.</p>
+        @endif
+        <!-- ./users Table -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
         <!-- Task Summaries -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-4 text-black dark:text-white">
@@ -720,14 +917,21 @@
         </div>
         <!-- ./Task Summaries -->
     
-        <!-- Client Table -->
+        <!-- Business Table -->
         @if(count($unverifiedBusinesses) > 0)
           <div class="mt-4 mx-4">
             
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
-              <div class="md:col-span-2 xl:col-span-3">
-                <h3 class="text-lg font-semibold">Pending requests</h3>
+              <div class="flex flex-wrap items-center px-4 py-2">
+                <div class="md:col-span-2 xl:col-span-3">
+                  <h3 class="text-lg font-semibold">Pending requests</h3> 
+                </div>
+
+                <div class="relative w-full max-w-full flex-grow flex-1 text-right">
+                  <button class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button>
+                </div>
               </div>
+              
               <div class="w-full overflow-x-auto">
                 <table class="w-full">
                   <thead>

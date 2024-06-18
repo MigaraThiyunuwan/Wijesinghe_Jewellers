@@ -111,4 +111,20 @@ class User extends Model
 
         return $olduser;
     }
+
+    public static function getAllUsers()
+    {
+        return self::all();
+    }
+
+    public static function deleteUser($id)
+    {
+        $user = self::find($id);
+        if($user){
+            $user->delete();
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

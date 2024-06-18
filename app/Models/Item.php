@@ -61,4 +61,16 @@ class Item extends Model
     {
         return self::where('id', $id)->first();
     }
+
+    public function changequantity($id, $newquantity)
+    {
+        $item = self::find($id);
+        if ($item) {
+            $item->quantity = $newquantity;
+            $item->save();
+            return true;
+        } else {
+            return false; 
+        }
+    }
 }

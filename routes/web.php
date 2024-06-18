@@ -58,6 +58,7 @@ Route::get('manager/edit', [ManagerController::class, 'managerEdit'])->name('man
 Route::post('manager/update', [ManagerController::class, 'update'])->name('manager.update');
 Route::post('manager/changepassword', [ManagerController::class, 'changepassword'])->name('manager.changepassword');
 Route::put('manager/confirm/{business_id}', [ManagerController::class, 'confirm'])->name('manager.confirm');
+Route::post('manager/deleteuser', [ManagerController::class, 'deleteuser'])->name('manager.deleteuser');
 
 
 //Routes for Gem Business Owner
