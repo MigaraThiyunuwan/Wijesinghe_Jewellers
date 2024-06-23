@@ -22,6 +22,13 @@ class ManagerController extends Controller
         return view('manager.profile', compact('unverifiedBusinesses','userList'));
     }
 
+    public function users()
+    {
+        $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+        $userList = User::getAllUsers();
+        return view('manager.users', compact('unverifiedBusinesses','userList'));
+    }
+
     public function register()
     {
         return view('Manager.register');

@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\GemBusinessController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,7 @@ Route::get('manager/profile', [ManagerController::class, 'profile'])->name('mana
 Route::get('manager/register', [ManagerController::class, 'register'])->name('manager.register');
 Route::post('manager/save', [ManagerController::class, 'save'])->name('manager.save');
 Route::get('manager/login', [ManagerController::class, 'login'])->name('manager.login');
+Route::get('manager/users', [ManagerController::class, 'users'])->name('manager.users');
 Route::post('manager/loginmanager', [ManagerController::class, 'loginmanager'])->name('manager.loginmanager');
 Route::get('manager/edit', [ManagerController::class, 'managerEdit'])->name('manager.edit');
 Route::post('manager/update', [ManagerController::class, 'update'])->name('manager.update');
@@ -68,8 +70,8 @@ Route::get('gem/login', [GemBusinessController::class, 'login'])->name('gem.logi
 Route::post('gem/logingem', [GemBusinessController::class, 'logingem'])->name('gem.logingem');
 Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save');
 
-
-
+//Routes for Orders
+Route::post('order/placeorder', [OrderController::class, 'placeorder'])->name('order.placeorder');
 
 //Routes for Items
 Route::get('shop/necklaces', [ItemController::class, 'necklaces'])->name('shop.necklaces');
