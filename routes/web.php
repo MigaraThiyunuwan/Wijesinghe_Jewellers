@@ -37,8 +37,6 @@ Route::get('logout', [Controller::class, 'logout'])->middleware('web')->name('lo
 Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
 
 
-
-
 //Routes for user
 Route::get('user/register', [UserController::class, 'register'])->name('user.register');
 Route::post('user/save', [UserController::class, 'save'])->name('user.save');
