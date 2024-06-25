@@ -8,6 +8,8 @@
     <link rel="stylesheet" media="all" href="{{ asset('css/profile.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
     @php
@@ -155,6 +157,99 @@
           </div>
       
         </section>
+
+        <div class="container mb-4">
+          
+          @if($orderList)
+          <div style="justify-content: center; display: flex">
+            <h1 style="font-size: 30px; font-weight: bold">My Orders</h1>
+          </div>
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Reciver 
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Contact
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Transaction
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Order Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          Delivery Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                  @foreach($orderList as $order)
+                    
+                    <tr class="odd:bg-white even:bg-gray-50 border-b">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ $order->created_at}}
+                      </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ $order->receiverName}}
+                        <p style="font-weight: 400">{{ $order->deliveryAddress}}</p>
+                      </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ $order->contact_no}}
+                      </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{-- {{ $order->transaction}} --}}
+                        @if ($order->transaction == 'false')
+                        <span class="bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Unsuccess</span>
+                        @else
+                        <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Success</span>
+                        @endif
+                        
+                      </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{-- {{ $order->orderStatus}} --}}
+                        @if ($order->orderStatus == 'pending')
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Pending</span>
+
+                        @elseif ($order->orderStatus == 'accepted')
+                        <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Accepted</span>
+
+                        @else
+
+                        <span class="bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Rejected</span>
+
+                        @endif
+                      
+                      </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        
+                        <button type="button" data-modal-target="timeline-modal" data-modal-toggle="timeline-modal"  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Delivery Status</button>
+                      </th>
+                  </tr>
+                  @endforeach
+                    
+                    
+                </tbody>
+            </table>
+          
+            
+            
+        </div>
+        @else
+
+    <h1>No orders</h1>
+        @endif
+
+        
+        
+        </div>
+
+        
     </main>
 
 
