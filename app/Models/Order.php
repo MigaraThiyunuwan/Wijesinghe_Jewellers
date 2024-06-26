@@ -19,6 +19,11 @@ class Order extends Model
         'transaction',
         'orderStatus',
         'deliveryStatus',
+        'placed_at',
+        'processed_at',
+        'shipped_at',
+        'out_at',
+        'delivered_at',
     ];
 
     public function user()

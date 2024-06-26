@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
@@ -13,12 +14,14 @@ class OrderController extends Controller
     {
         $cart = new Cart();
         $order = new Order();
+        $itemOBJ = new Item();
         $order->user_id = $request->user_id;
         $order->totalPrice = $cart->getCartTotal($request->user_id);
         $order->deliveryAddress = $request->deliveryAddress;
         $order->country = $request->countries;
         $order->receiverName = $request->receiverName;
         $order->contact_no = $request->contact_no;
+        $order->placed_at = now();
         //save order in database
         $order->save();
 
@@ -31,6 +34,12 @@ class OrderController extends Controller
             $orderItem->order_id = $order->id;
             $orderItem->item_id = $item['item_id'];
             $orderItem->itemQuantity = $item['quantity'];
+
+            //reduce item quantity in database
+            $currentQuantity = $itemOBJ->getItemQuantity($item['item_id']);
+            $newQuantity = $currentQuantity - $item['quantity'];
+            $itemOBJ->changequantity($item['item_id'], $newQuantity);
+            
             $orderItem->save();
         }
         //clear cart database

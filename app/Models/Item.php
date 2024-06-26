@@ -73,4 +73,14 @@ class Item extends Model
             return false; 
         }
     }
+
+    public function getItemQuantity($id)
+    {
+        $item = self::find($id);
+        if ($item) {
+            return $item->quantity;
+        } else {
+            return false;
+        }
+    }
 }
