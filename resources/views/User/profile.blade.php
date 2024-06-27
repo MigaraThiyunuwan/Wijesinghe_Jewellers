@@ -216,7 +216,7 @@
                         @if ($order->orderStatus == 'pending')
                         <span class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Pending</span>
 
-                        @elseif ($order->orderStatus == 'accepted')
+                        @elseif ($order->orderStatus == 'accept')
                         <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Accepted</span>
 
                         @else

@@ -684,7 +684,8 @@
                      
                     </td>
                     <td class="px-4 py-3 text-xs">
-                      <button data-modal-target="popup-modal2{{$user->id}}" data-modal-toggle="popup-modal2{{$user->id}}"><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> Remove </span> </button>
+                      <button data-modal-target="popup-modal2{{$user->id}}" data-modal-toggle="popup-modal2{{$user->id}}"  class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Remove User</button>
+            
                     </td>
                   </tr>
 
@@ -869,10 +870,12 @@
                 </div>
 
                   <td class="px-4 py-3 text-xs">
-                    <button data-modal-target="popup-modal1{{$business->id}}" data-modal-toggle="popup-modal1{{$business->id}}"><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> Accept </span> </button>
+                    <button data-modal-target="popup-modal1{{$business->id}}" data-modal-toggle="popup-modal1{{$business->id}}" class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">Accept Request</button>
+
                   </td>
                   <td class="px-4 py-3 text-xs">
-                    <button data-modal-target="popup-modal2{{$business->id}}" data-modal-toggle="popup-modal2{{$business->id}}"><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> Reject </span> </button>
+                    <button data-modal-target="popup-modal2{{$business->id}}" data-modal-toggle="popup-modal2{{$business->id}}" class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Reject Request</button>
+                    
                   </td>
                 </tr>
 
@@ -952,6 +955,219 @@
 
 
 
+      <!-- Order Table -->
+      @if(count($orderList) > 0)
+      <div class="mt-4 mx-4">
+        
+        <div class="w-full overflow-hidden rounded-lg shadow-xs">
+          <div class="flex flex-wrap items-center px-4 py-2">
+            <div class="md:col-span-2 xl:col-span-3">
+              <h3 class="text-lg font-semibold">Pending Orders</h3> 
+            </div>
+
+            <div class="relative w-full max-w-full flex-grow flex-1 text-right">
+              <button class="bg-blue-500 dark:bg-gray-100 text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button>
+            </div>
+          </div>
+          
+          <div class="w-full overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                  <th class="px-4 py-3">Reciever</th>
+                  <th class="px-4 py-3">Date</th>
+                  <th class="px-4 py-3">View Order</th>
+                  <th class="px-4 py-3">Confirm Order</th>
+                  <th class="px-4 py-3">Reject Order</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+
+                @php
+                $orderCount = 0;
+                @endphp
+            
+                @foreach($orderList as $order)
+                @if ($orderCount == 6)
+                  @break
+                @endif
+                @php
+                  $orderCount = $orderCount + 1;
+                @endphp
+                @if ($order->orderStatus == 'pending')
+                  
+                
+                <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+                  <td class="px-4 py-3">
+                    <div class="flex items-center text-sm">
+                      {{-- <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                        <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
+                        <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                      </div> --}}
+                      <div>
+                        <p class="font-semibold">{{ $order->receiverName }}</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">{{ $order->deliveryAddress }} {{ $order->country }}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-4 py-3 text-sm">{{$order->created_at}}</td>
+                  
+                  <td class="px-4 py-3 text-sm"><button data-modal-target="static-modal22{{$order->id}}" data-modal-toggle="static-modal22{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Order</button></td>
+                  
+                  <div id="static-modal22{{$order->id}}" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-2xl max-h-full">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <!-- Modal header -->
+                            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                    Order Details
+                                </h3>
+                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal22{{$order->id}}">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="p-4 md:p-5 space-y-4">
+                            <div style="display: flex; justify-content: center" >
+                              <div class="w-full max-w-md p-4 bg-white  rounded-lg ">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h5 class="text-xl font-bold leading-none text-gray-900">Items</h5>
+                                    <a  class="text-sm font-medium text-black-600 ">
+                                        Quantity
+                                    </a>
+                              </div>
+                              @php
+                                $orderItems = $orderItem->getOrderItems($order->id);
+                              @endphp
+                              <div class="flow-root">
+                                    <ul role="list" class="divide-y divide-gray-200">
+                                      @foreach($orderItems as $orderItemss)
+                                        <li class="py-3 sm:py-4">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0">
+                                                    <img class="w-8 h-8 rounded-full" src="../images/shop/{{($item->getItemDetails($orderItemss->item_id)->image)}}" alt="Neil image">
+                                                </div>
+                                                <div class="flex-1 min-w-0 ms-4">
+                                                    <p class="text-sm font-medium text-gray-900 truncate">
+                                                      {{($item->getItemDetails($orderItemss->item_id)->name)}}
+                                                    </p>
+                                                    {{-- <p class="text-sm text-gray-500 truncate">
+                                                        email@windster.com
+                                                    </p> --}}
+                                                </div>
+                                                <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                                                    {{$orderItemss->itemQuantity}}
+                                                </div>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                              </div>
+                            </div>
+                          </div>
+                            
+
+                            </div>
+                            <!-- Modal footer -->
+                            <div style="display: flex; justify-content: center" class="p-4 md:p-5">
+                              <div >
+                                <button data-modal-hide="static-modal22{{$order->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">OK</button>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                  <td class="px-4 py-3 text-xs">
+                    <button data-modal-target="popup-modal5{{$order->id}}" data-modal-toggle="popup-modal5{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">Accept Order</button>
+        
+                  </td>
+                  <td class="px-4 py-3 text-xs">
+                    <button data-modal-target="popup-modal6{{$order->id}}" data-modal-toggle="popup-modal6{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Reject Order</button>
+                    {{-- <button data-modal-target="popup-modal2{{$order->id}}" data-modal-toggle="popup-modal2{{$order->id}}"><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> Reject </span> </button> --}}
+                  </td>
+                </tr>
+
+                {{-- Accept Modal --}}
+                <div id="popup-modal5{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                  <form action="{{route('order.changestatus')}}" method="POST">
+                    @csrf
+
+                  <div class="relative p-4 w-full max-w-md max-h-full">
+                      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                          <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal5{{$order->id}}">
+                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                              </svg>
+                              <span class="sr-only">Close modal</span>
+                          </button>
+                          <div class="p-4 md:p-5 text-center">
+                              <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                              </svg>
+                              <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to <span style="color: green"> accept </span> this Order?</h3>
+                              <input type="hidden" name="status" value="accept">
+                              <input type="hidden" name="order_id" value="{{$order->id}}">
+                              <button type="submit" data-modal-hide="popup-modal5{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                  Yes, I'm sure
+                              </button>
+                              <button data-modal-hide="popup-modal5{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                          </div>
+                      </div>
+                  </div>
+                  </form>
+              </div>
+
+              {{-- Reject Modal --}}
+              <div id="popup-modal6{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <form action="{{route('order.changestatus')}}" method="POST">
+                  @csrf
+                
+                <div class="relative p-4 w-full max-w-md max-h-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal6{{$order->id}}">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="p-4 md:p-5 text-center">
+                            <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                            </svg>
+                            <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to <span style="color: red"> Reject </span> this Order?</h3>
+                            
+                            <input type="hidden" name="status" value="reject">
+                              <input type="hidden" name="order_id" value="{{$order->id}}">
+                            <button type="submit" data-modal-hide="popup-modal6{{$order->id}}" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                Yes, I'm sure
+                            </button>
+                            <button data-modal-hide="popup-modal6{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+              
+            @endif
+                @endforeach
+                
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+      @else
+      <p>No orders found.</p>
+      @endif
+      <!-- ./order Table -->
+
+
 <!-- Order Table -->
 @if(count($orderList) > 0)
 <div class="mt-4 mx-4">
@@ -959,7 +1175,7 @@
   <div class="w-full overflow-hidden rounded-lg shadow-xs">
     <div class="flex flex-wrap items-center px-4 py-2">
       <div class="md:col-span-2 xl:col-span-3">
-        <h3 class="text-lg font-semibold">Orders</h3> 
+        <h3 class="text-lg font-semibold">Orders to be delivered</h3> 
       </div>
 
       <div class="relative w-full max-w-full flex-grow flex-1 text-right">
@@ -972,10 +1188,11 @@
         <thead>
           <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
             <th class="px-4 py-3">Reciever</th>
-            <th class="px-4 py-3">Date</th>
-            <th class="px-4 py-3">View Order</th>
-            <th class="px-4 py-3">Confirm Order</th>
-            <th class="px-4 py-3">Delivery Status</th>
+            <th class="px-4 py-3">Placed</th>
+            <th class="px-4 py-3">Processed</th>
+            <th class="px-4 py-3">Shipped</th>
+            <th class="px-4 py-3">Out for Delivery</th>
+            <th class="px-4 py-3">Delivered</th>
           </tr>
         </thead>
         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -983,7 +1200,7 @@
           @php
           $orderCount = 0;
           @endphp
-       
+      
           @foreach($orderList as $order)
           @if ($orderCount == 6)
             @break
@@ -991,6 +1208,9 @@
           @php
             $orderCount = $orderCount + 1;
           @endphp
+          @if ($order->orderStatus == 'accept' && $order->delivered_at == null)
+            
+          
           <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
             <td class="px-4 py-3">
               <div class="flex items-center text-sm">
@@ -1000,15 +1220,18 @@
                 </div> --}}
                 <div>
                   <p class="font-semibold">{{ $order->receiverName }}</p>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">{{ $order->deliveryAddress }}</p>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">{{ $order->deliveryAddress }} {{ $order->country }}</p>
                 </div>
               </div>
             </td>
-            <td class="px-4 py-3 text-sm">{{$order->created_at}}</td>
+            <td class="px-4 py-3 text-sm">
+              <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded ">Order Placed</span>
+              
+            </td>
             
-            <td class="px-4 py-3 text-sm"><button data-modal-target="static-modal{{$order->id}}" data-modal-toggle="static-modal{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Order</button></td>
+            <td class="px-4 py-3 text-sm"><button data-modal-target="static-modal22{{$order->id}}" data-modal-toggle="static-modal22{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Order</button></td>
             
-            <div id="static-modal{{$order->id}}" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div id="static-modal22{{$order->id}}" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
               <div class="relative p-4 w-full max-w-2xl max-h-full">
                   <!-- Modal content -->
                   <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -1017,7 +1240,7 @@
                           <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                               Order Details
                           </h3>
-                          <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal{{$order->id}}">
+                          <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal22{{$order->id}}">
                               <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                               </svg>
@@ -1033,11 +1256,11 @@
                               <a  class="text-sm font-medium text-black-600 ">
                                   Quantity
                               </a>
-                         </div>
-                         @php
-                           $orderItems = $orderItem->getOrderItems($order->id);
-                         @endphp
-                         <div class="flow-root">
+                        </div>
+                        @php
+                          $orderItems = $orderItem->getOrderItems($order->id);
+                        @endphp
+                        <div class="flow-root">
                               <ul role="list" class="divide-y divide-gray-200">
                                 @foreach($orderItems as $orderItemss)
                                   <li class="py-3 sm:py-4">
@@ -1060,7 +1283,7 @@
                                   </li>
                                   @endforeach
                               </ul>
-                         </div>
+                        </div>
                       </div>
                     </div>
                       
@@ -1069,7 +1292,7 @@
                       <!-- Modal footer -->
                       <div style="display: flex; justify-content: center" class="p-4 md:p-5">
                         <div >
-                          <button data-modal-hide="static-modal{{$order->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">OK</button>
+                          <button data-modal-hide="static-modal22{{$order->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">OK</button>
                         </div>
                       </div>
                   </div>
@@ -1077,22 +1300,23 @@
           </div>
 
             <td class="px-4 py-3 text-xs">
-              <button data-modal-target="popup-modal1{{$order->id}}" data-modal-toggle="popup-modal1{{$order->id}}"><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> Accept </span> </button>
+              <button data-modal-target="popup-modal5{{$order->id}}" data-modal-toggle="popup-modal5{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">Accept Order</button>
+  
             </td>
             <td class="px-4 py-3 text-xs">
-              <button data-modal-target="popup-modal2{{$order->id}}" data-modal-toggle="popup-modal2{{$order->id}}"><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> Reject </span> </button>
+              <button data-modal-target="popup-modal6{{$order->id}}" data-modal-toggle="popup-modal6{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Reject Order</button>
+              {{-- <button data-modal-target="popup-modal2{{$order->id}}" data-modal-toggle="popup-modal2{{$order->id}}"><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> Reject </span> </button> --}}
             </td>
           </tr>
 
           {{-- Accept Modal --}}
-          <div id="popup-modal1{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <form action="{{route('manager.confirm',$order->id)}}" method="POST">
-              @method('PUT')
+          <div id="popup-modal5{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <form action="{{route('order.changestatus')}}" method="POST">
               @csrf
 
             <div class="relative p-4 w-full max-w-md max-h-full">
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                    <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal1{{$order->id}}">
+                    <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal5{{$order->id}}">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                         </svg>
@@ -1102,12 +1326,13 @@
                         <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                         </svg>
-                        <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to <span style="color: green"> accept </span> this business?</h3>
-                        <input type="hidden" name="decision" value="accept">
-                        <button type="submit" data-modal-hide="popup-modal1{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                        <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to <span style="color: green"> accept </span> this Order?</h3>
+                        <input type="hidden" name="status" value="accept">
+                        <input type="hidden" name="order_id" value="{{$order->id}}">
+                        <button type="submit" data-modal-hide="popup-modal5{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                             Yes, I'm sure
                         </button>
-                        <button data-modal-hide="popup-modal1{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                        <button data-modal-hide="popup-modal5{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
                     </div>
                 </div>
             </div>
@@ -1115,14 +1340,13 @@
         </div>
 
         {{-- Reject Modal --}}
-        <div id="popup-modal2{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-          <form action="{{route('manager.confirm',$order->id)}}" method="POST">
-            @method('PUT')
+        <div id="popup-modal6{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+          <form action="{{route('order.changestatus')}}" method="POST">
             @csrf
           
           <div class="relative p-4 w-full max-w-md max-h-full">
               <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                  <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal2{{$order->id}}">
+                  <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal6{{$order->id}}">
                       <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                       </svg>
@@ -1132,19 +1356,21 @@
                       <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                       </svg>
-                      <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to <span style="color: red"> Reject </span> this business?</h3>
-                      <input type="hidden" name="decision" value="reject">
-                      <button type="submit" data-modal-hide="popup-modal2{{$order->id}}" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                      <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to <span style="color: red"> Reject </span> this Order?</h3>
+                      
+                      <input type="hidden" name="status" value="reject">
+                        <input type="hidden" name="order_id" value="{{$order->id}}">
+                      <button type="submit" data-modal-hide="popup-modal6{{$order->id}}" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                           Yes, I'm sure
                       </button>
-                      <button data-modal-hide="popup-modal2{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                      <button data-modal-hide="popup-modal6{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
                   </div>
               </div>
           </div>
           </form>
       </div>
         
-
+      @endif
           @endforeach
           
         </tbody>
@@ -1154,12 +1380,9 @@
   </div>
 </div>
 @else
-<p>No unverified businesses found.</p>
+<p>No orders found.</p>
 @endif
-<!-- ./Client Table -->
-
-
-
+<!-- ./order Table -->
 
 
 

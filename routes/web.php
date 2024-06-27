@@ -70,6 +70,7 @@ Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save'
 
 //Routes for Orders
 Route::post('order/placeorder', [OrderController::class, 'placeorder'])->name('order.placeorder');
+Route::post('order/changestatus', [OrderController::class, 'changestatus'])->name('order.changestatus');
 
 //Routes for Items
 Route::get('shop/necklaces', [ItemController::class, 'necklaces'])->name('shop.necklaces');

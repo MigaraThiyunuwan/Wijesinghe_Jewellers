@@ -44,4 +44,18 @@ class Order extends Model
     {
         return self::all();
     }
+
+    public function getAcceptedOrders()
+    {
+        return $this->where('orderStatus', 'accept')->get();
+    
+    }
+
+    public function changeOrderStatus($order_id, $status)
+    {
+        $order = $this->find($order_id);
+        $order->orderStatus = $status;
+        $order->save();
+        return true;
+    }
 }

@@ -49,4 +49,11 @@ class OrderController extends Controller
 
         return redirect()->route('user.profile')->with('orderSuccess', 'Order placed successfully');
     }
+
+    public function changestatus(Request $request)
+    {
+        $order = new Order();
+        $order->changeOrderStatus($request->order_id, $request->status);
+        return redirect()->route('manager.profile');
+    }
 }
