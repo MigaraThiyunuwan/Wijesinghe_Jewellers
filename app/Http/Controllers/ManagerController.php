@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\GemBusiness;
+use App\Models\Item;
 use App\Models\Manager;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +22,10 @@ class ManagerController extends Controller
 
         $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
         $userList = User::getAllUsers();
-        return view('manager.profile', compact('unverifiedBusinesses','userList'));
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        return view('manager.profile', compact('unverifiedBusinesses','userList','orderList','item','orderItem'));
     }
 
     public function users()

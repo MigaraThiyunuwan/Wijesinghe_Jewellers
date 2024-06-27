@@ -39,4 +39,9 @@ class Order extends Model
     {
         return $this->where('user_id', $user_id)->get();
     }
+
+    public static function getAllOrders()
+    {
+        return self::all();
+    }
 }
