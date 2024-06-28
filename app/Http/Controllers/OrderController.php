@@ -56,4 +56,11 @@ class OrderController extends Controller
         $order->changeOrderStatus($request->order_id, $request->status);
         return redirect()->route('manager.profile');
     }
+
+    public function changecolumn(Request $request)
+    {
+        $order = new Order();
+        $order->changeOrderProcess($request->order_id, $request->columnName);
+        return redirect()->route('manager.profile');
+    }
 }

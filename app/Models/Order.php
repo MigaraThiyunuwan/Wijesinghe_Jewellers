@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'user_id',
         'totalPrice',
@@ -48,13 +48,20 @@ class Order extends Model
     public function getAcceptedOrders()
     {
         return $this->where('orderStatus', 'accept')->get();
-    
     }
 
     public function changeOrderStatus($order_id, $status)
     {
         $order = $this->find($order_id);
         $order->orderStatus = $status;
+        $order->save();
+        return true;
+    }
+
+    public function changeOrderProcess($order_id, $columnName)
+    {
+        $order = $this->find($order_id);
+        $order->$columnName = now();
         $order->save();
         return true;
     }
