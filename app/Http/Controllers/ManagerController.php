@@ -25,13 +25,17 @@ class ManagerController extends Controller
         $orderList = Order::getAllOrders();
         $item = new Item();
         $orderItem = new OrderItem();
-        return view('manager.profile', compact('unverifiedBusinesses','userList','orderList','item','orderItem'));
+        $pendingOrderCount = Order::getPendingOrderCount();
+        $UnVerifiedbusiness = GemBusiness::getUnVerifiedGemBusiness();
+        $ordertobedelivered = Order::getorderstobedeliveredCount();
+        return view('manager.profile', compact('unverifiedBusinesses','userList','orderList','item','orderItem','pendingOrderCount','UnVerifiedbusiness','ordertobedelivered'));
     }
 
     public function users()
     {
         $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
         $userList = User::getAllUsers();
+        
         return view('manager.users', compact('unverifiedBusinesses','userList'));
     }
 

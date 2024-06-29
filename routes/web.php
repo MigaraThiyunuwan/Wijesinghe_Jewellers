@@ -68,6 +68,8 @@ Route::get('gem/login', [GemBusinessController::class, 'login'])->name('gem.logi
 Route::get('gem/edit', [GemBusinessController::class, 'edit'])->name('gem.edit');
 Route::post('gem/logingem', [GemBusinessController::class, 'logingem'])->name('gem.logingem');
 Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save');
+Route::post('gem/editdetails', [GemBusinessController::class, 'editdetails'])->name('gem.editdetails');
+Route::post('gem/changepassword', [GemBusinessController::class, 'changepassword'])->name('gem.changepassword');
 
 //Routes for Orders
 Route::post('order/placeorder', [OrderController::class, 'placeorder'])->name('order.placeorder');

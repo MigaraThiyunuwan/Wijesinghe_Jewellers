@@ -65,4 +65,14 @@ class Order extends Model
         $order->save();
         return true;
     }
+
+    public static function getPendingOrderCount()
+    {
+        return self::where('orderStatus', 'pending')->count();
+    }
+
+    public static function getorderstobedeliveredCount()
+    {
+        return self::where('delivered_at', null)->count();
+    }
 }

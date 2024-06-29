@@ -282,7 +282,18 @@
                     <i class="fas fa-phone-volume mr-2 text-lg text-blueGray-400"></i>{{$gemBusiness->contact_no}}
                   </div>
 
-                 
+                  @if (session('success'))
+                      
+                  <div style="display: flex; justify-content: center">
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+              
+                      <strong class="font-bold">{{ session('success') }}</strong>
+                      
+                    </div>
+                  </div>
+                @endif
+
+                
 
                 </div>
                 <div class="mt-10 py-10 border-t border-blueGray-200 text-center">

@@ -93,7 +93,7 @@
                     </div>
                     <!-- Modal body -->
                     <div class="p-4 md:p-5">
-                        <form class="space-y-4" action="{{route('manager.changepassword')}}" method="POST">
+                        <form class="space-y-4" action="{{route('gem.changepassword')}}" method="POST">
                           @csrf
                             
                             <div>
@@ -181,7 +181,7 @@
 
         
 
-      <form action="{{route('gem.save')}}" method="POST" enctype="multipart/form-data">
+      <form action="{{route('gem.editdetails')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
           Business Information
@@ -296,8 +296,6 @@
                     </div>
                 </div>
             </div>
-
-            
 
         </div>
       </form>

@@ -234,14 +234,15 @@
                   </div>
                   <div class="w-full lg:w-4/12 px-4 lg:order-1">
                     <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                      
                       <div class="mr-4 p-3 text-center">
-                        <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span><span class="text-sm text-blueGray-400">Friends</span>
+                        <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{$pendingOrderCount}}</span><span class="text-sm text-blueGray-400">Pending Orders</span>
                       </div>
                       <div class="mr-4 p-3 text-center">
-                        <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">10</span><span class="text-sm text-blueGray-400">Photos</span>
+                        <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{$UnVerifiedbusiness}}</span><span class="text-sm text-blueGray-400">Unverified Business</span>
                       </div>
                       <div class="lg:mr-4 p-3 text-center">
-                        <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">89</span><span class="text-sm text-blueGray-400">Comments</span>
+                        <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{$ordertobedelivered}}</span><span class="text-sm text-blueGray-400">Order to be delivered</span>
                       </div>
                     </div>
                   </div>
@@ -251,7 +252,7 @@
                   {{-- <img class="h-auto max-w-full" src="{{ asset('storage/uploads/2.jpg') }}" alt="image description"> --}}
 
                   <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                    {{$manager->first_name}} {{$manager->last_name}}
+                    {{$manager->first_name}} {{$manager->last_name}} 
                   </h3>
                   <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                     <i class="fa-solid fa-id-badge"></i>
