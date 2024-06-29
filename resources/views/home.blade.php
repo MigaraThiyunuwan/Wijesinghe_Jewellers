@@ -19,7 +19,6 @@
 			<div class="right-links">
 				<ul>
 					@if ($user)
-					
 					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
 					@if ($manager)

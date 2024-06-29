@@ -25,6 +25,10 @@ class GemBusinessController extends Controller
         return view('GemBusinessOwner.login');
     }
 
+    public function edit()
+    {
+        return view('GemBusinessOwner.edit');
+    }
     // function for handling register new Grm Business
     public function save(Request $request)
     {

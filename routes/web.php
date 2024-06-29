@@ -65,6 +65,7 @@ Route::post('manager/deleteuser', [ManagerController::class, 'deleteuser'])->nam
 Route::get('gem/profile', [GemBusinessController::class, 'profile'])->name('gem.profile');
 Route::get('gem/register', [GemBusinessController::class, 'register'])->name('gem.register');
 Route::get('gem/login', [GemBusinessController::class, 'login'])->name('gem.login');
+Route::get('gem/edit', [GemBusinessController::class, 'edit'])->name('gem.edit');
 Route::post('gem/logingem', [GemBusinessController::class, 'logingem'])->name('gem.logingem');
 Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save');
 
