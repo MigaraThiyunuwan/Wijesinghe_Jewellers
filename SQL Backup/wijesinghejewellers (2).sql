@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2024 at 02:12 PM
+-- Generation Time: Jun 30, 2024 at 10:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -81,7 +81,7 @@ CREATE TABLE `gem_businesses` (
 --
 
 INSERT INTO `gem_businesses` (`id`, `market_name`, `owner_name`, `gem_asso_num`, `business_num`, `verified`, `address`, `contact_no`, `email`, `certificate_image`, `time_from`, `time_to`, `password`, `created_at`, `updated_at`) VALUES
-(2, 'Vinil Manik', 'Migara Thiyunuwan', '199933200145', '199933200145', 'accepted', '58/1, waragoda, attanagalla.', '0771416968', 'tin@gmail.com', 'uploads/2.jpg', '17:00:00', '05:00:00', '$2y$10$o4SDBYFxNtRiqKtDZomKvuHZA2StmoaHRN4XMRTnf6dzoMWPxdfu.', '2024-05-29 06:01:01', '2024-05-31 03:05:12'),
+(2, 'Vinil Manik', 'Migara Thiyunuwan', '199933200145', '199933200145', 'accepted', '58/1, waragoda, attanagalla.', '0771416968', 'migarathiyunuwan@gmail.com', 'uploads/2.jpg', '17:00:00', '05:00:00', '$2y$10$asGAwBiwnEbEn3nq/7.D8uvPNX5z/E0cce9PDYLhGLwCveOioj5aK', '2024-05-29 06:01:01', '2024-06-29 11:06:16'),
 (3, 'Raja Jewellers', 'Saman Kumara', '199933200145', '199933200145', 'false', '58/1, waragoda, attanagalla.', '0771416968', 'wrong@gmail.com', 'uploads/3.jpg', '05:04:00', '17:04:00', '$2y$10$k/yo/likR8f7di8MDYiep.dqJBWt.moHW.kSgA6tKWDCtkFJ5zukW', '2024-05-29 06:05:06', '2024-05-29 08:07:28');
 
 -- --------------------------------------------------------
@@ -109,15 +109,15 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `name`, `category`, `price`, `quantity`, `image`, `customize`, `description`, `specification`, `created_at`, `updated_at`) VALUES
-(1, 'Choker', 'Necklace', 15000.00, 5, 'necklaces/1.jpg', 'false', 'A close-fitting necklace worn high on the neck. Typically 14 to 16 inches long, made from various materials like velvet, leather, or metal.', 'Adjustable length, suitable for various neck sizes, can feature embellishments like pearls or gemstones.', '2024-06-11 08:54:19', '2024-06-11 08:54:19'),
-(2, 'Princess Necklace', 'Necklace', 20000.00, 10, 'necklaces/2.jpg', 'true', 'A versatile necklace length, measuring about 18 inches. It rests just below the collarbone and suits almost any neckline.', 'Ideal for pendants, available in various materials like gold, silver, and platinum.', '2024-06-11 08:55:00', '2024-06-11 08:55:00'),
-(3, 'Matinee Necklace', 'Necklace', 15000.00, 4, 'necklaces/3.jpg', 'true', 'Usually 20 to 24 inches long, perfect for both business and casual wear. Falls at the top of the bust.', 'Often used with semi-precious stones, beads, or simple chains.', '2024-06-11 08:56:41', '2024-06-11 08:56:41'),
-(4, 'Opera Necklace', 'Necklace', 450000.00, 5, 'necklaces/4.jpg', 'true', 'Long necklace, around 28 to 36 inches. Can be worn as a single strand or doubled for a layered look. Falls below the bust or near the waist.', 'Suitable for formal occasions, often made with pearls or layered chains.', '2024-06-11 08:57:50', '2024-06-11 08:57:50'),
-(5, 'Rope Necklace', 'Necklace', 3000.00, 23, 'necklaces/5.jpg', 'false', 'Extremely long, over 36 inches. Can be worn in multiple layers or knotted for a unique style. Very versatile and elegant.', 'Can include multiple strands, tassels, or intricate designs.', '2024-06-11 09:21:49', '2024-06-11 09:21:49'),
-(6, 'Bib Necklace', 'Necklace', 45000.00, 10, 'necklaces/6.jpg', 'true', 'Features multiple strands or a wide front section that covers the upper chest, resembling a bib. Often ornate and statement-making.', 'Often encrusted with beads, gemstones, or crystals for a dramatic effect.', '2024-06-11 09:26:52', '2024-06-11 09:26:52'),
+(1, 'Choker', 'Necklace', 15000.00, 2, 'necklaces/1.jpg', 'false', 'A close-fitting necklace worn high on the neck. Typically 14 to 16 inches long, made from various materials like velvet, leather, or metal.', 'Adjustable length, suitable for various neck sizes, can feature embellishments like pearls or gemstones.', '2024-06-11 08:54:19', '2024-06-27 11:01:22'),
+(2, 'Princess Necklace', 'Necklace', 20000.00, 5, 'necklaces/2.jpg', 'true', 'A versatile necklace length, measuring about 18 inches. It rests just below the collarbone and suits almost any neckline.', 'Ideal for pendants, available in various materials like gold, silver, and platinum.', '2024-06-11 08:55:00', '2024-06-26 13:35:08'),
+(3, 'Matinee Necklace', 'Necklace', 15000.00, 2, 'necklaces/3.jpg', 'true', 'Usually 20 to 24 inches long, perfect for both business and casual wear. Falls at the top of the bust.', 'Often used with semi-precious stones, beads, or simple chains.', '2024-06-11 08:56:41', '2024-06-26 13:32:18'),
+(4, 'Opera Necklace', 'Necklace', 450000.00, 3, 'necklaces/4.jpg', 'true', 'Long necklace, around 28 to 36 inches. Can be worn as a single strand or doubled for a layered look. Falls below the bust or near the waist.', 'Suitable for formal occasions, often made with pearls or layered chains.', '2024-06-11 08:57:50', '2024-06-26 13:35:08'),
+(5, 'Rope Necklace', 'Necklace', 3000.00, 21, 'necklaces/5.jpg', 'false', 'Extremely long, over 36 inches. Can be worn in multiple layers or knotted for a unique style. Very versatile and elegant.', 'Can include multiple strands, tassels, or intricate designs.', '2024-06-11 09:21:49', '2024-06-26 13:36:05'),
+(6, 'Bib Necklace', 'Necklace', 45000.00, 6, 'necklaces/6.jpg', 'true', 'Features multiple strands or a wide front section that covers the upper chest, resembling a bib. Often ornate and statement-making.', 'Often encrusted with beads, gemstones, or crystals for a dramatic effect.', '2024-06-11 09:26:52', '2024-06-26 13:36:05'),
 (7, 'Collar Necklace', 'Necklace', 30000.00, 12, 'necklaces/7.jpg', 'false', 'Fits snugly around the middle of the neck. Generally 12 to 14 inches long, often made of beads or thick bands of metal.', 'Can be a single band or multiple strands, great for high-neck outfits.', '2024-06-11 09:28:20', '2024-06-11 09:28:20'),
-(8, 'Lariat Necklace', 'Necklace', 40000.00, 5, 'necklaces/8.jpg', 'false', 'An open-ended necklace, often looped or knotted at the front. Typically very long and versatile in styling.', 'Can be styled in various ways, often simple chains or leather cords with decorative ends.', '2024-06-11 09:29:03', '2024-06-11 09:29:03'),
-(9, 'Pendant Necklace', 'Necklace', 80000.00, 2, 'necklaces/9.jpg', 'false', 'Features a single hanging piece or charm. The chain length varies, and the pendant can range from minimalist to ornate.', 'Ideal for showcasing individual style, available in various materials and designs.', '2024-06-11 09:29:55', '2024-06-11 09:29:55'),
+(8, 'Lariat Necklace', 'Necklace', 40000.00, 4, 'necklaces/8.jpg', 'false', 'An open-ended necklace, often looped or knotted at the front. Typically very long and versatile in styling.', 'Can be styled in various ways, often simple chains or leather cords with decorative ends.', '2024-06-11 09:29:03', '2024-06-26 13:36:05'),
+(9, 'Pendant Necklace', 'Necklace', 80000.00, 0, 'necklaces/9.jpg', 'false', 'Features a single hanging piece or charm. The chain length varies, and the pendant can range from minimalist to ornate.', 'Ideal for showcasing individual style, available in various materials and designs.', '2024-06-11 09:29:55', '2024-06-27 11:01:22'),
 (10, 'Station Necklace', 'Necklace', 55000.00, 0, 'necklaces/10.jpg', 'true', 'A chain interspersed with gems or other adornments at regular intervals. Elegant and understated.', 'Lightweight, can be layered with other necklaces.', '2024-06-11 09:30:45', '2024-06-11 09:30:45'),
 (11, 'Locket Necklace', 'Necklace', 33000.00, 0, 'necklaces/11.jpg', 'true', 'A pendant that opens to reveal a space used for storing a photograph or other small item. Often sentimental.', 'Typically made of precious metals, can be engraved or decorated.', '2024-06-11 09:31:39', '2024-06-11 09:31:39'),
 (12, 'Y-Necklace', 'Necklace', 44500.00, 0, 'necklaces/12.jpg', 'false', 'Shaped like a “Y”, with a chain that drops down in the center. Stylish and elongates the neckline.', 'Can feature various drop lengths, often with a small pendant or charm at the end.', '2024-06-11 09:32:50', '2024-06-11 09:32:50'),
@@ -178,8 +178,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2024_05_28_132242_create_gem_businesses_table', 3),
 (20, '2024_06_09_094009_create_items_table', 4),
 (22, '2024_06_12_120202_create_carts_table', 5),
-(25, '2024_06_13_190740_create_orders_table', 6),
-(26, '2024_06_13_190806_create_order_items_table', 6);
+(29, '2024_06_13_190740_create_orders_table', 6),
+(30, '2024_06_13_190806_create_order_items_table', 6);
 
 -- --------------------------------------------------------
 
@@ -197,7 +197,12 @@ CREATE TABLE `orders` (
   `contact_no` varchar(255) NOT NULL,
   `transaction` varchar(255) NOT NULL DEFAULT 'false',
   `orderStatus` varchar(255) NOT NULL DEFAULT 'pending',
-  `deliveryStatus` varchar(255) NOT NULL DEFAULT 'pending',
+  `deliveryStatus` varchar(255) NOT NULL DEFAULT 'placed',
+  `placed_at` timestamp NULL DEFAULT NULL,
+  `processed_at` timestamp NULL DEFAULT NULL,
+  `shipped_at` timestamp NULL DEFAULT NULL,
+  `out_at` timestamp NULL DEFAULT NULL,
+  `delivered_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -206,8 +211,10 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `totalPrice`, `deliveryAddress`, `country`, `receiverName`, `contact_no`, `transaction`, `orderStatus`, `deliveryStatus`, `created_at`, `updated_at`) VALUES
-(1, 1, 510000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'pending', 'pending', '2024-06-23 09:09:18', '2024-06-23 09:09:18');
+INSERT INTO `orders` (`id`, `user_id`, `totalPrice`, `deliveryAddress`, `country`, `receiverName`, `contact_no`, `transaction`, `orderStatus`, `deliveryStatus`, `placed_at`, `processed_at`, `shipped_at`, `out_at`, `delivered_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 563000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'accept', 'placed', '2024-06-26 13:35:08', '2024-06-28 10:57:36', '2024-06-28 11:00:23', '2024-06-28 11:00:29', '2024-06-28 11:00:41', '2024-06-26 13:35:08', '2024-06-28 11:00:41'),
+(2, 1, 178000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Malki Madhu', '0771416934', 'false', 'reject', 'placed', '2024-06-26 13:36:05', NULL, NULL, NULL, NULL, '2024-06-26 13:36:05', '2024-06-27 10:55:10'),
+(3, 1, 175000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Psycho', '0771416934', 'false', 'accept', 'placed', '2024-06-27 11:01:22', '2024-06-28 11:01:41', NULL, NULL, NULL, '2024-06-27 11:01:22', '2024-06-28 11:01:41');
 
 -- --------------------------------------------------------
 
@@ -229,8 +236,15 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `item_id`, `itemQuantity`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 4, '2024-06-23 09:09:18', '2024-06-23 09:09:18'),
-(2, 1, 4, 1, '2024-06-23 09:09:18', '2024-06-23 09:09:18');
+(1, 1, 1, 2, '2024-06-26 13:35:08', '2024-06-26 13:35:08'),
+(2, 1, 2, 4, '2024-06-26 13:35:08', '2024-06-26 13:35:08'),
+(3, 1, 4, 1, '2024-06-26 13:35:08', '2024-06-26 13:35:08'),
+(4, 1, 5, 1, '2024-06-26 13:35:08', '2024-06-26 13:35:08'),
+(5, 2, 6, 3, '2024-06-26 13:36:05', '2024-06-26 13:36:05'),
+(6, 2, 8, 1, '2024-06-26 13:36:05', '2024-06-26 13:36:05'),
+(7, 2, 5, 1, '2024-06-26 13:36:05', '2024-06-26 13:36:05'),
+(8, 3, 1, 1, '2024-06-27 11:01:22', '2024-06-27 11:01:22'),
+(9, 3, 9, 2, '2024-06-27 11:01:22', '2024-06-27 11:01:22');
 
 -- --------------------------------------------------------
 
@@ -381,7 +395,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -411,19 +425,19 @@ ALTER TABLE `managers`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
