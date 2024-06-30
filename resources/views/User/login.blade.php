@@ -10,25 +10,48 @@
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 	@php
       $user = session()->get('user');
+	  $manager = session()->get('manager');
     @endphp
 </head>
 <body>
-
-    <header id="header">
+	
+	<header id="header">
 		<div class="container">
 			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
 			<div class="right-links">
 				<ul>
-					
+					<li>
+
+						<a href="{{ asset('manager/login') }}"> 
+							<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+							  Login as Manager
+							</button>
+						</a>
+
+					</li>
+
+					<li>
+						<a href="{{ asset('gem/login') }}"> 
+							<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+							  Login as Gem Business
+							</button>
+						</a>
+					</li>
+
 					@if ($user)
-					<li><a href="{{ route('user.profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
+					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
-					@if ($user)
+					@if ($manager)
+					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
+					
+
+					@if ($user || $manager)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
 						<li><a href="{{ route('user.register') }}"><span class="ico-signout"></span>Register</a></li>
 					@endif
-					
+
 				</ul>
 			</div>
 		</div>
@@ -41,9 +64,9 @@
 			<div class="trigger"></div>
 			<ul>
 				<li><a href="products.html">New collection</a></li>
-				<li><a href="products.html">necklaces</a></li>
+				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
-				<li><a href="products.html">Rings</a></li>
+				<li><a href="{{ route('events.home') }}">Events</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
@@ -52,6 +75,7 @@
 	</nav>
 	<!-- / navigation -->
 
+   
     
 
     <div style="margin-bottom: 30px" class="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-100 dark:text-gray-800">
@@ -105,14 +129,14 @@
 			<button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" disabled>Login</button>
 
 				@else
-				<button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Login</button>
+				<button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded">Login</button>
 			@endif
             
             
        
             <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
                 
-				<div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+				<div class="bg-yellow-100 border border-blue-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
 					<span class="block sm:inline">Don't have an account?</span>
 					<a href="{{ asset('user/register') }}">
 						<strong class="font-bold">REGISTER</strong>
@@ -120,13 +144,7 @@
 				</div>
 				
             </div>
-			<div style="width: 100%; display:flex; justify-content:center; margin-top: 0px">
-                
-				<a href="{{ asset('manager/login') }}">
-					<span class="block sm:inline">Login as Manager</span>
-				</a>
-				
-            </div>
+			
 
 			
 			
@@ -179,6 +197,6 @@
 
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
+	<script src="../js/plugins.js"></script>
+	<script src="../js/main.js"></script>
 </body>

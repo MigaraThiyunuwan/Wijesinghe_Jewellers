@@ -2,20 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-
     public function profile()
 
     {
         // $user = $request->session()->get('user');
         // return view('user.profile', ['user' => $user]);
-        return view('user.profile');
+        
+        $user = session()->get('user');
+        if($user)
+        {
+            $order = new Order();
+            $orderList = $order->getOrderList($user->id);
+            return view('user.profile', compact('orderList'));
+            
+        }
+        
     }
 
     public function register()
@@ -37,12 +48,12 @@ class UserController extends Controller
     public function save(Request $request)
     {
         $rules = [
-            'first_name' => 'string|max:255',
+            'first_name' => 'required|string|max:255',
             'last_name' => 'string|max:255',
-            'username' => 'string|max:255',
+            'username' => 'required|string|max:255',
             'contact_no' => 'regex:/^\+?\d{7,15}$/',
             'address' => 'string|max:255',
-            'email' => 'string|email|unique:users|max:255',
+            'email' => 'required|string|email|unique:users|max:255',
             'password' => 'required|confirmed|min:6',
 
         ];
@@ -52,20 +63,16 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $user = new User();
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->username = $request->username;
-        $user->address = $request->address;
-        $user->city = $request->city;
-        $user->country = $request->country;
-        $user->contact_no = $request->contact_no;
-        $user->about = $request->about;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $tempUser = new User();
+        $user = $tempUser->register($request);
+        if($user)
+        {
+            $request->session()->put('user', $user);
+            return redirect()->route('user.profile')->with('success', 'You have registered successfully');
+        }else{
+            return redirect()->route('user.register')->with('unsuccess', 'Registration Failed');
+        }
 
-        $user->save();
-        return redirect()->route('home');
     }
 
     // function for handling update user details
@@ -123,10 +130,36 @@ class UserController extends Controller
         $loggedInUser = $user->login($request->email, $request->password);
 
         if ($loggedInUser) {
+            Session::flush();
+            $cart = new Cart();
+            $cartDetails = $cart->getCart($loggedInUser->id);
+            session(['orders' => $cartDetails]);
             $request->session()->put('user', $loggedInUser);
             return redirect()->route('user.profile');
         }
 
         return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput();
+    }
+
+    public function changepassword(Request $request)
+    {
+        $rules = [
+
+            'password' => 'required|confirmed|min:6',
+            'new_password' => 'required|min:6',
+
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $oldUser = session()->get('user');
+        $user = $oldUser->changepassword($request->input('new_password'));
+        if ($user) {
+            $request->session()->put('user', $user);
+            return redirect()->route('user.profile');
+        }
     }
 }

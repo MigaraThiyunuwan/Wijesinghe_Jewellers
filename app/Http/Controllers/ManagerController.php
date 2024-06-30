@@ -2,16 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GemBusiness;
+use App\Models\Item;
 use App\Models\Manager;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ManagerController extends Controller
 {
     public function profile()
     {
-        return view('manager.profile');
+        // Get unverified businesses from session
+        // $unverifiedBusinesses = session('unverifiedBusinesses', []);
+
+        $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+        $userList = User::getAllUsers();
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        $pendingOrderCount = Order::getPendingOrderCount();
+        $UnVerifiedbusiness = GemBusiness::getUnVerifiedGemBusiness();
+        $ordertobedelivered = Order::getorderstobedeliveredCount();
+        return view('manager.profile', compact('unverifiedBusinesses','userList','orderList','item','orderItem','pendingOrderCount','UnVerifiedbusiness','ordertobedelivered'));
+    }
+
+    public function users()
+    {
+        $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+        $userList = User::getAllUsers();
+        
+        return view('manager.users', compact('unverifiedBusinesses','userList'));
     }
 
     public function register()
@@ -47,20 +72,15 @@ class ManagerController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        
-        $manager = new Manager();
-        $manager->first_name = $request->first_name;
-        $manager->last_name = $request->last_name;
-        $manager->username = $request->username;
-        $manager->address = $request->address;
-        $manager->nic = $request->nic;
-        $manager->contact_no = $request->contact_no;
-        $manager->email = $request->email;
-        $manager->password = Hash::make($request->password);
-
-        $manager->save();
-        return redirect()->route('home');
-        
+        $manager = session()->get('manager');
+        //call addNewManager function in Manager Model
+        if($manager->addNewManager($request)) 
+        {
+            return redirect()->route('manager.profile')->with('managerSuccess', 'Manager added successfully!');
+        }else{
+            return redirect()->route('manager.profile')->with('managerError', 'Manager adding Failed!');
+        }
+           
     }
 
 
@@ -82,6 +102,8 @@ class ManagerController extends Controller
         $loggedInManager = $manager->login($request->email, $request->password);
 
         if ($loggedInManager) {
+            
+            Session::flush();
             $request->session()->put('manager', $loggedInManager);
             return redirect()->route('manager.profile');
         }
@@ -124,6 +146,65 @@ class ManagerController extends Controller
     
     }
 
+    public function changepassword(Request $request)
+    {
+        $rules = [
+
+            'password' => 'required|confirmed|min:6',
+            'new_password' => 'required|min:6',
+
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $odlManager = session()->get('manager');
+        $manager = $odlManager->changepassword($request->input('new_password'));
+        if ($manager) {
+            $request->session()->put('manager', $manager);
+            return redirect()->route('manager.profile');
+        }
+    }
+
+    public function confirm(Request $request, $business_id)
+    {
+        $rules = [
+            'decision'=>'required|string',
+            
+        ];
+        $validator = Validator::make($request->all(),$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // $student = Student::where('id',$student_id)->first();
+        $business = GemBusiness::where('id',$business_id)->first();
+        $business->verified =  $request->decision;
+        $business->save();
+        
+        return redirect()->route('manager.profile');
+    }
     
+    public function deleteuser(Request $request)
+    {
+        $rules = [
+            'user_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $user = User::where('id',$request->user_id)->first();
+        if($user){
+            $user->delete();
+            $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+            $userList = User::getAllUsers();
+            return view('manager.profile', compact('unverifiedBusinesses','userList'));
+        }else{
+            return redirect()->route('manager.profile')->with('managerError', 'User not found!');
+        }
+    }
     
 }
