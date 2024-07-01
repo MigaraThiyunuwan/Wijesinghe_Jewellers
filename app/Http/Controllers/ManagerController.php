@@ -54,15 +54,32 @@ class ManagerController extends Controller
 
     public function users()
     {
-        $UnVerifiedbusiness = GemBusiness::getUnVerifiedGemBusiness();
-        return view('manager.users', compact('UnVerifiedbusiness'));
+        $userList = User::getAllUsers();
+        return view('manager.users', compact('userList'));
     }
 
     public function pendingrequest()
     {
         $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
-        $userList = User::getAllUsers();
-        return view('Manager.pendingRequests', compact('unverifiedBusinesses','userList'));
+        return view('Manager.pendingRequests', compact('unverifiedBusinesses'));
+    }
+
+    public function pendingorders()
+    {
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        $pendingOrderCount = Order::getPendingOrderCount();
+        return view('Manager.pendingOrders', compact('orderList','item','orderItem','pendingOrderCount'));
+    }
+
+    public function orderstobedelivered()
+    {
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        $ordertobedelivered = Order::getorderstobedeliveredCount();
+        return view('Manager.ordersToBeDelivered', compact('orderList','item','orderItem','ordertobedelivered'));
     }
 
     public function register()

@@ -54,6 +54,8 @@ Route::post('manager/save', [ManagerController::class, 'save'])->name('manager.s
 Route::get('manager/login', [ManagerController::class, 'login'])->name('manager.login');
 Route::get('manager/users', [ManagerController::class, 'users'])->name('manager.users');
 Route::get('manager/pendingrequest', [ManagerController::class, 'pendingrequest'])->name('manager.unverifiedgembusiness');
+Route::get('manager/pendingorders', [ManagerController::class, 'pendingorders'])->name('manager.pendingorders');
+Route::get('manager/orderstobedelivered', [ManagerController::class, 'orderstobedelivered'])->name('manager.orderstobedelivered');
 Route::post('manager/loginmanager', [ManagerController::class, 'loginmanager'])->name('manager.loginmanager');
 Route::get('manager/edit', [ManagerController::class, 'managerEdit'])->name('manager.edit');
 Route::post('manager/update', [ManagerController::class, 'update'])->name('manager.update');

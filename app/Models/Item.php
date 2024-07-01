@@ -62,6 +62,11 @@ class Item extends Model
         return self::where('id', $id)->first();
     }
 
+    public function getNumberOfItemsPerCategory($category)
+    {
+        return self::where('category', $category)->count();
+    }
+
     public function changequantity($id, $newquantity)
     {
         $item = self::find($id);
