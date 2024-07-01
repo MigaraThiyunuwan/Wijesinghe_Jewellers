@@ -127,4 +127,9 @@ class User extends Model
             return false;
         }
     }
+
+    public static function getUserCount()
+    {
+        return self::count();
+    }
 }

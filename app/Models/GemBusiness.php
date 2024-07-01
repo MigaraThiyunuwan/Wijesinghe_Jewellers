@@ -88,4 +88,9 @@ class GemBusiness extends Model
     {
         return self::where('verified', 'false')->count();
     }
+
+    public static function getVerifiedGemBusinessCount()
+    {
+        return self::where('verified', 'accepted')->count();
+    }
 }

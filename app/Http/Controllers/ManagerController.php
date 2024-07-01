@@ -28,15 +28,41 @@ class ManagerController extends Controller
         $pendingOrderCount = Order::getPendingOrderCount();
         $UnVerifiedbusiness = GemBusiness::getUnVerifiedGemBusiness();
         $ordertobedelivered = Order::getorderstobedeliveredCount();
-        return view('manager.profile', compact('unverifiedBusinesses','userList','orderList','item','orderItem','pendingOrderCount','UnVerifiedbusiness','ordertobedelivered'));
+        $userCount = User::getUserCount();
+        $deliveredOrders = Order::getDeliveredOrderCount();
+        $income = Order::getTotalIncome();
+        $verifiedGemBusiness = GemBusiness::getVerifiedGemBusinessCount();
+
+        $data = compact(
+                    'unverifiedBusinesses',
+                    'userList',
+                    'orderList',
+                    'item',
+                    'orderItem',
+                    'pendingOrderCount',
+                    'UnVerifiedbusiness',
+                    'ordertobedelivered',
+                    'userCount',
+                    'deliveredOrders',
+                    'income',
+                    'verifiedGemBusiness'
+                );
+
+        return view('manager.profile', $data);
+       // return view('manager.profile', compact('unverifiedBusinesses','userList','orderList','item','orderItem','pendingOrderCount','UnVerifiedbusiness','ordertobedelivered'));
     }
 
     public function users()
     {
+        $UnVerifiedbusiness = GemBusiness::getUnVerifiedGemBusiness();
+        return view('manager.users', compact('UnVerifiedbusiness'));
+    }
+
+    public function pendingrequest()
+    {
         $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
         $userList = User::getAllUsers();
-        
-        return view('manager.users', compact('unverifiedBusinesses','userList'));
+        return view('Manager.pendingRequests', compact('unverifiedBusinesses','userList'));
     }
 
     public function register()
