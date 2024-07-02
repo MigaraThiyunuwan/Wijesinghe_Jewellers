@@ -133,8 +133,8 @@
 						<tr>
                            
 							<td class="items">
-								<div class="image">
-									<img width="100px"; height="100px" src="{{ asset('images/shop/' . $item->getItemDetails($existingOrder['item_id'])->image) }}" alt="">
+								<div class="image">  
+									<img width="100px"; height="100px" src="{{ asset('storage/' . $item->getItemDetails($existingOrder['item_id'])->image) }}" alt="">
 								</div>
 								<h3><a style="color: black; text-decoration: none" href="#">{{$item->getItemDetails($existingOrder['item_id'])->name}} </a></h3>
 								<p>{{$item->getItemDetails($existingOrder['item_id'])->description}}</p>

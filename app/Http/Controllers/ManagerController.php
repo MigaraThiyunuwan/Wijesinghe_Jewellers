@@ -82,6 +82,43 @@ class ManagerController extends Controller
         return view('Manager.ordersToBeDelivered', compact('orderList','item','orderItem','ordertobedelivered'));
     }
 
+    public function managernecklace()
+    {
+        $item = new Item();
+        $necklaceList = $item->getListOfCategory('Necklace');
+        return view('Manager.necklace', compact('necklaceList'));
+    }
+
+    public function removeitem(Request $request)
+    {
+        $rules = [
+            'item_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $item = Item::where('id',$request->item_id)->first();
+        if($item){
+            if($item->deleteItem($request->item_id))
+            {
+                if ($item->category == 'Necklace') {
+                    return redirect()->route('manager.necklace')->with('managerSuccess', 'Item Removed!');
+                } elseif ($item->category == 'Earring') {
+                    return redirect()->route('manager.earring')->with('managerSuccess', 'Item Removed!');
+                } elseif ($item->category == 'Ring') {
+                    return redirect()->route('manager.ring')->with('managerSuccess', 'Item Removed!');
+                } elseif ($item->category == 'Bracelet') {
+                    return redirect()->route('manager.bracelet')->with('managerSuccess', 'Item Removed!');
+                }
+                
+            }
+           
+        }else{
+            return redirect()->route('manager.necklace')->with('managerError', 'Item not found!');
+        }
+    }
+
     public function register()
     {
         return view('Manager.register');

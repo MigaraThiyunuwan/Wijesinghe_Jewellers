@@ -396,64 +396,36 @@
                     <tr>
                       <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Category</th>
                       <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Models</th>
-                      <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"></th>
+                      <th class="px-4 bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-100 align-middle border border-solid border-gray-200 dark:border-gray-500 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">View</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="text-gray-700 dark:text-gray-100">
                       <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Necklace</th>
                       <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{$item->getNumberOfItemsPerCategory('Necklace')}}</td>
-                      <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <div class="flex items-center">
-                          <span class="mr-2">70%</span>
-                          <div class="relative w-full">
-                            <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
-                              <div style="width: 70%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600"></div>
-                            </div>
-                          </div>
-                        </div>
+                      <td style="width: 200px" class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <a href="{{ route('manager.necklace') }}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Necklaces</a>
                       </td>
                     </tr>
                     <tr class="text-gray-700 dark:text-gray-100">
                       <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Ear Ring</th>
                       <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{$item->getNumberOfItemsPerCategory('Earring')}}</td>
                       <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <div class="flex items-center">
-                          <span class="mr-2">40%</span>
-                          <div class="relative w-full">
-                            <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
-                              <div style="width: 40%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
-                            </div>
-                          </div>
-                        </div>
+                        <a href="#" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Ear Rings</a>
                       </td>
                     </tr>
                     <tr class="text-gray-700 dark:text-gray-100">
                       <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Ring</th>
                       <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{$item->getNumberOfItemsPerCategory('Ring')}}</td>
-                      <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <div class="flex items-center">
-                          <span class="mr-2">45%</span>
-                          <div class="relative w-full">
-                            <div class="overflow-hidden h-2 text-xs flex rounded bg-pink-200">
-                              <div style="width: 45%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
-                            </div>
-                          </div>
-                        </div>
+                      <td  class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <a  href="#" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Rings</a>
                       </td>
                     </tr>
                     <tr class="text-gray-700 dark:text-gray-100">
                       <th class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">Bracelet</th>
                       <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{{$item->getNumberOfItemsPerCategory('Bracelet')}}</td>
                       <td class="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <div class="flex items-center">
-                          <span class="mr-2">60%</span>
-                          <div class="relative w-full">
-                            <div class="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                              <div style="width: 60%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
-                            </div>
-                          </div>
-                        </div>
+                        <a href="#" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Bracelets</a>
                       </td>
                     </tr>
                    

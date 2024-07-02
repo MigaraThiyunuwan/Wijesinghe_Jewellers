@@ -305,9 +305,9 @@
                                     <ul role="list" class="divide-y divide-gray-200">
                                       @foreach($orderItems as $orderItemss)
                                         <li class="py-3 sm:py-4">
-                                            <div class="flex items-center">
+                                            <div class="flex items-center"> 
                                                 <div class="flex-shrink-0">
-                                                    <img class="w-8 h-8 rounded-full" src="../images/shop/{{($item->getItemDetails($orderItemss->item_id)->image)}}" alt="Neil image">
+                                                    <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . $item->getItemDetails($orderItemss->item_id)->image) }}" alt="Neil image">
                                                 </div>
                                                 <div class="flex-1 min-w-0 ms-4">
                                                     <p class="text-sm font-medium text-gray-900 truncate">
