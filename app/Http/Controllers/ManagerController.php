@@ -32,6 +32,7 @@ class ManagerController extends Controller
         $deliveredOrders = Order::getDeliveredOrderCount();
         $income = Order::getTotalIncome();
         $verifiedGemBusiness = GemBusiness::getVerifiedGemBusinessCount();
+        $allUserCount = User::getAllUserCount();
 
         $data = compact(
                     'unverifiedBusinesses',
@@ -45,7 +46,8 @@ class ManagerController extends Controller
                     'userCount',
                     'deliveredOrders',
                     'income',
-                    'verifiedGemBusiness'
+                    'verifiedGemBusiness',
+                    'allUserCount'
                 );
 
         return view('manager.profile', $data);
@@ -57,6 +59,13 @@ class ManagerController extends Controller
         $userList = User::getAllUsers();
         return view('manager.users', compact('userList'));
     }
+
+    public function gembusiness()
+    {
+        $verifiedBusinesses = GemBusiness::getVerifiedBusinesses();
+        return view('Manager.gemBusiness', compact('verifiedBusinesses'));
+    }
+    
 
     public function pendingrequest()
     {
@@ -346,6 +355,24 @@ class ManagerController extends Controller
             return view('manager.profile', compact('unverifiedBusinesses','userList'));
         }else{
             return redirect()->route('manager.profile')->with('managerError', 'User not found!');
+        }
+    }
+
+    public function deletegembusiness(Request $request)
+    {
+        $rules = [
+            'business_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $business = new GemBusiness();
+        if($business->deleteGemBusiness($request->business_id)){
+            
+            return redirect()->route('manager.gembusiness')->with('managerSuccess', 'Business Deleted successfully!');
+        }else{
+            return redirect()->route('manager.gembusiness')->with('managerError', 'Business not found!');
         }
     }
     

@@ -63,6 +63,11 @@ class GemBusiness extends Model
         return self::where('verified', 'false')->get();
     }
 
+    public static function getVerifiedBusinesses()
+    {
+        return self::where('verified', 'accepted')->get();
+    }
+
     public function editDetails(Request $request)
     {
         $oldGemBusiness = session()->get('gemBusiness');
@@ -74,6 +79,17 @@ class GemBusiness extends Model
         $oldGemBusiness->time_to = $request->time_to;
         $oldGemBusiness->save();
         return $oldGemBusiness;
+    }
+
+    public function deleteGemBusiness($id)
+    {
+        $gemBusiness = self::find($id);
+        if ($gemBusiness) {
+            $gemBusiness->delete();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function changePassword($newPassword)

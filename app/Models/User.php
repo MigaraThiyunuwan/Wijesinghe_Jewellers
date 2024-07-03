@@ -117,6 +117,11 @@ class User extends Model
         return self::all();
     }
 
+    public static function getAllUserCount()
+    {
+        return self::count();
+    }
+
     public static function deleteUser($id)
     {
         $user = self::find($id);

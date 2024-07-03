@@ -266,10 +266,12 @@
                     <td class="px-4 py-3 text-sm">{{$user->contact_no}}</td>
 
                     <td class="px-4 py-3 text-xs">
-                      <button data-modal-target="popup-modal1{{$user->id}}" data-modal-toggle="popup-modal1{{$user->id}}"><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> View </span> </button>
+                      <button data-modal-target="popup-modal1{{$user->id}}" data-modal-toggle="popup-modal1{{$user->id}}"  class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Details</button>
+                      
                     </td>
                     <td class="px-4 py-3 text-xs">
-                      <button data-modal-target="popup-modal2{{$user->id}}" data-modal-toggle="popup-modal2{{$user->id}}"><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> Remove </span> </button>
+                      <button data-modal-target="popup-modal2{{$user->id}}" data-modal-toggle="popup-modal2{{$user->id}}"  class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Remove</button>
+                      
                     </td>
                   </tr>
 
