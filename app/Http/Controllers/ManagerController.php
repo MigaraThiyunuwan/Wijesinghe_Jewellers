@@ -119,6 +119,68 @@ class ManagerController extends Controller
         }
     }
 
+    public function changeQuntity(Request $request)
+    {
+        $rules = [
+            'item_id' => 'required',
+            'new_quantity' => 'required|numeric|min:0',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $item = Item::where('id',$request->item_id)->first();
+        if($item){
+            if($item->changeQuantity($item->id, $request->new_quantity))
+            {
+                if ($item->category == 'Necklace') {
+                    return redirect()->route('manager.necklace')->with('managerSuccess', 'Quantity Changed!');
+                } elseif ($item->category == 'Earring') {
+                    return redirect()->route('manager.earring')->with('managerSuccess', 'Quantity Changed!');
+                } elseif ($item->category == 'Ring') {
+                    return redirect()->route('manager.ring')->with('managerSuccess', 'Quantity Changed!');
+                } elseif ($item->category == 'Bracelet') {
+                    return redirect()->route('manager.bracelet')->with('managerSuccess', 'Quantity Changed!');
+                }
+                
+            }
+           
+        }else{
+            return redirect()->route('manager.necklace')->with('managerError', 'Item not found!');
+        }
+    }
+
+    public function changePrice(Request $request)
+    {
+        $rules = [
+            'item_id' => 'required',
+            'new_price' => 'required|numeric|min:0',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $item = Item::where('id',$request->item_id)->first();
+        if($item){
+            if($item->changePrice($item->id, $request->new_price))
+            {
+                if ($item->category == 'Necklace') {
+                    return redirect()->route('manager.necklace')->with('managerSuccess', 'Price Changed!');
+                } elseif ($item->category == 'Earring') {
+                    return redirect()->route('manager.earring')->with('managerSuccess', 'Price Changed!');
+                } elseif ($item->category == 'Ring') {
+                    return redirect()->route('manager.ring')->with('managerSuccess', 'Price Changed!');
+                } elseif ($item->category == 'Bracelet') {
+                    return redirect()->route('manager.bracelet')->with('managerSuccess', 'Price Changed!');
+                }
+                
+            }
+           
+        }else{
+            return redirect()->route('manager.necklace')->with('managerError', 'Item not found!');
+        }
+    }
+
     public function register()
     {
         return view('Manager.register');

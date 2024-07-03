@@ -102,4 +102,16 @@ class Item extends Model
             return false;
         }
     }
+
+    public function changePrice($id, $newprice)
+    {
+        $item = self::find($id);
+        if ($item) {
+            $item->price = $newprice;
+            $item->save();
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

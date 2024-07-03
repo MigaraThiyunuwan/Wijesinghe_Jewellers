@@ -63,7 +63,10 @@ Route::post('manager/update', [ManagerController::class, 'update'])->name('manag
 Route::post('manager/changepassword', [ManagerController::class, 'changepassword'])->name('manager.changepassword');
 Route::put('manager/confirm/{business_id}', [ManagerController::class, 'confirm'])->name('manager.confirm');
 Route::post('manager/deleteuser', [ManagerController::class, 'deleteuser'])->name('manager.deleteuser');  
-Route::post('manager/removeitem', [ManagerController::class, 'removeitem'])->name('manager.removeitem');
+Route::post('manager/removeitem', [ManagerController::class, 'removeitem'])->name('manager.removeitem'); 
+Route::post('manager/changequntity', [ManagerController::class, 'changeQuntity'])->name('manager.changequntity');
+Route::post('manager/changeprice', [ManagerController::class, 'changePrice'])->name('manager.changeprice');
+
 
 //Routes for Gem Business Owner
 Route::get('gem/profile', [GemBusinessController::class, 'profile'])->name('gem.profile');

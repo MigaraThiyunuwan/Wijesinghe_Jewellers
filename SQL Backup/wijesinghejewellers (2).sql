@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2024 at 10:59 AM
+-- Generation Time: Jul 03, 2024 at 02:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -110,9 +110,9 @@ CREATE TABLE `items` (
 
 INSERT INTO `items` (`id`, `name`, `category`, `price`, `quantity`, `image`, `customize`, `description`, `specification`, `created_at`, `updated_at`) VALUES
 (1, 'Choker', 'Necklace', 15000.00, 2, 'necklaces/1.jpg', 'false', 'A close-fitting necklace worn high on the neck. Typically 14 to 16 inches long, made from various materials like velvet, leather, or metal.', 'Adjustable length, suitable for various neck sizes, can feature embellishments like pearls or gemstones.', '2024-06-11 08:54:19', '2024-06-27 11:01:22'),
-(2, 'Princess Necklace', 'Necklace', 20000.00, 5, 'necklaces/2.jpg', 'true', 'A versatile necklace length, measuring about 18 inches. It rests just below the collarbone and suits almost any neckline.', 'Ideal for pendants, available in various materials like gold, silver, and platinum.', '2024-06-11 08:55:00', '2024-06-26 13:35:08'),
+(2, 'Princess Necklace', 'Necklace', 20000.00, 4, 'necklaces/2.jpg', 'true', 'A versatile necklace length, measuring about 18 inches. It rests just below the collarbone and suits almost any neckline.', 'Ideal for pendants, available in various materials like gold, silver, and platinum.', '2024-06-11 08:55:00', '2024-07-01 10:16:01'),
 (3, 'Matinee Necklace', 'Necklace', 15000.00, 2, 'necklaces/3.jpg', 'true', 'Usually 20 to 24 inches long, perfect for both business and casual wear. Falls at the top of the bust.', 'Often used with semi-precious stones, beads, or simple chains.', '2024-06-11 08:56:41', '2024-06-26 13:32:18'),
-(4, 'Opera Necklace', 'Necklace', 450000.00, 3, 'necklaces/4.jpg', 'true', 'Long necklace, around 28 to 36 inches. Can be worn as a single strand or doubled for a layered look. Falls below the bust or near the waist.', 'Suitable for formal occasions, often made with pearls or layered chains.', '2024-06-11 08:57:50', '2024-06-26 13:35:08'),
+(4, 'Opera Necklace', 'Necklace', 450000.00, 1, 'necklaces/4.jpg', 'true', 'Long necklace, around 28 to 36 inches. Can be worn as a single strand or doubled for a layered look. Falls below the bust or near the waist.', 'Suitable for formal occasions, often made with pearls or layered chains.', '2024-06-11 08:57:50', '2024-07-01 10:16:01'),
 (5, 'Rope Necklace', 'Necklace', 3000.00, 21, 'necklaces/5.jpg', 'false', 'Extremely long, over 36 inches. Can be worn in multiple layers or knotted for a unique style. Very versatile and elegant.', 'Can include multiple strands, tassels, or intricate designs.', '2024-06-11 09:21:49', '2024-06-26 13:36:05'),
 (6, 'Bib Necklace', 'Necklace', 45000.00, 6, 'necklaces/6.jpg', 'true', 'Features multiple strands or a wide front section that covers the upper chest, resembling a bib. Often ornate and statement-making.', 'Often encrusted with beads, gemstones, or crystals for a dramatic effect.', '2024-06-11 09:26:52', '2024-06-26 13:36:05'),
 (7, 'Collar Necklace', 'Necklace', 30000.00, 12, 'necklaces/7.jpg', 'false', 'Fits snugly around the middle of the neck. Generally 12 to 14 inches long, often made of beads or thick bands of metal.', 'Can be a single band or multiple strands, great for high-neck outfits.', '2024-06-11 09:28:20', '2024-06-11 09:28:20'),
@@ -214,7 +214,8 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `user_id`, `totalPrice`, `deliveryAddress`, `country`, `receiverName`, `contact_no`, `transaction`, `orderStatus`, `deliveryStatus`, `placed_at`, `processed_at`, `shipped_at`, `out_at`, `delivered_at`, `created_at`, `updated_at`) VALUES
 (1, 1, 563000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'accept', 'placed', '2024-06-26 13:35:08', '2024-06-28 10:57:36', '2024-06-28 11:00:23', '2024-06-28 11:00:29', '2024-06-28 11:00:41', '2024-06-26 13:35:08', '2024-06-28 11:00:41'),
 (2, 1, 178000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Malki Madhu', '0771416934', 'false', 'reject', 'placed', '2024-06-26 13:36:05', NULL, NULL, NULL, NULL, '2024-06-26 13:36:05', '2024-06-27 10:55:10'),
-(3, 1, 175000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Psycho', '0771416934', 'false', 'accept', 'placed', '2024-06-27 11:01:22', '2024-06-28 11:01:41', NULL, NULL, NULL, '2024-06-27 11:01:22', '2024-06-28 11:01:41');
+(3, 1, 175000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Psycho', '0771416934', 'false', 'accept', 'placed', '2024-06-27 11:01:22', '2024-06-28 11:01:41', '2024-07-01 10:45:34', NULL, NULL, '2024-06-27 11:01:22', '2024-07-01 10:45:34'),
+(4, 1, 920000.00, 'No. 48, Temple Road, Kelaniya.', 'Sri Lanka', 'Nimal Perera', '0771416959', 'false', 'pending', 'placed', '2024-07-01 10:16:01', NULL, NULL, NULL, NULL, '2024-07-01 10:16:01', '2024-07-01 10:16:01');
 
 -- --------------------------------------------------------
 
@@ -244,7 +245,9 @@ INSERT INTO `order_items` (`id`, `order_id`, `item_id`, `itemQuantity`, `created
 (6, 2, 8, 1, '2024-06-26 13:36:05', '2024-06-26 13:36:05'),
 (7, 2, 5, 1, '2024-06-26 13:36:05', '2024-06-26 13:36:05'),
 (8, 3, 1, 1, '2024-06-27 11:01:22', '2024-06-27 11:01:22'),
-(9, 3, 9, 2, '2024-06-27 11:01:22', '2024-06-27 11:01:22');
+(9, 3, 9, 2, '2024-06-27 11:01:22', '2024-06-27 11:01:22'),
+(10, 4, 2, 1, '2024-07-01 10:16:01', '2024-07-01 10:16:01'),
+(11, 4, 4, 2, '2024-07-01 10:16:01', '2024-07-01 10:16:01');
 
 -- --------------------------------------------------------
 
@@ -395,7 +398,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -413,7 +416,7 @@ ALTER TABLE `gem_businesses`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `managers`
@@ -431,13 +434,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
