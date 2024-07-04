@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GemBusiness;
 use App\Models\Item;
+use App\Models\Leader;
 use App\Models\Manager;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -33,6 +34,7 @@ class ManagerController extends Controller
         $income = Order::getTotalIncome();
         $verifiedGemBusiness = GemBusiness::getVerifiedGemBusinessCount();
         $allUserCount = User::getAllUserCount();
+        $leaderCount = Leader::getLeaderCount();
 
         $data = compact(
                     'unverifiedBusinesses',
@@ -47,7 +49,8 @@ class ManagerController extends Controller
                     'deliveredOrders',
                     'income',
                     'verifiedGemBusiness',
-                    'allUserCount'
+                    'allUserCount',
+                    'leaderCount'
                 );
 
         return view('manager.profile', $data);
@@ -66,6 +69,11 @@ class ManagerController extends Controller
         return view('Manager.gemBusiness', compact('verifiedBusinesses'));
     }
     
+    public function leaders()
+    {
+        $leaderList = Leader::getAllLeaders();
+        return view('Manager.teamLeaders', compact('leaderList'));
+    }
 
     public function pendingrequest()
     {
@@ -373,6 +381,24 @@ class ManagerController extends Controller
             return redirect()->route('manager.gembusiness')->with('managerSuccess', 'Business Deleted successfully!');
         }else{
             return redirect()->route('manager.gembusiness')->with('managerError', 'Business not found!');
+        }
+    }
+
+    public function deleteleader(Request $request)
+    {
+        $rules = [
+            'leader_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $leader = new Leader();
+        if($leader->deleteLeader($request->leader_id)){
+            
+            return redirect()->route('manager.leaders')->with('managerSuccess', 'Team Leader Deleted successfully!');
+        }else{
+            return redirect()->route('manager.leaders')->with('managerError', 'Leader not found!');
         }
     }
     

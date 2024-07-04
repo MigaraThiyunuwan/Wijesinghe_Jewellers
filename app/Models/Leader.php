@@ -36,4 +36,21 @@ class Leader extends Model
 
         return true;
     }
+
+    public static function getLeaderCount()
+    {
+        return Leader::count();
+    }
+
+    public static function getAllLeaders()
+    {
+        return Leader::all();
+    }
+
+    public function deleteLeader($id)
+    {
+        $leader = Leader::find($id);
+        $leader->delete();
+        return true;
+    }
 }

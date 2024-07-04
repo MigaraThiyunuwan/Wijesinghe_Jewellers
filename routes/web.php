@@ -54,6 +54,7 @@ Route::get('manager/register', [ManagerController::class, 'register'])->name('ma
 Route::post('manager/save', [ManagerController::class, 'save'])->name('manager.save');
 Route::get('manager/login', [ManagerController::class, 'login'])->name('manager.login');
 Route::get('manager/users', [ManagerController::class, 'users'])->name('manager.users');
+Route::get('manager/leaders', [ManagerController::class, 'leaders'])->name('manager.leaders');
 Route::get('manager/gembusiness', [ManagerController::class, 'gembusiness'])->name('manager.gembusiness');
 Route::get('manager/necklace', [ManagerController::class, 'managernecklace'])->name('manager.necklace');
 Route::get('manager/pendingrequest', [ManagerController::class, 'pendingrequest'])->name('manager.unverifiedgembusiness');
@@ -65,6 +66,7 @@ Route::post('manager/update', [ManagerController::class, 'update'])->name('manag
 Route::post('manager/changepassword', [ManagerController::class, 'changepassword'])->name('manager.changepassword');
 Route::put('manager/confirm/{business_id}', [ManagerController::class, 'confirm'])->name('manager.confirm');
 Route::post('manager/deleteuser', [ManagerController::class, 'deleteuser'])->name('manager.deleteuser');  
+Route::post('manager/deleteleader', [ManagerController::class, 'deleteleader'])->name('manager.deleteleader');  
 Route::post('manager/deletegembusiness', [ManagerController::class, 'deletegembusiness'])->name('manager.deletegembusiness');
 Route::post('manager/removeitem', [ManagerController::class, 'removeitem'])->name('manager.removeitem'); 
 Route::post('manager/changequntity', [ManagerController::class, 'changeQuntity'])->name('manager.changequntity');
