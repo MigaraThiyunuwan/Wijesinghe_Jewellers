@@ -288,44 +288,67 @@
                                 </svg>
                                 <span class="sr-only">Close modal</span>
                             </button>
-                            <div class="p-4 md:p-5 text-center">
+                            <div class="p-4 md:p-5 ">
                                 {{-- <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                 </svg> --}}
                                 <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">User Details</h3>
-                                <div class="grid gap-4 mb-4 grid-cols-2">
-                                  <div class="col-span-2">
-                                      
-                                      <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Full Name: </strong> {{$user->first_name}} {{$user->last_name}}<p>
-                                  </div>
-
-                                  <div class="col-span-2">
+                                <div class="grid gap-4 mb-4 grid-cols">
+                                  <div class="bg-white overflow-hidden shadow rounded-lg border">
                                     
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Username: </strong>{{$user->username}} <p>
-                                  </div>
-
-                                  <div class="col-span-2">
-                                    
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Address: </strong>{{$user->address}}<p>
-                                  </div>
-
-                                  <div class="col-span-2">
-                                    
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>City: </strong>{{$user->city}}<p>
-                                  </div>
-                                  
-                                  <div class="col-span-2">
-                                    
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Country: </strong>{{$user->country}}<p>
-                                  </div>
-                                  <div class="col-span-2">
-                                    
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Contact No: </strong>{{$user->contact_no}}<p>
-                                  </div>
-                                  <div class="col-span-2">
-                                    
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Email: </strong>{{$user->email}}<p>
-                                  </div>
+                                    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                                        <dl class="sm:divide-y sm:divide-gray-200">
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Full name
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  {{$user->first_name}} {{$user->last_name}}
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                              <dt class="text-sm font-medium text-gray-500">
+                                                  Username
+                                              </dt>
+                                              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{$user->username}}
+                                              </dd>
+                                          </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Email address
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  {{$user->email}}
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Phone number
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  {{$user->contact_no}}
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Address
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  {{$user->address}}
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                              <dt class="text-sm font-medium text-gray-500">
+                                                Country
+                                              </dt>
+                                              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{$user->country}}
+                                              </dd>
+                                          </div>
+                                        </dl>
+                                    </div>
+                                </div>
                                 </div>
                                 
                                 <button data-modal-hide="popup-modal1{{$user->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Close</button>
