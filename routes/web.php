@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\GemBusinessController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LeaderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -79,6 +80,14 @@ Route::post('gem/logingem', [GemBusinessController::class, 'logingem'])->name('g
 Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save');
 Route::post('gem/editdetails', [GemBusinessController::class, 'editdetails'])->name('gem.editdetails');
 Route::post('gem/changepassword', [GemBusinessController::class, 'changepassword'])->name('gem.changepassword');
+
+
+Route::get('leader/register', [LeaderController::class, 'register'])->name('leader.register');
+Route::post('leader/save', [LeaderController::class, 'save'])->name('leader.save');
+
+
+
+
 
 //Routes for Orders
 Route::post('order/placeorder', [OrderController::class, 'placeorder'])->name('order.placeorder');
