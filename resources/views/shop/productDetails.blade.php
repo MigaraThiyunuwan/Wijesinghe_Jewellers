@@ -91,7 +91,7 @@
             <div class="product">
 				
                 <div class="image">
-                    <img src="{{ asset('images/shop/' . $item->image) }}" alt="">
+                    <img src="{{ asset('storage/' . $item->image) }}" alt="">
 
                 </div>
                 <div class="details">

@@ -75,4 +75,13 @@ class Order extends Model
     {
         return self::where('delivered_at', null)->count();
     }
+    public static function getDeliveredOrderCount()
+    {
+        return self::where('delivered_at', '!=', null)->count();
+    }
+
+    public static function getTotalIncome()
+    {
+        return self::where('delivered_at', '!=', null)->sum('totalPrice');
+    }
 }
