@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,16 @@ class UserController extends Controller
     {
         // $user = $request->session()->get('user');
         // return view('user.profile', ['user' => $user]);
-        return view('user.profile');
+        
+        $user = session()->get('user');
+        if($user)
+        {
+            $order = new Order();
+            $orderList = $order->getOrderList($user->id);
+            return view('user.profile', compact('orderList'));
+            
+        }
+        
     }
 
     public function register()

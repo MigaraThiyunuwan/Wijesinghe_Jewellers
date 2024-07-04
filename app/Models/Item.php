@@ -48,11 +48,9 @@ class Item extends Model
 
     public function getItemList($type)
     {
-        if($type = "all")
-        {
-            return self::all(); 
-            
-        }else{
+        if ($type = "all") {
+            return self::all();
+        } else {
             return self::where('category', $type)->get();
         }
     }
@@ -60,5 +58,60 @@ class Item extends Model
     public function getItemDetails($id)
     {
         return self::where('id', $id)->first();
+    }
+
+    public function getNumberOfItemsPerCategory($category)
+    {
+        return self::where('category', $category)->count();
+    }
+
+    public function getListOfCategory($category)
+    {
+        return self::where('category', $category)->get();
+    }
+
+    public function changequantity($id, $newquantity)
+    {
+        $item = self::find($id);
+        if ($item) {
+            $item->quantity = $newquantity;
+            $item->save();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getItemQuantity($id)
+    {
+        $item = self::find($id);
+        if ($item) {
+            return $item->quantity;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteItem($item_id)
+    {
+        $item = self::find($item_id);
+        if ($item) {
+            $item->delete();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function changePrice($id, $newprice)
+    {
+        $item = self::find($id);
+        if ($item) {
+            $item->price = $newprice;
+            $item->save();
+            return true;
+        } else {
+            return false;
+        }
     }
 }

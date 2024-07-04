@@ -6,6 +6,8 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\GemBusinessController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LeaderController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,8 +38,6 @@ Route::get('logout', [Controller::class, 'logout'])->middleware('web')->name('lo
 Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
 
 
-
-
 //Routes for user
 Route::get('user/register', [UserController::class, 'register'])->name('user.register');
 Route::post('user/save', [UserController::class, 'save'])->name('user.save');
@@ -53,22 +53,46 @@ Route::get('manager/profile', [ManagerController::class, 'profile'])->name('mana
 Route::get('manager/register', [ManagerController::class, 'register'])->name('manager.register');
 Route::post('manager/save', [ManagerController::class, 'save'])->name('manager.save');
 Route::get('manager/login', [ManagerController::class, 'login'])->name('manager.login');
+Route::get('manager/users', [ManagerController::class, 'users'])->name('manager.users');
+Route::get('manager/gembusiness', [ManagerController::class, 'gembusiness'])->name('manager.gembusiness');
+Route::get('manager/necklace', [ManagerController::class, 'managernecklace'])->name('manager.necklace');
+Route::get('manager/pendingrequest', [ManagerController::class, 'pendingrequest'])->name('manager.unverifiedgembusiness');
+Route::get('manager/pendingorders', [ManagerController::class, 'pendingorders'])->name('manager.pendingorders');
+Route::get('manager/orderstobedelivered', [ManagerController::class, 'orderstobedelivered'])->name('manager.orderstobedelivered');
 Route::post('manager/loginmanager', [ManagerController::class, 'loginmanager'])->name('manager.loginmanager');
 Route::get('manager/edit', [ManagerController::class, 'managerEdit'])->name('manager.edit');
 Route::post('manager/update', [ManagerController::class, 'update'])->name('manager.update');
 Route::post('manager/changepassword', [ManagerController::class, 'changepassword'])->name('manager.changepassword');
 Route::put('manager/confirm/{business_id}', [ManagerController::class, 'confirm'])->name('manager.confirm');
+Route::post('manager/deleteuser', [ManagerController::class, 'deleteuser'])->name('manager.deleteuser');  
+Route::post('manager/deletegembusiness', [ManagerController::class, 'deletegembusiness'])->name('manager.deletegembusiness');
+Route::post('manager/removeitem', [ManagerController::class, 'removeitem'])->name('manager.removeitem'); 
+Route::post('manager/changequntity', [ManagerController::class, 'changeQuntity'])->name('manager.changequntity');
+Route::post('manager/changeprice', [ManagerController::class, 'changePrice'])->name('manager.changeprice');
 
 
 //Routes for Gem Business Owner
 Route::get('gem/profile', [GemBusinessController::class, 'profile'])->name('gem.profile');
 Route::get('gem/register', [GemBusinessController::class, 'register'])->name('gem.register');
 Route::get('gem/login', [GemBusinessController::class, 'login'])->name('gem.login');
+Route::get('gem/edit', [GemBusinessController::class, 'edit'])->name('gem.edit');
 Route::post('gem/logingem', [GemBusinessController::class, 'logingem'])->name('gem.logingem');
 Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save');
+Route::post('gem/editdetails', [GemBusinessController::class, 'editdetails'])->name('gem.editdetails');
+Route::post('gem/changepassword', [GemBusinessController::class, 'changepassword'])->name('gem.changepassword');
+
+
+Route::get('leader/register', [LeaderController::class, 'register'])->name('leader.register');
+Route::post('leader/save', [LeaderController::class, 'save'])->name('leader.save');
 
 
 
+
+
+//Routes for Orders
+Route::post('order/placeorder', [OrderController::class, 'placeorder'])->name('order.placeorder');
+Route::post('order/changestatus', [OrderController::class, 'changestatus'])->name('order.changestatus');
+Route::post('order/changecolumn', [OrderController::class, 'changecolumn'])->name('order.changecolumn');
 
 //Routes for Items
 Route::get('shop/necklaces', [ItemController::class, 'necklaces'])->name('shop.necklaces');

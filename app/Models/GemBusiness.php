@@ -62,4 +62,51 @@ class GemBusiness extends Model
     {
         return self::where('verified', 'false')->get();
     }
+
+    public static function getVerifiedBusinesses()
+    {
+        return self::where('verified', 'accepted')->get();
+    }
+
+    public function editDetails(Request $request)
+    {
+        $oldGemBusiness = session()->get('gemBusiness');
+        $oldGemBusiness->owner_name = $request->owner_name;
+        $oldGemBusiness->address = $request->address;
+        $oldGemBusiness->contact_no = $request->contact_no;
+        $oldGemBusiness->email = $request->email;
+        $oldGemBusiness->time_from = $request->time_from;
+        $oldGemBusiness->time_to = $request->time_to;
+        $oldGemBusiness->save();
+        return $oldGemBusiness;
+    }
+
+    public function deleteGemBusiness($id)
+    {
+        $gemBusiness = self::find($id);
+        if ($gemBusiness) {
+            $gemBusiness->delete();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function changePassword($newPassword)
+    {
+        $oldGemBusiness = session()->get('gemBusiness');
+        $oldGemBusiness->password = Hash::make($newPassword);
+        $oldGemBusiness->save();
+        return $oldGemBusiness;
+    }
+
+    public static function getUnVerifiedGemBusiness()
+    {
+        return self::where('verified', 'false')->count();
+    }
+
+    public static function getVerifiedGemBusinessCount()
+    {
+        return self::where('verified', 'accepted')->count();
+    }
 }

@@ -133,7 +133,7 @@
             <div class="row">
                 @foreach($itemList as $item)
                     <article >
-                        <a href="{{ route('shop.productDetails', $item->id) }}"><img src="../images/shop/{{$item->image}}" alt=""></a>
+                        <a href="{{ route('shop.productDetails', $item->id) }}"><img src="{{ asset('storage/' . $item->image) }}" alt=""></a>
                         <h3><a href="{{ route('shop.productDetails', $item->id) }}">{{$item->name}}</a></h3>
                         @if ($item->quantity == 0)
                             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-1 mt-2 rounded relative" role="alert">

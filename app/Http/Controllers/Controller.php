@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\Process\Process;
 
 class Controller extends BaseController
 {
@@ -37,11 +38,6 @@ class Controller extends BaseController
         return view('aboutus');
     }
 
-
-    public function contactus(){
-        return view('contactus');
-    }
-
-
+  
 
 }

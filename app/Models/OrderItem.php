@@ -24,4 +24,9 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Item::class);
     }
+
+    public static function getOrderItems($order_id)
+    {
+        return self::where('order_id', $order_id)->get();
+    }
 }

@@ -67,27 +67,27 @@ class Cart extends Model
         return $total;
     }
 
-    public function getCartCount($user_id)
-    {
-        return self::where('user_id', $user_id)->count();
-    }
+    // public function getCartCount($user_id)
+    // {
+    //     return self::where('user_id', $user_id)->count();
+    // }
 
-    public function getCartItems($user_id)
-    {
-        $cart = self::where('user_id', $user_id)->get();
-        $items = [];
-        foreach ($cart as $item) {
-            $item = Item::where('id', $item->item_id)->first();
-            $item->quantity = self::where('user_id', $user_id)->where('item_id', $item->id)->first()->quantity;
-            array_push($items, $item);
-        }
-        return $items;
-    }
+    // public function getCartItems($user_id)
+    // {
+    //     $cart = self::where('user_id', $user_id)->get();
+    //     $items = [];
+    //     foreach ($cart as $item) {
+    //         $item = Item::where('id', $item->item_id)->first();
+    //         $item->quantity = self::where('user_id', $user_id)->where('item_id', $item->id)->first()->quantity;
+    //         array_push($items, $item);
+    //     }
+    //     return $items;
+    // }
 
-    public function getCartQuantity($user_id, $item_id)
-    {
-        return self::where('user_id', $user_id)->where('item_id', $item_id)->first()->quantity;
-    }
+    // public function getCartQuantity($user_id, $item_id)
+    // {
+    //     return self::where('user_id', $user_id)->where('item_id', $item_id)->first()->quantity;
+    // }
 
     
     

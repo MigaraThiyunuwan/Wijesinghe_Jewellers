@@ -23,7 +23,12 @@ class CreateOrdersTable extends Migration
             $table->string('contact_no');
             $table->string('transaction')->default('false');
             $table->string('orderStatus')->default('pending');
-            $table->string('deliveryStatus')->default('pending');
+            $table->string('deliveryStatus')->default('placed');
+            $table->timestamp('placed_at')->nullable();
+            $table->timestamp('processed_at')->nullable();
+            $table->timestamp('shipped_at')->nullable();
+            $table->timestamp('out_at')->nullable();
+            $table->timestamp('delivered_at')->nullable();
             $table->timestamps();
         });
     }
