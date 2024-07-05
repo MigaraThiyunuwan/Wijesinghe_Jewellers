@@ -10,6 +10,7 @@
       $user = session()->get('user');
 	  $manager = session()->get('manager');
 	  $leader = session()->get('leader');
+	  $gemBusiness = session()->get('gemBusiness');
     @endphp
 </head>
 <body>
@@ -28,9 +29,13 @@
 					@if ($leader)
 					<li><a href="{{ route('leader.profile') }}"><span class="ico-account"></span>Hello, {{$leader->first_name}}</a></li>
 					@endif
+					@if ($gemBusiness)
+					<li><a href="{{ route('gem.profile') }}"><span class="ico-account"></span>Hello, {{$gemBusiness->owner_name}}</a></li>
+					@endif
+					
 					
 
-					@if ($user || $manager || $leader)
+					@if ($user || $manager || $leader || $gemBusiness)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
 						<li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>
@@ -52,6 +57,7 @@
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="{{ route('events.home') }}">Events</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
+				<li><a href="{{ route('advertisement') }}">Advertisement</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>

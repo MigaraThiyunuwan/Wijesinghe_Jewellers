@@ -76,10 +76,15 @@ Route::get('gem/profile', [GemBusinessController::class, 'profile'])->name('gem.
 Route::get('gem/register', [GemBusinessController::class, 'register'])->name('gem.register');
 Route::get('gem/login', [GemBusinessController::class, 'login'])->name('gem.login');
 Route::get('gem/edit', [GemBusinessController::class, 'edit'])->name('gem.edit');
+Route::get('gem/add', [GemBusinessController::class, 'putadvertisement'])->name('gem.add');
+Route::get('advertisement', [GemBusinessController::class, 'advertisement'])->name('advertisement');
 Route::post('gem/logingem', [GemBusinessController::class, 'logingem'])->name('gem.logingem');
 Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save');
 Route::post('gem/editdetails', [GemBusinessController::class, 'editdetails'])->name('gem.editdetails');
 Route::post('gem/changepassword', [GemBusinessController::class, 'changepassword'])->name('gem.changepassword');
+Route::post('gem/putadvertisements', [GemBusinessController::class, 'putadvertisements'])->name('gem.putadvertisements');
+Route::get('shop/gemDetails/{gemId}', [GemBusinessController::class, 'gemdetails'])->name('gem.gemDetails');
+
 
 //Routes for Leader
 Route::get('leader/register', [LeaderController::class, 'register'])->name('leader.register');

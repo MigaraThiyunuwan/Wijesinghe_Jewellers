@@ -37,6 +37,7 @@ class Controller extends BaseController
         $request->session()->forget('user');
         $request->session()->forget('manager');
         $request->session()->forget('leader');
+        $request->session()->forget('gemBusiness');
         session()->forget('orders');
         return redirect()->route('home');
     }

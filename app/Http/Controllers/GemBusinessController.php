@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
 use App\Models\GemBusiness;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -29,6 +30,26 @@ class GemBusinessController extends Controller
     {
         return view('GemBusinessOwner.edit');
     }
+
+    public function putadvertisement()
+    {
+        return view('GemBusinessOwner.putAdvertisement');
+    }
+
+    public function advertisement()
+    {
+        $advertisement = new Advertisement();
+        $addList = $advertisement->getAdvertisementList();
+        return view('GemBusinessOwner.advertisements', compact('addList'));
+    }
+
+    public function gemdetails($gemId)
+    {
+        $advertisement = new Advertisement();
+        $gem = $advertisement->getAddDetail($gemId);
+        return view('GemBusinessOwner.gemdetails', compact('gem'));
+    }
+    
     // function for handling register new Grm Business
     public function save(Request $request)
     {
@@ -67,6 +88,46 @@ class GemBusinessController extends Controller
             return redirect()->route('gem.profile')->with('success', 'You have registered successfully');
         }else{
             return redirect()->route('gem.register')->with('unsuccess', 'Registration Failed');
+        }
+    }
+
+    public function putadvertisements(Request $request)
+    {
+        $rules = [
+            'gem_business_id' => 'required|exists:gem_businesses,id',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:500',
+            'price' => 'required|numeric|between:0,99999999.99',
+            'image' => 'required|file|mimes:jpg,png,jpeg|max:2048',
+            'shape' => 'required|string|max:255',
+            'carat' => 'required|numeric|between:0,99999.99',
+            'width' => 'required|numeric|between:0,999.99',
+            'length' => 'required|numeric|between:0,999.99',
+            'contact_no' => 'required|string|max:20'
+           
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // advertisements
+
+        $tempAdvertisement = new Advertisement();
+        $advertisement = $tempAdvertisement->addAdvertisement($request);
+        $file = $request->file('image');
+        $business_id = $request->gem_business_id;
+        $fileName = $business_id . '_' . $advertisement->id . '.' . $file->getClientOriginalExtension();
+        $filePath = $file->storeAs('public/advertisements', $fileName);
+        $advertisement->image = 'advertisements/' . $fileName;
+        $advertisement->save();
+
+        if($advertisement)
+        {
+            return redirect()->route('gem.add')->with('success', 'You have posted advertisement successfully');
+        }else{
+            return redirect()->route('gem.add')->with('unsuccess', 'Advertisement posting Failed');
         }
     }
 
