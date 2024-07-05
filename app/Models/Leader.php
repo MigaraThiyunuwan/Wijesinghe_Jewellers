@@ -36,4 +36,56 @@ class Leader extends Model
 
         return true;
     }
+
+    public static function getLeaderCount()
+    {
+        return Leader::count();
+    }
+
+    public static function getAllLeaders()
+    {
+        return Leader::all();
+    }
+
+    public function deleteLeader($id)
+    {
+        $leader = Leader::find($id);
+        $leader->delete();
+        return true;
+    }
+
+    public function login($email, $password)
+    {
+        $leader = Leader::where('email', $email)->first();
+        if ($leader) {
+            if (Hash::check($password, $leader->password)) {
+                return $leader;
+            }
+        }
+        return false;
+    }
+
+    public function editDetails($first_name, $last_name, $email, $address, $contact_no)
+    {
+        $oldLeader = session()->get('leader');
+        $oldLeader->first_name = $first_name;
+        $oldLeader->last_name = $last_name;
+        $oldLeader->email = $email;
+        $oldLeader->address = $address;
+        $oldLeader->contact_no = $contact_no;
+        
+        $oldLeader->save();
+        
+        return $oldLeader;
+    }
+
+    public function changePassword($new_password)
+    {
+        $oldLeader = session()->get('leader');
+        $oldLeader->password = Hash::make($new_password);
+        $oldLeader->save();
+
+        return $oldLeader;
+    }
+    
 }
