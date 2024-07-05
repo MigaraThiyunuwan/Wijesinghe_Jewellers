@@ -70,31 +70,7 @@ class GemBusinessController extends Controller
         }
     }
 
-    // function for handling gem business login
-    public function logingem(Request $request)
-    {
-        $rules = [
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string',
-        ];
-        
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        //Call login function in GemBusiness model
-        $gemBusiness = new GemBusiness();
-        $logedGemBusiness = $gemBusiness->login($request->email, $request->password);
-        
-        if ($logedGemBusiness) {
-            Session::flush();
-            $request->session()->put('gemBusiness', $logedGemBusiness);
-            return redirect()->route('gem.profile');
-        }
-
-        return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput();
-    }
+    
 
     public function editdetails(Request $request)
     {

@@ -173,7 +173,7 @@
                     <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 
                     @else
-                        <li><a href="{{ asset('manager/login') }}"><span class="ico-signout"></span>Login</a></li>
+                        <li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>
                     @endif
        
 					

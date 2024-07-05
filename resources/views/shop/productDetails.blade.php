@@ -11,6 +11,7 @@
 	@php
       $user = session()->get('user');
 	  $manager = session()->get('manager');
+	  $leader = session()->get('leader');
     @endphp
 
 <style>
@@ -43,18 +44,21 @@
 			<div class="right-links">
 				<ul>
 					@if ($user)
-					<li><a href="{{ asset('cart') }}"><span class="ico-products"></span>Cart</a></li>
-					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
+					<li><a href="{{ route('cart.cart') }}"><span class="ico-products"></span>Cart</a></li>
+					<li><a href="{{ route('user.profile')  }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
 					@if ($manager)
-					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					<li><a href="{{ route('manager.profile')  }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
+					@if ($leader)
+					<li><a href="{{ route('leader.profile') }}"><span class="ico-account"></span>Hello, {{$leader->first_name}}</a></li>
 					@endif
 					
 
-					@if ($user || $manager)
+					@if ($user || $manager || $leader)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
-						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+						<li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>
 					@endif
 
 				</ul>

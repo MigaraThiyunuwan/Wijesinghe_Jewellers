@@ -203,10 +203,6 @@ class ManagerController extends Controller
         return view('Manager.register');
     }
 
-    public function login()
-    {
-        return view('manager.login');
-    }
 
     public function managerEdit()
     {
@@ -242,33 +238,6 @@ class ManagerController extends Controller
            
     }
 
-
-    public function loginmanager(Request $request)
-    {
-
-        $rules = [
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string',
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        //Call login function in manager model
-        $manager = new Manager();
-        $loggedInManager = $manager->login($request->email, $request->password);
-
-        if ($loggedInManager) {
-            
-            Session::flush();
-            $request->session()->put('manager', $loggedInManager);
-            return redirect()->route('manager.profile');
-        }
-
-        return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput();
-    }
 
     public function update(Request $request)
     {
