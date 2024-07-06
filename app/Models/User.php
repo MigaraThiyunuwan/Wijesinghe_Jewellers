@@ -43,6 +43,20 @@ class User extends Model
         'remember_token',
     ];
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    public function advertisements()
+    {
+        return $this->hasMany(Advertisement::class);
+    }
+    
     public function register(Request $request)
     {
         $user = new User();
@@ -100,5 +114,31 @@ class User extends Model
         $olduser->save();
 
         return $olduser;
+    }
+
+    public static function getAllUsers()
+    {
+        return self::all();
+    }
+
+    public static function getAllUserCount()
+    {
+        return self::count();
+    }
+
+    public static function deleteUser($id)
+    {
+        $user = self::find($id);
+        if($user){
+            $user->delete();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function getUserCount()
+    {
+        return self::count();
     }
 }

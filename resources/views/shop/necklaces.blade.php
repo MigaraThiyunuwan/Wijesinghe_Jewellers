@@ -11,7 +11,31 @@
 	@php
       $user = session()->get('user');
 	  $manager = session()->get('manager');
+	  $leader = session()->get('leader');
+	  $gemBusiness = session()->get('gemBusiness');
     @endphp
+
+<style>
+    #content .products .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #content .products .row article {
+        flex: 1 0 20%; /* Five articles per row (20% each) */
+        box-sizing: border-box;
+        padding: 10px; /* Optional: Add some padding */
+        border: 1px solid black; /* Add black border */
+    }
+    #content .products .row article img {
+        width: 100%;
+        height: auto;
+    }
+    /* Optional: Add some styles to ensure it looks good */
+    #content .products {
+        margin: 0 auto;
+        max-width: 1200px; /* Adjust as needed */
+    }
+</style>
 </head>
 <body>
 
@@ -21,17 +45,24 @@
 			<div class="right-links">
 				<ul>
 					@if ($user)
-					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
+					<li><a href="{{route('cart.cart')}}"><span class="ico-products"></span>Cart</a></li>
+					<li><a href="{{ route('user.profile')  }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
 					@if ($manager)
-					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					<li><a href="{{ route('manager.profile')  }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
+					@if ($leader)
+					<li><a href="{{ route('leader.profile') }}"><span class="ico-account"></span>Hello, {{$leader->first_name}}</a></li>
+					@endif
+					@if ($gemBusiness)
+					<li><a href="{{ route('gem.profile') }}"><span class="ico-account"></span>Hello, {{$gemBusiness->owner_name}}</a></li>
 					@endif
 					
 
-					@if ($user || $manager)
+					@if ($user || $manager || $leader || $gemBusiness)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
-						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+						<li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>
 					@endif
 
 				</ul>
@@ -56,124 +87,53 @@
 		<!-- / container -->
 	</nav>
 	<!-- / navigation -->
+    
+    
 
-    <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl" style="margin-bottom: 30px">
-        <div class="rounded-full bg-gray-600 text-white absolute top-5 right-5 text-sm px-2 text-center z-10">
-            
-        </div>
-
-        <template x-for="(image) in images">
-            <figure class="h-96" 
-                x-transition:enter="transition transform duration-300" x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100" x-transition:leave="transition transform duration-300"
-                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                <img :src="image" alt="Image"
-                    class="absolute inset-0 z-10 h-full w-full object-cover opacity-70" />
-                <figcaption
-                    class="absolute inset-x-0 bottom-1 z-20 w-96 mx-auto p-4 font-light text-sm text-center tracking-widest leading-snug bg-gray-300 bg-opacity-25">
-                    <h1 style="font-size: 50px;">Necklaces</h1>
-                    Where Elegance Meets Excellence: Discover Your Timeless Beauty Here.
-                </figcaption>
-            </figure>
-        </template>
-       
-    </article>
-
-    <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('slider', () => ({
-                currentIndex: 1,
-                images: [
-                    '../images/shop/header1.jfif',
-                    // 'images/about/img2.jpg',
-                ],
-                
-            }))
-        })
-    </script>
+    <div id="breadcrumbs" style="margin-top: 0px">
+		<div class="container">
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li>Necklaces</li>
+			</ul>
+		</div>
+		<!-- / container -->
+	</div>
+    
 
 <div id="body">
-    <div class="container">
-        <div class="last-products">
-            <h2>Last added products</h2>
-            <section class="products">
-                <article>
-                    <img src="../images/1.jpg" alt="">
-                    <h3>Excepteur sint occaecat</h3>
-                    <h4>$1 850.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <img src="../images/11.jpg" alt="">
-                    <h3>Lorem ipsum dolor</h3>
-                    <h4>$990.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <img src="../images/12.jpg" alt="">
-                    <h3>cupidatat non proident</h3>
-                    <h4>$1 200.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <img src="../images/13.jpg" alt="">
-                    <h3>Duis aute irure</h3>
-                    <h4>$2 650.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <img src="../images/14.jpg" alt="">
-                    <h3>magna aliqua</h3>
-                    <h4>$3 500.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-                <article>
-                    <img src="../images/14.jpg" alt="">
-                    <h3>magna aliqua</h3>
-                    <h4>$3 500.00</h4>
-                    <a href="cart.html" class="btn-add">Add to cart</a>
-                </article>
-            </section>
-        </div>
-        {{-- <section class="quick-links">
-            <article style="background-image: url(../images/2.jpg)">
-                <a href="#" class="table">
-                    <div class="cell">
-                        <div class="text">
-                            <h4>Lorem ipsum</h4>
-                            <hr>
-                            <h3>Dolor sit amet</h3>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            <article class="red" style="background-image: url(../images/3.jpg)">
-                <a href="#" class="table">
-                    <div class="cell">
-                        <div class="text">
-                            <h4>consequatur</h4>
-                            <hr>
-                            <h3>voluptatem</h3>
-                            <hr>
-                            <p>Accusantium</p>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            <article style="background-image: url(../images/4.jpg)">
-                <a href="#" class="table">
-                    <div class="cell">
-                        <div class="text">
-                            <h4>culpa qui officia</h4>
-                            <hr>
-                            <h3>magnam aliquam</h3>
-                        </div>
-                    </div>
-                </a>
-            </article>
-        </section> --}}
-    </div>
+    
     <!-- / container -->
+    <div id="content" style="margin: 20px">
+        <section class="products">
+            <div class="row">
+                @foreach($itemList as $item)
+                    <article >
+                        <a href="{{ route('shop.productDetails', $item->id) }}"><img src="{{ asset('storage/' . $item->image) }}" alt=""></a>
+                        <h3><a href="{{ route('shop.productDetails', $item->id) }}">{{$item->name}}</a></h3>
+                        @if ($item->quantity == 0)
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-1 mt-2 rounded relative" role="alert">
+                                <strong class="font-bold">Out of Stock!</strong>
+                            </div>
+                        @endif
+                        <h4><a href="{{ route('shop.productDetails', $item->id) }}">Rs. {{$item->price}}</a></h4>
+
+						
+							
+								<div style="display: flex; justify-content: center">
+				
+									{{-- <button style="width: 100%" type="submit" class="btn-add">Add to cart</button> --}}
+								<a style="width: 100%" href="{{ route('shop.productDetails', $item->id) }}" class="btn-add" >View Details </a>
+							</div>
+							
+						
+                        
+                    </article>
+                @endforeach
+                
+            </div>
+        </section>
+    </div>
 </div>
 <!-- / body -->
 

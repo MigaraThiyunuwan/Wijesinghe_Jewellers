@@ -34,7 +34,7 @@
 					@if ($user)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
-						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+						<li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>
 					@endif
 				</ul>
 			</div>
@@ -65,7 +65,7 @@
     
 
 <section class=" py-1 bg-blueGray-50">
-<div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
+  <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
   <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
     <div class="rounded-t bg-white mb-0 px-6 py-6">
       <div class="text-center flex justify-between">

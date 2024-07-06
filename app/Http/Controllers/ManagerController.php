@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\GemBusiness;
+use App\Models\Item;
+use App\Models\Leader;
 use App\Models\Manager;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -17,8 +22,180 @@ class ManagerController extends Controller
         // $unverifiedBusinesses = session('unverifiedBusinesses', []);
 
         $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+        $userList = User::getAllUsers();
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        $pendingOrderCount = Order::getPendingOrderCount();
+        $UnVerifiedbusiness = GemBusiness::getUnVerifiedGemBusiness();
+        $ordertobedelivered = Order::getorderstobedeliveredCount();
+        $userCount = User::getUserCount();
+        $deliveredOrders = Order::getDeliveredOrderCount();
+        $income = Order::getTotalIncome();
+        $verifiedGemBusiness = GemBusiness::getVerifiedGemBusinessCount();
+        $allUserCount = User::getAllUserCount();
+        $leaderCount = Leader::getLeaderCount();
 
-        return view('manager.profile', compact('unverifiedBusinesses'));
+        $data = compact(
+                    'unverifiedBusinesses',
+                    'userList',
+                    'orderList',
+                    'item',
+                    'orderItem',
+                    'pendingOrderCount',
+                    'UnVerifiedbusiness',
+                    'ordertobedelivered',
+                    'userCount',
+                    'deliveredOrders',
+                    'income',
+                    'verifiedGemBusiness',
+                    'allUserCount',
+                    'leaderCount'
+                );
+
+        return view('manager.profile', $data);
+       // return view('manager.profile', compact('unverifiedBusinesses','userList','orderList','item','orderItem','pendingOrderCount','UnVerifiedbusiness','ordertobedelivered'));
+    }
+
+    public function users()
+    {
+        $userList = User::getAllUsers();
+        return view('manager.users', compact('userList'));
+    }
+
+    public function gembusiness()
+    {
+        $verifiedBusinesses = GemBusiness::getVerifiedBusinesses();
+        return view('Manager.gemBusiness', compact('verifiedBusinesses'));
+    }
+    
+    public function leaders()
+    {
+        $leaderList = Leader::getAllLeaders();
+        return view('Manager.teamLeaders', compact('leaderList'));
+    }
+
+    public function pendingrequest()
+    {
+        $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+        return view('Manager.pendingRequests', compact('unverifiedBusinesses'));
+    }
+
+    public function pendingorders()
+    {
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        $pendingOrderCount = Order::getPendingOrderCount();
+        return view('Manager.pendingOrders', compact('orderList','item','orderItem','pendingOrderCount'));
+    }
+
+    public function orderstobedelivered()
+    {
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        $ordertobedelivered = Order::getorderstobedeliveredCount();
+        return view('Manager.ordersToBeDelivered', compact('orderList','item','orderItem','ordertobedelivered'));
+    }
+
+    public function managernecklace()
+    {
+        $item = new Item();
+        $necklaceList = $item->getListOfCategory('Necklace');
+        return view('Manager.necklace', compact('necklaceList'));
+    }
+
+    public function removeitem(Request $request)
+    {
+        $rules = [
+            'item_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $item = Item::where('id',$request->item_id)->first();
+        if($item){
+            if($item->deleteItem($request->item_id))
+            {
+                if ($item->category == 'Necklace') {
+                    return redirect()->route('manager.necklace')->with('managerSuccess', 'Item Removed!');
+                } elseif ($item->category == 'Earring') {
+                    return redirect()->route('manager.earring')->with('managerSuccess', 'Item Removed!');
+                } elseif ($item->category == 'Ring') {
+                    return redirect()->route('manager.ring')->with('managerSuccess', 'Item Removed!');
+                } elseif ($item->category == 'Bracelet') {
+                    return redirect()->route('manager.bracelet')->with('managerSuccess', 'Item Removed!');
+                }
+                
+            }
+           
+        }else{
+            return redirect()->route('manager.necklace')->with('managerError', 'Item not found!');
+        }
+    }
+
+    public function changeQuntity(Request $request)
+    {
+        $rules = [
+            'item_id' => 'required',
+            'new_quantity' => 'required|numeric|min:0',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $item = Item::where('id',$request->item_id)->first();
+        if($item){
+            if($item->changeQuantity($item->id, $request->new_quantity))
+            {
+                if ($item->category == 'Necklace') {
+                    return redirect()->route('manager.necklace')->with('managerSuccess', 'Quantity Changed!');
+                } elseif ($item->category == 'Earring') {
+                    return redirect()->route('manager.earring')->with('managerSuccess', 'Quantity Changed!');
+                } elseif ($item->category == 'Ring') {
+                    return redirect()->route('manager.ring')->with('managerSuccess', 'Quantity Changed!');
+                } elseif ($item->category == 'Bracelet') {
+                    return redirect()->route('manager.bracelet')->with('managerSuccess', 'Quantity Changed!');
+                }
+                
+            }
+           
+        }else{
+            return redirect()->route('manager.necklace')->with('managerError', 'Item not found!');
+        }
+    }
+
+    public function changePrice(Request $request)
+    {
+        $rules = [
+            'item_id' => 'required',
+            'new_price' => 'required|numeric|min:0',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $item = Item::where('id',$request->item_id)->first();
+        if($item){
+            if($item->changePrice($item->id, $request->new_price))
+            {
+                if ($item->category == 'Necklace') {
+                    return redirect()->route('manager.necklace')->with('managerSuccess', 'Price Changed!');
+                } elseif ($item->category == 'Earring') {
+                    return redirect()->route('manager.earring')->with('managerSuccess', 'Price Changed!');
+                } elseif ($item->category == 'Ring') {
+                    return redirect()->route('manager.ring')->with('managerSuccess', 'Price Changed!');
+                } elseif ($item->category == 'Bracelet') {
+                    return redirect()->route('manager.bracelet')->with('managerSuccess', 'Price Changed!');
+                }
+                
+            }
+           
+        }else{
+            return redirect()->route('manager.necklace')->with('managerError', 'Item not found!');
+        }
     }
 
     public function register()
@@ -26,10 +203,6 @@ class ManagerController extends Controller
         return view('Manager.register');
     }
 
-    public function login()
-    {
-        return view('manager.login');
-    }
 
     public function managerEdit()
     {
@@ -65,33 +238,6 @@ class ManagerController extends Controller
            
     }
 
-
-    public function loginmanager(Request $request)
-    {
-
-        $rules = [
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string',
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        //Call login function in manager model
-        $manager = new Manager();
-        $loggedInManager = $manager->login($request->email, $request->password);
-
-        if ($loggedInManager) {
-            
-            Session::flush();
-            $request->session()->put('manager', $loggedInManager);
-            return redirect()->route('manager.profile');
-        }
-
-        return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput();
-    }
 
     public function update(Request $request)
     {
@@ -169,5 +315,60 @@ class ManagerController extends Controller
         return redirect()->route('manager.profile');
     }
     
+    public function deleteuser(Request $request)
+    {
+        $rules = [
+            'user_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $user = User::where('id',$request->user_id)->first();
+        if($user){
+            $user->delete();
+            $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+            $userList = User::getAllUsers();
+            return view('manager.profile', compact('unverifiedBusinesses','userList'));
+        }else{
+            return redirect()->route('manager.profile')->with('managerError', 'User not found!');
+        }
+    }
+
+    public function deletegembusiness(Request $request)
+    {
+        $rules = [
+            'business_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $business = new GemBusiness();
+        if($business->deleteGemBusiness($request->business_id)){
+            
+            return redirect()->route('manager.gembusiness')->with('managerSuccess', 'Business Deleted successfully!');
+        }else{
+            return redirect()->route('manager.gembusiness')->with('managerError', 'Business not found!');
+        }
+    }
+
+    public function deleteleader(Request $request)
+    {
+        $rules = [
+            'leader_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $leader = new Leader();
+        if($leader->deleteLeader($request->leader_id)){
+            
+            return redirect()->route('manager.leaders')->with('managerSuccess', 'Team Leader Deleted successfully!');
+        }else{
+            return redirect()->route('manager.leaders')->with('managerError', 'Leader not found!');
+        }
+    }
     
 }
