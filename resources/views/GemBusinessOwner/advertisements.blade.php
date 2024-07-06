@@ -2,16 +2,40 @@
 <html lang="en"> 
 <head>
 	<meta charset="utf-8">
-	<title>Wijesinghe Jewellery</title>
+	<title>Jiwesinghe Jewellery</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" media="all" href="{{ asset('css/about.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
 	@php
       $user = session()->get('user');
 	  $manager = session()->get('manager');
 	  $leader = session()->get('leader');
 	  $gemBusiness = session()->get('gemBusiness');
     @endphp
+
+<style>
+    #content .products .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #content .products .row article {
+        flex: 1 0 20%; /* Five articles per row (20% each) */
+        box-sizing: border-box;
+        padding: 10px; /* Optional: Add some padding */
+        border: 1px solid black; /* Add black border */
+    }
+    #content .products .row article img {
+        width: 100%;
+        height: auto;
+    }
+    /* Optional: Add some styles to ensure it looks good */
+    #content .products {
+        margin: 0 auto;
+        max-width: 1200px; /* Adjust as needed */
+    }
+</style>
 </head>
 <body>
 
@@ -32,7 +56,6 @@
 					@if ($gemBusiness)
 					<li><a href="{{ route('gem.profile') }}"><span class="ico-account"></span>Hello, {{$gemBusiness->owner_name}}</a></li>
 					@endif
-					
 					
 
 					@if ($user || $manager || $leader || $gemBusiness)
@@ -57,59 +80,61 @@
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="{{ route('events.home') }}">Events</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="{{ route('advertisement') }}">Advertisement</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
 		<!-- / container -->
 	</nav>
 	<!-- / navigation -->
+    
+    
 
-    <div id="slider">
-		<ul>
-			<li style="background-image: url(images/0.jpg)">
-				<h3>Make your life better</h3>
-				<h2>Genuine diamonds</h2>
-				<a href="#" class="btn-more">Read more</a>
-			</li>
-			<li class="purple" style="background-image: url(images/01.jpg)">
-				<h3>She will say “yes”</h3>
-				<h2>engagement ring</h2>
-				<a href="#" class="btn-more">Read more</a>
-			</li>
-			<li class="yellow" style="background-image: url(images/02.jpg)">
-				<h3>You deserve to be beauty</h3>
-				<h2>golden bracelets</h2>
-				<a href="#" class="btn-more">Read more</a>
-			</li>
-		</ul>
+    <div id="breadcrumbs" style="margin-top: 0px">
+		<div class="container">
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li>Advertisements</li>
+			</ul>
+		</div>
+		<!-- / container -->
 	</div>
+    
 
+<div id="body">
+    
+    <!-- / container -->
+    <div id="content" style="margin: 20px">
+        <section class="products">
+            <div class="row">
+                @foreach($addList as $add)
+                    <article >
+                        <a href="{{ route('gem.gemDetails', $add->id) }}"><img src="{{ asset('storage/' . $add->image) }}" alt=""></a>
+                        <h3><a href="{{ route('gem.gemDetails', $add->id) }}">{{$add->title}}</a></h3>
+                        {{-- @if ($add->quantity == 0)
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-1 mt-2 rounded relative" role="alert">
+                                <strong class="font-bold">Out of Stock!</strong>
+                            </div>
+                        @endif --}}
+                        <h4><a href="{{ route('gem.gemDetails', $add->id) }}">Rs. {{$add->price}}</a></h4>
 
-    <section class="p-4 lg:p-8 dark:bg-gray-100 dark:text-gray-800">
-        <div class="container mx-auto space-y-12">
-            <div class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">
-                <img src="{{ asset('images/girl1.jpg') }}" alt="" class="h-80 dark:bg-gray-500 aspect-video">
-                <div class="flex flex-col justify-center flex-1 p-6 dark:bg-gray-50">
-                    <span class="text-xs uppercase dark:text-gray-600">Join, it's free</span>
-                    <h3 class="text-3xl font-bold">We're not reinventing the wheel</h3>
-                    <p class="my-6 dark:text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor aliquam possimus quas, error esse quos.</p>
-                    <button type="button" class="self-start">Action</button>
-                </div>
+						
+							
+								<div style="display: flex; justify-content: center">
+				
+									{{-- <button style="width: 100%" type="submit" class="btn-add">Add to cart</button> --}}
+								<a style="width: 100%" href="{{ route('gem.gemDetails', $add->id) }}" class="btn-add" >View Details </a>
+							</div>
+							
+						
+                        
+                    </article>
+                @endforeach
+                
             </div>
-            <div class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row-reverse">
-                <img src="{{ asset('images/girl2.jpg') }}" alt="" class="h-80 dark:bg-gray-500 aspect-video">
-                <div class="flex flex-col justify-center flex-1 p-6 dark:bg-gray-50">
-                    <span class="text-xs uppercase dark:text-gray-600">Join, it's free</span>
-                    <h3 class="text-3xl font-bold">We're not reinventing the wheel</h3>
-                    <p class="my-6 dark:text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor aliquam possimus quas, error esse quos.</p>
-                    <button type="button" class="self-start">Action</button>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-
+        </section>
+    </div>
+</div>
+<!-- / body -->
 
     <footer id="footer">
 		<div class="container">
@@ -153,6 +178,6 @@
 
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
+	<script src="../js/plugins.js"></script>
+	<script src="../js/main.js"></script>
 </body>

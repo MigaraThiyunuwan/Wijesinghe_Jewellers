@@ -10,25 +10,32 @@
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 	@php
       $user = session()->get('user');
+	  $manager = session()->get('manager');
     @endphp
 </head>
 <body>
-
-    <header id="header">
+	
+	<header id="header">
 		<div class="container">
 			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
 			<div class="right-links">
 				<ul>
 					
+
 					@if ($user)
-					<li><a href="{{ route('user.profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
+					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
-					@if ($user)
+					@if ($manager)
+					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
+					
+
+					@if ($user || $manager)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
 						<li><a href="{{ route('user.register') }}"><span class="ico-signout"></span>Register</a></li>
 					@endif
-					
+
 				</ul>
 			</div>
 		</div>
@@ -41,10 +48,10 @@
 			<div class="trigger"></div>
 			<ul>
 				<li><a href="products.html">New collection</a></li>
-				<li><a href="products.html">necklaces</a></li>
+				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
 				<li><a href="products.html">earrings</a></li>
-				<li><a href="products.html">Rings</a></li>
-				<li><a href="products.html">Gift cards</a></li>
+				<li><a href="{{ route('events.home') }}">Events</a></li>
+				<li><a href="{{ route('aboutus') }}">About</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -52,6 +59,7 @@
 	</nav>
 	<!-- / navigation -->
 
+   
     
 
     <div style="margin-bottom: 30px" class="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-100 dark:text-gray-800">
@@ -62,7 +70,7 @@
             </div> --}}
             <img src="{{ asset('images/logo_no_bg.png') }}" style="width: 300px; height: 300px; margin-left: 30px" >
         </div>
-        <form action="{{route('user.loginuser')}}" method="POST" class="space-y-6">
+        <form action="{{route('loginallusers')}}" method="POST" class="space-y-6">
             @csrf
 
 			{{-- Login credentials error message --}}
@@ -101,28 +109,52 @@
                 </label>
                 <input type="password" name="password" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
             </div>
+			<div class="relative w-full mb-3">
+				<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="role">
+				  You are a
+				</label>
+				<div>
+				  <label class="inline-flex items-center">
+					<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150" value="user">
+					<span class="ml-2">User</span>
+				  </label>
+				  <label class="inline-flex items-center ml-4">
+					<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150" value="manager">
+					<span class="ml-2">Manager</span>
+				  </label>
+				  <label class="inline-flex items-center ml-4">
+					<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150" value="gembusiness">
+					<span class="ml-2">Gem Business</span>
+				  </label>
+				  <label class="inline-flex items-center ml-4">
+					<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150" value="leader">
+					<span class="ml-2">Team Leader</span>
+				  </label>
+				</div>
+			  </div>
 			@if ($user)
 			<button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" disabled>Login</button>
 
 				@else
-				<button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Login</button>
+				<button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded">Login</button>
 			@endif
             
             
        
             <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
-                <div class="">
-                    <div class="p-2 bg-blue-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-                        
-                            <span class="font-semibold mr-2 text-left flex-auto">Don't have an account?</span>
-                            <a href="{{ asset('user/register') }}">
-                            <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">REGISTER</span>
-                            </a>
-                            <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
-                        
-                    </div>
-                </div>
+                
+				<div class="bg-yellow-100 border border-blue-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
+					<span class="block sm:inline">Don't have an account?</span>
+					<a href="{{ asset('user/register') }}">
+						<strong class="font-bold">REGISTER</strong>
+					</a>
+				</div>
+				
             </div>
+			
+
+			
+			
        
         </form>
         
@@ -154,20 +186,16 @@
 				</div>
 				<div class="col contact">
 					<h3>Contact us</h3>
-					<p>Diana’s Jewelry INC.<br>54233 Avenue Street<br>New York</p>
-					<p><span class="ico ico-em"></span><a href="#">contact@dianasjewelry.com</a></p>
-					<p><span class="ico ico-ph"></span>(590) 423 446 924</p>
+					<p>Wijesinghe Jewellers,<br>No 89 Main Street,<br>Mawanella</p>
+					<p><span class="ico ico-em"></span><a href="#">wijesinghejewellers@gmail.com</a></p>
+					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					<h3>Join our newsletter</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
-					<form action="#">
-						<input type="text" placeholder="Your email address...">
-						<button type="submit"></button>
-					</form>
+					
+					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>
-			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
+			<p class="copy">Copyright 2024 wijesinghe Jewellers. All rights reserved.</p>
 		</div>
 		<!-- / container -->
 	</footer>
@@ -176,6 +204,6 @@
 
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
+	<script src="../js/plugins.js"></script>
+	<script src="../js/main.js"></script>
 </body>
