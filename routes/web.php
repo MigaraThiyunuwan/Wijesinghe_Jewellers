@@ -83,6 +83,7 @@ Route::post('gem/save', [GemBusinessController::class, 'save'])->name('gem.save'
 Route::post('gem/editdetails', [GemBusinessController::class, 'editdetails'])->name('gem.editdetails');
 Route::post('gem/changepassword', [GemBusinessController::class, 'changepassword'])->name('gem.changepassword');
 Route::post('gem/putadvertisements', [GemBusinessController::class, 'putadvertisements'])->name('gem.putadvertisements');
+Route::post('gem/delete', [GemBusinessController::class, 'delete'])->name('gem.delete');
 Route::get('shop/gemDetails/{gemId}', [GemBusinessController::class, 'gemdetails'])->name('gem.gemDetails');
 
 

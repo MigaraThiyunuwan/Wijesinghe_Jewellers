@@ -41,4 +41,14 @@ class Advertisement extends Model
     {
         return Advertisement::where('id', $id)->first();
     }
+
+    public function getSpecificAdd($gem_businesses_id)
+    {
+        return Advertisement::where('gem_businesses_id', $gem_businesses_id)->get();
+    }
+
+    public function deleteAdvertisement($id)
+    {
+        return Advertisement::where('id', $id)->delete();
+    }
 }

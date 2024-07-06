@@ -37,13 +37,14 @@ class CartController extends Controller
 
         $orders = session('orders', []);
         foreach ($orders as &$existingOrder) {
+            
             if ($existingOrder['item_id'] == $itemId) {
                 $itemFound = true;
                 break;
             }
         }
 
-        if (!$itemFound) {
+        if (!$itemFound) {  
             
             $cart = new Cart();
             if($cart->addItem($userId, $itemId))

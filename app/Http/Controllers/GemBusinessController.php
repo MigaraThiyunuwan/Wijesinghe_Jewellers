@@ -13,7 +13,10 @@ class GemBusinessController extends Controller
 
     public function profile()
     {
-        return view('GemBusinessOwner.profile');
+        $gemBusiness = session()->get('gemBusiness');
+        $advertisement = new Advertisement();
+        $myAddList = $advertisement->getSpecificAdd($gemBusiness->id);
+        return view('GemBusinessOwner.profile', compact('myAddList'));
     }
     
     public function register()
@@ -130,7 +133,12 @@ class GemBusinessController extends Controller
             return redirect()->route('gem.add')->with('unsuccess', 'Advertisement posting Failed');
         }
     }
-
+    public function delete(Request $request)
+    {
+        $advertisement = new Advertisement();
+        $advertisement->deleteAdvertisement($request->id);
+        return redirect()->route('gem.profile')->with('success', 'Advertisement deleted successfully');
+    }
     
 
     public function editdetails(Request $request)

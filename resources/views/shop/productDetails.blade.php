@@ -45,6 +45,7 @@
 			<div class="right-links">
 				<ul>
 					@if ($user)
+					<li><a href="{{route('cart.cart')}}"><span class="ico-products"></span>Cart</a></li>
 					<li><a href="{{ route('user.profile')  }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
 					@if ($manager)
