@@ -36,6 +36,7 @@ Route::get('test', function () {
 Route::get('/', [Controller::class, 'home'])->name('home');
 Route::get('logout', [Controller::class, 'logout'])->middleware('web')->name('logout');
 Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
+Route::get('contactus', [Controller::class, 'contactus'])->name('contactus');
 
 
 //Routes for user
@@ -101,10 +102,10 @@ Route::post('shop/save', [ItemController::class, 'save'])->name('shop.save');
 
 //Routes for Cart
 Route::get('cart', [CartController::class, 'showCart'])->name('cart.cart');
-Route::post('cart/add', [CartController::class, 'addToCart'])->name('cart.add'); 
-Route::post('cart/update', [CartController::class, 'updateCartItem'])->name('cart.update'); 
+Route::post('cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('cart/update', [CartController::class, 'updateCartItem'])->name('cart.update');
 Route::post('cart/delete', [CartController::class, 'removeCartItem'])->name('cart.delete');
 Route::get('cart/receiver', [CartController::class, 'receiver'])->name('cart.receiver');
 
-//Routes for Events   
-Route::get('events/home', [EventController::class, 'home'])->name('events.home'); 
+//Routes for Events
+Route::get('events/home', [EventController::class, 'home'])->name('events.home');
