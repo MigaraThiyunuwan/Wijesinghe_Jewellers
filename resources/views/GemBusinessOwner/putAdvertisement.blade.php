@@ -68,95 +68,30 @@
     <div class="rounded-t bg-white mb-0 px-6 py-6">
       <div class="text-center flex justify-between">
         <h6 class="text-blueGray-700 text-xl font-bold">
-          Edit Information
+          Add new Advertisement
         </h6>
-        
-        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="bg-blue-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
-            Change Password
-        </button>
-
-        <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative p-4 w-full max-w-md max-h-full">
-                <!-- Modal content -->
-                <div class="relative bg-white rounded-lg shadow">
-                    <!-- Modal header -->
-                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                        <h3 class="text-xl font-semibold text-gray-900">
-                            Change My Password
-                        </h3>
-                        <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="p-4 md:p-5">
-                        <form class="space-y-4" action="{{route('gem.changepassword')}}" method="POST">
-                          @csrf
-                            
-                            <div>
-                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your Current Password</label>
-                                <input type="password" name="password" id="password" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-                            </div>
-  
-                            <div>
-                              <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900">Confirm Your Current Password</label>
-                              <input type="password" name="password_confirmation" id="password_confirmation" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-                            </div>
-  
-                            <div>
-                              <label for="new_password" class="block mb-2 text-sm font-medium text-gray-900">Your New Password</label>
-                              <input type="password" name="new_password" id="new_password" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-                            </div>
-                            <div>
-                              <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Type this message in the box</label>
-                              <div style="margin-top: 20px; margin-bottom: 20px" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                <strong class="font-bold">Please Change My Password</strong>
-                              </div>
-                              <input type="text" autocomplete="off" name="textinput" id="colorfulInput" placeholder="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-                            </div>
-                            
-                            <button type="submit" id="submitButton" class="w-full text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Change Password</button>
-                            
-                            <script>
-                              document.getElementById('colorfulInput').addEventListener('input', function(event) {
-                                var inputValue = event.target.value.toLowerCase(); // Convert input value to lowercase for case-insensitive comparison
-                                var inputField = event.target;
-                                var submitButton = document.getElementById('submitButton');
-                               
-                                // Check if input value contains "please change my password"
-                                if (inputValue === "please change my password") {
-                                  inputField.style.color = "green"; // Change text color to green
-                                  submitButton.disabled = false; // Enable submit button
-                                } else {
-                                  inputField.style.color = "red"; // Change text color to red
-                                  submitButton.disabled = true; // Disable submit button
-                                }
-                              });
-  
-                              // Prevent pasting into the input field
-                              document.getElementById('colorfulInput').addEventListener('paste', function(event) {
-                                event.preventDefault(); // Prevent default paste behavior
-                              });
-                            </script>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        @if (session('success'))
+                      
+        <div style="display: flex; justify-content: center">
+          <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+    
+            <strong class="font-bold">{{ session('success') }}</strong>
+            
+          </div>
         </div>
+    @endif
 
-
-
-
-
-
-
-
-
-
-
+    @if (session('unsuccess'))
+        
+        <div style="display: flex; justify-content: center">
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    
+            <strong class="font-bold">{{ session('unsuccess') }}</strong>
+            
+          </div>
+        </div>
+    @endif
+        
 
       </div>
     </div>
@@ -181,28 +116,28 @@
 
         
 
-      <form action="{{route('gem.editdetails')}}" method="POST" enctype="multipart/form-data">
+      <form action="{{route('gem.putadvertisements')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-          Business Information
+          Gem Information
         </h6>
         <div class="flex flex-wrap">
               
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Owner's Name 
+                    Name of the Gem
                   </label>
-                  <input type="text" name="owner_name" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $gemBusiness->owner_name }}">
+                  <input type="text" name="title" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                 </div>
               </div>
 
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Address 
+                    price 
                   </label>
-                  <input type="address" required name="address" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{  $gemBusiness->address }}">
+                  <input type="number" required name="price" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                 </div>
             </div>
               
@@ -218,46 +153,79 @@
             <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Email 
+                    Shape of the Gem 
                   </label>
-                  <input type="email" name="email" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ $gemBusiness->email}}">
+                  <input type="text" name="shape" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    Contact No 
+                    Carat 
                   </label>
-                  <input type="tel" name="contact_no" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{  $gemBusiness->contact_no }}">
+                  <input type="number" name="carat" step="0.01" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                 </div>
               </div>
               
 
         </div>
 
-        <hr class="mt-6 border-b-1 border-blueGray-300">
-        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-            Best Time to Talk
-          </h6>
         <div class="flex flex-wrap">
-              <div class="w-full lg:w-3/12 px-4">
+            
+            <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    From
+                    Width of tHE gem (mm)
                   </label>
-                  <input type="time" name="time_from" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{  $gemBusiness->time_from }}">
+                  <input type="number" name="width" step="0.01" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="">
                 </div>
               </div>
-              <div class="w-full lg:w-3/12 px-4">
+              <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                    To
+                    length of tHE gem (mm)
                   </label>
-                  <input type="time" name="time_to" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $gemBusiness->time_to }}">
+                  <input type="number" name="length" step="0.01" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                 </div>
               </div>
               
+
         </div>
+
+        <div class="flex flex-wrap">
+            <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                    Image of The gem
+                </label>
+                <input type="file" name="image" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="">
+                </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                    contact no
+                </label>
+                <input type="tel" name="contact_no" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" name="gem_business_id" value="{{$gemBusiness->id}}">
+
+        <div class="w-full lg:w-12/12 px-4">
+            <div class="relative w-full mb-3">
+              <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                Description 
+              </label>
+              <textarea type="text" name="description" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4"> </textarea>
+            </div>
+          </div>
+
+
+    </div>
+
+        
 
 
 
@@ -267,9 +235,9 @@
         <div class="flex flex-wrap">
           
 
-            <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
+            <div style="width: 100%; display:flex; justify-content:center; margin-top: 0px; margin-bottom: 20px">
                 <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" style="width: 200px" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button">
-                    Save
+                    Add
                 </button>
                 
             </div>
@@ -287,7 +255,7 @@
                             <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                             </svg>
-                            <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure you want to update manager information?</h3>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure you want to post this advertisement?</h3>
                             <button data-modal-hide="popup-modal" type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                 Yes, I'm sure
                             </button>

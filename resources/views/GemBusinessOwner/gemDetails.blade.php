@@ -86,52 +86,45 @@
 		<!-- / container -->
 	</nav>
 	<!-- / navigation -->
-    
-    
 
-    <div id="breadcrumbs" style="margin-top: 0px">
-		<div class="container">
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li>Necklaces</li>
-			</ul>
-		</div>
-		<!-- / container -->
-	</div>
-    
+   
+
 
 <div id="body">
-    
-    <!-- / container -->
-    <div id="content" style="margin: 20px">
-        <section class="products">
-            <div class="row">
-                @foreach($itemList as $item)
-                    <article >
-                        <a href="{{ route('shop.productDetails', $item->id) }}"><img src="{{ asset('storage/' . $item->image) }}" alt=""></a>
-                        <h3><a href="{{ route('shop.productDetails', $item->id) }}">{{$item->name}}</a></h3>
-                        @if ($item->quantity == 0)
-                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-1 mt-2 rounded relative" role="alert">
-                                <strong class="font-bold">Out of Stock!</strong>
-                            </div>
-                        @endif
-                        <h4><a href="{{ route('shop.productDetails', $item->id) }}">Rs. {{$item->price}}</a></h4>
-
-						
-							
-								<div style="display: flex; justify-content: center">
+	
+    <div class="container">
+		
+        <div id="content" class="full">
+            <div class="product">
 				
-									{{-- <button style="width: 100%" type="submit" class="btn-add">Add to cart</button> --}}
-								<a style="width: 100%" href="{{ route('shop.productDetails', $item->id) }}" class="btn-add" >View Details </a>
-							</div>
-							
-						
+                <div class="image">
+                    <img src="{{ asset('storage/' . $gem->image) }}" alt="">
+
+                </div>
+                <div class="details">
+                    <h1>{{$gem->title}} </h1>
+                    <h4>Rs. {{$gem->price}}</h4>
+                    <div class="entry">
+                        <p>{{$gem->description}}
+                            <ul>
+                                <li><strong> shape: </strong>{{$gem->shape}} </li>
+                                <li><strong>Weight:</strong> {{$gem->carat}} CTS</li>
+                                <li><strong>Size:</strong> {{$gem->length}}mm x {{$gem->width}}mm</li>
+                                <li><strong>Contact:</strong> {{$gem->contact_no}}</li>
+                            </ul>
+
+
+                        </p>
                         
-                    </article>
-                @endforeach
-                
+						
+                    </div>
+                    
+					
+					
+                </div>
             </div>
-        </section>
+        </div>
+        <!-- / content -->
     </div>
 </div>
 <!-- / body -->
@@ -174,7 +167,7 @@
 		<!-- / container -->
 	</footer>
 	<!-- / footer -->
-
+	
 
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>

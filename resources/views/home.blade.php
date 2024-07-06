@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
 	<meta charset="utf-8">
 	<title>Wijesinghe Jewellery</title>
@@ -9,6 +9,8 @@
 	@php
       $user = session()->get('user');
 	  $manager = session()->get('manager');
+	  $leader = session()->get('leader');
+	  $gemBusiness = session()->get('gemBusiness');
     @endphp
 </head>
 <body>
@@ -19,17 +21,24 @@
 			<div class="right-links">
 				<ul>
 					@if ($user)
-					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
+					<li><a href="{{ route('user.profile')  }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
 					@if ($manager)
-					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					<li><a href="{{ route('manager.profile')  }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
 					@endif
+					@if ($leader)
+					<li><a href="{{ route('leader.profile') }}"><span class="ico-account"></span>Hello, {{$leader->first_name}}</a></li>
+					@endif
+					@if ($gemBusiness)
+					<li><a href="{{ route('gem.profile') }}"><span class="ico-account"></span>Hello, {{$gemBusiness->owner_name}}</a></li>
+					@endif
+					
+					
 
-
-					@if ($user || $manager)
+					@if ($user || $manager || $leader || $gemBusiness)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
-						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+						<li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>
 					@endif
 
 				</ul>
@@ -48,7 +57,7 @@
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="{{ route('events.home') }}">Events</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
-                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
+				<li><a href="{{ route('advertisement') }}">Advertisement</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -97,7 +106,7 @@
                     <button type="button" class="self-start">Action</button>
                 </div>
             </div>
-
+            
         </div>
     </section>
 
@@ -131,7 +140,7 @@
 					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-
+					
 					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>

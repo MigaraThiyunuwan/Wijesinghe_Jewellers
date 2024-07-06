@@ -202,7 +202,7 @@
     <div id="breadcrumbs" style="margin-top: 30px">
 		<div class="container">
 			<ul>
-				<li><a href="#">Manager</a></li>
+				<li><a href="{{route('manager.profile')}}">Manager</a></li>
 				<li>Necklaces</li>
 			</ul>
 		</div>

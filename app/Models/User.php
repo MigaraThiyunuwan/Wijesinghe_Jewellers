@@ -52,6 +52,10 @@ class User extends Model
     {
         return $this->hasMany(Order::class);
     }
+    public function advertisements()
+    {
+        return $this->hasMany(Advertisement::class);
+    }
     
     public function register(Request $request)
     {
