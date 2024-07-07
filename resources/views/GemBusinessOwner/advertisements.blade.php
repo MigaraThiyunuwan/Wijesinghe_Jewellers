@@ -45,7 +45,6 @@
 			<div class="right-links">
 				<ul>
 					@if ($user)
-					<li><a href="{{route('cart.cart')}}"><span class="ico-products"></span>Cart</a></li>
 					<li><a href="{{ route('user.profile')  }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
 					@if ($manager)
@@ -94,7 +93,7 @@
 		<div class="container">
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li>Necklaces</li>
+				<li>Advertisements</li>
 			</ul>
 		</div>
 		<!-- / container -->
@@ -107,23 +106,23 @@
     <div id="content" style="margin: 20px">
         <section class="products">
             <div class="row">
-                @foreach($itemList as $item)
+                @foreach($addList as $add)
                     <article >
-                        <a href="{{ route('shop.productDetails', $item->id) }}"><img src="{{ asset('storage/' . $item->image) }}" alt=""></a>
-                        <h3><a href="{{ route('shop.productDetails', $item->id) }}">{{$item->name}}</a></h3>
-                        @if ($item->quantity == 0)
+                        <a href="{{ route('gem.gemDetails', $add->id) }}"><img src="{{ asset('storage/' . $add->image) }}" alt=""></a>
+                        <h3><a href="{{ route('gem.gemDetails', $add->id) }}">{{$add->title}}</a></h3>
+                        {{-- @if ($add->quantity == 0)
                             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-1 mt-2 rounded relative" role="alert">
                                 <strong class="font-bold">Out of Stock!</strong>
                             </div>
-                        @endif
-                        <h4><a href="{{ route('shop.productDetails', $item->id) }}">Rs. {{$item->price}}</a></h4>
+                        @endif --}}
+                        <h4><a href="{{ route('gem.gemDetails', $add->id) }}">Rs. {{$add->price}}</a></h4>
 
 						
 							
 								<div style="display: flex; justify-content: center">
 				
 									{{-- <button style="width: 100%" type="submit" class="btn-add">Add to cart</button> --}}
-								<a style="width: 100%" href="{{ route('shop.productDetails', $item->id) }}" class="btn-add" >View Details </a>
+								<a style="width: 100%" href="{{ route('gem.gemDetails', $add->id) }}" class="btn-add" >View Details </a>
 							</div>
 							
 						
