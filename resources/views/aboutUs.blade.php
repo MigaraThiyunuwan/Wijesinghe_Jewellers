@@ -56,14 +56,11 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
-			</ul>
+			<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+                <li><a href="{{ route('events.home') }}">Events</a></li>
+                <li><a href="{{ route('aboutus') }}">About</a></li>
+                <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -188,45 +185,43 @@
 
     <br>
     <footer id="footer">
-        <div class="container">
-            <div class="cols">
-                <div class="col">
-                    <h3>Frequently Asked Questions</h3>
-                    <ul>
-                        <li><a href="#">Fusce eget dolor adipiscing </a></li>
-                        <li><a href="#">Posuere nisl eu venenatis gravida</a></li>
-                        <li><a href="#">Morbi dictum ligula mattis</a></li>
-                        <li><a href="#">Etiam diam vel dolor luctus dapibus</a></li>
-                        <li><a href="#">Vestibulum ultrices magna </a></li>
+		<div class="container">
+			<div class="cols">
+				<div class="col">
+					<h3>Frequently Asked Questions</h3>
+					<ul>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
                     </ul>
-                </div>
-                <div class="col media">
-                    <h3>Social media</h3>
-                    <ul class="social">
-                        <li><a href="#"><span class="ico ico-fb"></span>Facebook</a></li>
-                        <li><a href="#"><span class="ico ico-tw"></span>Twitter</a></li>
-                        <li><a href="#"><span class="ico ico-gp"></span>Google+</a></li>
-                        <li><a href="#"><span class="ico ico-pi"></span>Pinterest</a></li>
-                    </ul>
-                </div>
-                <div class="col contact">
-                    <h3>Contact us</h3>
-                    <p>Diana’s Jewelry INC.<br>54233 Avenue Street<br>New York</p>
-                    <p><span class="ico ico-em"></span><a href="#">contact@dianasjewelry.com</a></p>
-                    <p><span class="ico ico-ph"></span>(590) 423 446 924</p>
-                </div>
-                <div class="col newsletter">
-                    <h3>Join our newsletter</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Your email address...">
-                        <button type="submit"></button>
-                    </form>
-                </div>
-            </div>
-            <p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
-        </div>
-    </footer>
+				</div>
+				<div class="col media">
+					<h3>Social media</h3>
+					<ul class="social">
+						<li><a href="#"><span class="ico ico-fb"></span>Facebook</a></li>
+						<li><a href="#"><span class="ico ico-tw"></span>Twitter</a></li>
+						<li><a href="#"><span class="ico ico-gp"></span>Google+</a></li>
+						<li><a href="#"><span class="ico ico-pi"></span>Pinterest</a></li>
+					</ul>
+				</div>
+				<div class="col contact">
+					<h3>Contact us</h3>
+					<p>Wijesinghe Jewellers,<br>No 89 Main Street,<br>Mawanella</p>
+					<p><span class="ico ico-em"></span><a href="#">wijesinghejewellers@gmail.com</a></p>
+					<p><span class="ico ico-ph"></span>077 192 2433</p>
+				</div>
+				<div class="col newsletter">
+					
+					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
+				</div>
+			</div>
+			<p class="copy">Copyright 2024 wijesinghe Jewellers. All rights reserved.</p>
+		</div>
+		<!-- / container -->
+	</footer>
+	<!-- / footer -->
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
 	<script src="js/plugins.js"></script>
