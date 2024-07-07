@@ -15,7 +15,7 @@
     @php
       $user = session()->get('user');
     @endphp
-    
+
     @if (!$user)
         @php
             $loginUrl = route('userlogin') . '?error=First You Need to Login to Your Account.';
@@ -24,9 +24,9 @@
         @endphp
     @endif
 
-    
+
     <title>Wijesinghe jewelry</title>
-   
+
 </head>
 <body>
 
@@ -35,7 +35,7 @@
 			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
 			<div class="right-links">
 				<ul>
-					
+
 					@if ($user)
 					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
@@ -45,7 +45,7 @@
                     @else
                         <li><a href="{{ asset('user/login') }}"><span class="ico-signout"></span>Login</a></li>
                     @endif
-					
+
 				</ul>
 			</div>
 		</div>
@@ -61,6 +61,7 @@
 				<li><a href="products.html">earrings</a></li>
 				<li><a href="{{ route('events.home') }}">Events</a></li>
 				<li><a href="{{ route('aboutus') }}">About</a></li>
+                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 				<li><a href="products.html">Promotions</a></li>
 			</ul>
 		</div>
@@ -148,14 +149,14 @@
                       <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
                         {{ $user['about'] }}
                       </p>
-                      
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-      
+
         </section>
 
         <div class="container mb-4">
