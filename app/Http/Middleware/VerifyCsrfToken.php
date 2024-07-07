@@ -13,5 +13,9 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        'payment/return',
+        'payment/cancel',
+        'payment/notify',
+        'https://sandbox.payhere.lk/pay/checkout',
     ];
 }

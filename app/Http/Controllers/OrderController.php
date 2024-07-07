@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+
+    public function paymentconfirm(Order $order)
+    {
+        return view('Cart.paymentconfirm',compact('order'));
+    }
+    
     public function placeOrder(Request $request)
     {
         $cart = new Cart();
@@ -46,7 +52,8 @@ class OrderController extends Controller
         $cart->clearCart($request->user_id);
         //clear cart session
         session()->forget('orders');
-
+        $request->session()->put('myorder', $order);
+        //return redirect()->route('order.paymentconfirm', $order);
         return redirect()->route('user.profile')->with('orderSuccess', 'Order placed successfully');
     }
 

@@ -31,6 +31,12 @@ Route::get('test', function () {
     return view('test');
 });
 
+Route::get('/generate-hash', [Controller::class, 'generateHash'])->name('generate-hash');
+Route::get('/payment/return', [Controller::class, 'paymentReturn'])->name('payment.return');
+Route::get('/payment/cancel', [Controller::class, 'paymentCancel'])->name('payment.cancel');
+Route::post('/payment/notify', [Controller::class, 'paymentNotify'])->name('payment.notify');
+
+
 // Route::get('/', function () {return view('home');});
 
 Route::get('/', [Controller::class, 'home'])->name('home');
@@ -39,7 +45,7 @@ Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
 Route::get('userlogin', [Controller::class, 'userlogin'])->name('userlogin');
 Route::post('loginallusers', [Controller::class, 'loginallusers'])->name('loginallusers');
 
-
+// MjAyNjA4MDI4NzE0NDU2MjA1MzkzNzM1MzcyMjk5MTI1NjIyNDk3NQ==
 //Routes for user
 Route::get('user/register', [UserController::class, 'register'])->name('user.register');
 Route::post('user/save', [UserController::class, 'save'])->name('user.save');
@@ -101,6 +107,7 @@ Route::post('leader/changepassword', [LeaderController::class, 'changepassword']
 Route::post('order/placeorder', [OrderController::class, 'placeorder'])->name('order.placeorder');
 Route::post('order/changestatus', [OrderController::class, 'changestatus'])->name('order.changestatus');
 Route::post('order/changecolumn', [OrderController::class, 'changecolumn'])->name('order.changecolumn');
+Route::get('order/paymentconfirm/{order}', [OrderController::class, 'paymentconfirm'])->name('order.paymentconfirm');
 
 //Routes for Items
 Route::get('shop/necklaces', [ItemController::class, 'necklaces'])->name('shop.necklaces');

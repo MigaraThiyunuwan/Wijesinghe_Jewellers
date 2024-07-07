@@ -145,7 +145,7 @@
 										<div class="w-full lg:w-6/12 px-4">
 										  <div class="relative w-full mb-3">
 											<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-											  Reciver's Name <span style="color: red">*</span>
+												Receiver's Name <span style="color: red">*</span>
 											</label>
 											<input type="text" name="receiverName" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('receiverName') }}">
 										  </div>
@@ -412,7 +412,7 @@
 						  
 									  <div style="width: 100%; display:flex; justify-content:center">
 										  
-										<button type="submit" class="btn-grey">Pay Bill </button>
+										<button type="submit" class="btn-grey">Submit Receiver Details</button>
 										{{-- <a style="text-decoration: none" href="{{ route('cart.receiver') }}" class="btn-grey">Pay Bill</a> --}}
 										
 									  </div>

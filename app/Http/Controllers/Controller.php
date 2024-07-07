@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\Process\Process;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class Controller extends BaseController
@@ -29,6 +30,81 @@ class Controller extends BaseController
         return view('home');
     }
 
+    
+
+    public function generateHash(Request $request)
+    {
+        $merchant_id = "1224349";
+        $merchant_secret = "Mjc3NDU1OTUxNjE1NTUzNTQ0NTY0NTM5OTQ5MzUzNjQ3NzkzNzk=";
+        $order_id = $request->input('order_id');
+        $amount = $request->input('amount');
+        $currency = 'LKR';
+
+        
+        
+    
+        $formatted_amount = number_format($amount, 2, '.', '');
+        
+
+        $hash = strtoupper(
+            md5(
+                $merchant_id . 
+                $order_id . 
+                $formatted_amount . 
+                $currency .  
+                strtoupper(md5($merchant_secret)) 
+            )
+        );
+        
+        //Log::info('Hash: ' . $hash);
+        return response()->json([
+            'order_id' => $order_id,
+            'amount' => $amount,
+            'hash' => $hash
+        ]);
+    }
+    public function paymentReturn()
+    {
+        return view('payment.return'); // Create a view for this
+    }
+
+    public function paymentCancel()
+    {
+        return view('payment.cancel'); // Create a view for this
+    }
+
+    public function paymentNotify(Request $request)
+{
+    Log::info('inside payment  notify');
+    $merchant_id = $request->input('merchant_id');
+    $order_id = $request->input('order_id');
+    $payhere_amount = $request->input('payhere_amount');
+    $payhere_currency = $request->input('payhere_currency');
+    $status_code = $request->input('status_code');
+    $md5sig = $request->input('md5sig');
+
+    $merchant_secret = "Mjc3NDU1OTUxNjE1NTUzNTQ0NTY0NTM5OTQ5MzUzNjQ3NzkzNzk=";
+
+    $local_md5sig = strtoupper(
+        md5(
+            $merchant_id . 
+            $order_id . 
+            $payhere_amount . 
+            $payhere_currency . 
+            $status_code . 
+            strtoupper(md5($merchant_secret)) 
+        )
+    );
+
+    if (($local_md5sig === $md5sig) && ($status_code == 2)) {
+        // Update your database as payment success
+        // Order::find($order_id)->update(['status' => 'paid']);
+        Log::info('payment success');
+    }
+
+    return response()->json(['status' => 'ok']);
+}
+    
     // Controller method to delete sessions when any user logout
     public function logout(Request $request)
     {
