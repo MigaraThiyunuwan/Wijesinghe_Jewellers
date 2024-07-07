@@ -65,7 +65,7 @@
                 <li><a href="{{ route('events.home') }}">Events</a></li>
                 <li><a href="{{ route('aboutus') }}">About</a></li>
                 <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
-                <li><a href="products.html">Promotions</a></li>
+                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
             </ul>
         </div>
         <!-- / container -->

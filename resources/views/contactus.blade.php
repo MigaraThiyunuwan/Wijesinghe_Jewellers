@@ -33,7 +33,7 @@
                     @if ($user || $manager)
                         <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
                     @else
-                        <li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+                        <li><a href="{{ route('loginallusers') }}"><span class="ico-signout"></span>Login</a></li>
                     @endif
                 </ul>
             </div>
@@ -137,15 +137,7 @@
         </div>
     </section>
     <div id="map">
-        <iframe
-            width="600"
-            height="450"
-            style="border:0"
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Your+Shop+Address">
-        </iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9413.563341017527!2d80.44386513576347!3d7.250419653642176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2slk!4v1720364496207!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <footer id="footer">

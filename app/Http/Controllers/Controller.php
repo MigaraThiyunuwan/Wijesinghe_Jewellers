@@ -30,7 +30,10 @@ class Controller extends BaseController
         return view('home');
     }
 
-    
+    public function contactus()
+    {
+        return view('contactus');
+    }
 
     public function generateHash(Request $request)
     {

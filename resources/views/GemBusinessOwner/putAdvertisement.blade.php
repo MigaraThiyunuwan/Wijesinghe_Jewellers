@@ -34,7 +34,7 @@
 					@endif
 					
 
-					@if ($user || $manager)
+					@if ($user || $manager || $gemBusiness)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
 						<li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>

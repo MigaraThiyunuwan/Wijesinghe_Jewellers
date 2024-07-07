@@ -22,7 +22,7 @@
 				<ul>
 					
 					@if ($manager)
-					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					<li><a href="{{ route('manager.profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
 					@endif
                     @if ($manager)
                     <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>

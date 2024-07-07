@@ -40,6 +40,7 @@ Route::post('/payment/notify', [Controller::class, 'paymentNotify'])->name('paym
 // Route::get('/', function () {return view('home');});
 
 Route::get('/', [Controller::class, 'home'])->name('home');
+Route::get('contactus', [Controller::class, 'contactus'])->name('contactus');
 Route::get('logout', [Controller::class, 'logout'])->middleware('web')->name('logout');
 Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
 Route::get('userlogin', [Controller::class, 'userlogin'])->name('userlogin');

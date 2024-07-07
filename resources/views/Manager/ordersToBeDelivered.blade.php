@@ -202,7 +202,7 @@
 		<div class="container">
 			<ul>
 				<li><a href="{{route('manager.profile')}}">Manager</a></li>
-				<li>Pending Orders</li>
+				<li>Orders to be delivered</li>
 			</ul>
 		</div>
 		<!-- / container -->
