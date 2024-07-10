@@ -18,7 +18,7 @@ class ItemController extends Controller
     public function rings()
     {
         $item = new Item();
-        $itemList = $item->getItemList("Necklace"); //Ring
+        $itemList = $item->getItemList("Ring"); //Ring
         return view('shop.rings', compact('itemList'));
     }
 
@@ -32,7 +32,7 @@ class ItemController extends Controller
     public function bracelet()
     {
         $item = new Item();
-        $itemList = $item->getItemList("Necklace"); //Bracelet
+        $itemList = $item->getItemList('Necklace'); //Bracelet
         return view('shop.bracelet', compact('itemList'));
     }
 

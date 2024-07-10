@@ -53,6 +53,7 @@ class CartController extends Controller
                 $cartDetails = $cart->getCart($userId);
                 session(['orders' => $cartDetails]);
                 return redirect()->route('shop.productDetails', $itemId)->with('addItemSucces', 'Item added to Cart!');
+                
             }
             
         }else{

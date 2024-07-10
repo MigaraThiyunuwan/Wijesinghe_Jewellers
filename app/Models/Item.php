@@ -48,7 +48,7 @@ class Item extends Model
 
     public function getItemList($type)
     {
-        if ($type = "all") {
+        if ($type == "all") {
             return self::all();
         } else {
             return self::where('category', $type)->get();

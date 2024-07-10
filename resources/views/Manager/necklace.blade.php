@@ -186,11 +186,14 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-                <li><a href="{{ route('events.home') }}">Events</a></li>
-                <li><a href="{{ route('aboutus') }}">About</a></li>
-                <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
-                <li><a href="{{ route('contactus') }}">Contact Us</a></li>
+			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
