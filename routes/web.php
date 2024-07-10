@@ -112,6 +112,9 @@ Route::get('order/paymentconfirm/{order}', [OrderController::class, 'paymentconf
 
 //Routes for Items
 Route::get('shop/necklaces', [ItemController::class, 'necklaces'])->name('shop.necklaces');
+Route::get('shop/rings', [ItemController::class, 'rings'])->name('shop.rings');
+Route::get('shop/earrings', [ItemController::class, 'earrings'])->name('shop.earrings');
+Route::get('shop/bracelet', [ItemController::class, 'bracelet'])->name('shop.bracelet');
 Route::get('shop/productDetails/{itemId}', [ItemController::class, 'productDetails'])->name('shop.productDetails');
 Route::post('shop/save', [ItemController::class, 'save'])->name('shop.save');
 
