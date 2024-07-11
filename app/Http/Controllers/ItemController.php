@@ -15,6 +15,27 @@ class ItemController extends Controller
         return view('shop.necklaces', compact('itemList'));
     }
 
+    public function rings()
+    {
+        $item = new Item();
+        $itemList = $item->getItemList("Ring"); //Ring
+        return view('shop.rings', compact('itemList'));
+    }
+
+    public function earrings()
+    {
+        $item = new Item();
+        $itemList = $item->getItemList("Earring"); //Earring
+        return view('shop.earrings', compact('itemList'));
+    }
+
+    public function bracelet()
+    {
+        $item = new Item();
+        $itemList = $item->getItemList('Bracelet'); //Bracelet
+        return view('shop.bracelet', compact('itemList'));
+    }
+
     public function productDetails($itemId)
     {
         $item = Item::where('id',$itemId)->first();

@@ -185,14 +185,14 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
-			</ul>
+			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -201,7 +201,7 @@
     <div id="breadcrumbs" style="margin-top: 30px">
 		<div class="container">
 			<ul>
-				<li><a href="#">Manager</a></li>
+				<li><a href="{{route('manager.profile')}}">Manager</a></li>
 				<li>All Users</li>
 			</ul>
 		</div>
@@ -212,7 +212,7 @@
 <div x-data="setup()" :class="{ 'dark': isDark }">
     <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
 
-      <div class="h-full ml-14 mt-14 mb-10 md:ml">
+      <div class="h-full   mb-10 md:ml">
 
 
         <!-- User Table -->
@@ -266,10 +266,12 @@
                     <td class="px-4 py-3 text-sm">{{$user->contact_no}}</td>
 
                     <td class="px-4 py-3 text-xs">
-                      <button data-modal-target="popup-modal1{{$user->id}}" data-modal-toggle="popup-modal1{{$user->id}}"><span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> View </span> </button>
+                      <button data-modal-target="popup-modal1{{$user->id}}" data-modal-toggle="popup-modal1{{$user->id}}"  class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Details</button>
+                      
                     </td>
                     <td class="px-4 py-3 text-xs">
-                      <button data-modal-target="popup-modal2{{$user->id}}" data-modal-toggle="popup-modal2{{$user->id}}"><span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> Remove </span> </button>
+                      <button data-modal-target="popup-modal2{{$user->id}}" data-modal-toggle="popup-modal2{{$user->id}}"  class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Remove</button>
+                      
                     </td>
                   </tr>
 
@@ -286,44 +288,67 @@
                                 </svg>
                                 <span class="sr-only">Close modal</span>
                             </button>
-                            <div class="p-4 md:p-5 text-center">
+                            <div class="p-4 md:p-5 ">
                                 {{-- <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                 </svg> --}}
                                 <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">User Details</h3>
-                                <div class="grid gap-4 mb-4 grid-cols-2">
-                                  <div class="col-span-2">
-                                      
-                                      <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Full Name: </strong> {{$user->first_name}} {{$user->last_name}}<p>
-                                  </div>
-
-                                  <div class="col-span-2">
+                                <div class="grid gap-4 mb-4 grid-cols">
+                                  <div class="bg-white overflow-hidden shadow rounded-lg border">
                                     
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Username: </strong>{{$user->username}} <p>
-                                  </div>
-
-                                  <div class="col-span-2">
-                                    
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Address: </strong>{{$user->address}}<p>
-                                  </div>
-
-                                  <div class="col-span-2">
-                                    
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>City: </strong>{{$user->city}}<p>
-                                  </div>
-                                  
-                                  <div class="col-span-2">
-                                    
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Country: </strong>{{$user->country}}<p>
-                                  </div>
-                                  <div class="col-span-2">
-                                    
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Contact No: </strong>{{$user->contact_no}}<p>
-                                  </div>
-                                  <div class="col-span-2">
-                                    
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6"><strong>Email: </strong>{{$user->email}}<p>
-                                  </div>
+                                    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                                        <dl class="sm:divide-y sm:divide-gray-200">
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Full name
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  {{$user->first_name}} {{$user->last_name}}
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                              <dt class="text-sm font-medium text-gray-500">
+                                                  Username
+                                              </dt>
+                                              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{$user->username}}
+                                              </dd>
+                                          </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Email address
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  {{$user->email}}
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Phone number
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  {{$user->contact_no}}
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Address
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  {{$user->address}}
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                              <dt class="text-sm font-medium text-gray-500">
+                                                Country
+                                              </dt>
+                                              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{$user->country}}
+                                              </dd>
+                                          </div>
+                                        </dl>
+                                    </div>
+                                </div>
                                 </div>
                                 
                                 <button data-modal-hide="popup-modal1{{$user->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Close</button>
@@ -447,12 +472,12 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-						<li><a href="#">Fusce eget dolor adipiscing </a></li>
-						<li><a href="#">Posuere nisl eu venenatis gravida</a></li>
-						<li><a href="#">Morbi dictum ligula mattis</a></li>
-						<li><a href="#">Etiam diam vel dolor luctus dapibus</a></li>
-						<li><a href="#">Vestibulum ultrices magna </a></li>
-					</ul>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                    </ul>
 				</div>
 				<div class="col media">
 					<h3>Social media</h3>
@@ -465,22 +490,20 @@
 				</div>
 				<div class="col contact">
 					<h3>Contact us</h3>
-					<p>Diana’s Jewelry INC.<br>54233 Avenue Street<br>New York</p>
-					<p><span class="ico ico-em"></span><a href="#">contact@dianasjewelry.com</a></p>
-					<p><span class="ico ico-ph"></span>(590) 423 446 924</p>
+					<p>Wijesinghe Jewellers,<br>No 89 Main Street,<br>Mawanella</p>
+					<p><span class="ico ico-em"></span><a href="#">wijesinghejewellers@gmail.com</a></p>
+					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					<h3>Join our newsletter</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
-					<form action="#">
-						<input type="text" placeholder="Your email address...">
-						<button type="submit"></button>
-					</form>
+					
+					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>
-			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
+			<p class="copy">Copyright 2024 wijesinghe Jewellers. All rights reserved.</p>
 		</div>
+		<!-- / container -->
 	</footer>
+	<!-- / footer -->
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
 	<script src="../js/plugins.js"></script>

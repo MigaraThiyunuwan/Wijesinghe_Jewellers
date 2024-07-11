@@ -36,7 +36,7 @@
 					@if ($user || $manager)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
-						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+						<li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>
 					@endif
 
 				</ul>
@@ -49,14 +49,14 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
-			</ul>
+			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -145,7 +145,7 @@
 										<div class="w-full lg:w-6/12 px-4">
 										  <div class="relative w-full mb-3">
 											<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-											  Reciver's Name <span style="color: red">*</span>
+												Receiver's Name <span style="color: red">*</span>
 											</label>
 											<input type="text" name="receiverName" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('receiverName') }}">
 										  </div>
@@ -412,7 +412,7 @@
 						  
 									  <div style="width: 100%; display:flex; justify-content:center">
 										  
-										<button type="submit" class="btn-grey">Pay Bill </button>
+										<button type="submit" class="btn-grey">Submit Receiver Details</button>
 										{{-- <a style="text-decoration: none" href="{{ route('cart.receiver') }}" class="btn-grey">Pay Bill</a> --}}
 										
 									  </div>
@@ -466,12 +466,12 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-						<li><a href="#">Fusce eget dolor adipiscing </a></li>
-						<li><a href="#">Posuere nisl eu venenatis gravida</a></li>
-						<li><a href="#">Morbi dictum ligula mattis</a></li>
-						<li><a href="#">Etiam diam vel dolor luctus dapibus</a></li>
-						<li><a href="#">Vestibulum ultrices magna </a></li>
-					</ul>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                    </ul>
 				</div>
 				<div class="col media">
 					<h3>Social media</h3>

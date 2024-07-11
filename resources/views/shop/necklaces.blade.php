@@ -11,6 +11,8 @@
 	@php
       $user = session()->get('user');
 	  $manager = session()->get('manager');
+	  $leader = session()->get('leader');
+	  $gemBusiness = session()->get('gemBusiness');
     @endphp
 
 <style>
@@ -43,18 +45,24 @@
 			<div class="right-links">
 				<ul>
 					@if ($user)
-                    <li><a href="{{ asset('cart') }}"><span class="ico-products"></span>Cart</a></li>
-					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
+					<li><a href="{{route('cart.cart')}}"><span class="ico-products"></span>Cart</a></li>
+					<li><a href="{{ route('user.profile')  }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
 					@if ($manager)
-					<li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					<li><a href="{{ route('manager.profile')  }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
+					@endif
+					@if ($leader)
+					<li><a href="{{ route('leader.profile') }}"><span class="ico-account"></span>Hello, {{$leader->first_name}}</a></li>
+					@endif
+					@if ($gemBusiness)
+					<li><a href="{{ route('gem.profile') }}"><span class="ico-account"></span>Hello, {{$gemBusiness->owner_name}}</a></li>
 					@endif
 					
 
-					@if ($user || $manager)
+					@if ($user || $manager || $leader || $gemBusiness)
 						<li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
 					@else
-						<li><a href="{{ route('user.login') }}"><span class="ico-signout"></span>Login</a></li>
+						<li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>
 					@endif
 
 				</ul>
@@ -67,63 +75,31 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
-			</ul>
+			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
 	<!-- / navigation -->
     
-    <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl" style="margin-bottom: 30px">
-        <div class="rounded-full bg-gray-600 text-white absolute top-5 right-5 text-sm px-2 text-center z-10">
-            
-        </div>
+    
 
-        <template x-for="(image) in images/shop/necklaces">
-            <figure class="h-96" 
-                x-transition:enter="transition transform duration-300" x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100" x-transition:leave="transition transform duration-300"
-                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                <img :src="image" alt="Image"
-                    class="absolute inset-0 z-10 h-full w-full object-cover opacity-70" />
-                <figcaption
-                    class="absolute inset-x-0 bottom-1 z-20 w-96 mx-auto p-4 font-light text-sm text-center tracking-widest leading-snug bg-gray-300 bg-opacity-25">
-                    <h1 style="font-size: 50px;">Necklaces</h1>
-                    Where Elegance Meets Excellence: Discover Your Timeless Beauty Here.
-                </figcaption>
-            </figure>
-        </template>
-       
-    </article>
-
-    <div id="breadcrumbs" style="margin-top: -30px">
+    <div id="breadcrumbs" style="margin-top: 0px">
 		<div class="container">
 			<ul>
-				<li><a href="#">Home</a></li>
+				<li><a href="/">Home</a></li>
 				<li>Necklaces</li>
 			</ul>
 		</div>
 		<!-- / container -->
 	</div>
     
-    <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('slider', () => ({
-                currentIndex: 1,
-                images/shop/necklaces: [
-                    '../images/shop/necklaces/shop/header1.jfif',
-                    // 'images/shop/necklaces/about/img2.jpg',
-                ],
-                
-            }))
-        })
-    </script>
 
 <div id="body">
     
@@ -133,7 +109,7 @@
             <div class="row">
                 @foreach($itemList as $item)
                     <article >
-                        <a href="{{ route('shop.productDetails', $item->id) }}"><img src="../images/shop/{{$item->image}}" alt=""></a>
+                        <a href="{{ route('shop.productDetails', $item->id) }}"><img src="{{ asset('storage/' . $item->image) }}" alt=""></a>
                         <h3><a href="{{ route('shop.productDetails', $item->id) }}">{{$item->name}}</a></h3>
                         @if ($item->quantity == 0)
                             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-1 mt-2 rounded relative" role="alert">
@@ -142,36 +118,14 @@
                         @endif
                         <h4><a href="{{ route('shop.productDetails', $item->id) }}">Rs. {{$item->price}}</a></h4>
 
-
-						{{-- <div style="display: flex; justify-content: flex-end">
-							<form action="{{ route('cart.add') }}" method="post">
-								@csrf 
-								<input type="hidden" name="item_id" value="{{$item->id}}">
-								@if ($user)
-								<input type="hidden" name="user_id" value="{{$user->id}}">
-								@endif
-								<input type="hidden" name="item_name" value="{{$item->name}}">
-								<input type="hidden" name="item_price" value="{{$item->price}}">
-								<input type="hidden" name="item_image" value="{{$item->image}}">
-								<button type="submit" class="btn-grey">Add to cart</button>
-							</form>
-						</div> --}}
 						
-							<form action="{{ route('cart.add') }}" method="post">
-								@csrf 
-								<input type="hidden" name="item_id" value="{{$item->id}}">
-								@if ($user)
-								<input type="hidden" name="user_id" value="{{$user->id}}">
-								@endif
-								<input type="hidden" name="item_name" value="{{$item->name}}">
-								<input type="hidden" name="item_price" value="{{$item->price}}">
-								<input type="hidden" name="item_image" value="{{$item->image}}">
+							
 								<div style="display: flex; justify-content: center">
 				
 									{{-- <button style="width: 100%" type="submit" class="btn-add">Add to cart</button> --}}
 								<a style="width: 100%" href="{{ route('shop.productDetails', $item->id) }}" class="btn-add" >View Details </a>
 							</div>
-							</form>
+							
 						
                         
                     </article>
@@ -189,12 +143,12 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-						<li><a href="#">Fusce eget dolor adipiscing </a></li>
-						<li><a href="#">Posuere nisl eu venenatis gravida</a></li>
-						<li><a href="#">Morbi dictum ligula mattis</a></li>
-						<li><a href="#">Etiam diam vel dolor luctus dapibus</a></li>
-						<li><a href="#">Vestibulum ultrices magna </a></li>
-					</ul>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                    </ul>
 				</div>
 				<div class="col media">
 					<h3>Social media</h3>

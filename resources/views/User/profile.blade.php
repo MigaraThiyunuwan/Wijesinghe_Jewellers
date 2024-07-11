@@ -15,18 +15,18 @@
     @php
       $user = session()->get('user');
     @endphp
-    
+
     @if (!$user)
         @php
-            $loginUrl = route('user.login') . '?error=First You Need to Login to Your Account.';
+            $loginUrl = route('userlogin') . '?error=First You Need to Login to Your Account.';
             header("Location: $loginUrl");
             exit();
         @endphp
     @endif
 
-    
+
     <title>Wijesinghe jewelry</title>
-   
+
 </head>
 <body>
 
@@ -35,7 +35,7 @@
 			<a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
 			<div class="right-links">
 				<ul>
-					
+
 					@if ($user)
 					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
@@ -45,7 +45,7 @@
                     @else
                         <li><a href="{{ asset('user/login') }}"><span class="ico-signout"></span>Login</a></li>
                     @endif
-					
+
 				</ul>
 			</div>
 		</div>
@@ -56,12 +56,14 @@
 		<div class="container">
 			<div class="trigger"></div>
 			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
+				<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 			</ul>
 		</div>
 		<!-- / container -->
@@ -101,7 +103,7 @@
                   </div>
                   <div class="w-full lg:w-4/12 px-4 lg:order-1">
                     <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                      <div class="mr-4 p-3 text-center">
+                      {{-- <div class="mr-4 p-3 text-center">
                         <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span><span class="text-sm text-blueGray-400">Friends</span>
                       </div>
                       <div class="mr-4 p-3 text-center">
@@ -109,7 +111,7 @@
                       </div>
                       <div class="lg:mr-4 p-3 text-center">
                         <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">89</span><span class="text-sm text-blueGray-400">Comments</span>
-                      </div>
+                      </div> --}}
                     </div>
                   </div>
                 </div>
@@ -148,14 +150,14 @@
                       <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
                         {{ $user['about'] }}
                       </p>
-                      
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-      
+
         </section>
 
         <div class="container mb-4">
@@ -384,12 +386,12 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-						<li><a href="#">Fusce eget dolor adipiscing </a></li>
-						<li><a href="#">Posuere nisl eu venenatis gravida</a></li>
-						<li><a href="#">Morbi dictum ligula mattis</a></li>
-						<li><a href="#">Etiam diam vel dolor luctus dapibus</a></li>
-						<li><a href="#">Vestibulum ultrices magna </a></li>
-					</ul>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                    </ul>
 				</div>
 				<div class="col media">
 					<h3>Social media</h3>
@@ -402,22 +404,20 @@
 				</div>
 				<div class="col contact">
 					<h3>Contact us</h3>
-					<p>Diana’s Jewelry INC.<br>54233 Avenue Street<br>New York</p>
-					<p><span class="ico ico-em"></span><a href="#">contact@dianasjewelry.com</a></p>
-					<p><span class="ico ico-ph"></span>(590) 423 446 924</p>
+					<p>Wijesinghe Jewellers,<br>No 89 Main Street,<br>Mawanella</p>
+					<p><span class="ico ico-em"></span><a href="#">wijesinghejewellers@gmail.com</a></p>
+					<p><span class="ico ico-ph"></span>077 192 2433</p>
 				</div>
 				<div class="col newsletter">
-					<h3>Join our newsletter</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium.</p>
-					<form action="#">
-						<input type="text" placeholder="Your email address...">
-						<button type="submit"></button>
-					</form>
+					
+					<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 200px; height: 200px; " >
 				</div>
 			</div>
-			<p class="copy">Copyright 2013 Jewelry. All rights reserved.</p>
+			<p class="copy">Copyright 2024 wijesinghe Jewellers. All rights reserved.</p>
 		</div>
+		<!-- / container -->
 	</footer>
+	<!-- / footer -->
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
 	<script src="../js/plugins.js"></script>

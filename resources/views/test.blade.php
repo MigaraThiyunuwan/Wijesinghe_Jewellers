@@ -52,14 +52,14 @@
 	<nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
-			</ul>
+			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -215,14 +215,14 @@
 	<nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
-			</ul>
+			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -334,12 +334,12 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-						<li><a href="#">Fusce eget dolor adipiscing </a></li>
-						<li><a href="#">Posuere nisl eu venenatis gravida</a></li>
-						<li><a href="#">Morbi dictum ligula mattis</a></li>
-						<li><a href="#">Etiam diam vel dolor luctus dapibus</a></li>
-						<li><a href="#">Vestibulum ultrices magna </a></li>
-					</ul>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                    </ul>
 				</div>
 				<div class="col media">
 					<h3>Social media</h3>
@@ -417,14 +417,14 @@
 	<nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
-			</ul>
+			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -515,12 +515,12 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-						<li><a href="#">Fusce eget dolor adipiscing </a></li>
-						<li><a href="#">Posuere nisl eu venenatis gravida</a></li>
-						<li><a href="#">Morbi dictum ligula mattis</a></li>
-						<li><a href="#">Etiam diam vel dolor luctus dapibus</a></li>
-						<li><a href="#">Vestibulum ultrices magna </a></li>
-					</ul>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                    </ul>
 				</div>
 				<div class="col media">
 					<h3>Social media</h3>
@@ -603,14 +603,14 @@
 	<nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
-			</ul>
+			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -678,12 +678,12 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-						<li><a href="#">Fusce eget dolor adipiscing </a></li>
-						<li><a href="#">Posuere nisl eu venenatis gravida</a></li>
-						<li><a href="#">Morbi dictum ligula mattis</a></li>
-						<li><a href="#">Etiam diam vel dolor luctus dapibus</a></li>
-						<li><a href="#">Vestibulum ultrices magna </a></li>
-					</ul>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                    </ul>
 				</div>
 				<div class="col media">
 					<h3>Social media</h3>
@@ -766,14 +766,14 @@
 	<nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
-			</ul>
+			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -952,12 +952,12 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-						<li><a href="#">Fusce eget dolor adipiscing </a></li>
-						<li><a href="#">Posuere nisl eu venenatis gravida</a></li>
-						<li><a href="#">Morbi dictum ligula mattis</a></li>
-						<li><a href="#">Etiam diam vel dolor luctus dapibus</a></li>
-						<li><a href="#">Vestibulum ultrices magna </a></li>
-					</ul>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                    </ul>
 				</div>
 				<div class="col media">
 					<h3>Social media</h3>
@@ -1032,14 +1032,14 @@
 	<nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
-			<ul>
-				<li><a href="products.html">New collection</a></li>
-				<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
-				<li><a href="products.html">earrings</a></li>
-				<li><a href="{{ route('events.home') }}">Events</a></li>
-				<li><a href="{{ route('aboutus') }}">About</a></li>
-				<li><a href="products.html">Promotions</a></li>
-			</ul>
+			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
+          <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
+          <li><a href="{{ route('shop.rings') }}">Rings</a></li>
+			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+          <li><a href="{{ route('events.home') }}">Events</a></li>
+          <li><a href="{{ route('aboutus') }}">About</a></li>
+          <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
+          <li><a href="{{ route('contactus') }}">Contact Us</a></li>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -1087,12 +1087,12 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-						<li><a href="#">Fusce eget dolor adipiscing </a></li>
-						<li><a href="#">Posuere nisl eu venenatis gravida</a></li>
-						<li><a href="#">Morbi dictum ligula mattis</a></li>
-						<li><a href="#">Etiam diam vel dolor luctus dapibus</a></li>
-						<li><a href="#">Vestibulum ultrices magna </a></li>
-					</ul>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="#">FAQ Should add here </a></li>
+                    </ul>
 				</div>
 				<div class="col media">
 					<h3>Social media</h3>
