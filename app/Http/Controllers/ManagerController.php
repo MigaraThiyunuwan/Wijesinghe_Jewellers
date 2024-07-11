@@ -102,8 +102,29 @@ class ManagerController extends Controller
     public function managernecklace()
     {
         $item = new Item();
-        $necklaceList = $item->getListOfCategory('Necklace');
-        return view('Manager.necklace', compact('necklaceList'));
+        $itemList = $item->getListOfCategory('Necklace');
+        return view('Manager.necklace', compact('itemList'));
+    }
+
+    public function managerbracelet()
+    {
+        $item = new Item();
+        $itemList = $item->getListOfCategory('Bracelet');
+        return view('Manager.bracelet', compact('itemList'));
+    }
+
+    public function managerearring()
+    {
+        $item = new Item();
+        $itemList = $item->getListOfCategory('Earring');
+        return view('Manager.earring', compact('itemList'));
+    }
+
+    public function managerring()
+    {
+        $item = new Item();
+        $itemList = $item->getListOfCategory('Ring');
+        return view('Manager.ring', compact('itemList'));
     }
 
     public function removeitem(Request $request)

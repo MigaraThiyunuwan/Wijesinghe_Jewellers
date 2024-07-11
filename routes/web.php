@@ -63,6 +63,9 @@ Route::get('manager/users', [ManagerController::class, 'users'])->name('manager.
 Route::get('manager/leaders', [ManagerController::class, 'leaders'])->name('manager.leaders');
 Route::get('manager/gembusiness', [ManagerController::class, 'gembusiness'])->name('manager.gembusiness');
 Route::get('manager/necklace', [ManagerController::class, 'managernecklace'])->name('manager.necklace');
+Route::get('manager/bracelet', [ManagerController::class, 'managerbracelet'])->name('manager.bracelet');
+Route::get('manager/earring', [ManagerController::class, 'managerearring'])->name('manager.earring');
+Route::get('manager/ring', [ManagerController::class, 'managerring'])->name('manager.ring');
 Route::get('manager/pendingrequest', [ManagerController::class, 'pendingrequest'])->name('manager.unverifiedgembusiness');
 Route::get('manager/pendingorders', [ManagerController::class, 'pendingorders'])->name('manager.pendingorders');
 Route::get('manager/orderstobedelivered', [ManagerController::class, 'orderstobedelivered'])->name('manager.orderstobedelivered');

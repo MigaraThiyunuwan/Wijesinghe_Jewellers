@@ -25,14 +25,14 @@ class ItemController extends Controller
     public function earrings()
     {
         $item = new Item();
-        $itemList = $item->getItemList("Necklace"); //Earring
+        $itemList = $item->getItemList("Earring"); //Earring
         return view('shop.earrings', compact('itemList'));
     }
 
     public function bracelet()
     {
         $item = new Item();
-        $itemList = $item->getItemList('Necklace'); //Bracelet
+        $itemList = $item->getItemList('Bracelet'); //Bracelet
         return view('shop.bracelet', compact('itemList'));
     }
 
