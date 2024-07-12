@@ -127,6 +127,9 @@ Route::post('cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('cart/update', [CartController::class, 'updateCartItem'])->name('cart.update'); 
 Route::post('cart/delete', [CartController::class, 'removeCartItem'])->name('cart.delete');
 Route::get('cart/receiver', [CartController::class, 'receiver'])->name('cart.receiver');
+Route::get('cart/return', [CartController::class, 'returnurl'])->name('cart.return');
+Route::get('cart/notify', [CartController::class, 'notify'])->name('cart.notify');
+Route::get('cart/cancel', [CartController::class, 'cancel'])->name('cart.cancel');
 
 //Routes for Events   
 Route::get('events/home', [EventController::class, 'home'])->name('events.home'); 

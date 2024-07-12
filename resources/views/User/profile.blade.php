@@ -136,6 +136,7 @@
                     <i class="fa-solid fa-globe"></i>
                     {{-- <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i> --}}
                     {{ $user['city'] }}, {{ $user['country'] }}
+                    
                   </div>
                   <div class="mb-2 text-blueGray-600 mt-10">
                     <i class="fas fa-location-dot mr-2 text-lg text-blueGray-400"></i>{{ $user['address'] }}

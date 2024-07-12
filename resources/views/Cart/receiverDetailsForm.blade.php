@@ -70,8 +70,9 @@
 
 					
                 @php
+
                     
-                    $orders = session('orders', []);
+            	    $orders = session('orders', []);
 					$subTotal = 0;
 				@endphp
 
@@ -134,9 +135,9 @@
 								@endif
 								{{-- Show Registration Success Messsage End --}}
 						  
-								  
+								{{-- {{route('order.placeorder')}} --}}
 						  
-								<form action="{{route('order.placeorder')}}" method="POST">
+								<form action="{{route('order.placeorder')}}" method="POST"> 
 								  @csrf
 								  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
 									{{-- Delivery Information --}}

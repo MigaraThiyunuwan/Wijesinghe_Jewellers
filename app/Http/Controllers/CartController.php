@@ -21,7 +21,20 @@ class CartController extends Controller
         return view('Cart.receiverDetailsForm', compact('item'));
     }
 
+    public function returnurl()
+    {
+        return view('Cart.return');
+    }
     
+    public function notify()
+    {
+        return view('Cart.notify');
+    }
+
+    public function cancel()
+    {
+        return view('Cart.cancel');
+    }
     
     public function addToCart(Request $request)
     {

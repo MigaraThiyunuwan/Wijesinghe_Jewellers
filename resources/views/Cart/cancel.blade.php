@@ -64,63 +64,27 @@
 		<div class="container">
             
 			<div id="content" class="full">
-                @php
-
-                    $merchant_id = '1227581'; // Replace your Merchant ID
-                    $order_id = $order->id;
-                    $amount = $order->totalPrice;
-                    $currency ='LKR';  
-                    $merchant_secret = "MzM3ODE0Mjk5OTM4MDMyMjk4MDEyMDY0NjIzNDIxNDU1ODU5NDU1";
-                    // $hash = strtoupper(
-                    //     md5(
-                    //         $merchant_id . 
-                    //         $order_id . 
-                    //         number_format($amount, 2, '.', '') . 
-                    //         $currency .  
-                    //         strtoupper(md5($merchant_secret)) 
-                    //     ) 
-                    // );
-                    $hash = $merchant_id;
-                    $hash .= $order_id;
-                    $hash .= number_format($amount, 2, '.', '');
-                    $hash .= $currency;
-                    $hash .= strtoupper(md5($merchant_secret));
-                    $hash = strtoupper(md5($hash));
-
-                @endphp   
+                
              
               
 
 				<div class="total-count">
-					<div style="text-align: left; margin: 20px ">
-                    <p>Receiver Name: <strong>{{$order->receiverName}}</strong></p>
-                    <p>Contact no: <strong>{{$order->contact_no}}</strong></p>
-                    <p>Delivery Address: <strong>{{$order->deliveryAddress}}</strong></p>
+					
+                    <h3>Payment Cancelled!</h3>
+					{{-- <h3><strong>Payment Success!</strong></h3> --}}
+                    <div style="justify-content: center; margin: 20px ">
+                        <p><strong> your payment is cancelled!</strong></p>
+                        
                     </div>
-					<h3>Total to pay: <strong>{{$order->totalPrice}}</strong></h3>
                     {{-- <button type="submit" id="payhere-payment" class="btn-grey">Pay Bill</button> --}}
+                    <a href="{{route("user.profile")}}" class="btn-grey"> Back to Profile </a>
                  
                     
                    
-                    <form id="payhereForm" method="post" action="http://localhost/WijesingheJewellery/">  
-                        <input type="hidden" name="order_id" value="{{$order->id}}">
-                        <input type="hidden" name="amount" value="{{$order->totalPrice}}">  
-                        <input type="hidden" name="first_name" value="{{$user->first_name}}">
-                        <input type="hidden" name="last_name" value="{{$user->last_name}}">
-                        <input type="hidden" name="email" value="{{$user->email}}">
-                        <input type="hidden" name="phone" value="{{$order->contact_no}}">
-                        <input type="hidden" name="address" value="{{$order->deliveryAddress}}">
-                        <input type="hidden" name="city" value="{{$user->city}}">
-                        <input type="hidden" name="country" value="{{$order->country}}">  
-                    </form> 
+                    
 				</div>
                 
-                <script>
-                    // Submit the form automatically when the page loads
-                    document.addEventListener("DOMContentLoaded", function() {
-                        document.getElementById("payhereForm").submit();
-                    });
-                </script>
+                
                 
               
        
