@@ -31,6 +31,11 @@ Route::get('test', function () {
     return view('test');
 });
 
+Route::get('/messages', function () {
+    return view('messages'); // Create this view with the content you want to refresh
+});
+
+
 Route::get('/generate-hash', [Controller::class, 'generateHash'])->name('generate-hash');
 Route::get('/payment/return', [Controller::class, 'paymentReturn'])->name('payment.return');
 Route::get('/payment/cancel', [Controller::class, 'paymentCancel'])->name('payment.cancel');
@@ -53,6 +58,8 @@ Route::post('user/save', [UserController::class, 'save'])->name('user.save');
 Route::post('user/update', [UserController::class, 'update'])->name('user.update');
 Route::get('user/edit', [UserController::class, 'userEdit'])->name('user.edit');
 Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
+Route::get('user/chat', [UserController::class, 'chat'])->name('user.chat');
+Route::get('user/customize', [UserController::class, 'customizeform'])->name('user.customize');
 Route::post('user/changepassword', [UserController::class, 'changepassword'])->name('user.changepassword');
 
 //Routes for Manager

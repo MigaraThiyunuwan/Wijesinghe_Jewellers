@@ -65,6 +65,16 @@
             
 			<div id="content" class="full">
                 
+				@if($myOrder)
+					<h1>Order Details</h1>
+					<p>Order: {{ $myOrder}}</p>
+					<!-- Display other order details as needed -->
+					{{-- @php
+						$myOrder->transaction
+					@endphp --}}
+				@else
+					<p>No order found in the session.</p>
+				@endif
              
               
 

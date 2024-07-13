@@ -40,6 +40,15 @@ class UserController extends Controller
         return view('user.edit');
     }
 
+    public function chat()
+    {
+        return view('chat');
+    }
+
+    public function customizeform()
+    {
+        return view('user.customizeform');
+    }
     // function for handling register new user
     public function save(Request $request)
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Item;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -23,7 +24,11 @@ class CartController extends Controller
 
     public function returnurl()
     {
-        return view('Cart.return');
+       
+        $myOrder = session('myorder');
+        $myOrder->transaction = 'success';
+        $myOrder->update();
+        return view('Cart.return', compact('myOrder'));
     }
     
     public function notify()

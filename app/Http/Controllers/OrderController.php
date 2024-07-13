@@ -28,16 +28,6 @@ class OrderController extends Controller
         $order->receiverName = $request->receiverName;
         $order->contact_no = $request->contact_no;
         
-
-        // after payment success do follow things
-
-
-
-
-
-
-
-
         
         //save order in database
         $order->placed_at = now();
