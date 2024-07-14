@@ -56,6 +56,19 @@ class User extends Model
     {
         return $this->hasMany(Advertisement::class);
     }
+
+    public function customizerequest()
+    {
+        return $this->hasMany(CustomizeRequest::class);
+    }
+
+    public function customizeorders()
+    {
+        return $this->hasMany(CustomizeOrder::class);
+    }
+
+    
+    
     
     public function register(Request $request)
     {

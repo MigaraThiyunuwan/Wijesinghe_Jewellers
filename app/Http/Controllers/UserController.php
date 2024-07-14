@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\CustomizeOrder;
+use App\Models\CustomizeRequest;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,6 +28,26 @@ class UserController extends Controller
             return view('user.profile', compact('orderList'));
             
         }
+        
+    }
+
+    public function mycustomize()
+    {
+        $user = session()->get('user');
+        if($user)
+        {
+            $customize_order = new CustomizeOrder();
+            $customizeOrderList = $customize_order->getCustomizeOrderList($user->id);
+            return view('user.mycustomize', compact('customizeOrderList'));
+        }
+    }
+
+    public function customizechat($cus_req_id)
+    {   
+        //$cus_req_id = 1;
+        $request = new CustomizeRequest();
+        $request = $request->getCustomReq($cus_req_id);
+        return view('User.customizeChat', compact('cus_req_id', 'request'));
         
     }
 

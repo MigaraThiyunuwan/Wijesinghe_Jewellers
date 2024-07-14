@@ -108,7 +108,7 @@
       
               
       
-            <form action="{{route('user.save')}}" method="POST">
+            <form action="{{route('user.makerequest')}}" method="POST">
               @csrf
               <div id="phase1">
                     <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
@@ -363,7 +363,7 @@
                                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                                       Weight in Pavan
                                                     </label>
-                                                    <input type="number" step="0.01" name="necklace_weight" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                                                    <input type="number" step="0.01" name="ring_weight" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
                                                   </div>
                                               </div>
                                               <div class="w-full lg:w-3/12 px-4">
@@ -536,7 +536,7 @@
                                   
                             </div>
                     </div>
-      
+                        <input type="hidden" name="user_id" value="{{$user->id}}">
               
                         <div class="flex flex-wrap">
                             <div style="width: 100%; display:flex; justify-content:center">

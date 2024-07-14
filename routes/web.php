@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CustomizationController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GemBusinessController;
 use App\Http\Controllers\ManagerController;
@@ -31,9 +32,9 @@ Route::get('test', function () {
     return view('test');
 });
 
-Route::get('/messages', function () {
-    return view('messages'); // Create this view with the content you want to refresh
-});
+// Route::get('/messages', function () {
+//     return view('messages'); 
+// });
 
 
 Route::get('/generate-hash', [Controller::class, 'generateHash'])->name('generate-hash');
@@ -51,7 +52,7 @@ Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
 Route::get('userlogin', [Controller::class, 'userlogin'])->name('userlogin');
 Route::post('loginallusers', [Controller::class, 'loginallusers'])->name('loginallusers');
 
-// MjAyNjA4MDI4NzE0NDU2MjA1MzkzNzM1MzcyMjk5MTI1NjIyNDk3NQ==
+
 //Routes for user
 Route::get('user/register', [UserController::class, 'register'])->name('user.register');
 Route::post('user/save', [UserController::class, 'save'])->name('user.save');
@@ -60,7 +61,12 @@ Route::get('user/edit', [UserController::class, 'userEdit'])->name('user.edit');
 Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
 Route::get('user/chat', [UserController::class, 'chat'])->name('user.chat');
 Route::get('user/customize', [UserController::class, 'customizeform'])->name('user.customize');
+Route::get('user/mycustomize', [UserController::class, 'mycustomize'])->name('user.mycustomize');
+Route::get('user/mychat/{cus_req_id}', [UserController::class, 'customizechat'])->name('user.mychat');
 Route::post('user/changepassword', [UserController::class, 'changepassword'])->name('user.changepassword');
+Route::post('user/makerequest', [CustomizationController::class, 'makerequest'])->name('user.makerequest');
+Route::post('user/sendmessage', [CustomizationController::class, 'addMessage'])->name('user.sendmessage');
+Route::get('/get-chat-messages/{cus_req_id}', [CustomizationController::class, 'getmessages']);
 
 //Routes for Manager
 Route::get('manager/profile', [ManagerController::class, 'profile'])->name('manager.profile');

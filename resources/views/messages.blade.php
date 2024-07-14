@@ -21,6 +21,7 @@
             </div>
           </div>
         </div>
+
         <div class="col-start-1 col-end-8 p-3 rounded-lg">
           <div class="flex flex-row items-center">
             <div
@@ -53,6 +54,7 @@
             </div>
           </div>
         </div>
+        
         <div class="col-start-6 col-end-13 p-3 rounded-lg">
           <div class="flex items-center justify-start flex-row-reverse">
             <div
