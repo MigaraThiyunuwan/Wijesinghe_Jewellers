@@ -66,6 +66,7 @@ Route::get('user/mychat/{cus_req_id}', [UserController::class, 'customizechat'])
 Route::post('user/changepassword', [UserController::class, 'changepassword'])->name('user.changepassword');
 Route::post('user/makerequest', [CustomizationController::class, 'makerequest'])->name('user.makerequest');
 Route::post('user/sendmessage', [CustomizationController::class, 'addMessage'])->name('user.sendmessage');
+Route::post('user/sendimage', [CustomizationController::class, 'addImage'])->name('user.sendimage');
 Route::get('/get-chat-messages/{cus_req_id}', [CustomizationController::class, 'getmessages']);
 
 //Routes for Manager
@@ -117,7 +118,8 @@ Route::post('leader/update', [LeaderController::class, 'update'])->name('leader.
 Route::get('leader/profile', [LeaderController::class, 'profile'])->name('leader.profile');
 Route::get('leader/edit', [LeaderController::class, 'edit'])->name('leader.edit');
 Route::post('leader/changepassword', [LeaderController::class, 'changepassword'])->name('leader.changepassword');
-
+Route::post('leader/changestatus', [CustomizationController::class, 'changeOrderStatus'])->name('leader.changestatus');
+Route::get('leader/mychat/{cus_req_id}', [LeaderController::class, 'chat'])->name('leader.mychat');
 
 
 //Routes for Orders

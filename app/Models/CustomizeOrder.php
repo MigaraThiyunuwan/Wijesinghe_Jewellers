@@ -23,13 +23,21 @@ class CustomizeOrder extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function customizerequest()
+    public function customizeRequest()
     {
-        return $this->belongsTo(CustomizeRequest::class);
+        return $this->belongsTo(CustomizeRequest::class, 'cus_req_id');
     }
 
     public function getCustomizeOrderList($user_id)
     {
         return $this->where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
+    }
+
+    public function changeOrderStatus($cus_req_id, $status, $totalBill)
+    {
+        $order = $this->where('cus_req_id', $cus_req_id)->first();
+        $order->status = $status;
+        $order->totalBill = $totalBill;
+        $order->save();
     }
 }

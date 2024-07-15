@@ -26,9 +26,17 @@ class CustomizeRequest extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function customizeorders()
+    public function customizeOrders()
     {
-        return $this->hasMany(CustomizeOrder::class);
+        return $this->hasMany(CustomizeOrder::class, 'cus_req_id');
+    }
+
+    public function getAllRequest()
+    {
+        return $this->whereHas('customizeorders', function ($query) {
+            $query->where('status', 'pending');
+        })->orderBy('created_at', 'desc')->get();
+     
     }
 
     public function customizechat()

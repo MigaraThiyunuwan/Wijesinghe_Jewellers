@@ -114,7 +114,43 @@ class CustomizationController extends Controller
     public function addMessage(Request $request)
     {
         $chat = new CustomizeChat();
-        $chat->insertMessage($request->cus_req_id,'user','text',$request->message);
+        $chat->insertMessage($request->cus_req_id, $request->owner,'text',$request->message);
         return 'Message submitted successfully!';
+    }
+
+    public function addImage(Request $request)
+    {
+        $chat = new CustomizeChat();
+
+        // $file = $request->file('image');
+        // $fileName = $id . '.' . $file->getClientOriginalExtension();
+        // $filePath = $file->storeAs('public/necklaces', $fileName);
+        // $item->image = 'necklaces/' . $fileName;
+        $randomNumber1 = rand(11111, 99999);
+        $randomNumber2 = rand(11111, 99999);
+
+        $file = $request->file('image');
+        $fileName = $request->cus_req_id . $randomNumber1 . $randomNumber2 . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('public/chats', $fileName);
+        $dbfilename = 'chats/' . $fileName;
+        
+        $chat->insertMessage($request->cus_req_id, $request->owner,'image',$dbfilename);
+        return 'Image submitted successfully!';
+    }
+
+    public function changeOrderStatus(Request $request)
+    {
+        $order = new CustomizeOrder();
+        $totalBill = 0;
+        if($request->status == 'accept')
+        {
+            $totalBill = $request->totalBill;
+            $order->changeOrderStatus($request->cus_req_id, $request->status, $totalBill);
+            return redirect()->back()->with('leaderSuccess', 'Order status changed successfully!');
+        }else{
+            $order->changeOrderStatus($request->cus_req_id, $request->status, $totalBill);
+            return redirect()->back()->with('leaderSuccess', 'Order status changed successfully!');
+        }
+        
     }
 }

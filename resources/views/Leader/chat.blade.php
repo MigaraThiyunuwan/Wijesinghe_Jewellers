@@ -10,7 +10,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
       <script src="https://kit.fontawesome.com/0008de2df6.js" crossorigin="anonymous"></script>
     @php
-        $user = session()->get('user');
+        
         $manager = session()->get('manager');
         $leader = session()->get('leader');
         $gemBusiness = session()->get('gemBusiness');
@@ -22,10 +22,7 @@
         <a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
         <div class="right-links">
             <ul>
-                @if ($user)
-                    <li><a href="{{ route('user.profile') }}"><span class="ico-account"></span>Hello,
-                            {{ $user->username }}</a></li>
-                @endif
+              
                 @if ($manager)
                     <li><a href="{{ route('manager.profile') }}"><span class="ico-account"></span>Hello,
                             {{ $manager->username }}</a></li>
@@ -41,19 +38,13 @@
   
   
   
-                @if ($user || $manager || $leader || $gemBusiness)
+                @if ( $manager || $leader || $gemBusiness)
                     <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
                 @else
                     <li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>
                 @endif
 
-                @if ($request->user_id != $user->id)
-                @php
-                $Url = route('user.profile') ;
-                header("Location: $Url");
-                exit();
-                @endphp
-                @endif
+                
   
             </ul>
         </div>
@@ -105,7 +96,10 @@
                 ></path>
               </svg>
             </div>
-            <div class="ml-2 font-bold text-2xl">Quick Chat</div>
+            <div class="ml-2 font-bold text-2xl">Quick Chat
+
+                
+            </div>
             
           </div>
           <div
@@ -118,8 +112,9 @@
                 class="h-full w-full"
               />
             </div>
-            <div class="text-sm font-semibold mt-2">Team Lead</div>
-            <div class="text-xs text-gray-500">Production Team</div>
+            <div class="text-sm font-semibold mt-2">{{$user->first_name}} {{$user->last_name}}</div>
+            <div class="text-xs text-gray-500">{{$user->username}}</div>
+            <div class="text-xs text-gray-500">{{$user->contact_no}}</div>
             
           </div>
           <div class="flex flex-col mt-8">
@@ -166,7 +161,6 @@
 
 
 
-          
       
       <div class="flex flex-col h-full overflow-x-auto mb-4">
           <div class="flex flex-col h-full">
@@ -202,15 +196,15 @@
                         // Iterate over each message in the response
                         response.messages.forEach(function(message) {
                             // Determine message container based on owner
-                    var messageContainerClass = (message.owner === 'manager') ? 'col-start-1 col-end-8' : 'col-start-6 col-end-13';
-                    var messageStyleClass = (message.owner === 'manager') ? 'bg-white' : 'bg-indigo-100';
+                    var messageContainerClass = (message.owner === 'user') ? 'col-start-1 col-end-8' : 'col-start-6 col-end-13';
+                    var messageStyleClass = (message.owner === 'user') ? 'bg-white' : 'bg-indigo-100';
 
                     // Build HTML based on owner
                     messagesHtml += '<div class="' + messageContainerClass + ' p-3 rounded-lg">';
                     
 
                     if(message.type === 'text'){
-                        if (message.owner === 'manager') {
+                        if (message.owner === 'user') {
                             messagesHtml += '<div class="flex flex-row items-center">' +
                                                 '<div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">A</div>' +
                                                 '<div class="relative ml-3 text-sm ' + messageStyleClass + ' py-2 px-4 shadow rounded-xl">' +
@@ -227,7 +221,7 @@
                                             '</div>';
                         }
                     }else{
-                      if (message.owner === 'manager') {
+                      if (message.owner === 'user') {
                             messagesHtml += '<div class="flex flex-row items-center">' +
                                                 '<div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">A</div>' +
                                                 '<div class="relative ml-3 text-sm ' + messageStyleClass + ' py-2 px-4 shadow rounded-xl">' +
@@ -348,7 +342,7 @@
                                     <input type="file" name="image" id="name" accept=".png, .jpg, .jpeg"  class="bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
 
                                 </div>
-                                <input type="hidden" name="owner" value="user" >
+                                <input type="hidden" name="owner" value="manager" >
                                 <input type="hidden" name="cus_req_id" value="{{$cus_req_id}}" >
                             </div>
                             </div>
@@ -369,8 +363,8 @@
                 <form id="myForm" >
                     @csrf
                 <div class="relative w-full">
+                    <input type="hidden" name="owner" value="manager" >
                     <input type="hidden" name="cus_req_id" value="{{$cus_req_id}}" >
-                    <input type="hidden" name="owner" value="user" >
                   <input 
                   name="message"
                     type="text"
