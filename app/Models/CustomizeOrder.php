@@ -33,6 +33,11 @@ class CustomizeOrder extends Model
         return $this->where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
     }
 
+    public function getAcceptedOrderList()
+    {
+        return $this->where('status', 'accept')->orderBy('created_at', 'desc')->get();
+    }
+
     public function changeOrderStatus($cus_req_id, $status, $totalBill)
     {
         $order = $this->where('cus_req_id', $cus_req_id)->first();

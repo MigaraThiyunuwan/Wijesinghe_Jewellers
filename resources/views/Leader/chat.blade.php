@@ -367,6 +367,7 @@
                     <input type="hidden" name="cus_req_id" value="{{$cus_req_id}}" >
                   <input 
                   name="message"
+                  autocomplete="off"
                     type="text"
                     class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                   />

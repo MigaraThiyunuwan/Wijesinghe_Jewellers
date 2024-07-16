@@ -323,7 +323,7 @@
     <div x-data="setup()" :class="{ 'dark': isDark }">
       <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
   
-        <div class="h-full mb-10 md:ml">
+      <div class="h-full mb-10 md:ml">
   
   
           <!-- Business Table -->
@@ -343,11 +343,11 @@
               <table class="w-full">
                 <thead>
                   <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                    <th class="px-4 py-3">ID</th>
-                    <th class="px-4 py-3">Details</th>
-                    <th class="px-4 py-3">Chat</th>
-                    <th class="px-4 py-3">Accept</th>
-                    <th class="px-4 py-3">Reject</th>
+                    <th class="px-4 py-3"><strong>ID</strong></th>
+                    <th class="px-4 py-3"><strong>Details</strong></th>
+                    <th class="px-4 py-3"><strong>Chat</strong></th>
+                    <th class="px-4 py-3"><strong>Accept</strong></th>
+                    <th class="px-4 py-3"><strong>Reject</strong></th>
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -502,7 +502,7 @@
 
 
                     {{-- <td class="px-4 py-3 text-sm"><button   type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">Chat</button></td> --}}
-                    <td class="px-4 py-3 text-sm"> <a href="{{route('leader.mychat',$request->id)}}"  class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Chat</a></td>
+                    <td class="px-4 py-3 text-sm"> <a href="{{route('leader.mychat',$request->id)}}"  class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">Chat</a></td>
                     
   
                     <td class="px-4 py-3 text-xs">
@@ -612,6 +612,314 @@
   
   
   
+        </div>
+
+
+
+      <div class="h-full mb-10 md:ml">
+  
+  
+          <!-- Business Table -->
+        @if(count($orders) > 0)
+        <div class="mt-4 mx-4">
+          
+          <div class="w-full overflow-hidden rounded-lg shadow-xs">
+            <div class="flex flex-wrap items-center px-4 py-2">
+              <div class="md:col-span-2 xl:col-span-3">
+                <h3 class="text-lg font-semibold">Accepted Customization Orders</h3> 
+              </div>
+  
+              
+            </div>
+            
+            <div class="w-full overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3"> <strong>ID</strong> </th>
+                    <th class="px-4 py-3"><strong>Details</strong> </th>
+                    <th class="px-4 py-3"><strong>Chat</strong> </th>
+                    <th class="px-4 py-3"><strong>Transaction</strong></th>
+                    <th class="px-4 py-3"><strong>3D Model</strong></th>
+                    <th class="px-4 py-3"><strong>Status</strong></th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                  @foreach($orders as $order)
+                  @php
+                    $customizeRequest = $customizeRequest->getCustomReq($order->cus_req_id);
+                  @endphp
+                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center text-sm">
+                        {{-- <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
+                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
+                        </div> --}}
+                        <div>
+                          <p class="font-semibold">{{ $order->id }}</p>
+                          
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-sm"><button data-modal-target="popup-modal111{{$order->id}}" data-modal-toggle="popup-modal111{{$order->id}}"  type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Details</button></td>
+                    
+                    {{-- view Modal --}}
+                  <div id="popup-modal111{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    
+
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                          
+                            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal111{{$order->id}}">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                            <div class="p-4 md:p-5 ">
+                                {{-- <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                </svg> --}}
+                                <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Request Details</h3>
+                                <div class="grid gap-4 mb-4 grid-cols">
+                                  <div class="bg-white overflow-hidden shadow rounded-lg border">
+                                    
+                                    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                                        <dl class="sm:divide-y sm:divide-gray-200">
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Category
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  @if ($customizeRequest->style == 'rope' || $customizeRequest->style == 'box' || $customizeRequest->style == 'snake' || $customizeRequest->style == 'figaro')
+                                                    Necklace
+                                                    @if ($customizeRequest->gender == 'male')
+                                                    For Men
+                                                    @else
+                                                    For Women
+                                                    @endif
+                                                  @else
+                                                  Ring 
+                                                    @if ($customizeRequest->gender == 'male')
+                                                    For Men
+                                                    @else
+                                                    For Women
+                                                    @endif
+                                                  @endif
+                                                
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                              <dt class="text-sm font-medium text-gray-500">
+                                                Style
+                                              </dt>
+                                              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{$customizeRequest->style}}
+                                              </dd>
+                                          </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Material
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  {{$customizeRequest->material}}
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                    Weight
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  {{$customizeRequest->weight}} pavan
+                                                </dd>
+                                            </div>
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                <dt class="text-sm font-medium text-gray-500">
+                                                  @if (
+                                                    $customizeRequest->style == 'rope' || 
+                                                    $customizeRequest->style == 'box' || 
+                                                    $customizeRequest->style == 'snake' || 
+                                                    $customizeRequest->style == 'figaro'
+                                                  )
+                                                    Length
+                                                  @else
+                                                  Circumference
+                                                    
+                                                  @endif
+                                                </dt>
+                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                  @if (
+                                                    $customizeRequest->style == 'rope' || 
+                                                    $customizeRequest->style == 'box' || 
+                                                    $customizeRequest->style == 'snake' || 
+                                                    $customizeRequest->style == 'figaro'
+                                                  )
+                                                    {{$customizeRequest->measurement}} cm
+                                                  @else
+                                                  {{$customizeRequest->measurement}} mm
+                                                    
+                                                  @endif
+                                                </dd>
+                                            </div>
+                                            @if ($customizeRequest->gemdetails != 'No Gems')
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                              <dt class="text-sm font-medium text-gray-500">
+                                                Gem Details
+                                              </dt>
+                                              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{$customizeRequest->gemdetails}}
+                                              </dd>
+                                          </div>
+                                            @endif
+
+                                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                              <dt class="text-sm font-medium text-gray-500">
+                                                Total Bill
+                                              </dt>
+                                              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                Rs. {{$order->totalBill}}
+                                              </dd>
+                                          </div>
+                                            
+                                        </dl>
+                                    </div>
+                                </div>
+                                </div>
+                                
+                                <button data-modal-hide="popup-modal111{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                    {{-- <td class="px-4 py-3 text-sm"><button   type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">Chat</button></td> --}}
+                    <td class="px-4 py-3 text-sm"> <a href="{{route('leader.mychat',$order->cus_req_id)}}"  class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Chat</a></td>
+                    
+                    <td class="px-4 py-3 text-xs">
+                      @if ($order->transaction == 'pending')
+                      <button class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">{{$order->transaction}}</button>
+                      @elseif ($order->transaction == 'success')
+                      <button class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">{{$order->transaction}}</button>
+                      @else
+                      <button class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">{{$order->transaction}}</button>
+
+                      @endif
+                      
+  
+                    </td>
+  
+                    <td class="px-4 py-3 text-xs">
+                      <button data-modal-target="popup-modal1{{$order->id}}" data-modal-toggle="popup-modal1{{$order->id}}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">Upload</button>
+  
+                    </td>
+                    <td class="px-4 py-3 text-xs">
+                      <button data-modal-target="popup-modal2{{$order->id}}" data-modal-toggle="popup-modal2{{$order->id}}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">{{$order->status}}</button>
+                      
+                    </td>
+                  </tr>
+  
+                  {{-- Accept Modal --}}
+                  <div id="popup-modal1{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <form action="{{route('leader.changestatus')}}" method="POST">
+                      @csrf
+  
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal1{{$order->id}}">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                            <div class="p-4 md:p-5 text-center">
+                              
+                                <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Enter the total bill and <span style="color: green"> accept </span> this request?</h3>
+                                <input type="hidden" name="status" value="accept">
+                                <div class="mb-4">
+                                  <label for="bill" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Bill</label>
+                                  <input type="number" name="totalBill" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required />
+                                </div>
+                                <input type="hidden" name="cus_req_id" value="{{$order->id}}">
+                                <button type="submit" data-modal-hide="popup-modal1{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                    Accept
+                                </button>
+                                <button data-modal-hide="popup-modal1{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+  
+                {{-- Reject Modal --}}
+                <div id="popup-modal2{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                  <form action="{{route('leader.changestatus')}}" method="POST">
+                    @csrf
+                  
+                  <div class="relative p-4 w-full max-w-md max-h-full">
+                      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                          <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal2{{$order->id}}">
+                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                              </svg>
+                              <span class="sr-only">Close modal</span>
+                          </button>
+                          <div class="p-4 md:p-5 text-center">
+                              <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                              </svg>
+                              <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to <span style="color: red"> Reject </span> this request?</h3>
+                              <input type="hidden" name="status" value="reject">
+                              <input type="hidden" name="cus_req_id" value="{{$order->id}}">
+                              <button type="submit" data-modal-hide="popup-modal2{{$order->id}}" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                  Yes, I'm sure
+                              </button>
+                              <button data-modal-hide="popup-modal2{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                          </div>
+                      </div>
+                  </div>
+                  </form>
+              </div>
+                
+  
+                  @endforeach
+                  
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+        </div>
+        @else
+        <p>No unverified businesses found.</p>
+        @endif
+        <!-- ./business Table -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -629,6 +937,8 @@
         </div>
       </div>
     </div>  
+
+    
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
   <script>

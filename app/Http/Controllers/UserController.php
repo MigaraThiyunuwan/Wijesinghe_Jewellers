@@ -37,8 +37,9 @@ class UserController extends Controller
         if($user)
         {
             $customize_order = new CustomizeOrder();
+            $customizerequest = new CustomizeRequest();
             $customizeOrderList = $customize_order->getCustomizeOrderList($user->id);
-            return view('user.mycustomize', compact('customizeOrderList'));
+            return view('user.mycustomize', compact('customizeOrderList','customizerequest'));
         }
     }
 

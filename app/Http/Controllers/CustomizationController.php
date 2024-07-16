@@ -40,6 +40,28 @@ class CustomizationController extends Controller
         $silver_one_pavan = 2400;
         $platinum_one_pavan = 45000;
 
+        $diamond1 = 4000;  $emerald1 = 4000;
+        $diamond2 = 6000;  $emerald2 = 6000;
+        $diamond3 = 8000;  $emerald3 = 8000;
+        $diamond4 = 10000; $emerald4 = 10000;
+        $diamond5 = 15000; $emerald5 = 15000;
+        $sapphire1 = 4000;  $garnet1 = 4000;
+        $sapphire2 = 6000;  $garnet2 = 6000;
+        $sapphire3 = 8000;  $garnet3 = 8000;
+        $sapphire4 = 10000; $garnet4 = 10000;
+        $sapphire5 = 15000; $garnet5 = 15000;
+        $aquamarine1 = 4000;
+        $aquamarine2 = 6000;
+        $aquamarine3 = 8000;
+        $aquamarine4 = 10000;
+        $aquamarine5 = 15000;
+        $morganite1 = 4000;
+        $morganite2 = 6000;
+        $morganite3 = 8000;
+        $morganite4 = 10000;
+        $morganite5 = 15000;
+               
+
         if($category == 'necklace')
         {
             $necklace_style = $request->input('necklace_style');
@@ -108,6 +130,118 @@ class CustomizationController extends Controller
             $ring_gem2_size = $request->input('ring_gem2_size');
             $ring_gem3_type = $request->input('ring_gem3_type');
             $ring_gem3_size = $request->input('ring_gem3_size');
+
+            // <option value="diamond">Diamond</option>
+            // <option value="sapphire">Sapphire</option>
+            // <option value="emerald">Emerald</option>
+            // <option value="garnet">Garnet</option>
+            // <option value="morganite">Morganite</option>
+            // <option value="aquamarine">Aquamarine</option>
+
+            if($ring_material == 'Gold 14K')
+            {
+                $estimation = $ring_weight * $gold14k_one_pavan;
+                if($ring_gem1_type != 'No'){
+                    if($ring_gem1_type == 'diamond')
+                    {
+                        if($ring_gem1_size == '1'){
+                            $estimation += $diamond1;
+                        } elseif($ring_gem1_size == '2'){
+                            $estimation += $diamond2;
+                        } elseif($ring_gem1_size == '3'){
+                            $estimation += $diamond3;
+                        } elseif($ring_gem1_size == '4'){
+                            $estimation += $diamond4;
+                        } elseif($ring_gem1_size == '5'){
+                            $estimation += $diamond5;
+                        }
+                    }
+                    elseif($ring_gem1_type == 'sapphire')
+                    {
+                        if($ring_gem1_size == '1'){
+                            $estimation += $sapphire1;
+                        } elseif($ring_gem1_size == '2'){
+                            $estimation += $sapphire2;
+                        } elseif($ring_gem1_size == '3'){
+                            $estimation += $sapphire3;
+                        } elseif($ring_gem1_size == '4'){
+                            $estimation += $sapphire4;
+                        } elseif($ring_gem1_size == '5'){
+                            $estimation += $sapphire5;
+                        }
+                    }
+                    
+                    elseif($ring_gem1_type == 'emerald')
+                    {
+                        if($ring_gem1_size == '1'){
+                            $estimation += $emerald1;
+                        } elseif($ring_gem1_size == '2'){
+                            $estimation += $emerald2;
+                        } elseif($ring_gem1_size == '3'){
+                            $estimation += $emerald3;
+                        } elseif($ring_gem1_size == '4'){
+                            $estimation += $emerald4;
+                        } elseif($ring_gem1_size == '5'){
+                            $estimation += $emerald5;
+                        }
+                    }
+                    elseif($ring_gem1_type == 'garnet')
+                    {
+                        if($ring_gem1_size == '1'){
+                            $estimation += $garnet1;
+                        } elseif($ring_gem1_size == '2'){
+                            $estimation += $garnet2;
+                        } elseif($ring_gem1_size == '3'){
+                            $estimation += $garnet3;
+                        } elseif($ring_gem1_size == '4'){
+                            $estimation += $garnet4;
+                        } elseif($ring_gem1_size == '5'){
+                            $estimation += $garnet5;
+                        }
+                    }
+                    elseif($ring_gem1_type == 'aquamarine')
+                    {
+                        if($ring_gem1_size == '1'){
+                            $estimation += $aquamarine1;
+                        } elseif($ring_gem1_size == '2'){
+                            $estimation += $aquamarine2;
+                        } elseif($ring_gem1_size == '3'){
+                            $estimation += $aquamarine3;
+                        } elseif($ring_gem1_size == '4'){
+                            $estimation += $aquamarine4;
+                        } elseif($ring_gem1_size == '5'){
+                            $estimation += $aquamarine5;
+                        }
+                    }
+                    elseif($ring_gem1_type == 'morganite')
+                    {
+                        if($ring_gem1_size == '1'){
+                            $estimation += $morganite1;
+                        } elseif($ring_gem1_size == '2'){
+                            $estimation += $morganite2;
+                        } elseif($ring_gem1_size == '3'){
+                            $estimation += $morganite3;
+                        } elseif($ring_gem1_size == '4'){
+                            $estimation += $morganite4;
+                        } elseif($ring_gem1_size == '5'){
+                            $estimation += $morganite5;
+                        }
+                    }
+                }
+            } elseif($ring_material == 'Gold 18K')
+            {
+                $estimation = $ring_weight * $gold18k_one_pavan;
+               
+            } elseif($ring_material == 'Gold 22K')
+            {
+                $estimation = $ring_weight * $gold22k_one_pavan;
+            } elseif($ring_material == 'Silver')
+            {
+                $estimation = $ring_weight * $silver_one_pavan;
+            } elseif($ring_material == 'Platinum')
+            {
+                $estimation = $ring_weight * $platinum_one_pavan;
+            }
         }
     }
 
@@ -122,10 +256,6 @@ class CustomizationController extends Controller
     {
         $chat = new CustomizeChat();
 
-        // $file = $request->file('image');
-        // $fileName = $id . '.' . $file->getClientOriginalExtension();
-        // $filePath = $file->storeAs('public/necklaces', $fileName);
-        // $item->image = 'necklaces/' . $fileName;
         $randomNumber1 = rand(11111, 99999);
         $randomNumber2 = rand(11111, 99999);
 

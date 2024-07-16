@@ -373,6 +373,7 @@
                     <input type="hidden" name="owner" value="user" >
                   <input 
                   name="message"
+                  autocomplete="off"
                     type="text"
                     class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                   />

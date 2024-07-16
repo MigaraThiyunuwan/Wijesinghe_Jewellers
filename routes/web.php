@@ -93,6 +93,7 @@ Route::post('manager/deletegembusiness', [ManagerController::class, 'deletegembu
 Route::post('manager/removeitem', [ManagerController::class, 'removeitem'])->name('manager.removeitem'); 
 Route::post('manager/changequntity', [ManagerController::class, 'changeQuntity'])->name('manager.changequntity');
 Route::post('manager/changeprice', [ManagerController::class, 'changePrice'])->name('manager.changeprice');
+Route::post('manager/changematerialprice', [ManagerController::class, 'changematerialprice'])->name('manager.changematerialprice');
 
 
 //Routes for Gem Business Owner

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomizeOrder;
 use App\Models\CustomizeRequest;
 use App\Models\Leader;
 use App\Models\User;
@@ -26,8 +27,10 @@ class LeaderController extends Controller
     public function profile()
     {
         $customizeRequest = new CustomizeRequest();
+        $customizeOrder = new CustomizeOrder();
+        $orders = $customizeOrder->getAcceptedOrderList();
         $requests = $customizeRequest->getAllRequest();
-        return view('Leader.profile', compact('requests'));
+        return view('Leader.profile', compact('requests','orders','customizeRequest'));
     }
 
     public function edit()

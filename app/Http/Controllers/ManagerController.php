@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CusMaterial;
 use App\Models\GemBusiness;
 use App\Models\Item;
 use App\Models\Leader;
@@ -35,6 +36,7 @@ class ManagerController extends Controller
         $verifiedGemBusiness = GemBusiness::getVerifiedGemBusinessCount();
         $allUserCount = User::getAllUserCount();
         $leaderCount = Leader::getLeaderCount();
+        $materialList = CusMaterial::getMaterialList();
 
         $data = compact(
                     'unverifiedBusinesses',
@@ -50,6 +52,7 @@ class ManagerController extends Controller
                     'income',
                     'verifiedGemBusiness',
                     'allUserCount',
+                    'materialList',
                     'leaderCount'
                 );
 
@@ -390,6 +393,22 @@ class ManagerController extends Controller
         }else{
             return redirect()->route('manager.leaders')->with('managerError', 'Leader not found!');
         }
+    }
+
+    public function changematerialprice(Request $request)
+    {
+        $rules = [
+            'material' => 'required',
+            'price' => 'required|numeric|min:0',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $material = new CusMaterial();
+        $material->changeMaterialPrice($request->material, $request->price);
+        
+        return redirect()->back()->with('managerSuccess', 'Material price changed successfully!');
     }
     
 }

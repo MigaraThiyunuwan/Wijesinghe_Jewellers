@@ -28,7 +28,8 @@ class CartController extends Controller
         $myOrder = session('myorder');
         $myOrder->transaction = 'success';
         $myOrder->update();
-        return view('Cart.return', compact('myOrder'));
+        session()->forget('myorder');
+        return view('Cart.return');
     }
     
     public function notify()
