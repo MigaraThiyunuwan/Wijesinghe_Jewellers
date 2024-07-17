@@ -60,6 +60,7 @@ Route::post('user/update', [UserController::class, 'update'])->name('user.update
 Route::get('user/edit', [UserController::class, 'userEdit'])->name('user.edit');
 Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
 Route::get('user/chat', [UserController::class, 'chat'])->name('user.chat');
+Route::get('user/model', [UserController::class, 'model'])->name('user.model');
 Route::get('user/customize', [UserController::class, 'customizeform'])->name('user.customize');
 Route::get('user/mycustomize', [UserController::class, 'mycustomize'])->name('user.mycustomize');
 Route::get('user/mychat/{cus_req_id}', [UserController::class, 'customizechat'])->name('user.mychat');
@@ -94,6 +95,7 @@ Route::post('manager/removeitem', [ManagerController::class, 'removeitem'])->nam
 Route::post('manager/changequntity', [ManagerController::class, 'changeQuntity'])->name('manager.changequntity');
 Route::post('manager/changeprice', [ManagerController::class, 'changePrice'])->name('manager.changeprice');
 Route::post('manager/changematerialprice', [ManagerController::class, 'changematerialprice'])->name('manager.changematerialprice');
+Route::post('manager/changecusgemprice', [ManagerController::class, 'changecusgemprice'])->name('manager.changecusgemprice');
 
 
 //Routes for Gem Business Owner

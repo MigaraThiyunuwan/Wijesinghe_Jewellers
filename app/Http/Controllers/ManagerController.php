@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CusGemPrice;
+use App\Models\CusGemSize;
+use App\Models\CusGemType;
 use App\Models\CusMaterial;
 use App\Models\GemBusiness;
 use App\Models\Item;
@@ -37,6 +40,8 @@ class ManagerController extends Controller
         $allUserCount = User::getAllUserCount();
         $leaderCount = Leader::getLeaderCount();
         $materialList = CusMaterial::getMaterialList();
+        $gemList = CusGemType::getGemList();
+        $gemSizeList = CusGemSize::getSizeList();
 
         $data = compact(
                     'unverifiedBusinesses',
@@ -53,6 +58,8 @@ class ManagerController extends Controller
                     'verifiedGemBusiness',
                     'allUserCount',
                     'materialList',
+                    'gemList',
+                    'gemSizeList',
                     'leaderCount'
                 );
 
@@ -409,6 +416,23 @@ class ManagerController extends Controller
         $material->changeMaterialPrice($request->material, $request->price);
         
         return redirect()->back()->with('managerSuccess', 'Material price changed successfully!');
+    }
+
+    public function changecusgemprice(Request $request)
+    {
+        $rules = [
+            'gem_type_id' => 'required',
+            'price' => 'required|numeric|min:0',
+            'gem_size_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $gem = new CusGemPrice();
+        $gem->changeGemPrice($request->gem_type_id, $request->gem_size_id, $request->price);
+        
+        return redirect()->back()->with('managerSuccess', 'Gem price changed successfully!');
     }
     
 }

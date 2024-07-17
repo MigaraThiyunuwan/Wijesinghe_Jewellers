@@ -20,4 +20,26 @@ class CusGemPrice extends Model
     {
         return $this->belongsTo(CusGemSize::class);
     }
+
+    public function changeGemPrice($gem_type_id, $gem_size_id, $price)
+    {
+        $gemPrice = $this->where('gem_type_id', $gem_type_id)
+            ->where('gem_size_id', $gem_size_id)
+            ->first();
+
+        if ($gemPrice) {
+            $gemPrice->price = $price;
+            $gemPrice->save();
+        } 
+    }
+
+    public function getPrice($gem_type_id, $gem_size_id)
+    {
+        $gemPrice = $this->where('gem_type_id', $gem_type_id)
+            ->where('gem_size_id', $gem_size_id)
+            ->first();
+
+        return $gemPrice->price;
+    }
+
 }

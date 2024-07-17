@@ -193,11 +193,10 @@
                                                     Material 
                                                 </label>
                                                 <select name="necklace_material" >
-                                                    <option value="Gold 14K">Gold (14K)</option>
-                                                    <option value="Gold 18K">Gold (18K)</option>
-                                                    <option value="Gold 22K">Gold (22K)</option>
-                                                    <option value="Silver">Silver</option>
-                                                    <option value="Platinum">Platinum</option>
+                                                    @foreach ($materialList as $material)
+                                                        <option value="{{$material->id}}">{{$material->name}}</option>
+                                                    @endforeach
+                                                    
                                                 </select>
                                             </div>
                                           </div>
@@ -300,11 +299,9 @@
                                                         Material 
                                                     </label>
                                                     <select name="ring_material" >
-                                                        <option value="Gold 14K">Gold (14K)</option>
-                                                        <option value="Gold 18K">Gold (18K)</option>
-                                                        <option value="Gold 22K">Gold (22K)</option>
-                                                        <option value="Silver">Silver</option>
-                                                        <option value="Platinum">Platinum</option>
+                                                        @foreach ($materialList as $material)
+                                                        <option value="{{$material->id}}">{{$material->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                               </div>
@@ -444,12 +441,10 @@
                                         </label>
                                         <select name="ring_gem1_type" >
                                             <option value="no">I don't need Gem 1</option>
-                                            <option value="diamond">Diamond</option>
-                                            <option value="sapphire">Sapphire</option>
-                                            <option value="emerald">Emerald</option>
-                                            <option value="garnet">Garnet</option>
-                                            <option value="morganite">Morganite</option>
-                                            <option value="aquamarine">Aquamarine</option>
+                                            @foreach ($gemTypeList as $type)
+                                                <option value="{{$type->id}}">{{$type->name}}</option>
+                                            @endforeach
+                                            
                                         </select>
                                     </div>
                                   </div>
@@ -460,11 +455,9 @@
                                         </label>
                                         <select name="ring_gem1_size" >
                                             <option value="no">I don't need Gem 1</option>
-                                            <option value="1">Size 1</option>
-                                            <option value="2">Size 2</option>
-                                            <option value="3">Size 3</option>
-                                            <option value="4">Size 4</option>
-                                            <option value="5">Size 5</option>
+                                            @foreach ($gemSizeList as $size)
+                                                <option value="{{$size->id}}">Size {{$size->size}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                   </div>
@@ -475,12 +468,9 @@
                                         </label>
                                         <select name="ring_gem2_type" >
                                             <option value="no">I don't need Gem 2</option>
-                                            <option value="diamond">Diamond</option>
-                                            <option value="sapphire">Sapphire</option>
-                                            <option value="emerald">Emerald</option>
-                                            <option value="garnet">Garnet</option>
-                                            <option value="morganite">Morganite</option>
-                                            <option value="aquamarine">Aquamarine</option>
+                                            @foreach ($gemTypeList as $type)
+                                                <option value="{{$type->id}}">{{$type->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                   </div>
@@ -492,11 +482,9 @@
                                         </label>
                                         <select name="ring_gem2_size" >
                                             <option value="no">I don't need Gem 2</option>
-                                            <option value="1">Size 1</option>
-                                            <option value="2">Size 2</option>
-                                            <option value="3">Size 3</option>
-                                            <option value="4">Size 4</option>
-                                            <option value="5">Size 5</option>
+                                            @foreach ($gemSizeList as $size)
+                                                <option value="{{$size->id}}">Size {{$size->size}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                   </div>
@@ -507,12 +495,9 @@
                                         </label>
                                         <select name="ring_gem3_type" >
                                             <option value="no">I don't need Gem 3</option>
-                                            <option value="diamond">Diamond</option>
-                                            <option value="sapphire">Sapphire</option>
-                                            <option value="emerald">Emerald</option>
-                                            <option value="garnet">Garnet</option>
-                                            <option value="morganite">Morganite</option>
-                                            <option value="aquamarine">Aquamarine</option>
+                                            @foreach ($gemTypeList as $type)
+                                                <option value="{{$type->id}}">{{$type->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                   </div>
@@ -524,11 +509,9 @@
                                         </label>
                                         <select name="ring_gem3_size" >
                                             <option value="no">I don't need Gem 3</option>
-                                            <option value="1">Size 1</option>
-                                            <option value="2">Size 2</option>
-                                            <option value="3">Size 3</option>
-                                            <option value="4">Size 4</option>
-                                            <option value="5">Size 5</option>
+                                            @foreach ($gemSizeList as $size)
+                                                <option value="{{$size->id}}">Size {{$size->size}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                   </div>

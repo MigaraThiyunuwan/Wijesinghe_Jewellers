@@ -146,6 +146,14 @@
                   @endif
                 </p>
                 <p style="margin-top: 20px"> <strong> Weight: </strong> {{$request->weight}} pavan  </p>
+
+                @if ($request->gemdetails != 'No Gems')
+                <p style="margin-top: 20px"> <strong> Gem Details: </strong>    </p>
+                <p> {{$request->gemdetails}} </p>
+                @endif
+                
+
+
                 <p style="margin-top: 20px"> <strong> Estimation: </strong> Rs. {{$request->estimation}}  </p>
 
                   

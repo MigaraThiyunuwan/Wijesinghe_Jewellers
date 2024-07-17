@@ -15,4 +15,10 @@ class CusGemSize extends Model
     {
         return $this->hasMany(CusGemPrice::class);
     }
+
+    public static function getSizeList()
+    {
+        return self::all();
+    }
+    
 }

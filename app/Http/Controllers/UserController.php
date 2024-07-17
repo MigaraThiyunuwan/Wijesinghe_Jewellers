@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\CusGemSize;
+use App\Models\CusGemType;
+use App\Models\CusMaterial;
 use App\Models\CustomizeOrder;
 use App\Models\CustomizeRequest;
 use App\Models\Order;
@@ -68,9 +71,21 @@ class UserController extends Controller
         return view('chat');
     }
 
+    public function model()
+    {
+        return view('User.model');
+    }
+
     public function customizeform()
     {
-        return view('user.customizeform');
+        $materialList = new CusMaterial();
+        $gemTypeList = new CusGemType();
+        $gemSizeList = new CusGemSize();
+        $gemTypeList = $gemTypeList->getGemList();
+        $gemSizeList = $gemSizeList->getSizeList();
+        $materialList = $materialList->getMaterialList();
+        
+        return view('user.customizeform', compact('materialList','gemTypeList','gemSizeList'));
     }
     // function for handling register new user
     public function save(Request $request)

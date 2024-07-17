@@ -22,4 +22,9 @@ class CusMaterial extends Model
         $material->price = $price;
         $material->save();
     }
+
+    public function getMaterial($id)
+    {
+        return $this->where('id', $id)->first();
+    }
 }

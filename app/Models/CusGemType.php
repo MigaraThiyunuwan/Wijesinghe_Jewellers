@@ -14,4 +14,16 @@ class CusGemType extends Model
     {
         return $this->hasMany(CusGemPrice::class);
     }
+
+    public static function getGemList()
+    {
+        return self::all();
+    }
+
+    public function getGemType($id)
+    {
+        return $this->where('id', $id)->first();
+    }
+
+    
 }
