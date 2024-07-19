@@ -609,17 +609,18 @@
                     
                     <td class="px-4 py-3 text-sm">
                         @if ($order->transaction == 'pending')
-                        <button data-modal-target="popup-modal{{$order->id}}" data-modal-toggle="popup-modal{{$order->id}}"  type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">Make Payment</button>
-
+                        <form action="{{route('user.paymentconfirm')}}" method="POST">
+                          @csrf
+                          <input type="hidden" name="cus_req_id" value="{{$order->cus_req_id}}">
+                          <button  type="submit" class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">Make Payment</button>
+                        </form>
                         @elseif ($order->transaction == 'success')
                         <button  type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">Success</button>
 
-                        @else
-                        <button data-modal-target="popup-modal11{{$order->id}}" data-modal-toggle="popup-modal11{{$order->id}}"  type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Retry</button>
                         @endif
                     </td>
 
-                    <div id="popup-modal{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    {{-- <div id="popup-modal{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                       <div class="relative p-4 w-full max-w-md max-h-full">
                           <div class="relative bg-white rounded-lg shadow">
                               <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="popup-modal{{$order->id}}">
@@ -633,9 +634,7 @@
                                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                   </svg>
 
-                                  @php
-                                    session(['myorder' => $order]);
-                                  @endphp
+                                  
 
                                   <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure you want to pay <br> Rs. {{$order->totalBill}} Now?</h3>
                                   <form id="payhereForm" method="post" action="http://localhost/WijesingheJewellery/">  
@@ -650,8 +649,8 @@
                                     <input type="hidden" name="country" value="{{$user->country}}"> 
                                     <button type="submit" data-modal-hide="popup-modal{{$order->id}}" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                       Yes, I'm sure
-                                  </button> 
-                                </form> 
+                                    </button> 
+                                  </form> 
                                   
                                   <button data-modal-hide="popup-modal{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">
                                       No, cancel
@@ -659,13 +658,22 @@
                               </div>
                           </div>
                       </div>
-                  </div>
+                  </div> --}}
                   
                     
 
                     <td class="px-4 py-3 text-xs">
-                      <a href="{{route('user.mychat',$order->cus_req_id)}}"  class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">3D Model</a>
-                       
+                      
+                      @if ($order->model == 'pending')
+                      <button   type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">Pending</button>
+
+                      @else
+                      <form action="{{route('user.model')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="cus_req_id" value="{{$order->cus_req_id}}">
+                      <button  type="submit" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Model</button>
+                      </form>
+                      @endif
                      </td>
                     
                     <td class="px-4 py-3 text-xs">

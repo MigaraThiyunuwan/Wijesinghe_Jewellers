@@ -102,4 +102,6 @@ class LeaderController extends Controller
         return view('Leader.chat', compact('cus_req_id', 'request', 'user'));
         
     }
+
+    
 }

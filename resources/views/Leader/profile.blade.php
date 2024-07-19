@@ -587,7 +587,7 @@
           </div>
         </div>
         @else
-        <p>No unverified businesses found.</p>
+        <p>No Pending customization requests found.</p>
         @endif
         <!-- ./business Table -->
   
@@ -814,8 +814,8 @@
                     </td>
   
                     <td class="px-4 py-3 text-xs">
-                      <button data-modal-target="popup-modal1{{$order->id}}" data-modal-toggle="popup-modal1{{$order->id}}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">Upload</button>
-  
+                      <button data-modal-target="popup-modal1{{$order->id}}" data-modal-toggle="popup-modal1{{$order->id}}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">Upload Model</button>
+                      <button data-modal-target="popup-modal123{{$order->id}}" data-modal-toggle="popup-modal123{{$order->id}}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">Upload Texture</button>
                     </td>
                     <td class="px-4 py-3 text-xs">
                       <button data-modal-target="popup-modal2{{$order->id}}" data-modal-toggle="popup-modal2{{$order->id}}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">{{$order->status}}</button>
@@ -825,7 +825,7 @@
   
                   {{-- Accept Modal --}}
                   <div id="popup-modal1{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <form action="{{route('leader.changestatus')}}" method="POST">
+                    <form action="{{route('leader.uploadmodel')}}" method="POST" enctype="multipart/form-data">
                       @csrf
   
                     <div class="relative p-4 w-full max-w-md max-h-full">
@@ -838,15 +838,19 @@
                             </button>
                             <div class="p-4 md:p-5 text-center">
                               
-                                <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Enter the total bill and <span style="color: green"> accept </span> this request?</h3>
+                                <h3 style="font-weight: bold" class="mb-5 mt-4 text-lg font-normal text-gray-500 dark:text-gray-400">Select the Folder wich contain the 3D model and Upload</h3>
                                 <input type="hidden" name="status" value="accept">
                                 <div class="mb-4">
-                                  <label for="bill" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Bill</label>
-                                  <input type="number" name="totalBill" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required />
+                                  <label for="folder1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Model Folder</label>
+                                  <input type="file" name="folder1[]" webkitdirectory directory multiple class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required />
                                 </div>
+                                {{-- <div class="mb-4">
+                                  <label for="folder2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Textures Folder</label>
+                                  <input type="file" name="folder2[]" webkitdirectory directory multiple class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required />
+                                </div> --}}
                                 <input type="hidden" name="cus_req_id" value="{{$order->id}}">
                                 <button type="submit" data-modal-hide="popup-modal1{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                                    Accept
+                                    Upload
                                 </button>
                                 <button data-modal-hide="popup-modal1{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
                             </div>
@@ -854,6 +858,42 @@
                     </div>
                     </form>
                 </div>
+
+                {{-- texture Modal --}}
+                <div id="popup-modal123{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                  <form action="{{route('leader.uploadtexture')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                  <div class="relative p-4 w-full max-w-md max-h-full">
+                      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                          <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal123{{$order->id}}">
+                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                              </svg>
+                              <span class="sr-only">Close modal</span>
+                          </button>
+                          <div class="p-4 md:p-5 text-center">
+                            
+                              <h3 style="font-weight: bold" class="mb-5 mt-4 text-lg font-normal text-gray-500 dark:text-gray-400">Select the Folder wich contain the 3D model and Upload</h3>
+                              <input type="hidden" name="status" value="accept">
+                              {{-- <div class="mb-4">
+                                <label for="folder1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Model Folder</label>
+                                <input type="file" name="folder1[]" webkitdirectory directory multiple class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required />
+                              </div> --}}
+                              <div class="mb-4">
+                                <label for="folder2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Textures Folder</label>
+                                <input type="file" name="images[]" multiple class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"  required />
+                              </div>
+                              <input type="hidden" name="cus_req_id" value="{{$order->id}}">
+                              <button type="submit" data-modal-hide="popup-modal123{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                  Upload
+                              </button>
+                              <button data-modal-hide="popup-modal123{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                          </div>
+                      </div>
+                  </div>
+                  </form>
+              </div>
   
                 {{-- Reject Modal --}}
                 <div id="popup-modal2{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -895,7 +935,7 @@
           </div>
         </div>
         @else
-        <p>No unverified businesses found.</p>
+        <p>Accepted Customization Orders found.</p>
         @endif
         <!-- ./business Table -->
   

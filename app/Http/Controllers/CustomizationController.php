@@ -9,7 +9,9 @@ use App\Models\CustomizeChat;
 use App\Models\CustomizeOrder;
 use App\Models\CustomizeRequest;
 use App\Models\Order;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CustomizationController extends Controller
 {
@@ -206,4 +208,93 @@ class CustomizationController extends Controller
         }
         
     }
+
+    public function uploadmodel(Request $request)
+{
+    $rules = [
+        'folder1' => 'required|max:51200',
+        'cus_req_id' => 'required',
+    ];
+
+    $validator = Validator::make($request->all(), $rules);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator);
+    }
+
+    $newFolderName = $request->input('cus_req_id');
+
+    // Storage path for folder1
+    $folder1Path = 'public/models/' . $newFolderName;
+
+    // Ensure the directory exists for folder1
+    if (!Storage::exists($folder1Path)) {
+        Storage::makeDirectory($folder1Path, 0755, true); // Recursive directory creation
+    }
+
+    // Handle files in folder1
+    foreach ($request->file('folder1') as $file) {
+        // Get the original file name
+        $fileName = $file->getClientOriginalName();
+        // Store the file in storage
+        $file->storeAs($folder1Path, $fileName);
+    }
+    
+    
+    // Storage path for folder2 (textures)
+    //$folder2Path = 'public/models/' . $newFolderName . '/textures';
+
+    // // Ensure the directory exists for folder2
+    // if (!Storage::exists($folder2Path)) {
+    //     Storage::makeDirectory($folder2Path, 0755, true); // Recursive directory creation
+    // }
+
+    // // Handle files in folder2
+    // foreach ($request->file('folder2') as $file) {
+    //     // Get the original file name
+    //     $fileName = $file->getClientOriginalName();
+    //     // Store the file in storage
+    //     $file->storeAs($folder2Path, $fileName);
+    // }
+
+
+    // Optionally, save the model path in the database
+    $order = new CustomizeOrder();
+    $cusOrder = $order->getOrderDetail($newFolderName);
+   // $cusOrder->model = 'models/' . $newFolderName; // Store the relative path in the database
+   // $cusOrder->save();
+
+    return redirect()->back()->with('leaderSuccess', 'Folders uploaded successfully.');
+}
+
+    public function uploadtexture(Request $request)
+    {
+
+        $request->validate([
+            'images' => 'required|max:51200', // 50 MB in kilobytes
+        ]);
+        $images = $request->file('images');
+    $uploadedImages = [];
+    $newFolderName = $request->input('cus_req_id');
+    $destinationPath = 'models/' . $newFolderName . '/textures';
+
+    // Ensure the directory exists
+    $storagePath = storage_path('app/public/' . $destinationPath);
+    if (!is_dir($storagePath)) {
+        mkdir($storagePath, 0775, true); // Create directory with appropriate permissions
+    }
+
+    foreach ($images as $image) {
+        $fileName = $image->getClientOriginalName();
+        // Store the image file in the destination path
+        $filePath = $image->storeAs($destinationPath, $fileName, 'public');
+        
+        // You can optionally track uploaded files
+        $uploadedImages[] = $filePath;
+    }
+
+        // Return a response or redirect as needed
+        return redirect()->back()->with('leaderSuccess', 'Textures uploaded successfully.');
+    }
+
 }

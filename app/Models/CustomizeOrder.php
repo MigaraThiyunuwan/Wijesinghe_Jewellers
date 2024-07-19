@@ -45,4 +45,9 @@ class CustomizeOrder extends Model
         $order->totalBill = $totalBill;
         $order->save();
     }
+    
+    public function getOrderDetail($cus_req_id)
+    {
+        return $this->where('cus_req_id', $cus_req_id)->first();
+    }
 }

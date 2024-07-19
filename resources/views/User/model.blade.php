@@ -40,20 +40,33 @@
             <div class="container">
                 <a href="/" id="logo" title="Wijesinghe Jewellers">Wijesinghe Jewellers</a>
                 <div class="right-links">
-                    <ul>
-                        
-              @if ($manager)
-                        <li><a href="{{ asset('manager/profile') }}"><span class="ico-account"></span>Hello, {{$manager->username}}</a></li>
-                        @endif
-                        @if ($manager)
+                  <ul>
+                    @if ($user)
+                        <li><a href="{{ route('user.profile') }}"><span class="ico-account"></span>Hello,
+                                {{ $user->username }}</a></li>
+                    @endif
+                    @if ($manager)
+                        <li><a href="{{ route('manager.profile') }}"><span class="ico-account"></span>Hello,
+                                {{ $manager->username }}</a></li>
+                    @endif
+                    @if ($leader)
+                        <li><a href="{{ route('leader.profile') }}"><span class="ico-account"></span>Hello,
+                                {{ $leader->first_name }}</a></li>
+                    @endif
+                    @if ($gemBusiness)
+                        <li><a href="{{ route('gem.profile') }}"><span class="ico-account"></span>Hello,
+                                {{ $gemBusiness->owner_name }}</a></li>
+                    @endif
+
+
+
+                    @if ($user || $manager || $leader || $gemBusiness)
                         <li><a href="{{ route('logout') }}"><span class="ico-signout"></span>Logout</a></li>
-    
-                        @else
-                            <li><a href="{{ asset('manager/login') }}"><span class="ico-signout"></span>Login</a></li>
-                        @endif
-           
-                        
-                    </ul>
+                    @else
+                        <li><a href="{{ route('userlogin') }}"><span class="ico-signout"></span>Login</a></li>
+                    @endif
+
+                </ul>
                 </div>
             </div>
             <!-- / container -->
@@ -71,7 +84,11 @@
         </div>
         
     </div>
-    <script type="module" src="{{ asset('js/model.js') }}"></script>
+    
+      <script type="module" src="{{ asset('js/model.js') }}"></script>
+
+    
+    
     
 	</body>
 </html>

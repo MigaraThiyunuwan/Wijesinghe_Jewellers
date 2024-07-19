@@ -57,10 +57,12 @@ Route::post('loginallusers', [Controller::class, 'loginallusers'])->name('logina
 Route::get('user/register', [UserController::class, 'register'])->name('user.register');
 Route::post('user/save', [UserController::class, 'save'])->name('user.save');
 Route::post('user/update', [UserController::class, 'update'])->name('user.update');
+Route::post('user/paymentconfirm', [UserController::class, 'paymentconfirm'])->name('user.paymentconfirm');
 Route::get('user/edit', [UserController::class, 'userEdit'])->name('user.edit');
 Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
 Route::get('user/chat', [UserController::class, 'chat'])->name('user.chat');
-Route::get('user/model', [UserController::class, 'model'])->name('user.model');
+Route::post('user/model', [UserController::class, 'model'])->name('user.model');
+Route::get('/getModelId', [UserController::class, 'getModelId']);
 Route::get('user/customize', [UserController::class, 'customizeform'])->name('user.customize');
 Route::get('user/mycustomize', [UserController::class, 'mycustomize'])->name('user.mycustomize');
 Route::get('user/mychat/{cus_req_id}', [UserController::class, 'customizechat'])->name('user.mychat');
@@ -122,6 +124,8 @@ Route::get('leader/profile', [LeaderController::class, 'profile'])->name('leader
 Route::get('leader/edit', [LeaderController::class, 'edit'])->name('leader.edit');
 Route::post('leader/changepassword', [LeaderController::class, 'changepassword'])->name('leader.changepassword');
 Route::post('leader/changestatus', [CustomizationController::class, 'changeOrderStatus'])->name('leader.changestatus');
+Route::post('leader/uploadmodel', [CustomizationController::class, 'uploadmodel'])->name('leader.uploadmodel');
+Route::post('leader/uploadtexture', [CustomizationController::class, 'uploadtexture'])->name('leader.uploadtexture');
 Route::get('leader/mychat/{cus_req_id}', [LeaderController::class, 'chat'])->name('leader.mychat');
 
 

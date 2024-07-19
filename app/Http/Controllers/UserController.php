@@ -71,9 +71,24 @@ class UserController extends Controller
         return view('chat');
     }
 
-    public function model()
+    public function model(Request $request)
     {
-        return view('User.model');
+        $cus_req_id = $request->input('cus_req_id');
+        $order = new CustomizeOrder();
+        $order = $order->getOrderDetail($cus_req_id);
+        $user = session()->get('user');
+        if($order->user_id == $user->id)
+        {
+            $request->session()->put('cus_req_id', $cus_req_id);
+            return view('User.model');
+        }else{
+            return redirect()->route('user.mycustomize');
+        }
+    }
+
+    public function getModelId()
+    {
+        return response()->json(['cus_req_id' => session('cus_req_id')]);
     }
 
     public function customizeform()
@@ -87,6 +102,16 @@ class UserController extends Controller
         
         return view('user.customizeform', compact('materialList','gemTypeList','gemSizeList'));
     }
+
+    public function paymentconfirm(Request $request)
+    {
+        $cus_order = new CustomizeOrder();
+        $order = $cus_order->getOrderDetail($request->cus_req_id);
+        $request->session()->put('myorder', $order);
+        return view('user.paymentconfirm', compact('order'));
+    }
+
+    
     // function for handling register new user
     public function save(Request $request)
     {
