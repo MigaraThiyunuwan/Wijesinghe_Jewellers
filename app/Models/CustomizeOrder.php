@@ -35,15 +35,21 @@ class CustomizeOrder extends Model
 
     public function getAcceptedOrderList()
     {
-        return $this->where('status', 'accept')->orderBy('created_at', 'desc')->get();
+        return $this->where('status', '!=', 'reject')->where('status', '!=', 'pending')->orderBy('created_at', 'desc')->get();
     }
 
     public function changeOrderStatus($cus_req_id, $status, $totalBill)
     {
         $order = $this->where('cus_req_id', $cus_req_id)->first();
-        $order->status = $status;
-        $order->totalBill = $totalBill;
-        $order->save();
+
+        if($status == 'accept' || $status == 'reject'){
+            $order->status = $status;
+            $order->totalBill = $totalBill;
+            $order->save();
+        }else{
+            $order->status = $status;
+            $order->save();
+        }
     }
     
     public function getOrderDetail($cus_req_id)
