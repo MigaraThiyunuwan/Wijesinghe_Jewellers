@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2024 at 08:31 PM
+-- Generation Time: Jul 25, 2024 at 03:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -118,7 +118,12 @@ INSERT INTO `customize_chats` (`id`, `cus_req_id`, `owner`, `type`, `message`, `
 (45, 3, 'user', 'image', 'chats/35204268612.jpg', '2024-07-15 12:36:36', '2024-07-15 12:36:36'),
 (46, 3, 'manager', 'text', 'okay thank you.', '2024-07-15 12:36:50', '2024-07-15 12:36:50'),
 (47, 3, 'manager', 'text', 'i will customize this', '2024-07-15 12:36:57', '2024-07-15 12:36:57'),
-(48, 4, 'manager', 'text', 'yes you can', '2024-07-16 06:37:58', '2024-07-16 06:37:58');
+(48, 4, 'manager', 'text', 'yes you can', '2024-07-16 06:37:58', '2024-07-16 06:37:58'),
+(49, 6, 'user', 'text', 'Hellow!, I need to customize a Ring With Gems', '2024-07-17 02:07:46', '2024-07-17 02:07:46'),
+(50, 4, 'user', 'text', 'ok thank you', '2024-07-23 07:12:12', '2024-07-23 07:12:12'),
+(51, 4, 'manager', 'text', '❤️', '2024-07-23 07:12:49', '2024-07-23 07:12:49'),
+(52, 7, 'user', 'text', 'Hellow!, I need to customize a Ring With Gems', '2024-07-25 01:57:38', '2024-07-25 01:57:38'),
+(53, 8, 'user', 'text', 'Hellow!, I need to customize a necklace.', '2024-07-25 02:02:01', '2024-07-25 02:02:01');
 
 -- --------------------------------------------------------
 
@@ -146,8 +151,11 @@ INSERT INTO `customize_orders` (`id`, `cus_req_id`, `user_id`, `status`, `transa
 (1, 1, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-14 09:21:08', '2024-07-14 09:21:08'),
 (2, 2, 1, 'reject', 'pending', 'pending', 0.00, '2024-07-14 10:00:04', '2024-07-15 11:44:55'),
 (3, 3, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-14 10:06:11', '2024-07-14 10:06:11'),
-(4, 4, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-14 10:06:11', '2024-07-14 10:06:11'),
-(5, 5, 1, 'accept', 'success', 'pending', 40000.00, '2024-07-14 23:36:33', '2024-07-16 11:42:30');
+(4, 4, 1, 'accept', 'pending', 'pendin', 300000.00, '2024-07-14 10:06:11', '2024-07-19 12:18:52'),
+(5, 5, 1, 'accept', 'success', 'ready', 40000.00, '2024-07-14 23:36:33', '2024-07-18 10:26:57'),
+(6, 6, 1, 'design', 'success', 'ready', 45000.00, '2024-07-17 02:07:46', '2024-07-24 01:44:27'),
+(7, 7, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-25 01:57:38', '2024-07-25 01:57:38'),
+(8, 8, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-25 02:02:01', '2024-07-25 02:02:01');
 
 -- --------------------------------------------------------
 
@@ -178,7 +186,10 @@ INSERT INTO `customize_requests` (`id`, `user_id`, `style`, `material`, `gender`
 (2, 1, 'box', 'Gold 14K', 'male', 2.00, 34.00, 'No Gems', 200000.00, '2024-07-14 10:00:04', '2024-07-14 10:00:04'),
 (3, 1, 'figaro', 'Gold 18K', 'male', 2.00, 23.00, 'No Gems', 280000.00, '2024-07-14 10:06:11', '2024-07-14 10:06:11'),
 (4, 1, 'figaro', 'Gold 18K', 'male', 2.00, 23.00, 'No Gems', 280000.00, '2024-07-14 10:06:11', '2024-07-14 10:06:11'),
-(5, 1, 'rope', 'Gold 22K', 'male', 2.00, 35.00, 'No Gems', 340000.00, '2024-07-14 23:36:33', '2024-07-14 23:36:33');
+(5, 1, 'rope', 'Gold 22K', 'male', 2.00, 35.00, 'No Gems', 340000.00, '2024-07-14 23:36:33', '2024-07-14 23:36:33'),
+(6, 1, 'bypass', 'Gold 18K', 'female', 0.50, 15.00, 'I need Sapphire Gem with size = 2, Garnet Gem with size = 1, ', 32850.00, '2024-07-17 02:07:46', '2024-07-17 02:07:46'),
+(7, 1, 'bypass', 'Gold 22K', 'male', 2.00, 15.00, 'I need Emerald Gem with size = 2, Sapphire Gem with size = 1, ', 3950.00, '2024-07-25 01:57:38', '2024-07-25 01:57:38'),
+(8, 1, 'figaro', 'Gold 18K', 'male', 2.00, 20.00, 'No Gems', 130000.00, '2024-07-25 02:02:01', '2024-07-25 02:02:01');
 
 -- --------------------------------------------------------
 
@@ -195,6 +206,42 @@ CREATE TABLE `cus_gem_prices` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cus_gem_prices`
+--
+
+INSERT INTO `cus_gem_prices` (`id`, `gem_type_id`, `gem_size_id`, `price`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 4000.00, '2024-07-17 05:38:23', '2024-07-17 00:45:13'),
+(2, 1, 2, 200.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(3, 1, 3, 300.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(4, 1, 4, 400.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(5, 1, 5, 500.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(6, 2, 1, 110.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(7, 2, 2, 220.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(8, 2, 3, 330.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(9, 2, 4, 440.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(10, 2, 5, 550.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(11, 3, 1, 120.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(12, 3, 2, 240.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(13, 3, 3, 360.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(14, 3, 4, 480.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(15, 3, 5, 600.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(16, 4, 1, 130.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(17, 4, 2, 260.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(18, 4, 3, 390.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(19, 4, 4, 520.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(20, 4, 5, 650.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(21, 5, 1, 140.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(22, 5, 2, 280.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(23, 5, 3, 420.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(24, 5, 4, 560.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(25, 5, 5, 700.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(26, 6, 1, 150.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(27, 6, 2, 300.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(28, 6, 3, 450.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(29, 6, 4, 600.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
+(30, 6, 5, 750.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23');
+
 -- --------------------------------------------------------
 
 --
@@ -208,6 +255,17 @@ CREATE TABLE `cus_gem_sizes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cus_gem_sizes`
+--
+
+INSERT INTO `cus_gem_sizes` (`id`, `size`, `created_at`, `updated_at`) VALUES
+(1, '1', '2024-07-17 05:36:18', '2024-07-17 05:36:18'),
+(2, '2', '2024-07-17 05:36:18', '2024-07-17 05:36:18'),
+(3, '3', '2024-07-17 05:36:18', '2024-07-17 05:36:18'),
+(4, '4', '2024-07-17 05:36:18', '2024-07-17 05:36:18'),
+(5, '5', '2024-07-17 05:36:18', '2024-07-17 05:36:18');
+
 -- --------------------------------------------------------
 
 --
@@ -220,6 +278,18 @@ CREATE TABLE `cus_gem_types` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cus_gem_types`
+--
+
+INSERT INTO `cus_gem_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Diamond', '2024-07-17 05:35:49', '2024-07-17 05:35:49'),
+(2, 'Sapphire', '2024-07-17 05:35:49', '2024-07-17 05:35:49'),
+(3, 'Emerald', '2024-07-17 05:35:49', '2024-07-17 05:35:49'),
+(4, 'Garnet', '2024-07-17 05:35:49', '2024-07-17 05:35:49'),
+(5, 'Morganite', '2024-07-17 05:35:49', '2024-07-17 05:35:49'),
+(6, 'Aquamarine', '2024-07-17 05:35:49', '2024-07-17 05:35:49');
 
 -- --------------------------------------------------------
 
@@ -812,7 +882,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `carts`
@@ -824,37 +894,37 @@ ALTER TABLE `carts`
 -- AUTO_INCREMENT for table `customize_chats`
 --
 ALTER TABLE `customize_chats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `customize_orders`
 --
 ALTER TABLE `customize_orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customize_requests`
 --
 ALTER TABLE `customize_requests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cus_gem_prices`
 --
 ALTER TABLE `cus_gem_prices`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `cus_gem_sizes`
 --
 ALTER TABLE `cus_gem_sizes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `cus_gem_types`
 --
 ALTER TABLE `cus_gem_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `cus_materials`

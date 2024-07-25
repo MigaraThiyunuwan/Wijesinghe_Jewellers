@@ -72,9 +72,9 @@ class ItemController extends Controller
         
         if($item)
         {
-            return redirect()->route('manager.profile')->with('success', 'You have registered successfully');
+            return redirect()->route('manager.profile')->with('managerSuccess', 'New Item Added successfully');
         }else{
-            return redirect()->route('manager.profile')->with('unsuccess', 'Registration Failed');
+            return redirect()->route('manager.profile')->with('managerError', 'New Item Adding Failed');
         }
         
     }
