@@ -26,9 +26,21 @@ class CartController extends Controller
     {
 
         $myOrder = session('myorder');
-        $myOrder->transaction = 'success';
-        $myOrder->update();
-        session()->forget('myorder');
+        $eventOrder = session('eventOrder');
+        if($myOrder)
+        {
+            $myOrder->transaction = 'success';
+            $myOrder->update();
+            session()->forget('myorder');
+        }
+
+        if($eventOrder)
+        {
+            $eventOrder->payment = 'success';
+            $eventOrder->update();
+            session()->forget('eventOrder');
+        }
+        
         return view('Cart.return');
     }
 

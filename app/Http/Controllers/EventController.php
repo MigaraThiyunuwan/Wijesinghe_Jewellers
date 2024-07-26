@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventOrder;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,23 @@ class EventController extends Controller
 
     public function receiverdetails(Request $request)
     {
-        return view('Events.receiverDetailsForm');
+        $eventOrder = new EventOrder();
+        $eventOrder->event_id = $request->input('event_id');
+        $eventOrder->price = $request->input('price');
+        $eventOrder->user_id = $request->input('user_id');
+        $request->session()->put('eventOrder', $eventOrder);
+        return view('Events.receiverDetailsForm', compact('eventOrder'));
+    }
+
+    public function receiverdetailsSave(Request $request)
+    {
+        $eventOrder = $request->session()->get('eventOrder');
+        $eventOrder->receiverName = $request->input('receiverName');
+        $eventOrder->contact_no = $request->input('contact_no');
+        $eventOrder->deliveryAddress = $request->input('deliveryAddress');
+        $eventOrder->save();
+        return view('Events.paymentConfirm', compact('eventOrder'));
+      //  return redirect()->route('event.payment', ['id' => $eventOrder->id]);
     }
     
     public function save (Request $request)

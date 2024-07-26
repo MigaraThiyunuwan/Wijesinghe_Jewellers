@@ -7,11 +7,8 @@
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    {{-- <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script> --}}
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-	
-	
-    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 	@php
       $user = session()->get('user');
 	  $manager = session()->get('manager');
@@ -25,7 +22,7 @@
 			<div class="right-links">
 				<ul>
 					@if ($user)
-              
+                   
 					<li><a href="{{ asset('user/profile') }}"><span class="ico-account"></span>Hello, {{$user->username}}</a></li>
 					@endif
 					@if ($manager)
@@ -64,139 +61,46 @@
     
     <div id="body">
         
-		
+		<div class="container">
             
-			
+			<div id="content" class="full">
+                 
+             
+              
 
+				<div class="total-count">
 					
-               
-
-
-					<section class=" py-1 ">
-						<div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
-							<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-							  <div class="rounded-t bg-white mb-0 px-6 py-6">
-								<div class="text-center flex justify-between">
-								  <h6 class="text-blueGray-700 text-xl font-bold">
-									Delivery Details 
-								  </h6>
-					
-								  <h1>Total: Rs. {{$eventOrder->price}}</h1>
-						  
-									  
-									
-								  
-						  
-						  
-								</div>
-							  </div>
-							  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-						  
-								  @if($errors->any())
-								  <div class="alert alert-danger">
-									  <ul>
-										  @foreach ($errors->all() as $error)
-										  {{-- <li>{{$error}}</li> --}}
-										  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-									  
-											  <strong class="font-bold">{{$error}}</strong>
-											  
-											  
-										  </div>
-											  
-										  @endforeach
-									  </ul>
-								  </div>
-								  @endif
-						  
-								  {{-- Show Registration Success Messsage --}}
-								  @if (session('unsuccess'))
-								  <div style="display: flex; justify-content: center">
-									<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-							  
-									  <strong class="font-bold">{{ session('unsuccess') }}</strong>
-									  
-									</div>
-								  </div>
-								@endif
-								{{-- Show Registration Success Messsage End --}}
-						  
-								{{-- {{route('order.placeorder')}} --}}
-						  
-								<form action="{{route('events.receiverdetailsSave')}}" method="POST"> 
-								  @csrf
-								  <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-									{{-- Delivery Information --}}
-								  </h6>
-								  <div class="flex flex-wrap">
-										<div class="w-full lg:w-6/12 px-4">
-										  <div class="relative w-full mb-3">
-											<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-												Receiver's Name <span style="color: red">*</span>
-											</label>
-											<input type="text" name="receiverName" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('receiverName') }}">
-										  </div>
-										</div>
-										<div class="w-full lg:w-6/12 px-4">
-										  <div class="relative w-full mb-3">
-											<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-											  Contact Number <span style="color: red">*</span>
-											</label>
-											<input type="phone" name="contact_no" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('contact_no') }}">
-										  </div>
-										</div>
-									
-									<div class="w-full lg:w-6/12 px-4">
-									  <div class="relative w-full mb-3">
-										<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-										  Delivery Address <span style="color: red">*</span>
-										</label>
-										<input type="address" name="deliveryAddress" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('deliveryAddress') }}">
-									  </div>
-									</div>
-
-									
-								
-								</div>
-						  
-									  <div style="width: 100%; display:flex; justify-content:center">
-										  
-										<button type="submit" class="btn-grey">Submit Receiver Details</button>
-										{{-- <a style="text-decoration: none" href="{{ route('cart.receiver') }}" class="btn-grey">Pay Bill</a> --}}
-										
-									  </div>
-						  
-								  </div>
-								</form>
-							  </div>
-							</div>
-						  
-						  </div>
-						  </section>
-					
-            
-			
+                    
+                   
+                    <form id="payhereForm" method="post" action="http://localhost/WijesingheJewellery/">  
+                        <input type="hidden" name="order_id" value="{{$eventOrder->id}}">
+                        <input type="hidden" name="amount" value="{{$eventOrder->price}}">  
+                        <input type="hidden" name="first_name" value="{{$user->first_name}}">
+                        <input type="hidden" name="last_name" value="{{$user->last_name}}">
+                        <input type="hidden" name="email" value="{{$user->email}}">
+                        <input type="hidden" name="phone" value="{{$eventOrder->contact_no}}">
+                        <input type="hidden" name="address" value="{{$eventOrder->deliveryAddress}}">
+                        <input type="hidden" name="city" value="{{$user->city}}">
+                        <input type="hidden" name="country" value="{{$user->country}}">  
+                    </form> 
+				</div>
+                
+                <script>
+                    // Submit the form automatically when the page loads
+                    document.addEventListener("DOMContentLoaded", function() {
+                        document.getElementById("payhereForm").submit();
+                    });
+                </script>
+                
+              
+       
+			</div>
 			<!-- / content -->
-			
-			
-			
-		
+		</div>
 		<!-- / container -->
-
-
-
-
-		
-
-
-
-
-
-
-
 	</div>
 	<!-- / body -->
-	
+
 
     <footer id="footer">
 		<div class="container">

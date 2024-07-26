@@ -163,7 +163,7 @@
 
                                     <form action="{{route('events.receiverdetails')}}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{$event->id}}">
+                                        <input type="hidden" name="event_id" value="{{$event->id}}">
                                         <input type="hidden" name="price" value="{{$event->price}}">
                                         <input type="hidden" name="user_id" value="{{$user->id}}">
                                         <button type="submit" class="btn-grey">Buy Now</button>

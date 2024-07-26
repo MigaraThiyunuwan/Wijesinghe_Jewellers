@@ -158,3 +158,4 @@ Route::get('events/home', [EventController::class, 'home'])->name('events.home')
 Route::get('events/wedding', [EventController::class, 'wedding'])->name('events.wedding'); 
 Route::post('events/save', [EventController::class, 'save'])->name('events.save');
 Route::post('events/receiverdetails', [EventController::class, 'receiverdetails'])->name('events.receiverdetails');
+Route::post('events/receiverdetailsSave', [EventController::class, 'receiverdetailsSave'])->name('events.receiverdetailsSave');
