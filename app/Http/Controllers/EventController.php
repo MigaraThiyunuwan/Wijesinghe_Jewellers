@@ -14,11 +14,16 @@ class EventController extends Controller
         return view('Events.home');
     }
 
-    public function wediing()
+    public function wedding()
     {
         $event = new Event();
         $eventList = $event->getNoneDiscountEventList('Wedding');
         return view('Events.wedding', compact('eventList'));
+    }
+
+    public function receiverdetails(Request $request)
+    {
+        return view('Events.receiverDetailsForm');
     }
     
     public function save (Request $request)

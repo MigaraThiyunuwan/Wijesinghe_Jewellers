@@ -155,5 +155,6 @@ Route::get('cart/cancel', [CartController::class, 'cancel'])->name('cart.cancel'
 
 //Routes for Events   
 Route::get('events/home', [EventController::class, 'home'])->name('events.home'); 
-Route::get('events/wediing', [EventController::class, 'wediing'])->name('events.wediing'); 
+Route::get('events/wedding', [EventController::class, 'wedding'])->name('events.wedding'); 
 Route::post('events/save', [EventController::class, 'save'])->name('events.save');
+Route::post('events/receiverdetails', [EventController::class, 'receiverdetails'])->name('events.receiverdetails');

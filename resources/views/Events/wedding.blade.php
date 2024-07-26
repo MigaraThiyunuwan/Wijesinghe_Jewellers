@@ -148,7 +148,7 @@
                                     </div>
                                     
                                 </div>
-                                <div class="actions">
+                                <div style="display: flex; justify-content: space-between" class="actions">
                                     <label><h1>Buy Now </h1></label>
                                     {{-- <select><option>1</option></select> --}}
         
@@ -160,7 +160,16 @@
                                         </div>
                                     </div>
                                     @else
-                                        <a class="btn-grey">Buy Now </a>
+
+                                    <form action="{{route('events.receiverdetails')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$event->id}}">
+                                        <input type="hidden" name="price" value="{{$event->price}}">
+                                        <input type="hidden" name="user_id" value="{{$user->id}}">
+                                        <button type="submit" class="btn-grey">Buy Now</button>
+
+                                    </form>
+                                        {{-- <a class="btn-grey">Buy Now </a> --}}
                                         
         
                                     @endif
