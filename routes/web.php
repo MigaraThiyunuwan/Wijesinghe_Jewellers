@@ -65,6 +65,7 @@ Route::post('user/model', [UserController::class, 'model'])->name('user.model');
 Route::get('/getModelId', [UserController::class, 'getModelId']);
 Route::get('user/customize', [UserController::class, 'customizeform'])->name('user.customize');
 Route::get('user/mycustomize', [UserController::class, 'mycustomize'])->name('user.mycustomize');
+Route::get('user/directorders', [UserController::class, 'directorders'])->name('user.directorders');
 Route::get('user/mychat/{cus_req_id}', [UserController::class, 'customizechat'])->name('user.mychat');
 Route::post('user/changepassword', [UserController::class, 'changepassword'])->name('user.changepassword');
 Route::post('user/makerequest', [CustomizationController::class, 'makerequest'])->name('user.makerequest');

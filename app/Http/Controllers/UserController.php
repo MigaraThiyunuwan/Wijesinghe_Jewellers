@@ -71,6 +71,19 @@ class UserController extends Controller
         return view('chat');
     }
 
+    public function directorders()
+    {
+        $user = session()->get('user');
+        if($user)
+        {
+            $order = new Order();
+            $orderList = $order->getOrderList($user->id);
+            return view('User.directOrders', compact('orderList'));
+            
+        }
+        
+    }
+
     public function model(Request $request)
     {
         $cus_req_id = $request->input('cus_req_id');
