@@ -191,6 +191,9 @@
                             Reciver 
                         </th>
                         <th scope="col" class="px-6 py-3">
+                          View 
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Contact
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -226,13 +229,25 @@
                         {{ $order->receiverName}}
                         <p style="font-weight: 400">{{ $order->deliveryAddress}}</p>
                       </th>
+
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <button data-modal-target="static-modal22{{$order->id}}" data-modal-toggle="static-modal22{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View Order</button>
+                      </th>
+
+
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         {{ $order->contact_no}}
                       </th>
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         {{-- {{ $order->transaction}} --}}
                         @if ($order->transaction == 'false')
-                        <span class="bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Unsuccess</span>
+                        {{-- <span class="bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Unsuccess</span> --}}
+                        <form method="POST" action="{{route('order.retrypayment')}}">
+                          @csrf
+
+                          <input type="hidden" name="order_id" value="{{$order->id}}">
+                          <button type="submit" class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Retry Payment</button>
+                        </form>
                         @else
                         <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Success</span>
                         @endif
@@ -258,6 +273,76 @@
                         <button type="button" data-modal-target="timeline-modal{{ $order->id}}" data-modal-toggle="timeline-modal{{ $order->id}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Delivery Status</button>
                       </th>
                   </tr>
+
+                  {{-- View Order Model --}}
+                  <div id="static-modal22{{$order->id}}" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-2xl max-h-full">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow ">
+                            <!-- Modal header -->
+                            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
+                                <h3 class="text-xl font-semibold text-gray-900 ">
+                                    Order Details
+                                </h3>
+                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal22{{$order->id}}">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="p-4 md:p-5 space-y-4">
+                            <div style="display: flex; justify-content: center" >
+                              <div class="w-full max-w-md p-4 bg-white  rounded-lg ">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h5 class="text-xl font-bold leading-none text-gray-900">Items</h5>
+                                    <a  class="text-sm font-medium text-black-600 ">
+                                        Quantity
+                                    </a>
+                              </div>
+                              @php
+                                $orderItems = $orderItem->getOrderItems($order->id);
+                              @endphp
+                              <div class="flow-root">
+                                    <ul role="list" class="divide-y divide-gray-200">
+                                      @foreach($orderItems as $orderItemss)
+                                        <li class="py-3 sm:py-4">
+                                            <div class="flex items-center"> 
+                                                <div class="flex-shrink-0">
+                                                    <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . $item->getItemDetails($orderItemss->item_id)->image) }}" alt="Neil image">
+                                                </div>
+                                                <div class="flex-1 min-w-0 ms-4">
+                                                    <p class="text-sm font-medium text-gray-900 truncate">
+                                                      {{($item->getItemDetails($orderItemss->item_id)->name)}}
+                                                    </p>
+                                                    {{-- <p class="text-sm text-gray-500 truncate">
+                                                        email@windster.com
+                                                    </p> --}}
+                                                </div>
+                                                <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                                                    {{$orderItemss->itemQuantity}}
+                                                </div>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                              </div>
+                            </div>
+                          </div>
+                            
+
+                            </div>
+                            <!-- Modal footer -->
+                            <div style="display: flex; justify-content: center" class="p-4 md:p-5">
+                              <div >
+                                <button data-modal-hide="static-modal22{{$order->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">OK</button>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                   <!-- Main modal -->
                   <div id="timeline-modal{{ $order->id}}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 w-full max-w-md max-h-full">
@@ -386,13 +471,136 @@
           
             
             
-        </div>
-        @else
+          </div>
+          @else
 
-        <div style="justify-content: center; display: flex">
-          <h1 style="font-size: 30px; font-weight: bold">You have not placed any order yet!</h1>
+          <div style="justify-content: center; display: flex">
+            <h1 style="font-size: 30px; font-weight: bold">You have not placed any order yet!</h1>
+          </div>
+          @endif
+
+        
+        
         </div>
-        @endif
+
+
+
+        <div class="container mb-4 mt-5">
+          
+          @if(count($eventOrderList)>0)
+          <div style="justify-content: space-between; display: flex">
+            <h1 style="font-size: 30px; font-weight: bold">My Special Orders</h1>
+            <a href="{{ route('user.eventorders') }}"> <button class="bg-blue-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+              See All orders
+            </button>
+          </a>
+          </div>
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+           
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Reciver 
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Contact
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Transaction
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Order Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          Delivery Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                  @php
+                    $orderCount1 = 0;
+                  @endphp
+                  
+                  @foreach($eventOrderList as $order)
+
+                  @if ($orderCount1 == 5)
+                    @break
+                  @endif
+                  @php
+                    $orderCount1 = $orderCount1 + 1;
+                  @endphp
+                    
+                    <tr class="odd:bg-white even:bg-gray-50 border-b">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ $order->created_at}}
+                      </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ $order->receiverName}}
+                        <p style="font-weight: 400">{{ $order->deliveryAddress}}</p>
+                      </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ $order->contact_no}}
+                      </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{-- {{ $order->transaction}} --}}
+                        @if ($order->payment == 'pending')
+                        
+
+                        <form method="POST" action="{{route('events.retrypayment')}}">
+                          @csrf
+
+                          <input type="hidden" name="order_id" value="{{$order->id}}">
+                          <button type="submit" class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 ">Retry Payment</button>
+                        </form>
+                        @else
+                        <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Success</span>
+                        @endif
+                        
+                      </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{-- {{ $order->orderStatus}} --}}
+                        @if ($order->status == 'pending')
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Pending</span>
+
+                        @elseif ($order->status == 'accept')
+                        <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Accepted</span>
+
+                        @else
+
+                        <span class="bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Rejected</span>
+
+                        @endif
+                      
+                      </th>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        
+                        <button type="button" data-modal-target="timeline-modal{{ $order->id}}" data-modal-toggle="timeline-modal{{ $order->id}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Delivery Status</button>
+                      </th>
+                  </tr>
+                  
+
+
+
+
+
+                  @endforeach
+ 
+                </tbody>
+            </table>
+          
+            
+            
+          </div>
+          @else
+
+          <div style="justify-content: center; display: flex">
+            <h1 style="font-size: 30px; font-weight: bold">You have not placed any order yet!</h1>
+          </div>
+          @endif
 
         
         

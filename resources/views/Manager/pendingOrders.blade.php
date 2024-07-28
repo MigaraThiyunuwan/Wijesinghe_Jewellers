@@ -284,6 +284,16 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-4 md:p-5 space-y-4">
+                              @if ($order->transaction == 'false')
+                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                  <strong class="font-bold">Payment still not completed!</strong>
+                                </div>
+                              @else
+                              <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Payment successfully completed</strong>
+                              </div>
+
+                              @endif
                             <div style="display: flex; justify-content: center" >
                               <div class="w-full max-w-md p-4 bg-white  rounded-lg ">
                                 <div class="flex items-center justify-between mb-4">

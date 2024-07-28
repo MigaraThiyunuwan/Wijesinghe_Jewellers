@@ -59,6 +59,16 @@ class OrderController extends Controller
         //return redirect()->route('user.profile')->with('orderSuccess', 'Order placed successfully');
     }
 
+    public function  retrypayment(Request $request)
+    {
+        
+        $order = new Order();
+        $order_id = $request->order_id;
+        $order = $order->getOrder($order_id);
+        $request->session()->put('myorder', $order);
+        return redirect()->route('order.paymentconfirm', $order);
+    }
+
     public function changestatus(Request $request)
     {
         $order = new Order();

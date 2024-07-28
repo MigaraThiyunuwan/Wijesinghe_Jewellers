@@ -40,7 +40,16 @@ class EventController extends Controller
         $eventOrder->deliveryAddress = $request->input('deliveryAddress');
         $eventOrder->save();
         return view('Events.paymentConfirm', compact('eventOrder'));
-      //  return redirect()->route('event.payment', ['id' => $eventOrder->id]);
+   
+    }
+
+    public function retrypayment(Request $request)
+    {
+        $order_id = $request->order_id;
+        $eventOrder = new EventOrder();
+        $eventOrder = $eventOrder->getEventOrder($order_id);
+        $request->session()->put('eventOrder', $eventOrder);
+        return view('Events.paymentConfirm', compact('eventOrder'));
     }
     
     public function save (Request $request)

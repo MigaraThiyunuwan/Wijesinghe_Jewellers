@@ -29,4 +29,9 @@ class Event extends Model
         return self::where('category', $category)->where('discount', 'none')->get();
     }
 
+    public function getEvent($id)
+    {
+        return self::find($id);
+    }
+
 }

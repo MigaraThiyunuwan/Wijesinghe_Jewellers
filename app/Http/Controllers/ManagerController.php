@@ -6,6 +6,8 @@ use App\Models\CusGemPrice;
 use App\Models\CusGemSize;
 use App\Models\CusGemType;
 use App\Models\CusMaterial;
+use App\Models\Event;
+use App\Models\EventOrder;
 use App\Models\GemBusiness;
 use App\Models\Item;
 use App\Models\Leader;
@@ -42,6 +44,9 @@ class ManagerController extends Controller
         $materialList = CusMaterial::getMaterialList();
         $gemList = CusGemType::getGemList();
         $gemSizeList = CusGemSize::getSizeList();
+        $eventOrder = new EventOrder();
+        $eventObj = new Event();
+        $eventOrderList = $eventOrder->getAllOrders();
 
         $data = compact(
                     'unverifiedBusinesses',
@@ -60,7 +65,9 @@ class ManagerController extends Controller
                     'materialList',
                     'gemList',
                     'gemSizeList',
-                    'leaderCount'
+                    'leaderCount',
+                    'eventOrderList',
+                    'eventObj'
                 );
 
         return view('manager.profile', $data);

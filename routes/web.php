@@ -66,6 +66,7 @@ Route::get('/getModelId', [UserController::class, 'getModelId']);
 Route::get('user/customize', [UserController::class, 'customizeform'])->name('user.customize');
 Route::get('user/mycustomize', [UserController::class, 'mycustomize'])->name('user.mycustomize');
 Route::get('user/directorders', [UserController::class, 'directorders'])->name('user.directorders');
+Route::get('user/eventorders', [UserController::class, 'eventorders'])->name('user.eventorders');
 Route::get('user/mychat/{cus_req_id}', [UserController::class, 'customizechat'])->name('user.mychat');
 Route::post('user/changepassword', [UserController::class, 'changepassword'])->name('user.changepassword');
 Route::post('user/makerequest', [CustomizationController::class, 'makerequest'])->name('user.makerequest');
@@ -134,6 +135,7 @@ Route::get('leader/mychat/{cus_req_id}', [LeaderController::class, 'chat'])->nam
 Route::post('order/placeorder', [OrderController::class, 'placeorder'])->name('order.placeorder');
 Route::post('order/changestatus', [OrderController::class, 'changestatus'])->name('order.changestatus');
 Route::post('order/changecolumn', [OrderController::class, 'changecolumn'])->name('order.changecolumn');
+Route::post('order/retrypayment', [OrderController::class, 'retrypayment'])->name('order.retrypayment');
 Route::get('order/paymentconfirm/{order}', [OrderController::class, 'paymentconfirm'])->name('order.paymentconfirm');
 
 //Routes for Items
@@ -160,3 +162,4 @@ Route::get('events/wedding', [EventController::class, 'wedding'])->name('events.
 Route::post('events/save', [EventController::class, 'save'])->name('events.save');
 Route::post('events/receiverdetails', [EventController::class, 'receiverdetails'])->name('events.receiverdetails');
 Route::post('events/receiverdetailsSave', [EventController::class, 'receiverdetailsSave'])->name('events.receiverdetailsSave');
+Route::post('events/retrypayment', [EventController::class, 'retrypayment'])->name('events.retrypayment');

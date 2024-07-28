@@ -37,9 +37,14 @@ class Order extends Model
 
     public function getOrderList($user_id)
     {
-        return $this->where('user_id', $user_id)->get();
+        return $this->where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
     }
 
+    public function getOrder($id)
+    {
+        return $this->find($id);
+    }
+    
     public static function getAllOrders()
     {
         return self::all();

@@ -8,7 +8,10 @@ use App\Models\CusGemType;
 use App\Models\CusMaterial;
 use App\Models\CustomizeOrder;
 use App\Models\CustomizeRequest;
+use App\Models\EventOrder;
+use App\Models\Item;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -27,8 +30,12 @@ class UserController extends Controller
         if($user)
         {
             $order = new Order();
+            $orderItem = new OrderItem();
+            $item = new Item();
+            $eventOrder = new EventOrder();
+            $eventOrderList = $eventOrder->getEventOrderList($user->id);
             $orderList = $order->getOrderList($user->id);
-            return view('user.profile', compact('orderList'));
+            return view('user.profile', compact('orderList','eventOrderList','orderItem','item'));
             
         }
         
@@ -77,11 +84,25 @@ class UserController extends Controller
         if($user)
         {
             $order = new Order();
+            $orderItem = new OrderItem();
+            $item = new Item();
             $orderList = $order->getOrderList($user->id);
-            return view('User.directOrders', compact('orderList'));
+            return view('User.directOrders', compact('orderList','orderItem','item'));
             
         }
         
+    }
+
+    public function eventorders()
+    {
+        $user = session()->get('user');
+        if($user)
+        {
+            $eventOrder = new EventOrder();
+            $eventOrderList = $eventOrder->getEventOrderList($user->id);
+            return view('User.eventOrders', compact('eventOrderList'));
+            
+        }
     }
 
     public function model(Request $request)
