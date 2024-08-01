@@ -88,4 +88,13 @@ class EventController extends Controller
         }
         
     }
+
+    public function changestatus(Request $request)
+    {
+        $order_id = $request->order_id;
+        $status = $request->status;
+        $eventOrder = new EventOrder();
+        $eventOrder->changeStatus($order_id, $status);
+        return redirect()->route('manager.profile')->with('managerSuccess', 'Order Accepted Successfully');
+    }
 }

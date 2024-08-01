@@ -87,6 +87,7 @@ Route::get('manager/earring', [ManagerController::class, 'managerearring'])->nam
 Route::get('manager/ring', [ManagerController::class, 'managerring'])->name('manager.ring');
 Route::get('manager/pendingrequest', [ManagerController::class, 'pendingrequest'])->name('manager.unverifiedgembusiness');
 Route::get('manager/pendingorders', [ManagerController::class, 'pendingorders'])->name('manager.pendingorders');
+Route::get('manager/pendingeventorders', [ManagerController::class, 'pendingeventorders'])->name('manager.pendingeventorders');
 Route::get('manager/orderstobedelivered', [ManagerController::class, 'orderstobedelivered'])->name('manager.orderstobedelivered');
 Route::get('manager/edit', [ManagerController::class, 'managerEdit'])->name('manager.edit');
 Route::post('manager/update', [ManagerController::class, 'update'])->name('manager.update');
@@ -163,3 +164,4 @@ Route::post('events/save', [EventController::class, 'save'])->name('events.save'
 Route::post('events/receiverdetails', [EventController::class, 'receiverdetails'])->name('events.receiverdetails');
 Route::post('events/receiverdetailsSave', [EventController::class, 'receiverdetailsSave'])->name('events.receiverdetailsSave');
 Route::post('events/retrypayment', [EventController::class, 'retrypayment'])->name('events.retrypayment');
+Route::post('events/changestatus', [EventController::class, 'changestatus'])->name('events.changestatus');

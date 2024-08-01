@@ -23,4 +23,11 @@ class EventOrder extends Model
     {
         return EventOrder::all();
     }
+
+    public function changeStatus($id, $status)
+    {
+        $order = EventOrder::find($id);
+        $order->status = $status;
+        $order->save();
+    }
 }

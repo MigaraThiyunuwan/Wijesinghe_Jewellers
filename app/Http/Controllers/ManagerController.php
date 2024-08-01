@@ -144,6 +144,14 @@ class ManagerController extends Controller
         return view('Manager.ring', compact('itemList'));
     }
 
+    public function pendingeventorders()
+    {
+        $eventOrder = new EventOrder();
+        $eventObj = new Event();
+        $eventOrderList = $eventOrder->getAllOrders();
+        return view('Manager.pendingEventOrders', compact('eventOrderList','eventObj'));
+    }
+
     public function removeitem(Request $request)
     {
         $rules = [

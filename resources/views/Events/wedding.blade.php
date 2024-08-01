@@ -108,7 +108,7 @@
     @if (count($eventList) > 0)
         
         @foreach ($eventList as $event)
-            <div style="border: 2px solid rgb(223, 220, 220); margin-bottom: 20px; margin-right: 200px; margin-left: 200px; padding-left: 20px; padding-right: 20px">
+            <div class="item" style="border: 2px solid rgb(223, 222, 222); margin-bottom: 20px; margin-right: 200px; margin-left: 200px; padding-left: 20px; padding-right: 20px; background-color: rgb(247, 246, 243)">
                 <div class="container">
                     
                     <div id="content" class="full">
@@ -118,7 +118,7 @@
                                 <img src="{{ asset('storage/' . $event->image) }}" alt="">
         
                             </div>
-                            <div style="padding-left: 50px" class="details">
+                            <div style="padding-left: 50px; margin-top: 30px" class="details">
                                 <h1>
                                     {{$event->name}}
                                 </h1>
@@ -128,28 +128,51 @@
                                     <div class="tabs">
                                         <div class="nav">
                                             <ul>
-                                                <li style="height: 40px; justify-content: center; display: flex; padding-top: 5px" class="active" onclick="changeTab('desc', this)">Description</li>
-                                                <li style="height: 40px; justify-content: center; display: flex; padding-top: 5px" onclick="changeTab('spec', this)">Specification</li>
-                                                <li style="height: 40px; justify-content: center; display: flex; padding-top: 5px" onclick="changeTab('ret', this)">Customize</li>
+                                                <li style="height: 40px; justify-content: center; display: flex; padding-top: 5px; background-color: rgb(248, 244, 233)" class="active" onclick="changeTab('desc{{$event->id}}', this)"><strong>Description</strong></li>
+                                                <li style="height: 40px; justify-content: center; display: flex; padding-top: 5px; background-color: rgb(248, 244, 233)" onclick="changeTab('spec{{$event->id}}', this)"><strong>Specification</strong></li>
+                                                <li style="height: 40px; justify-content: center; display: flex; padding-top: 5px; background-color: rgb(248, 244, 233)" onclick="changeTab('ret{{$event->id}}', this)"><strong>Notes</strong></li>
                                             </ul>
                                         </div>
-                                        <div class="tab-content active" id="desc">
+                                        <div class="tab-content active" id="desc{{$event->id}}">
                                             <p>{{$event->description}} </p>
                                         </div>
-                                        <div class="tab-content" id="spec">
+                                        <div class="tab-content" id="spec{{$event->id}}">
                                             <p>{{$event->specification}} </p>
                                         </div>
-                                        <div class="tab-content" id="ret">
+                                        <div class="tab-content" id="ret{{$event->id}}">
                                             <p>
                                                 {{$event->note}} 
                                                 
                                             </p>
                                         </div>
                                     </div>
-                                    
+                                    <script>
+                                        function changeTab(tabId, clickedTab) {
+                                            // Find the parent .tabs element
+                                            var tabsContainer = clickedTab.closest('.tabs');
+            
+                                            // Hide all tab contents within this specific tabs container
+                                            var tabContents = tabsContainer.querySelectorAll('.tab-content');
+                                            tabContents.forEach(function(content) {
+                                                content.classList.remove('active');
+                                            });
+            
+                                            // Remove active class from all tabs within this specific tabs container
+                                            var tabs = tabsContainer.querySelectorAll('.nav ul li');
+                                            tabs.forEach(function(tab) {
+                                                tab.classList.remove('active');
+                                            });
+            
+                                            // Show the selected tab content
+                                            tabsContainer.querySelector('#' + tabId).classList.add('active');
+            
+                                            // Add active class to the clicked tab
+                                            clickedTab.classList.add('active');
+                                        }
+                                    </script>
                                 </div>
-                                <div style="display: flex; justify-content: space-between" class="actions">
-                                    <label><h1>Buy Now </h1></label>
+                                <div style="display: flex; justify-content: flex-end" class="">
+                                    {{-- <label><h1>Buy Now </h1></label> --}}
                                     {{-- <select><option>1</option></select> --}}
         
                                     @if ($user == null)
@@ -183,6 +206,11 @@
             </div>
         @endforeach
 
+        <div style="display: flex; justify-content: center" id="pagination-controls">
+            <button class="btn-grey" id="prev-page">Previous</button>
+            <span style="font-weight: bold; margin: 15px" id="current-page"></span>
+            <button class="btn-grey" id="next-page">Next</button>
+        </div>
 
 	
 
@@ -191,7 +219,50 @@
     
    
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const items = document.querySelectorAll('.item');
+        const itemsPerPage = 5;
+        let currentPage = 1;
 
+        function showPage(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+
+            items.forEach((item, index) => {
+                if (index >= start && index < end) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            document.getElementById('current-page').textContent = `Page ${currentPage} of ${Math.ceil(items.length / itemsPerPage)}`;
+        }
+
+        function nextPage() {
+            if (currentPage * itemsPerPage < items.length) {
+                currentPage++;
+                showPage(currentPage);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        document.getElementById('next-page').addEventListener('click', nextPage);
+        document.getElementById('prev-page').addEventListener('click', prevPage);
+
+        // Show the first page initially
+        showPage(currentPage);
+    });
+</script>
 
     <footer id="footer">
 		<div class="container">
@@ -231,27 +302,7 @@
 		<!-- / container -->
 	</footer>
 	<!-- / footer -->
-    <script>
-		function changeTab(tabId, clickedTab) {
-			// Hide all tab contents
-			var tabContents = document.querySelectorAll('.tab-content');
-			tabContents.forEach(function(content) {
-				content.classList.remove('active');
-			});
-	
-			// Remove active class from all tabs
-			var tabs = document.querySelectorAll('.nav ul li');
-			tabs.forEach(function(tab) {
-				tab.classList.remove('active');
-			});
-	
-			// Show the selected tab content
-			document.getElementById(tabId).classList.add('active');
-	
-			// Add active class to the clicked tab
-			clickedTab.classList.add('active');
-		}
-	</script>
+    
 
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
