@@ -202,7 +202,8 @@
 		<div class="container">
 			<ul>
 				<li><a href="{{route('manager.profile')}}">Manager</a></li>
-				<li>Pending Special Orders</li>
+				<li>Special Event Orders To be delivered
+                </li>
 			</ul>
 		</div>
 		<!-- / container -->
@@ -222,7 +223,8 @@
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="flex flex-wrap items-center px-4 py-2">
               <div class="md:col-span-2 xl:col-span-3">
-                <h3 class="text-lg font-semibold">Pending Special Event Orders</h3> 
+                <h3 class="text-lg font-semibold">Special Event Orders To be delivered
+                </h3> 
               </div>
               
        
@@ -247,7 +249,7 @@
                   @foreach($eventOrderList as $order)
                   
                  
-                  @if ($order->status == 'pending')
+                  @if ($order->status == 'accept')
                     
                   
                   <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">

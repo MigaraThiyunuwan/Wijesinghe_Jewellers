@@ -35,6 +35,11 @@ class Manager extends Model
         return null;
     }
 
+    public function getmanagercount()
+    {
+        return $this->all()->count();
+    }
+
     public function editDetails($first_name, $last_name, $username, $email, $address, $contact_no)
     {
         $oldManager = session()->get('manager');
@@ -74,5 +79,10 @@ class Manager extends Model
         $newManager->save();
 
         return true;
+    }
+
+    public static function getManagerList()
+    {
+        return Manager::all();
     }
 }

@@ -76,10 +76,12 @@ Route::get('/get-chat-messages/{cus_req_id}', [CustomizationController::class, '
 
 //Routes for Manager
 Route::get('manager/profile', [ManagerController::class, 'profile'])->name('manager.profile');
+Route::get('manager/managertest', [ManagerController::class, 'managertest'])->name('manager.managertest');
 Route::get('manager/register', [ManagerController::class, 'register'])->name('manager.register');
 Route::post('manager/save', [ManagerController::class, 'save'])->name('manager.save');
 Route::get('manager/users', [ManagerController::class, 'users'])->name('manager.users');
 Route::get('manager/leaders', [ManagerController::class, 'leaders'])->name('manager.leaders');
+Route::get('manager/managers', [ManagerController::class, 'managers'])->name('manager.managers');
 Route::get('manager/gembusiness', [ManagerController::class, 'gembusiness'])->name('manager.gembusiness');
 Route::get('manager/necklace', [ManagerController::class, 'managernecklace'])->name('manager.necklace');
 Route::get('manager/bracelet', [ManagerController::class, 'managerbracelet'])->name('manager.bracelet');
@@ -89,6 +91,7 @@ Route::get('manager/pendingrequest', [ManagerController::class, 'pendingrequest'
 Route::get('manager/pendingorders', [ManagerController::class, 'pendingorders'])->name('manager.pendingorders');
 Route::get('manager/pendingeventorders', [ManagerController::class, 'pendingeventorders'])->name('manager.pendingeventorders');
 Route::get('manager/orderstobedelivered', [ManagerController::class, 'orderstobedelivered'])->name('manager.orderstobedelivered');
+Route::get('manager/specialorderstobedelivered', [ManagerController::class, 'specialorderstobedelivered'])->name('manager.specialorderstobedelivered');
 Route::get('manager/edit', [ManagerController::class, 'managerEdit'])->name('manager.edit');
 Route::post('manager/update', [ManagerController::class, 'update'])->name('manager.update');
 Route::post('manager/changepassword', [ManagerController::class, 'changepassword'])->name('manager.changepassword');
@@ -160,6 +163,7 @@ Route::get('cart/cancel', [CartController::class, 'cancel'])->name('cart.cancel'
 //Routes for Events   
 Route::get('events/home', [EventController::class, 'home'])->name('events.home'); 
 Route::get('events/wedding', [EventController::class, 'wedding'])->name('events.wedding'); 
+Route::get('events/panchayudha', [EventController::class, 'panchayudha'])->name('events.panchayudha'); 
 Route::post('events/save', [EventController::class, 'save'])->name('events.save');
 Route::post('events/receiverdetails', [EventController::class, 'receiverdetails'])->name('events.receiverdetails');
 Route::post('events/receiverdetailsSave', [EventController::class, 'receiverdetailsSave'])->name('events.receiverdetailsSave');

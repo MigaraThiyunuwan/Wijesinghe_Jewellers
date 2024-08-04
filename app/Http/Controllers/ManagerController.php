@@ -74,6 +74,53 @@ class ManagerController extends Controller
        // return view('manager.profile', compact('unverifiedBusinesses','userList','orderList','item','orderItem','pendingOrderCount','UnVerifiedbusiness','ordertobedelivered'));
     }
 
+    public function managertest()
+    {
+        $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+        $userList = User::getAllUsers();
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        $pendingOrderCount = Order::getPendingOrderCount();
+        $UnVerifiedbusiness = GemBusiness::getUnVerifiedGemBusiness();
+        $ordertobedelivered = Order::getorderstobedeliveredCount();
+        $userCount = User::getUserCount();
+        $deliveredOrders = Order::getDeliveredOrderCount();
+        $income = Order::getTotalIncome();
+        $verifiedGemBusiness = GemBusiness::getVerifiedGemBusinessCount();
+        $allUserCount = User::getAllUserCount();
+        $leaderCount = Leader::getLeaderCount();
+        $materialList = CusMaterial::getMaterialList();
+        $gemList = CusGemType::getGemList();
+        $gemSizeList = CusGemSize::getSizeList();
+        $eventOrder = new EventOrder();
+        $eventObj = new Event();
+        $eventOrderList = $eventOrder->getAllOrders();
+
+        $data = compact(
+                    'unverifiedBusinesses',
+                    'userList',
+                    'orderList',
+                    'item',
+                    'orderItem',
+                    'pendingOrderCount',
+                    'UnVerifiedbusiness',
+                    'ordertobedelivered',
+                    'userCount',
+                    'deliveredOrders',
+                    'income',
+                    'verifiedGemBusiness',
+                    'allUserCount',
+                    'materialList',
+                    'gemList',
+                    'gemSizeList',
+                    'leaderCount',
+                    'eventOrderList',
+                    'eventObj'
+                );
+        return view('Manager.managertest', $data);
+    }
+
     public function users()
     {
         $userList = User::getAllUsers();
@@ -90,6 +137,12 @@ class ManagerController extends Controller
     {
         $leaderList = Leader::getAllLeaders();
         return view('Manager.teamLeaders', compact('leaderList'));
+    }
+
+    public function managers()
+    {
+        $managerList = Manager::getManagerList();
+        return view('Manager.managers', compact('managerList'));
     }
 
     public function pendingrequest()
@@ -114,6 +167,19 @@ class ManagerController extends Controller
         $orderItem = new OrderItem();
         $ordertobedelivered = Order::getorderstobedeliveredCount();
         return view('Manager.ordersToBeDelivered', compact('orderList','item','orderItem','ordertobedelivered'));
+    }
+
+    public function specialorderstobedelivered()
+    {
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        $ordertobedelivered = Order::getorderstobedeliveredCount();
+        
+        $eventOrder = new EventOrder();
+        $eventObj = new Event();
+        $eventOrderList = $eventOrder->getAllOrders();
+        return view('Manager.specialOrdersToBeDelivered', compact('eventOrder','eventObj','eventOrderList'));
     }
 
     public function managernecklace()
