@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
     public function profile()
-
     {
         // $user = $request->session()->get('user');
         // return view('user.profile', ['user' => $user]);
@@ -39,6 +38,22 @@ class UserController extends Controller
             
         }
         
+    }
+
+    public function profiletest()
+    {
+        $user = session()->get('user');
+        if($user)
+        {
+            $order = new Order();
+            $orderItem = new OrderItem();
+            $item = new Item();
+            $eventOrder = new EventOrder();
+            $eventOrderList = $eventOrder->getEventOrderList($user->id);
+            $orderList = $order->getOrderList($user->id);
+            return view('user.profiletest', compact('orderList','eventOrderList','orderItem','item'));
+            
+        }
     }
 
     public function mycustomize()

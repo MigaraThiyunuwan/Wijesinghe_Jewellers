@@ -217,7 +217,7 @@
 
         <!-- User Table -->
         @if(count($customizeOrderList) > 0)
-        <div class="mt-4 mx-4">
+        <div style="font-family:Novecentowide" class="mt-4 mx-4">
           
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="flex flex-wrap items-center px-4 py-2">
@@ -437,7 +437,7 @@
 
         <!-- User Table -->
         @if(count($customizeOrderList) > 0)
-        <div class="mt-4 mx-4">
+        <div style="font-family:Novecentowide" class="mt-4 mx-4">
           
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="flex flex-wrap items-center px-4 py-2">
