@@ -73,7 +73,7 @@ class OrderController extends Controller
     {
         $order = new Order();
         $order->changeOrderStatus($request->order_id, $request->status);
-        return redirect()->route('manager.profile');
+        return redirect()->route('manager.profile')->with('managerSuccess', 'Status Changed Successfully');;
     }
 
     public function changecolumn(Request $request)

@@ -381,7 +381,7 @@ class ManagerController extends Controller
         );
         
         $request->session()->put('manager', $manager);
-        return redirect()->route('manager.profile');
+        return redirect()->route('manager.profile')->with('managerSuccess', 'Details Updated successfully!');
     
     
     }
@@ -404,7 +404,7 @@ class ManagerController extends Controller
         $manager = $odlManager->changepassword($request->input('new_password'));
         if ($manager) {
             $request->session()->put('manager', $manager);
-            return redirect()->route('manager.profile');
+            return redirect()->route('manager.profile')->with('managerSuccess', 'Password Changed successfully!');
         }
     }
 
@@ -424,7 +424,7 @@ class ManagerController extends Controller
         $business->verified =  $request->decision;
         $business->save();
         
-        return redirect()->route('manager.profile');
+        return redirect()->route('manager.profile')->with('managerSuccess', 'Gem bussiness Confirmed successfully!');
     }
     
     public function deleteuser(Request $request)
