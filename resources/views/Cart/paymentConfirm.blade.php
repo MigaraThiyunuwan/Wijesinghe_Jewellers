@@ -101,123 +101,28 @@
                     {{-- <button type="submit" id="payhere-payment" class="btn-grey">Pay Bill</button> --}}
                  
                     
-                    ORDER ID  {{$order->id}}
-                    amount  {{$order->totalPrice}}
-                    Hash  {{$hash}}
-                    ORDER ID  {{$order_id}}
-                    amount  {{$amount}}
-                    <form method="post" action="https://sandbox.payhere.lk/pay/checkout">  
-                      
-                        <input type="hidden" name="merchant_id" value="1227581">    <!-- Replace your Merchant ID -->
-                        <input type="hidden" name="return_url" value="{{ route('payment.return') }}">
-                        <input type="hidden" name="cancel_url" value="{{ route('payment.cancel') }}">
-                        <input type="hidden" name="notify_url" value="{{ route('payment.notify') }}">  
-                      
+                   
+                    <form id="payhereForm" method="post" action="http://localhost/WijesingheJewellery/">  
                         <input type="hidden" name="order_id" value="{{$order->id}}">
-                        <input type="hidden" name="items" value="Jewellery">
-                        <input type="hidden" name="currency" value="LKR">
                         <input type="hidden" name="amount" value="{{$order->totalPrice}}">  
-                       
-                        <input type="hidden" name="first_name" value="{{$order->receiverName}}">
-                        <input type="hidden" name="last_name" value="{{$order->receiverName}}">
+                        <input type="hidden" name="first_name" value="{{$user->first_name}}">
+                        <input type="hidden" name="last_name" value="{{$user->last_name}}">
                         <input type="hidden" name="email" value="{{$user->email}}">
                         <input type="hidden" name="phone" value="{{$order->contact_no}}">
                         <input type="hidden" name="address" value="{{$order->deliveryAddress}}">
                         <input type="hidden" name="city" value="{{$user->city}}">
-                        <input type="hidden" name="country" value="{{$order->country}}">
-                        <input type="hidden" name="hash" value="{{$hash}}">    <!-- Replace with generated hash -->
-
-
-                        
-                        <input type="submit" class="btn-grey" value="Buy Now">  
-                        
+                        <input type="hidden" name="country" value="{{$order->country}}">  
                     </form> 
 				</div>
-                Hash  {{$hash}}
                 
-                {{-- <script>
-                    // Payment completed. It can be a successful failure.
-                    payhere.onCompleted = function onCompleted(orderId) {
-                        console.log("Payment completed. OrderID:" + orderId);
-                        // Note: validate the payment and show success or failure page to the customer
-                    };
-            
-                    // Payment window closed
-                    payhere.onDismissed = function onDismissed() {
-                        // Note: Prompt user to pay again or show an error page
-                        console.log("Payment dismissed");
-                    };
-            
-                    // Error occurred
-                    payhere.onError = function onError(error) {
-                        // Note: show an error page
-                        console.log("There is a error:" + error);
-                    };
-
-                    var payment = {
-                        "sandbox": true,
-                                    "merchant_id": "1224349", // Replace with your Merchant ID
-                                    "return_url": "{{ route('payment.return') }}",
-                                    "cancel_url": "{{ route('payment.cancel') }}",
-                                    "notify_url": "{{ route('payment.notify') }}",
-                                    "order_id": "{{ $order->id}}",
-                                    "items": "Order ",
-                                    "amount": "{{ $order->totalPrice}}",
-                                    "currency": "LKR",
-                                    "hash": "{{ $hash}}",
-                                    "first_name": "{{ $user->first_name}}",
-                                    "last_name": "{{ $user->last_name}}",
-                                    "email": "{{ $user->email}}",
-                                    "phone": "{{ $user->contact_no}}",
-                                    "address": "{{ $user->address }}",
-                                    "city": "{{ $user->city }}",
-                                    "country": "Sri Lanka",
-                                    "delivery_address": "{{ $order->deliveryAddress}}",
-                                    "delivery_city": "{{ $order->country}}",
-                                    "delivery_country": "Sri Lanka"
-                    };
-            
-                    // document.getElementById('payhere-payment').onclick = function (e) {
-
-                    //     const fetchUrl = '{{ route('generate-hash', ['order_id' => $order->id, 'amount' => $order->totalPrice]) }}';
-                    //     console.log('Fetching URL:', fetchUrl); // Log the fetch URL
-                    //     // Fetch payment details from server
-                    //     fetch(fetchUrl.replace(/&amp;/g, '&'))
-                    //         .then(response => response.json())
-                    //         .then(data => {
-                    //             var payment = {
-                    //                 "sandbox": true,
-                    //                 "merchant_id": "1224349", // Replace with your Merchant ID
-                    //                 "return_url": "{{ route('payment.return') }}",
-                    //                 "cancel_url": "{{ route('payment.cancel') }}",
-                    //                 "notify_url": "{{ route('payment.notify') }}",
-                    //                 "order_id": data.order_id,
-                    //                 "items": "Order " + data.order_id,
-                    //                 "amount": data.amount,
-                    //                 "currency": "LKR",
-                    //                 "hash": data.hash,
-                    //                 "first_name": "{{ $user->first_name}}",
-                    //                 "last_name": "{{ $user->last_name}}",
-                    //                 "email": "{{ $user->email}}",
-                    //                 "phone": "{{ $user->contact_no}}",
-                    //                 "address": "{{ $user->address }}",
-                    //                 "city": "{{ $user->city }}",
-                    //                 "country": "Sri Lanka",
-                    //                 "delivery_address": "{{ $order->deliveryAddress}}",
-                    //                 "delivery_city": "{{ $order->country}}",
-                    //                 "delivery_country": "Sri Lanka"
-                    //             };
-                              
-                    //             // console.log(data);
-                    //             // console.log(payment);
-                    //             payhere.startPayment(payment);
-                    //         });
-                    // };
-
-                    document.getElementById('payhere-payment').onclick = function (e) {
-                        payhere.startPayment(payment);
-                    };
-                </script> --}}
+                <script>
+                    // Submit the form automatically when the page loads
+                    document.addEventListener("DOMContentLoaded", function() {
+                        document.getElementById("payhereForm").submit();
+                    });
+                </script>
+                
+              
        
 			</div>
 			<!-- / content -->

@@ -248,6 +248,8 @@
 		<!-- / container -->
 	</footer>
 	<!-- / footer -->
+
+	
 	<script>
 		function changeTab(tabId, clickedTab) {
 			// Hide all tab contents

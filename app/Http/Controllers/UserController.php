@@ -3,7 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\CusGemSize;
+use App\Models\CusGemType;
+use App\Models\CusMaterial;
+use App\Models\CustomizeOrder;
+use App\Models\CustomizeRequest;
+use App\Models\EventOrder;
+use App\Models\Item;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,10 +30,35 @@ class UserController extends Controller
         if($user)
         {
             $order = new Order();
+            $orderItem = new OrderItem();
+            $item = new Item();
+            $eventOrder = new EventOrder();
+            $eventOrderList = $eventOrder->getEventOrderList($user->id);
             $orderList = $order->getOrderList($user->id);
-            return view('user.profile', compact('orderList'));
+            return view('user.profile', compact('orderList','eventOrderList','orderItem','item'));
             
         }
+        
+    }
+
+    public function mycustomize()
+    {
+        $user = session()->get('user');
+        if($user)
+        {
+            $customize_order = new CustomizeOrder();
+            $customizerequest = new CustomizeRequest();
+            $customizeOrderList = $customize_order->getCustomizeOrderList($user->id);
+            return view('user.mycustomize', compact('customizeOrderList','customizerequest'));
+        }
+    }
+
+    public function customizechat($cus_req_id)
+    {   
+        //$cus_req_id = 1;
+        $request = new CustomizeRequest();
+        $request = $request->getCustomReq($cus_req_id);
+        return view('User.customizeChat', compact('cus_req_id', 'request'));
         
     }
 
@@ -40,6 +73,79 @@ class UserController extends Controller
         return view('user.edit');
     }
 
+    public function chat()
+    {
+        return view('chat');
+    }
+
+    public function directorders()
+    {
+        $user = session()->get('user');
+        if($user)
+        {
+            $order = new Order();
+            $orderItem = new OrderItem();
+            $item = new Item();
+            $orderList = $order->getOrderList($user->id);
+            return view('User.directOrders', compact('orderList','orderItem','item'));
+            
+        }
+        
+    }
+
+    public function eventorders()
+    {
+        $user = session()->get('user');
+        if($user)
+        {
+            $eventOrder = new EventOrder();
+            $eventOrderList = $eventOrder->getEventOrderList($user->id);
+            return view('User.eventOrders', compact('eventOrderList'));
+            
+        }
+    }
+
+    public function model(Request $request)
+    {
+        $cus_req_id = $request->input('cus_req_id');
+        $order = new CustomizeOrder();
+        $order = $order->getOrderDetail($cus_req_id);
+        $user = session()->get('user');
+        if($order->user_id == $user->id)
+        {
+            $request->session()->put('cus_req_id', $cus_req_id);
+            return view('User.model');
+        }else{
+            return redirect()->route('user.mycustomize');
+        }
+    }
+
+    public function getModelId()
+    {
+        return response()->json(['cus_req_id' => session('cus_req_id')]);
+    }
+
+    public function customizeform()
+    {
+        $materialList = new CusMaterial();
+        $gemTypeList = new CusGemType();
+        $gemSizeList = new CusGemSize();
+        $gemTypeList = $gemTypeList->getGemList();
+        $gemSizeList = $gemSizeList->getSizeList();
+        $materialList = $materialList->getMaterialList();
+        
+        return view('user.customizeform', compact('materialList','gemTypeList','gemSizeList'));
+    }
+
+    public function paymentconfirm(Request $request)
+    {
+        $cus_order = new CustomizeOrder();
+        $order = $cus_order->getOrderDetail($request->cus_req_id);
+        $request->session()->put('myorder', $order);
+        return view('user.paymentconfirm', compact('order'));
+    }
+
+    
     // function for handling register new user
     public function save(Request $request)
     {

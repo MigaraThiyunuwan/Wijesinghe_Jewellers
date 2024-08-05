@@ -27,8 +27,10 @@ class OrderController extends Controller
         $order->country = $request->countries;
         $order->receiverName = $request->receiverName;
         $order->contact_no = $request->contact_no;
-        $order->placed_at = now();
+        
+        
         //save order in database
+        $order->placed_at = now();
         $order->save();
 
         // Retrieve cart items from session
@@ -53,15 +55,25 @@ class OrderController extends Controller
         //clear cart session
         session()->forget('orders');
         $request->session()->put('myorder', $order);
-        //return redirect()->route('order.paymentconfirm', $order);
-        return redirect()->route('user.profile')->with('orderSuccess', 'Order placed successfully');
+        return redirect()->route('order.paymentconfirm', $order);
+        //return redirect()->route('user.profile')->with('orderSuccess', 'Order placed successfully');
+    }
+
+    public function  retrypayment(Request $request)
+    {
+        
+        $order = new Order();
+        $order_id = $request->order_id;
+        $order = $order->getOrder($order_id);
+        $request->session()->put('myorder', $order);
+        return redirect()->route('order.paymentconfirm', $order);
     }
 
     public function changestatus(Request $request)
     {
         $order = new Order();
         $order->changeOrderStatus($request->order_id, $request->status);
-        return redirect()->route('manager.profile');
+        return redirect()->route('manager.profile')->with('managerSuccess', 'Status Changed Successfully');;
     }
 
     public function changecolumn(Request $request)

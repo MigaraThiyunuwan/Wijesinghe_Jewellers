@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomizeOrder;
+use App\Models\CustomizeRequest;
 use App\Models\Leader;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,7 +26,11 @@ class LeaderController extends Controller
 
     public function profile()
     {
-        return view('Leader.profile');
+        $customizeRequest = new CustomizeRequest();
+        $customizeOrder = new CustomizeOrder();
+        $orders = $customizeOrder->getAcceptedOrderList();
+        $requests = $customizeRequest->getAllRequest();
+        return view('Leader.profile', compact('requests','orders','customizeRequest'));
     }
 
     public function edit()
@@ -83,4 +90,18 @@ class LeaderController extends Controller
             return redirect()->route('leader.profile')->with('leaderSuccess', 'Password Updated!');
         }
     }
+
+    public function chat($cus_req_id)
+    {   
+        //$cus_req_id = 1;
+        $request = new CustomizeRequest();
+        $user = new User();
+        $request = $request->getCustomReq($cus_req_id);
+        $user = $user->getUser($request->user_id);
+        
+        return view('Leader.chat', compact('cus_req_id', 'request', 'user'));
+        
+    }
+
+    
 }

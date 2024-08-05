@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CusGemPrice;
+use App\Models\CusGemSize;
+use App\Models\CusGemType;
+use App\Models\CusMaterial;
+use App\Models\Event;
+use App\Models\EventOrder;
 use App\Models\GemBusiness;
 use App\Models\Item;
 use App\Models\Leader;
@@ -35,6 +41,12 @@ class ManagerController extends Controller
         $verifiedGemBusiness = GemBusiness::getVerifiedGemBusinessCount();
         $allUserCount = User::getAllUserCount();
         $leaderCount = Leader::getLeaderCount();
+        $materialList = CusMaterial::getMaterialList();
+        $gemList = CusGemType::getGemList();
+        $gemSizeList = CusGemSize::getSizeList();
+        $eventOrder = new EventOrder();
+        $eventObj = new Event();
+        $eventOrderList = $eventOrder->getAllOrders();
 
         $data = compact(
                     'unverifiedBusinesses',
@@ -50,11 +62,63 @@ class ManagerController extends Controller
                     'income',
                     'verifiedGemBusiness',
                     'allUserCount',
-                    'leaderCount'
+                    'materialList',
+                    'gemList',
+                    'gemSizeList',
+                    'leaderCount',
+                    'eventOrderList',
+                    'eventObj'
                 );
 
         return view('manager.profile', $data);
        // return view('manager.profile', compact('unverifiedBusinesses','userList','orderList','item','orderItem','pendingOrderCount','UnVerifiedbusiness','ordertobedelivered'));
+    }
+
+    public function managertest()
+    {
+        $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
+        $userList = User::getAllUsers();
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        $pendingOrderCount = Order::getPendingOrderCount();
+        $UnVerifiedbusiness = GemBusiness::getUnVerifiedGemBusiness();
+        $ordertobedelivered = Order::getorderstobedeliveredCount();
+        $userCount = User::getUserCount();
+        $deliveredOrders = Order::getDeliveredOrderCount();
+        $income = Order::getTotalIncome();
+        $verifiedGemBusiness = GemBusiness::getVerifiedGemBusinessCount();
+        $allUserCount = User::getAllUserCount();
+        $leaderCount = Leader::getLeaderCount();
+        $materialList = CusMaterial::getMaterialList();
+        $gemList = CusGemType::getGemList();
+        $gemSizeList = CusGemSize::getSizeList();
+        $eventOrder = new EventOrder();
+        $eventObj = new Event();
+        $eventOrderList = $eventOrder->getAllOrders();
+
+        $data = compact(
+                    'unverifiedBusinesses',
+                    'userList',
+                    'orderList',
+                    'item',
+                    'orderItem',
+                    'pendingOrderCount',
+                    'UnVerifiedbusiness',
+                    'ordertobedelivered',
+                    'userCount',
+                    'deliveredOrders',
+                    'income',
+                    'verifiedGemBusiness',
+                    'allUserCount',
+                    'materialList',
+                    'gemList',
+                    'gemSizeList',
+                    'leaderCount',
+                    'eventOrderList',
+                    'eventObj'
+                );
+        return view('Manager.managertest', $data);
     }
 
     public function users()
@@ -73,6 +137,12 @@ class ManagerController extends Controller
     {
         $leaderList = Leader::getAllLeaders();
         return view('Manager.teamLeaders', compact('leaderList'));
+    }
+
+    public function managers()
+    {
+        $managerList = Manager::getManagerList();
+        return view('Manager.managers', compact('managerList'));
     }
 
     public function pendingrequest()
@@ -97,6 +167,19 @@ class ManagerController extends Controller
         $orderItem = new OrderItem();
         $ordertobedelivered = Order::getorderstobedeliveredCount();
         return view('Manager.ordersToBeDelivered', compact('orderList','item','orderItem','ordertobedelivered'));
+    }
+
+    public function specialorderstobedelivered()
+    {
+        $orderList = Order::getAllOrders();
+        $item = new Item();
+        $orderItem = new OrderItem();
+        $ordertobedelivered = Order::getorderstobedeliveredCount();
+        
+        $eventOrder = new EventOrder();
+        $eventObj = new Event();
+        $eventOrderList = $eventOrder->getAllOrders();
+        return view('Manager.specialOrdersToBeDelivered', compact('eventOrder','eventObj','eventOrderList'));
     }
 
     public function managernecklace()
@@ -125,6 +208,14 @@ class ManagerController extends Controller
         $item = new Item();
         $itemList = $item->getListOfCategory('Ring');
         return view('Manager.ring', compact('itemList'));
+    }
+
+    public function pendingeventorders()
+    {
+        $eventOrder = new EventOrder();
+        $eventObj = new Event();
+        $eventOrderList = $eventOrder->getAllOrders();
+        return view('Manager.pendingEventOrders', compact('eventOrderList','eventObj'));
     }
 
     public function removeitem(Request $request)
@@ -290,7 +381,7 @@ class ManagerController extends Controller
         );
         
         $request->session()->put('manager', $manager);
-        return redirect()->route('manager.profile');
+        return redirect()->route('manager.profile')->with('managerSuccess', 'Details Updated successfully!');
     
     
     }
@@ -313,7 +404,7 @@ class ManagerController extends Controller
         $manager = $odlManager->changepassword($request->input('new_password'));
         if ($manager) {
             $request->session()->put('manager', $manager);
-            return redirect()->route('manager.profile');
+            return redirect()->route('manager.profile')->with('managerSuccess', 'Password Changed successfully!');
         }
     }
 
@@ -333,7 +424,7 @@ class ManagerController extends Controller
         $business->verified =  $request->decision;
         $business->save();
         
-        return redirect()->route('manager.profile');
+        return redirect()->route('manager.profile')->with('managerSuccess', 'Gem bussiness Confirmed successfully!');
     }
     
     public function deleteuser(Request $request)
@@ -390,6 +481,39 @@ class ManagerController extends Controller
         }else{
             return redirect()->route('manager.leaders')->with('managerError', 'Leader not found!');
         }
+    }
+
+    public function changematerialprice(Request $request)
+    {
+        $rules = [
+            'material' => 'required',
+            'price' => 'required|numeric|min:0',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $material = new CusMaterial();
+        $material->changeMaterialPrice($request->material, $request->price);
+        
+        return redirect()->back()->with('managerSuccess', 'Material price changed successfully!');
+    }
+
+    public function changecusgemprice(Request $request)
+    {
+        $rules = [
+            'gem_type_id' => 'required',
+            'price' => 'required|numeric|min:0',
+            'gem_size_id' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $gem = new CusGemPrice();
+        $gem->changeGemPrice($request->gem_type_id, $request->gem_size_id, $request->price);
+        
+        return redirect()->back()->with('managerSuccess', 'Gem price changed successfully!');
     }
     
 }
