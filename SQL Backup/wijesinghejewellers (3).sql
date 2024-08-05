@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2024 at 03:32 PM
+-- Generation Time: Aug 05, 2024 at 05:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -123,7 +123,8 @@ INSERT INTO `customize_chats` (`id`, `cus_req_id`, `owner`, `type`, `message`, `
 (50, 4, 'user', 'text', 'ok thank you', '2024-07-23 07:12:12', '2024-07-23 07:12:12'),
 (51, 4, 'manager', 'text', '❤️', '2024-07-23 07:12:49', '2024-07-23 07:12:49'),
 (52, 7, 'user', 'text', 'Hellow!, I need to customize a Ring With Gems', '2024-07-25 01:57:38', '2024-07-25 01:57:38'),
-(53, 8, 'user', 'text', 'Hellow!, I need to customize a necklace.', '2024-07-25 02:02:01', '2024-07-25 02:02:01');
+(53, 8, 'user', 'text', 'Hellow!, I need to customize a necklace.', '2024-07-25 02:02:01', '2024-07-25 02:02:01'),
+(54, 9, 'user', 'text', 'Hellow!, I need to customize a Ring With Gems', '2024-08-04 08:14:08', '2024-08-04 08:14:08');
 
 -- --------------------------------------------------------
 
@@ -151,11 +152,12 @@ INSERT INTO `customize_orders` (`id`, `cus_req_id`, `user_id`, `status`, `transa
 (1, 1, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-14 09:21:08', '2024-07-14 09:21:08'),
 (2, 2, 1, 'reject', 'pending', 'pending', 0.00, '2024-07-14 10:00:04', '2024-07-15 11:44:55'),
 (3, 3, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-14 10:06:11', '2024-07-14 10:06:11'),
-(4, 4, 1, 'accept', 'pending', 'pendin', 300000.00, '2024-07-14 10:06:11', '2024-07-19 12:18:52'),
-(5, 5, 1, 'accept', 'success', 'ready', 40000.00, '2024-07-14 23:36:33', '2024-07-18 10:26:57'),
-(6, 6, 1, 'design', 'success', 'ready', 45000.00, '2024-07-17 02:07:46', '2024-07-24 01:44:27'),
+(4, 4, 1, 'quality', 'pending', 'pendin', 300000.00, '2024-07-14 10:06:11', '2024-08-01 00:24:31'),
+(5, 5, 1, 'sold', 'success', 'ready', 40000.00, '2024-07-14 23:36:33', '2024-08-01 00:24:38'),
+(6, 6, 1, 'cad', 'success', 'ready', 45000.00, '2024-07-17 02:07:46', '2024-07-25 23:29:17'),
 (7, 7, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-25 01:57:38', '2024-07-25 01:57:38'),
-(8, 8, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-25 02:02:01', '2024-07-25 02:02:01');
+(8, 8, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-25 02:02:01', '2024-07-25 02:02:01'),
+(9, 9, 1, 'pending', 'pending', 'pending', 0.00, '2024-08-04 08:14:08', '2024-08-04 08:14:08');
 
 -- --------------------------------------------------------
 
@@ -189,7 +191,8 @@ INSERT INTO `customize_requests` (`id`, `user_id`, `style`, `material`, `gender`
 (5, 1, 'rope', 'Gold 22K', 'male', 2.00, 35.00, 'No Gems', 340000.00, '2024-07-14 23:36:33', '2024-07-14 23:36:33'),
 (6, 1, 'bypass', 'Gold 18K', 'female', 0.50, 15.00, 'I need Sapphire Gem with size = 2, Garnet Gem with size = 1, ', 32850.00, '2024-07-17 02:07:46', '2024-07-17 02:07:46'),
 (7, 1, 'bypass', 'Gold 22K', 'male', 2.00, 15.00, 'I need Emerald Gem with size = 2, Sapphire Gem with size = 1, ', 3950.00, '2024-07-25 01:57:38', '2024-07-25 01:57:38'),
-(8, 1, 'figaro', 'Gold 18K', 'male', 2.00, 20.00, 'No Gems', 130000.00, '2024-07-25 02:02:01', '2024-07-25 02:02:01');
+(8, 1, 'figaro', 'Gold 18K', 'male', 2.00, 20.00, 'No Gems', 130000.00, '2024-07-25 02:02:01', '2024-07-25 02:02:01'),
+(9, 1, 'bypass', 'Gold 18K', 'male', 2.00, 23.00, 'I need Sapphire Gem with size = 2, ', 130220.00, '2024-08-04 08:14:08', '2024-08-04 08:14:08');
 
 -- --------------------------------------------------------
 
@@ -319,6 +322,81 @@ INSERT INTO `cus_materials` (`id`, `name`, `price`, `created_at`, `updated_at`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `price` decimal(8,2) NOT NULL,
+  `image` varchar(255) NOT NULL DEFAULT 'none',
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `specification` text NOT NULL,
+  `note` text NOT NULL,
+  `discount` varchar(255) NOT NULL DEFAULT 'none',
+  `discountPrice` decimal(8,2) NOT NULL DEFAULT 0.00,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `category`, `price`, `image`, `name`, `description`, `specification`, `note`, `discount`, `discountPrice`, `created_at`, `updated_at`) VALUES
+(2, 'Wedding', 25000.00, 'events/2.png', 'Eternal Romance Package', 'Includes two platinum rings and a diamond necklace. Symbolizes everlasting love and commitment with timeless elegance.', 'Platinum rings, diamond necklace, total 1.00 carat diamond weight, elegant designs.', 'Perfect for couples seeking timeless elegance. This beautiful set symbolizes eternal love.', 'none', 0.00, '2024-08-01 02:43:43', '2024-08-01 02:43:44'),
+(3, 'Wedding', 15000.00, 'events/3.png', 'Forever Yours Set', 'Two white gold rings and a sapphire necklace. Celebrates your forever bond with modern sophistication.', '14K white gold rings, sapphire necklace, total 0.75 carat sapphire weight, modern designs.', 'Ideal for modern couples. This set is an affordable yet luxurious choice for your special day.', 'none', 0.00, '2024-08-01 02:45:35', '2024-08-01 02:45:35'),
+(4, 'Wedding', 20000.00, 'events/4.png', 'Classic Elegance Bundle', 'Includes two yellow gold rings and a ruby necklace. Embrace classic elegance with traditional charm.', '18K yellow gold rings, ruby necklace, total 1.00 carat ruby weight, traditional designs.', 'Perfect for traditionalists. This set exudes timeless charm and sophistication.', 'none', 0.00, '2024-08-01 02:54:57', '2024-08-01 02:54:57'),
+(5, 'Wedding', 30000.00, 'events/5.png', 'Radiant Love Package', 'Two rose gold rings and an emerald necklace. Reflects your radiant love with unique beauty.', '14K rose gold rings, emerald necklace, total 0.80 carat emerald weight, elegant designs.', 'Great for those who love unique beauty. This beautifully radiant set is perfect for your wedding day.', 'none', 0.00, '2024-08-01 03:05:42', '2024-08-01 03:05:42'),
+(6, 'Wedding', 23000.00, 'events/6.png', 'Timeless Treasure Set', 'Two vintage-style rings and a pearl necklace. Captures timeless beauty with intricate design.', 'Vintage rings, pearl necklace, intricate designs, 0.50 carat total diamond weight.', 'Ideal for vintage enthusiasts. This set is perfect for celebrating your timeless love.', 'none', 0.00, '2024-08-01 03:06:26', '2024-08-01 03:06:26'),
+(7, 'Wedding', 24500.00, 'events/7.png', 'Enchanted Harmony Bundle', 'Includes two two-tone rings and an opal necklace. Harmonizes your love with unique design.', 'Two-tone rings, opal necklace, unique designs, 0.60 carat total diamond weight.', 'Great for unique couples. This harmonious and beautiful set is ideal for your wedding day.', 'none', 0.00, '2024-08-01 03:08:03', '2024-08-01 03:08:03'),
+(8, 'Wedding', 34000.00, 'events/8.png', 'Pure Romance Package', 'Two heart-motif rings and a topaz necklace. Celebrate pure romance with heartfelt design.', 'Heart-motif rings, topaz necklace, 0.70 carat total topaz weight, romantic designs.', 'Perfect for romantics. This set symbolizes your pure and enduring love.', 'none', 0.00, '2024-08-01 03:08:48', '2024-08-01 03:08:48'),
+(9, 'Wedding', 22000.00, 'events/9.png', 'Royal Splendor Set', 'Two regal rings and a diamond necklace. Exude royal elegance with luxurious design.', 'Regal rings, diamond necklace, 1.00 carat total diamond weight, luxurious designs.', 'Ideal for those who love luxury. This set is fit for royalty, perfect for your special day.', 'none', 0.00, '2024-08-01 03:10:14', '2024-08-01 03:10:14'),
+(10, 'Wedding', 32000.00, 'events/10.png', 'Nature’s Whisper Bundle', 'Two nature-inspired rings and a turquoise necklace. Celebrate nature’s beauty with organic design.', 'Nature-inspired rings, turquoise necklace, 0.50 carat total diamond weight, organic designs.', 'Great for nature lovers. This set captures the beauty of nature.', 'none', 0.00, '2024-08-01 03:11:54', '2024-08-01 03:11:54'),
+(11, 'Wedding', 18200.00, 'events/11.png', 'Mystical Beauty Package', 'Two black diamond rings and a moonstone necklace. Embrace mystical beauty with enchanting design.', 'Black diamond rings, moonstone necklace, 0.75 carat total diamond weight, mystical designs.', 'Perfect for those who love unique gems. This set exudes mystical charm.', 'none', 0.00, '2024-08-01 03:13:10', '2024-08-01 03:13:10'),
+(12, 'Panchayudha', 32000.00, 'events/12.png', 'Box Shape Baby Pendent', 'A sparkling star-shaped pendant designed for children, symbolizing their bright future and endless possibilities.', 'Sterling gold, star shape, 0.10 carat total diamond weight, 14-inch chain, secure clasp, lightweight design.', 'Perfect for young dreamers. The star symbolizes aspirations and achievements, making it an inspiring gift for children.', 'none', 0.00, '2024-08-03 23:05:59', '2024-08-03 23:05:59'),
+(13, 'Panchayudha', 38500.00, 'events/13.png', 'Boy Pendent With Dharmachakra', 'An adorable elephant-shaped pendant, symbolizing strength and wisdom, designed to inspire and protect children.', 'Sterling silver, elephant shape, 0.05 carat diamond, 14-inch chain, secure clasp, lightweight design.', 'Ideal for cheerful children. The sun pendant represents warmth and positivity, making it a joyful gift for young ones.', 'none', 0.00, '2024-08-03 23:10:43', '2024-08-03 23:10:43'),
+(14, 'Panchayudha', 32900.00, 'events/14.png', 'Girl Flower Shape Pendent', 'A delicate flower-shaped pendant, symbolizing growth and beauty, designed to enchant and inspire children.', 'Sterling silver, flower shape, 0.08 carat total diamond weight, 14-inch chain, secure clasp, lightweight design.', 'Perfect for nature lovers. The flower represents growth and beauty, making it a charming gift for young ones.', 'none', 0.00, '2024-08-03 23:12:31', '2024-08-03 23:12:31'),
+(15, 'Panchayudha', 40000.00, 'events/15.png', 'Boo Kola Shape Pendent', 'A delicate boo kola-shaped pendant, symbolizing transformation and growth, designed to charm and delight young ones.', '14K gold, crown shape, 0.10 carat sapphire, 14-inch chain, secure clasp, child-friendly design.', 'Ideal for showing affection. This pendant is a sweet and meaningful gift for a beloved child.', 'none', 0.00, '2024-08-03 23:17:06', '2024-08-03 23:17:06'),
+(16, 'Panchayudha', 45000.00, 'events/16.png', 'Peacock Pendent', 'An Peacock -shaped pendant with tiny emerald eyes, symbolizing wisdom and curiosity, perfect for inquisitive young minds.', '14K gold, owl shape, 0.05 carat emeralds, 14-inch chain, secure clasp, child-friendly design.', 'Ideal for curious children. The Peacock represents wisdom and knowledge, making it a meaningful gift for young learners.', 'none', 0.00, '2024-08-03 23:20:53', '2024-08-03 23:20:53'),
+(17, 'Panchayudha', 34000.00, 'events/17.png', 'Round Shape Panchayudha', 'A round-shaped pendant adorned with a small sapphire, perfect for the little princess in your life.', '14K gold, crown shape, 0.10 carat sapphire, 14-inch chain, secure clasp, child-friendly design.', 'Ideal for princess fans. The crown symbolizes royalty and specialness, making it a delightful gift for a little girl.', 'none', 0.00, '2024-08-03 23:24:44', '2024-08-03 23:24:44'),
+(18, 'Panchayudha', 28000.00, 'events/18.png', 'Girls Sweet Pendent', 'A sparkling round-shaped pendant designed for children, symbolizing their bright future and endless possibilities.', '14K gold, heart shape, 0.05 carat diamond, 14-inch chain, secure clasp, child-safe design.', 'Perfect for young dreamers. making it an inspiring gift for children.', 'none', 0.00, '2024-08-03 23:28:58', '2024-08-03 23:28:58'),
+(19, 'Panchayudha', 34000.00, 'events/19.png', 'Little Princess Pendant', 'A round-shaped pendant adorned with a small sapphire, perfect for the little princess in your life.', '14K gold, heart shape, 0.05 carat diamond, 14-inch chain, secure clasp, child-safe design.', 'Ideal for princess fans. The crown symbolizes royalty and specialness, making it a delightful gift for a little girl.', 'none', 0.00, '2024-08-03 23:38:37', '2024-08-03 23:38:37'),
+(20, 'Panchayudha', 40000.00, 'events/20.png', 'Happy Heart Pendant', 'A heart-shaped pendant with a tiny diamond, representing the love and joy children bring into our lives.', '14K gold, heart shape, 0.05 carat diamond, 14-inch chain, secure clasp, child-safe design.', 'Ideal for showing affection. The heart pendant is a sweet and meaningful gift for a beloved child.', 'none', 0.00, '2024-08-03 23:41:03', '2024-08-03 23:41:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_orders`
+--
+
+CREATE TABLE `event_orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `event_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
+  `price` decimal(8,2) NOT NULL,
+  `payment` varchar(255) NOT NULL DEFAULT 'pending',
+  `receiverName` varchar(255) NOT NULL,
+  `deliveryAddress` varchar(255) NOT NULL,
+  `contact_no` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `event_orders`
+--
+
+INSERT INTO `event_orders` (`id`, `event_id`, `user_id`, `status`, `price`, `payment`, `receiverName`, `deliveryAddress`, `contact_no`, `created_at`, `updated_at`) VALUES
+(6, 13, 1, 'pending', 38500.00, 'success', 'Migara Thiyunuwan', '58/1, waragoda, attanagalla.', '0771416968', '2024-08-03 23:48:34', '2024-08-03 23:51:15'),
+(7, 3, 1, 'accept', 15000.00, 'success', 'Tharindu lakshan', 'No 26, Temple Road, Kelaniya', '0771527182', '2024-08-04 04:58:18', '2024-08-04 05:07:01'),
+(8, 16, 1, 'pending', 45000.00, 'success', 'malki madhubhashini', 'abcd', '0771526789', '2024-08-04 05:04:48', '2024-08-04 05:05:09');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -410,7 +488,7 @@ INSERT INTO `items` (`id`, `name`, `category`, `price`, `quantity`, `image`, `cu
 (21, 'Eternal Diamond Ring', 'Ring', 12000.00, 5, 'necklaces/21.png', 'false', 'A timeless diamond ring symbolizing eternal love, featuring a solitaire diamond set in a platinum band. Perfect for engagements and special anniversaries.', 'Platinum band, 1-carat round diamond, size 6-9, GIA certified, 4-prong setting, polished finish.', '2024-07-10 12:26:46', '2024-07-13 03:58:51'),
 (22, 'Sapphire Halo Ring', 'Ring', 10000.00, 0, 'necklaces/22.png', 'true', 'Stunning sapphire encircled by diamonds on a white gold band, ideal for special occasions or daily elegance.', '14k white gold, 0.5-carat sapphire, 0.25-carat diamonds, size 5-8, prong setting, polished finish, hypoallergenic.', '2024-07-10 12:27:24', '2024-07-10 12:27:24'),
 (23, 'Rose Gold Twist Ring', 'Ring', 8000.00, 5, 'necklaces/23.png', 'true', 'Elegant rose gold band with a twisted design, offering a modern and stylish look for any occasion.', '18k rose gold, twisted design, size 5-9, polished finish, hypoallergenic, comfort fit, available in custom sizes.', '2024-07-10 12:28:13', '2024-07-12 07:05:11'),
-(24, 'Vintage Emerald Ring', 'Ring', 14000.00, 9, 'necklaces/24.png', 'true', 'Antique-style ring featuring a large emerald and intricate detailing, bringing a touch of vintage charm to any outfit.', 'Sterling silver, 1.2-carat emerald, size 6-10, filigree detailing, antique finish, hypoallergenic, bezel setting.', '2024-07-10 12:29:04', '2024-07-13 04:05:07'),
+(24, 'Vintage Emerald Ring', 'Ring', 14000.00, 8, 'necklaces/24.png', 'true', 'Antique-style ring featuring a large emerald and intricate detailing, bringing a touch of vintage charm to any outfit.', 'Sterling silver, 1.2-carat emerald, size 6-10, filigree detailing, antique finish, hypoallergenic, bezel setting.', '2024-07-10 12:29:04', '2024-07-26 08:42:16'),
 (25, 'Infinity Knot Ring', 'Ring', 6700.00, 13, 'necklaces/25.png', 'false', 'Symbolizing everlasting love, this infinity knot ring is crafted in sterling silver, making it a meaningful and stylish piece.', 'Sterling silver, infinity knot design, size 5-10, polished finish, hypoallergenic, comfort fit, available in custom sizes.', '2024-07-10 12:30:08', '2024-07-13 04:06:47'),
 (26, 'Amethyst Heart Ring', 'Ring', 11400.00, 3, 'necklaces/26.png', 'false', 'Heart-shaped amethyst set in a delicate gold band, perfect for expressing love and affection on special occasions.', '14k gold, heart-shaped amethyst, size 5-8, bezel setting, polished finish, hypoallergenic, lightweight.', '2024-07-10 12:31:09', '2024-07-11 10:14:48'),
 (27, 'Diamond Eternity Band', 'Ring', 15000.00, 13, 'necklaces/27.png', 'false', 'Continuous line of diamonds set in a gold band, symbolizing unending love and commitment. Ideal for anniversaries.', '14k gold, 1-carat total diamond weight, size 5-9, prong setting, comfort fit, polished finish, hypoallergenic.', '2024-07-10 12:32:21', '2024-07-13 04:07:45'),
@@ -545,7 +623,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (53, '2024_07_16_175556_create_cus_gem_types_table', 8),
 (54, '2024_07_16_175616_create_cus_gem_sizes_table', 8),
 (55, '2024_07_16_175635_create_cus_gem_prices_table', 8),
-(56, '2024_07_16_175658_create_cus_materials_table', 8);
+(56, '2024_07_16_175658_create_cus_materials_table', 8),
+(58, '2024_07_25_153311_create_events_table', 9),
+(59, '2024_07_26_043803_create_event_orders_table', 10);
 
 -- --------------------------------------------------------
 
@@ -581,11 +661,11 @@ INSERT INTO `orders` (`id`, `user_id`, `totalPrice`, `deliveryAddress`, `country
 (1, 1, 563000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'accept', 'placed', '2024-06-26 13:35:08', '2024-06-28 10:57:36', '2024-06-28 11:00:23', '2024-06-28 11:00:29', '2024-06-28 11:00:41', '2024-06-26 13:35:08', '2024-06-28 11:00:41'),
 (2, 1, 178000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Malki Madhu', '0771416934', 'false', 'reject', 'placed', '2024-06-26 13:36:05', NULL, NULL, NULL, NULL, '2024-06-26 13:36:05', '2024-06-27 10:55:10'),
 (3, 1, 175000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Psycho', '0771416934', 'false', 'accept', 'placed', '2024-06-27 11:01:22', '2024-06-28 11:01:41', '2024-07-01 10:45:34', NULL, NULL, '2024-06-27 11:01:22', '2024-07-01 10:45:34'),
-(4, 1, 920000.00, 'No. 48, Temple Road, Kelaniya.', 'Sri Lanka', 'Nimal Perera', '0771416959', 'false', 'pending', 'placed', '2024-07-01 10:16:01', NULL, NULL, NULL, NULL, '2024-07-01 10:16:01', '2024-07-01 10:16:01'),
-(5, 1, 135000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'saman kumara', '0771416945', 'false', 'accept', 'placed', '2024-07-06 05:25:00', '2024-07-06 05:29:15', '2024-07-08 01:40:37', NULL, NULL, '2024-07-06 05:25:00', '2024-07-08 01:40:37'),
-(11, 1, 30000.00, '58/1, waragoda, attanagalla.', 'Saint Lucia', 'Migara Thiyunuwan', '0771416945', 'false', 'pending', 'placed', '2024-07-07 10:17:03', NULL, NULL, NULL, NULL, '2024-07-07 10:17:03', '2024-07-07 10:17:03'),
+(4, 1, 920000.00, 'No. 48, Temple Road, Kelaniya.', 'Sri Lanka', 'Nimal Perera', '0771416959', 'false', 'accept', 'placed', '2024-07-01 10:16:01', '2024-08-05 06:19:32', NULL, NULL, NULL, '2024-07-01 10:16:01', '2024-08-05 06:19:32'),
+(5, 1, 135000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'saman kumara', '0771416945', 'false', 'accept', 'placed', '2024-07-06 05:25:00', '2024-07-06 05:29:15', '2024-07-08 01:40:37', '2024-08-04 07:17:45', '2024-08-04 12:54:07', '2024-07-06 05:25:00', '2024-08-04 12:54:07'),
+(11, 1, 30000.00, '58/1, waragoda, attanagalla.', 'Saint Lucia', 'Migara Thiyunuwan', '0771416945', 'false', 'accept', 'placed', '2024-07-07 10:17:03', NULL, NULL, NULL, NULL, '2024-07-07 10:17:03', '2024-08-05 06:27:41'),
 (12, 1, 60000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416978', 'false', 'pending', 'placed', '2024-07-07 10:36:34', NULL, NULL, NULL, NULL, '2024-07-07 10:36:34', '2024-07-07 10:36:34'),
-(13, 1, 45000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416934', 'false', 'pending', 'placed', '2024-07-07 11:42:37', NULL, NULL, NULL, NULL, '2024-07-07 11:42:37', '2024-07-07 11:42:37'),
+(13, 1, 45000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416934', 'false', 'accept', 'placed', '2024-07-07 11:42:37', NULL, NULL, NULL, NULL, '2024-07-07 11:42:37', '2024-08-05 06:19:04'),
 (14, 1, 45000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'accept', 'placed', '2024-07-07 12:06:43', '2024-07-07 22:37:17', NULL, NULL, NULL, '2024-07-07 12:06:43', '2024-07-07 22:37:17'),
 (15, 10, 540000.00, 'No.26, Temple Road, Kelaniya', 'Sri Lanka', 'Pasindu', '0771416968', 'false', 'pending', 'placed', '2024-07-07 12:32:06', NULL, NULL, NULL, NULL, '2024-07-07 12:32:06', '2024-07-07 12:32:06'),
 (16, 10, 15000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771425617', 'false', 'pending', 'placed', '2024-07-07 22:35:35', NULL, NULL, NULL, NULL, '2024-07-07 22:35:35', '2024-07-07 22:35:35'),
@@ -594,7 +674,7 @@ INSERT INTO `orders` (`id`, `user_id`, `totalPrice`, `deliveryAddress`, `country
 (19, 1, 15000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'pending', 'placed', '2024-07-08 12:59:51', NULL, NULL, NULL, NULL, '2024-07-08 12:59:51', '2024-07-08 12:59:51'),
 (20, 1, 20000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'pending', 'placed', '2024-07-08 13:21:53', NULL, NULL, NULL, NULL, '2024-07-08 13:21:53', '2024-07-08 13:21:53'),
 (21, 1, 0.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'pending', 'placed', '2024-07-08 13:21:53', NULL, NULL, NULL, NULL, '2024-07-08 13:21:53', '2024-07-08 13:21:53'),
-(22, 1, 20000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'pending', 'placed', '2024-07-12 03:22:35', NULL, NULL, NULL, NULL, '2024-07-12 03:22:35', '2024-07-12 03:22:35'),
+(22, 1, 20000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'success', 'pending', 'placed', '2024-07-12 03:22:35', NULL, NULL, NULL, NULL, '2024-07-12 03:22:35', '2024-07-27 23:58:12'),
 (23, 1, 450000.00, 'testing address', 'Sri Lanka', 'testing', '0779999999', 'false', 'pending', 'placed', '2024-07-12 03:27:05', NULL, NULL, NULL, NULL, '2024-07-12 03:27:05', '2024-07-12 03:27:05'),
 (24, 1, 15000.00, 'testing address2', 'Sri Lanka', 'testing2', '0771416968', 'false', 'pending', 'placed', '2024-07-12 03:29:58', NULL, NULL, NULL, NULL, '2024-07-12 03:29:58', '2024-07-12 03:29:58'),
 (25, 1, 8000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771415627', 'false', 'pending', 'placed', '2024-07-12 07:05:11', NULL, NULL, NULL, NULL, '2024-07-12 07:05:11', '2024-07-12 07:05:11'),
@@ -604,9 +684,10 @@ INSERT INTO `orders` (`id`, `user_id`, `totalPrice`, `deliveryAddress`, `country
 (29, 1, 15000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'pending', 'placed', '2024-07-12 09:51:54', NULL, NULL, NULL, NULL, '2024-07-12 09:51:54', '2024-07-12 09:51:54'),
 (30, 1, 15000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'pending', 'placed', '2024-07-12 09:53:30', NULL, NULL, NULL, NULL, '2024-07-12 09:53:30', '2024-07-12 09:53:30'),
 (31, 1, 12000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771415627', 'success', 'pending', 'placed', '2024-07-13 03:58:51', NULL, NULL, NULL, NULL, '2024-07-13 03:58:51', '2024-07-13 04:03:22'),
-(32, 1, 14000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'false', 'pending', 'placed', '2024-07-13 04:05:07', NULL, NULL, NULL, NULL, '2024-07-13 04:05:07', '2024-07-13 04:05:07'),
+(32, 1, 14000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'success', 'pending', 'placed', '2024-07-13 04:05:07', NULL, NULL, NULL, NULL, '2024-07-13 04:05:07', '2024-07-28 00:02:00'),
 (33, 1, 6700.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'fwefqwerfw', '0771416968', 'success', 'pending', 'placed', '2024-07-13 04:06:47', NULL, NULL, NULL, NULL, '2024-07-13 04:06:47', '2024-07-13 04:07:11'),
-(34, 1, 15000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'dgdfgetghert hrth', '0771416968', 'false', 'pending', 'placed', '2024-07-13 04:07:45', NULL, NULL, NULL, NULL, '2024-07-13 04:07:45', '2024-07-13 04:07:45');
+(34, 1, 15000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'dgdfgetghert hrth', '0771416968', 'success', 'pending', 'placed', '2024-07-13 04:07:45', NULL, NULL, NULL, NULL, '2024-07-13 04:07:45', '2024-07-27 23:59:12'),
+(35, 1, 14000.00, '58/1, waragoda, attanagalla.', 'Sri Lanka', 'Migara Thiyunuwan', '0771416968', 'success', 'pending', 'placed', '2024-07-26 08:42:16', NULL, NULL, NULL, NULL, '2024-07-26 08:42:16', '2024-07-26 08:54:43');
 
 -- --------------------------------------------------------
 
@@ -666,7 +747,8 @@ INSERT INTO `order_items` (`id`, `order_id`, `item_id`, `itemQuantity`, `created
 (41, 31, 21, 1, '2024-07-13 03:58:51', '2024-07-13 03:58:51'),
 (42, 32, 24, 1, '2024-07-13 04:05:07', '2024-07-13 04:05:07'),
 (43, 33, 25, 1, '2024-07-13 04:06:47', '2024-07-13 04:06:47'),
-(44, 34, 27, 1, '2024-07-13 04:07:45', '2024-07-13 04:07:45');
+(44, 34, 27, 1, '2024-07-13 04:07:45', '2024-07-13 04:07:45'),
+(45, 35, 24, 1, '2024-07-26 08:42:16', '2024-07-26 08:42:16');
 
 -- --------------------------------------------------------
 
@@ -802,6 +884,20 @@ ALTER TABLE `cus_materials`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `event_orders`
+--
+ALTER TABLE `event_orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `event_orders_event_id_foreign` (`event_id`),
+  ADD KEY `event_orders_user_id_foreign` (`user_id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -888,25 +984,25 @@ ALTER TABLE `advertisements`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `customize_chats`
 --
 ALTER TABLE `customize_chats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `customize_orders`
 --
 ALTER TABLE `customize_orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `customize_requests`
 --
 ALTER TABLE `customize_requests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `cus_gem_prices`
@@ -933,6 +1029,18 @@ ALTER TABLE `cus_materials`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `event_orders`
+--
+ALTER TABLE `event_orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -948,7 +1056,7 @@ ALTER TABLE `gem_businesses`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `leaders`
@@ -966,19 +1074,19 @@ ALTER TABLE `managers`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1034,6 +1142,13 @@ ALTER TABLE `customize_requests`
 ALTER TABLE `cus_gem_prices`
   ADD CONSTRAINT `cus_gem_prices_gem_size_id_foreign` FOREIGN KEY (`gem_size_id`) REFERENCES `cus_gem_sizes` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `cus_gem_prices_gem_type_id_foreign` FOREIGN KEY (`gem_type_id`) REFERENCES `cus_gem_types` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `event_orders`
+--
+ALTER TABLE `event_orders`
+  ADD CONSTRAINT `event_orders_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `event_orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `orders`

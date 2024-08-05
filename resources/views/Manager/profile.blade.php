@@ -32,7 +32,7 @@
         }
 
         .active {
-            background-color: #d1d5db; /* Change this to the desired active color */
+            background-color: #cccccc; /* Change this to the desired active color */
         }
       /* Custom style */
       .boldtext{
