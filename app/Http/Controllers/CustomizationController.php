@@ -43,14 +43,23 @@ class CustomizationController extends Controller
         $category = $request->input('category');
         $gender = $request->input('gender');
         $estimation = 0;
-        $gold14k_one_pavan = 100000;
-        $gold18k_one_pavan = 140000;
-        $gold22k_one_pavan = 170000;
-        $silver_one_pavan = 2400;
-        $platinum_one_pavan = 45000;
-
-
+        
         if ($category == 'necklace') {
+
+            $rules = [
+                'necklace_style' => 'required|string|max:255',
+                'necklace_material' => 'string|max:255',
+                'necklace_length' => 'required|numeric|min:0|max:9999.99',
+                'necklace_weight' => 'required|numeric|min:0|max:9999.99',
+
+            ];
+    
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+
             $necklace_style = $request->input('necklace_style');
             $necklace_material = $request->input('necklace_material');
             $necklace_length = $request->input('necklace_length');
@@ -90,6 +99,20 @@ class CustomizationController extends Controller
                 return redirect()->route('user.profile')->with('success', 'Customize Reqest Sent successfully.')->with(compact('orderList'));
             }
         } elseif ($category == 'ring') {
+
+            $rules = [
+                'ring_style' => 'required|string|max:255',
+                'ring_material' => 'string|max:255',
+                'ring_circumference' => 'required|numeric|min:0|max:9999.99',
+                'ring_weight' => 'required|numeric|min:0|max:9999.99',
+
+            ];
+    
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            
             $ring_style = $request->input('ring_style');
             $ring_material = $request->input('ring_material');
             $ring_circumference = $request->input('ring_circumference');

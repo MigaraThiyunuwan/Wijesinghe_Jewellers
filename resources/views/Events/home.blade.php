@@ -17,7 +17,7 @@
 	  $gemBusiness = session()->get('gemBusiness');
     @endphp
 </head>
-<body>
+<body style="font-family:Novecentowide; ">
 
     <header id="header">
 		<div class="container">

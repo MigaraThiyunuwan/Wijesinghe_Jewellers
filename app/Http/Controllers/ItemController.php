@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -11,29 +12,33 @@ class ItemController extends Controller
     public function necklaces()
     {
         $item = new Item();
+        $orderItemObj = new OrderItem();
         $itemList = $item->getItemList("Necklace");
-        return view('shop.necklaces', compact('itemList'));
+        return view('shop.necklaces', compact('itemList','orderItemObj'));
     }
 
     public function rings()
     {
         $item = new Item();
+        $orderItemObj = new OrderItem();
         $itemList = $item->getItemList("Ring"); //Ring
-        return view('shop.rings', compact('itemList'));
+        return view('shop.rings', compact('itemList','orderItemObj'));
     }
 
     public function earrings()
     {
         $item = new Item();
+        $orderItemObj = new OrderItem();
         $itemList = $item->getItemList("Earring"); //Earring
-        return view('shop.earrings', compact('itemList'));
+        return view('shop.earrings', compact('itemList','orderItemObj'));
     }
 
     public function bracelet()
     {
         $item = new Item();
+        $orderItemObj = new OrderItem();
         $itemList = $item->getItemList('Bracelet'); //Bracelet
-        return view('shop.bracelet', compact('itemList'));
+        return view('shop.bracelet', compact('itemList','orderItemObj'));
     }
 
     public function productDetails($itemId)

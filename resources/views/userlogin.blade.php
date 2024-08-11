@@ -6,14 +6,36 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 	@php
       $user = session()->get('user');
 	  $manager = session()->get('manager');
     @endphp
+
+	<style>
+		@media only screen and (max-width: 767px) {
+			.bgimg{
+				display: none;
+			}
+		}
+
+		
+      .formbg{
+        background-color: rgba(255, 253, 242, 0.96);
+        background-image: url('{{ asset('images/logo_no_bg.png') }}'); 
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+        position: relative;
+      }
+    
+	</style>
 </head>
-<body>
+<body >
 	
 	<header id="header">
 		<div class="container">
@@ -59,106 +81,125 @@
 	</nav>
 	<!-- / navigation -->
 
+	<div style="border: 1px solid; font-family:Novecentowide"  class="formbg mb-5  grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32"  >
+		<div class="bgimg mr-5 mt-5"> 
+			<img src="{{ asset('images/logo_no_bg.png') }}" style="width: 400px; height: 400px; " >
+		</div>
+		<div style="border: 1px solid; box-shadow: 10px 10px 10px;" class="p-5 rounded-lg"> 
+			<form action="{{route('loginallusers')}}" method="POST" class="space-y-6">
+				@csrf
+	
+				{{-- Login credentials error message --}}
+				@if ($errors->any())
+					<div>
+						<ul>
+							@foreach ($errors->all() as $error)
+							{{-- <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+								<strong class="font-bold">{{ $error }}</strong>
+							</div> --}}
+
+							<div id="alert-2" class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-100 " role="alert">
+								<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+								  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+								</svg>
+								<span class="sr-only">Info</span>
+								<div class="ms-3 text-sm font-medium">
+									{{ $error }}
+								</div>
+								<button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-2" aria-label="Close">
+								  <span class="sr-only">Close</span>
+								  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+								  </svg>
+								</button>
+							</div>
+								
+							@endforeach
+						</ul>
+					</div>
+				@endif
+	
+				{{-- un authorized access error message --}}
+				@if (request('error'))
+				
+				<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+					<strong class="font-bold">{{ request('error')  }}</strong>
+				</div>
+				@endif
+			
+	
+				<div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  Email
+					</label> 
+					<input type="email" id="email" name="email" value="{{ old('email') }}" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " required />
+					{{-- <input type="email" name="email" value="{{ old('email') }}" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" > --}}
+				</div>
+	
+				<div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  Password
+					</label>
+					<input type="password" name="password" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " required value="">
+				</div>
+				<div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="role">
+					  You are a
+					</label>
+					
+						<div class="grid grid-cols-2">
+							<label class="inline-flex ">
+								<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:ring-yellow-300 dark:focus:ring-yellow-600 ease-linear transition-all duration-150" value="user">
+								<span class="ml-2"> <strong>User</strong> </span>
+							</label>
+							<label class="inline-flex  ml-2 ">
+								<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:ring-yellow-300 dark:focus:ring-yellow-600 ease-linear transition-all duration-150" value="manager">
+								<span class="ml-2"> <strong> Manager</strong> </span>
+							</label>
+						</div>
+						<div class="grid grid-cols-2 mt-4">
+								<label class="inline-flex ">
+									<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:ring-yellow-300 dark:focus:ring-yellow-600 ease-linear transition-all duration-150" value="gembusiness">
+									<span class="ml-2"> <strong> Gem Business</strong></span>
+								</label>
+								<label class="inline-flex  ml-2">
+									<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:ring-yellow-300 dark:focus:ring-yellow-600 ease-linear transition-all duration-150" value="leader">
+									<span class="ml-2"><strong> Team Leader</strong></span>
+								</label>
+						</div>
+					
+				  </div>
+				@if ($user)
+				<button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded" disabled>Login</button>
+	
+					@else
+					<button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded">Login</button>
+				@endif
+				
+				
+		   
+				<div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
+					
+					<div style="border: 1px solid;" class="bg-yellow-100 border border-blue-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
+						<span class="block sm:inline">Don't have an account?</span>
+						<a href="{{ asset('user/register') }}">
+							<strong class="font-bold">REGISTER</strong>
+						</a>
+					</div>
+					
+				</div>
+				
+	
+				
+				
+		   
+			</form>
+		</div>
+	</div>
    
     
 
-    <div style="margin-bottom: 30px" class="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-100 dark:text-gray-800">
-        <div class="">
-            {{-- <div class="space-y-2">
-                <h2 class="text-4xl font-bold leading-tight lg:text-5xl">Let's talk!</h2>
-                <div class="dark:text-gray-600">Vivamus in nisl metus? Phasellus.</div>
-            </div> --}}
-            <img src="{{ asset('images/logo_no_bg.png') }}" style="width: 300px; height: 300px; margin-left: 30px" >
-        </div>
-        <form action="{{route('loginallusers')}}" method="POST" class="space-y-6">
-            @csrf
-
-			{{-- Login credentials error message --}}
-			@if ($errors->any())
-				<div>
-					<ul>
-						@foreach ($errors->all() as $error)
-						<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-							<strong class="font-bold">{{ $error }}</strong>
-						</div>
-							
-						@endforeach
-					</ul>
-				</div>
-			@endif
-
-			{{-- un authorized access error message --}}
-			@if (request('error'))
-			
-			<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-				<strong class="font-bold">{{ request('error')  }}</strong>
-			</div>
-			@endif
-		
-
-            <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                  Email
-                </label>
-                <input type="email" name="email" value="{{ old('email') }}" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" >
-            </div>
-
-            <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                  Password
-                </label>
-                <input type="password" name="password" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
-            </div>
-			<div class="relative w-full mb-3">
-				<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="role">
-				  You are a
-				</label>
-				<div>
-				  <label class="inline-flex items-center">
-					<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150" value="user">
-					<span class="ml-2">User</span>
-				  </label>
-				  <label class="inline-flex items-center ml-4">
-					<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150" value="manager">
-					<span class="ml-2">Manager</span>
-				  </label>
-				  <label class="inline-flex items-center ml-4">
-					<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150" value="gembusiness">
-					<span class="ml-2">Gem Business</span>
-				  </label>
-				  <label class="inline-flex items-center ml-4">
-					<input type="radio" name="role" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150" value="leader">
-					<span class="ml-2">Team Leader</span>
-				  </label>
-				</div>
-			  </div>
-			@if ($user)
-			<button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" disabled>Login</button>
-
-				@else
-				<button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded">Login</button>
-			@endif
-            
-            
-       
-            <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
-                
-				<div class="bg-yellow-100 border border-blue-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
-					<span class="block sm:inline">Don't have an account?</span>
-					<a href="{{ asset('user/register') }}">
-						<strong class="font-bold">REGISTER</strong>
-					</a>
-				</div>
-				
-            </div>
-			
-
-			
-			
-       
-        </form>
-        
-    </div>
+    
 
 
 

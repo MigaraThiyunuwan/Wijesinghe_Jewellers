@@ -305,7 +305,7 @@
  
  <div class="flex bg-gray-100 min-h-screen ">
   
-    <div class="flex-grow text-gray-800">
+    <div class="flex-grow text-gray-900">
       
       <main class="p-6 sm:p-10 space-y-6" style="margin-top: 150px; margin-left: 250px">
         <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">

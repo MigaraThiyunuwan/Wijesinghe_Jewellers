@@ -16,6 +16,20 @@
         $leader = session()->get('leader');
     @endphp
     <title>Wijesinghe Jewellers</title>
+
+    <style>
+        .mapborder{
+            border: 2px solid;
+            border-style: ridge;
+            padding: 0px
+        }
+
+        @media only screen and (max-width: 767px) {
+			.mapborder{
+				display: none;
+			}
+		}
+    </style>
 </head>
 <body>
     <header id="header">
@@ -98,9 +112,9 @@
         })
     </script>
     <br>
-    <section class="py-6 dark:text-gray-900" style="margin-top: 30px; margin-bottom: 50px">
-        <div class="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
-            <div class="py-6 md:py-0 md:px-6">
+    <div style="border: 1px solid; font-family:Novecentowide"  class="mb-5 mt-5 bg-yellow-50 grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32"  >
+		<div class="mr-5"> 
+			<div class="py-6 md:py-0 md:px-6">
                 <h1 class="text-4xl" style="color: goldenrod">Get in touch</h1>
                 <p class="pt-2 pb-4">Fill in the form to start a conversation</p>
                 <div class="space-y-4">
@@ -108,43 +122,85 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2 sm:mr-6">
                             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                         </svg>
-                        <span>Fake address, 9999 City</span>
+                        <span>No 89 Main Street, Mawanella 71500</span>
                     </p>
                     <p class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2 sm:mr-6">
                             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
                         </svg>
-                        <span>123456789</span>
+                        <span> 077 192 2433</span>
                     </p>
                     <p class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2 sm:mr-6">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                         </svg>
-                        <span>contact@business.com</span>
+                        <span>jewellerswijesinghe@gmail.com</span>
                     </p>
                 </div>
             </div>
-            <form novalidate="" class="flex flex-col py-6 space-y-6 md:py-0 md:px-6">
-                <label class="block">
-                    <span class="mb-1">Full name</span>
-                    <input type="text" placeholder="" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:dark:ring-violet-600 dark:bg-gray-100" style="height: 40px">
-                </label>
-                <label class="block">
-                    <span class="mb-1">Email address</span>
-                    <input type="email" placeholder="" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:dark:ring-violet-600 dark:bg-gray-100" style="height: 40px">
-                </label>
-                <label class="block">
-                    <span class="mb-1">Message</span>
-                    <textarea rows="3" class="block w-full rounded-md focus:ring focus:ring-opacity-75 focus:dark:ring-violet-600 dark:bg-gray-100"></textarea>
-                </label>
-                <button type="button" class="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-gold-600 hover:dark:ring-gold-600" style="background-color: goldenrod">Submit</button>
-            </form>
-        </div>
-    </section>
-    <div id="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9413.563341017527!2d80.44386513576347!3d7.250419653642176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2slk!4v1720364496207!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+            <div   class="mapborder mt-3">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15831.621466835917!2d80.4456764!3d7.2516106!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3153f4623446d%3A0x4e8724b2b8e5157c!2sWijesinghe%20Jewellers%20Mawanella%20-%20Gold%20jewellery%20in%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1723357449153!5m2!1sen!2slk" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+             </div>
+		</div>
+		<div style="border: 1px solid; box-shadow: 10px 10px 10px;" class="p-5 rounded-lg"> 
+			<form action="{{route('loginallusers')}}" method="POST" class="space-y-6">
+				@csrf
+	
+				{{-- Login credentials error message --}}
+				@if ($errors->any())
+					<div>
+						<ul>
+							@foreach ($errors->all() as $error)
+							<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+								<strong class="font-bold">{{ $error }}</strong>
+							</div>
+								
+							@endforeach
+						</ul>
+					</div>
+				@endif
+	
+				{{-- un authorized access error message --}}
+				@if (request('error'))
+				
+				<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+					<strong class="font-bold">{{ request('error')  }}</strong>
+				</div>
+				@endif
+			
+	
+				<div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  Name
+					</label> 
+					<input type="text" id="name" name="name"  class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " required />
+					{{-- <input type="email" name="email" value="{{ old('email') }}" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" > --}}
+				</div>
+	
+				<div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  Email
+					</label>
+					<input type="email" name="email" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " required >
+				</div>
+				<div class="relative w-full mb-3">
+					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+					  Message
+					</label>
+					<textarea type="text" name="message" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " rows="4"> </textarea>
+				</div>
+				
+					<button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded">Send Message</button>
+				
+				
+				
+		   
+			</form>
+		</div>
+	</div>
+    
+    
 
     <footer id="footer">
 		<div class="container">

@@ -12,6 +12,18 @@
     @php
       $user = session()->get('user');
     @endphp
+
+<style>
+  .formbg{
+    background-color: rgba(255, 253, 242, 0.96);
+    background-image: url('{{ asset('images/logo_no_bg.png') }}'); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    position: relative;
+  }
+</style>
 </head>
 <body>
 
@@ -57,19 +69,19 @@
 
     
 
-<section class=" py-1 bg-blueGray-50">
+<section class=" py-1">
 <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
-  <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-    <div class="rounded-t bg-white mb-0 px-6 py-6">
+  <div style="border: 1px solid; box-shadow: 10px 10px 10px" class="formbg relative flex flex-col min-w-0 break-words w-full mb-6 rounded bg-blueGray-100 border-0">
+    <div class="rounded-t bg-yellow-100 mb-0 px-6 py-6">
       <div class="text-center flex justify-between">
         <h6 class="text-blueGray-700 text-xl font-bold">
           Edit information
         </h6>
-        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="bg-blue-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
+        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="bg-yellow-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
           Change Password
         </button>
        
-        <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div style="font-family:Novecentowide; " id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
           <div class="relative p-4 w-full max-w-md max-h-full">
               <!-- Modal content -->
               <div class="relative bg-white rounded-lg shadow">
@@ -177,7 +189,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     First Name
                   </label>
-                  <input type="text" name="first_name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ $user->first_name }}">
+                  <input type="text" name="first_name" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 "  value="{{ $user->first_name }}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -185,7 +197,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Last Name
                   </label>
-                  <input type="text" name="last_name" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $user->last_name }}">
+                  <input type="text" name="last_name" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ $user->last_name }}">
                 </div>
               </div>
           <div class="w-full lg:w-6/12 px-4">
@@ -193,7 +205,7 @@
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                 Username
               </label>
-              <input type="text" name="username" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $user->username }}">
+              <input type="text" name="username" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ $user->username }}">
             </div>
           </div>
           <div class="w-full lg:w-6/12 px-4">
@@ -201,7 +213,7 @@
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                 Email address
               </label>
-              <input type="email" name="email" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $user->email }}">
+              <input type="email" name="email" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ $user->email }}">
             </div>
           </div>
           
@@ -218,7 +230,7 @@
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                 Address
               </label>
-              <input type="address" name="address" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $user->address }}">
+              <input type="address" name="address" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ $user->address }}">
             </div>
           </div>
           <div class="w-full lg:w-4/12 px-4">
@@ -226,7 +238,7 @@
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                 City
               </label>
-              <input type="text" name="city" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $user->city }}">
+              <input type="text" name="city" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ $user->city }}">
             </div>
           </div>
           <div class="w-full lg:w-4/12 px-4">
@@ -234,7 +246,7 @@
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                 Country
               </label>
-              <input type="text" name="country" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $user->country }}">
+              <input type="text" name="country" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ $user->country }}">
             </div>
           </div>
           <div class="w-full lg:w-4/12 px-4">
@@ -242,7 +254,7 @@
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                 Mobile No
               </label>
-              <input type="tel" name="contact_no" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $user->contact_no }}">
+              <input type="tel" name="contact_no" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ $user->contact_no }}">
             </div>
           </div>
 
@@ -260,12 +272,12 @@
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                 About me
               </label>
-              <textarea type="text" name="about" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4" >{{ $user->about }} </textarea>
+              <textarea type="text" name="about" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " rows="4" >{{ $user->about }} </textarea>
             </div>
           </div>
 
             <div style="width: 100%; display:flex; justify-content:center">
-              <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" style="width: 200px" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button">
+              <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" style="width: 200px" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded" type="button">
                 Save
               </button>
             </div>
