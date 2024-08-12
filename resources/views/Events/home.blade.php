@@ -67,7 +67,7 @@
 	</nav>
 	<!-- / navigation -->
 
-    <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl" style="margin-bottom: 30px">
+    <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden">
         <div class="rounded-full bg-gray-600 text-white absolute top-5 right-5 text-sm px-2 text-center z-10">
             
         </div>
@@ -101,42 +101,42 @@
             }))
         })
     </script>
-
-<div style="background-color:#fffbfb; align-items: auto; padding-top: 70px" id="venue">
-	<div class="container">
-		<div class="row animate-in-down">
-			<div class="p-4 col-md-6 align-self-center text-color">
-				<h2 style="color: goldenrod; font-size: 30px; text-align: center;">Weddings</h2>
-				<p class="my-4" style="text-align: center">Wijesinghe Jewellers" is a renowned name in the world
-					of exquisite jewelry craftsmanship, specializing in creating timeless pieces that reflect
-					elegance, beauty, and sophistication. With a legacy of craftsmanship spanning decades, we take
-					pride in our commitment to quality, precision, and innovation.</p>
-				<p class="my-4" style="text-align: center">At Wijesinghe Jewellers, every piece of jewelry is
-					meticulously crafted by skilled artisans, blending traditional techniques with modern designs to
-					create unique masterpieces. Our collections showcase a blend of classic and contemporary styles,
-					catering to the diverse tastes of our discerning clientele.</p>
-				
-					<div style="display: flex; justify-content: center">
-						<a href="{{ route('events.wedding') }}"> 
-							<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-								Visit
-							</button>
-						</a>
-					</div>
-			</div>
-			<div class="p-0 col-md-6">
-				<div>
-					<div> <img class="d-block img-fluid w-100" src="../images/events/wedding1.jpg"
-							style="height: 400px; margin-top: 0px;">
+<div class="formbg">
+	<div  style=" align-items: auto;" id="venue">
+		<div class="container">
+			<div class="row animate-in-down">
+				<div class="p-4 col-md-6 align-self-center text-color">
+					<h2 style="color: goldenrod; font-size: 30px; text-align: center;">Weddings</h2>
+					<p class="my-4" style="text-align: center">Wijesinghe Jewellers" is a renowned name in the world
+						of exquisite jewelry craftsmanship, specializing in creating timeless pieces that reflect
+						elegance, beauty, and sophistication. With a legacy of craftsmanship spanning decades, we take
+						pride in our commitment to quality, precision, and innovation.</p>
+					<p class="my-4" style="text-align: center">At Wijesinghe Jewellers, every piece of jewelry is
+						meticulously crafted by skilled artisans, blending traditional techniques with modern designs to
+						create unique masterpieces. Our collections showcase a blend of classic and contemporary styles,
+						catering to the diverse tastes of our discerning clientele.</p>
+					
+						<div style="display: flex; justify-content: center">
+							<a href="{{ route('events.wedding') }}"> 
+								<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+									Visit
+								</button>
+							</a>
+						</div>
+				</div>
+				<div class="p-0 col-md-6">
+					<div>
+						<div> <img class="d-block img-fluid w-100" src="../images/events/wedding1.jpg"
+								style="height: 400px; margin-top: 0px;">
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 
-	<div style="background-color:#fffbfb; align-items: auto; margin-bottom: 0px" id="venue">
+	<div style=" align-items: auto; margin-bottom: 0px" id="venue">
 		<div class="container">
 			<div class="row animate-in-down">
 				<div class="p-0 col-md-6">
@@ -169,7 +169,7 @@
 	</div>
 
 
-	<div style="background-color:#fffbfb; align-items: auto" id="venue">
+	<div style=" align-items: auto" id="venue">
 		<div class="container">
 			<div class="row animate-in-down">
 				<div class="p-4 col-md-6 align-self-center text-color">
@@ -184,7 +184,7 @@
 						cherished heirlooms that symbolize love, celebration, and the essence of life's most
 						precious moments.</p>
 						<div style="display: flex; justify-content: center">
-							<a href="{{ asset('gem/login') }}"> 
+							<a href="{{ route('events.apala') }}"> 
 								<button class="bg-yellow-500 active:bg-yellow-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
 									Visit
 								</button>
@@ -203,7 +203,7 @@
 		</div>
 	</div>
 
-	<div style="background-color:#fffbfb; align-items: auto; margin-bottom: 0px" id="venue">
+	{{-- <div style="background-color:#fffbfb; align-items: auto; margin-bottom: 0px" id="venue">
 		<div class="container">
 			<div class="row animate-in-down">
 				<div class="p-0 col-md-6">
@@ -233,8 +233,8 @@
 
 			</div>
 		</div>
-	</div>
-
+	</div> --}}
+</div>
 
 
     <footer id="footer">

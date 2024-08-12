@@ -26,6 +26,16 @@
 		width:100%;
         position: relative;
       }
+
+	  .formbg1{
+        background-color: rgba(255, 253, 242, 0.97);
+        background-image: url('{{ asset('images/logo_no_bg.png') }}'); 
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+        position: relative;
+      }
     #content .products .row {
         display: flex;
         flex-wrap: wrap;
@@ -104,15 +114,15 @@
 		<div class="container">
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li>EarRings</li>
+				<li>Ear Rings</li>
 			</ul>
 		</div>
 		<!-- / container -->
 	</div>
     
 
-<div id="body">
-	<section class="bg-white py-8 antialiased  md:py-12">
+<div id="body" class="formbg1">
+	<section class=" py-8 antialiased  md:py-12">
 		<div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
 		  <div class="mb-4 grid gap-4 sm:grid-cols-2  md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
 			@foreach($itemList as $item)
@@ -124,7 +134,7 @@
 				@endif
 			rounded-lg border  border-gray-200
 			@if ($item->quantity != 0)
-					hover:bg-yellow-50
+					hover:bg-yellow-100
 			@endif
 			 bg-yellow-0 p-6 shadow-sm ">
 
@@ -180,9 +190,9 @@
 
 			@endforeach
 		  </div>
-		  <div class="w-full text-center">
+		  {{-- <div class="w-full text-center">
 			<button type="button" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 ">Show more</button>
-		  </div>
+		  </div> --}}
 		</div>
 		
 	</section>

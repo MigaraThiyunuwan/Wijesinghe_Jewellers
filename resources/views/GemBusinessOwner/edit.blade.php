@@ -65,13 +65,13 @@
 <section class=" py-1 bg-blueGray-50">
 <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
   <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-    <div class="rounded-t bg-white mb-0 px-6 py-6">
+    <div class="rounded-t bg-yellow-100 mb-0 px-6 py-6">
       <div class="text-center flex justify-between">
         <h6 class="text-blueGray-700 text-xl font-bold">
           Edit Information
         </h6>
         
-        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="bg-blue-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
+        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="bg-yellow-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
             Change Password
         </button>
 
@@ -160,7 +160,7 @@
 
       </div>
     </div>
-    <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+    <div class="flex-auto formbg px-4 lg:px-10 py-10 pt-0">
 
         @if($errors->any())
         <div class="alert alert-danger">
@@ -193,7 +193,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Owner's Name 
                   </label>
-                  <input type="text" name="owner_name" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $gemBusiness->owner_name }}">
+                  <input type="text" name="owner_name" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ $gemBusiness->owner_name }}">
                 </div>
               </div>
 
@@ -202,7 +202,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Address 
                   </label>
-                  <input type="address" required name="address" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{  $gemBusiness->address }}">
+                  <input type="address" required name="address" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{  $gemBusiness->address }}">
                 </div>
             </div>
               
@@ -220,7 +220,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Email 
                   </label>
-                  <input type="email" name="email" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ $gemBusiness->email}}">
+                  <input type="email" name="email" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 "  value="{{ $gemBusiness->email}}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -228,7 +228,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Contact No 
                   </label>
-                  <input type="tel" name="contact_no" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{  $gemBusiness->contact_no }}">
+                  <input type="tel" name="contact_no" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{  $gemBusiness->contact_no }}">
                 </div>
               </div>
               
@@ -245,7 +245,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     From
                   </label>
-                  <input type="time" name="time_from" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{  $gemBusiness->time_from }}">
+                  <input type="time" name="time_from" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{  $gemBusiness->time_from }}">
                 </div>
               </div>
               <div class="w-full lg:w-3/12 px-4">
@@ -253,7 +253,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     To
                   </label>
-                  <input type="time" name="time_to" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ $gemBusiness->time_to }}">
+                  <input type="time" name="time_to" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ $gemBusiness->time_to }}">
                 </div>
               </div>
               
@@ -268,7 +268,7 @@
           
 
             <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
-                <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" style="width: 200px" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button">
+                <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" style="width: 200px" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded" type="button">
                     Save
                 </button>
                 

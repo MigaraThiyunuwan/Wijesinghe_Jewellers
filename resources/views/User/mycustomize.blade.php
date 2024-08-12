@@ -209,8 +209,8 @@
 	</div>
 
 
-<div x-data="setup()" :class="{ 'dark': isDark }">
-    <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
+<div x-data="setup()" :class="{ 'dark': isDark } ">
+    <div class=" min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white  text-black ">
 
       <div class="h-full   mb-10 md:ml">
 
@@ -263,7 +263,7 @@
                     
 
                     <div class="relative p-4 w-full max-w-md max-h-full">
-                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <div class="relative bg-white rounded-lg shadow ">
                           
                             <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal11{{$order->id}}">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -271,13 +271,13 @@
                                 </svg>
                                 <span class="sr-only">Close modal</span>
                             </button>
-                            <div class="p-4 md:p-5 ">
+                            <div class="p-4 md:p-5 text-center">
                                 {{-- <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                 </svg> --}}
                                 <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Request Details</h3>
                                 <div class="grid gap-4 mb-4 grid-cols">
-                                  <div class="bg-white overflow-hidden shadow rounded-lg border">
+                                  <div class="formbg overflow-hidden shadow rounded-lg border">
                                     
                                     <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
                                         <dl class="sm:divide-y sm:divide-gray-200">
@@ -381,7 +381,7 @@
                                 </div>
                                 </div>
                                 
-                                <button data-modal-hide="popup-modal11{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Close</button>
+                                <button data-modal-hide="popup-modal11{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-yellow-900 focus:outline-none bg-white rounded-lg border border-yellow-200 hover:bg-yellow-100 hover:text-yellow-700 focus:z-10 focus:ring-4 focus:ring-yellow-100 ">Close</button>
                             </div>
                         </div>
                     </div>
@@ -1702,13 +1702,13 @@
                                 </svg>
                                 <span class="sr-only">Close modal</span>
                             </button>
-                            <div class="p-4 md:p-5 ">
+                            <div class="p-4 md:p-5 text-center">
                                 {{-- <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                 </svg> --}}
                                 <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Request Details</h3>
                                 <div class="grid gap-4 mb-4 grid-cols">
-                                  <div class="bg-white overflow-hidden shadow rounded-lg border">
+                                  <div class="formbg overflow-hidden shadow rounded-lg border">
                                     
                                     <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
                                         <dl class="sm:divide-y sm:divide-gray-200">
@@ -1812,7 +1812,7 @@
                                 </div>
                                 </div>
                                 
-                                <button data-modal-hide="popup-modal11{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Close</button>
+                                <button data-modal-hide="popup-modal11{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-yellow-900 focus:outline-none bg-yellow rounded-lg border border-yellow-200 hover:bg-yellow-100 hover:text-yellow-700 focus:z-10 focus:ring-4 focus:ring-yellow-100 ">Close</button>
                             </div>
                         </div>
                     </div>

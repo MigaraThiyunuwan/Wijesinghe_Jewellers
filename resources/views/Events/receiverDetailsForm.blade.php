@@ -9,7 +9,9 @@
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	
-	
+	<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 	@php
@@ -65,17 +67,10 @@
     <div id="body">
         
 		
-            
-			
-
-					
-               
-
-
-					<section class=" py-1 ">
+					<section style="font-family:Novecentowide; " class=" py-1 ">
 						<div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
 							<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-							  <div class="rounded-t bg-white mb-0 px-6 py-6">
+							  <div class="rounded-t bg-yellow-100 mb-0 px-6 py-6">
 								<div class="text-center flex justify-between">
 								  <h6 class="text-blueGray-700 text-xl font-bold">
 									Delivery Details 
@@ -83,31 +78,33 @@
 					
 								  <h1>Total: Rs. {{$eventOrder->price}}</h1>
 						  
-									  
-									
-								  
-						  
-						  
 								</div>
 							  </div>
-							  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+							  <div class="flex-auto px-4 lg:px-10 py-10 pt-0 formbg">
 						  
-								  @if($errors->any())
-								  <div class="alert alert-danger">
-									  <ul>
-										  @foreach ($errors->all() as $error)
-										  {{-- <li>{{$error}}</li> --}}
-										  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-									  
-											  <strong class="font-bold">{{$error}}</strong>
-											  
-											  
+								@if($errors->any())
+								<div class="alert alert-danger">
+									<ul>
+									  @foreach ($errors->all() as $index => $error)
+									  <div id="alert-{{ $index }}" class="flex items-center p-4 mb-4 mt-2 text-red-800 rounded-lg bg-red-100" role="alert">
+										  <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+											  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+										  </svg>
+										  <span class="sr-only">Info</span>
+										  <div class="ms-3 text-sm font-medium">
+											  {{ $error }}
 										  </div>
-											  
-										  @endforeach
-									  </ul>
-								  </div>
-								  @endif
+										  <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#alert-{{ $index }}" aria-label="Close">
+											  <span class="sr-only">Close</span>
+											  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+												  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+											  </svg>
+										  </button>
+									  </div>
+								  @endforeach
+									</ul>
+								</div>
+								@endif
 						  
 								  {{-- Show Registration Success Messsage --}}
 								  @if (session('unsuccess'))
@@ -134,7 +131,7 @@
 											<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
 												Receiver's Name <span style="color: red">*</span>
 											</label>
-											<input type="text" name="receiverName" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('receiverName') }}">
+											<input type="text" name="receiverName" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 "  value="{{ old('receiverName') }}">
 										  </div>
 										</div>
 										<div class="w-full lg:w-6/12 px-4">
@@ -142,7 +139,7 @@
 											<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
 											  Contact Number <span style="color: red">*</span>
 											</label>
-											<input type="phone" name="contact_no" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('contact_no') }}">
+											<input type="phone" name="contact_no" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('contact_no') }}">
 										  </div>
 										</div>
 									
@@ -151,7 +148,7 @@
 										<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
 										  Delivery Address <span style="color: red">*</span>
 										</label>
-										<input type="address" name="deliveryAddress" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('deliveryAddress') }}">
+										<input type="text" name="deliveryAddress" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('deliveryAddress') }}">
 									  </div>
 									</div>
 

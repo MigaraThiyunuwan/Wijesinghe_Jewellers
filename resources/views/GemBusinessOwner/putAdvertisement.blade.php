@@ -62,11 +62,11 @@
 		<!-- / container -->
 	</nav>   
 
-<section class=" py-1 bg-blueGray-50">
+<section class=" py-1 formbg">
 <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
   <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-    <div class="rounded-t bg-white mb-0 px-6 py-6">
-      <div class="text-center flex justify-between">
+    <div class="rounded-t bg-yellow-100 mb-0 px-6 py-6">
+      <div class="text-center ">
         <h6 class="text-blueGray-700 text-xl font-bold">
           Add new Advertisement
         </h6>
@@ -95,7 +95,7 @@
 
       </div>
     </div>
-    <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+    <div class="flex-auto formbg px-4 lg:px-10 py-10 pt-0">
 
         @if($errors->any())
         <div class="alert alert-danger">
@@ -128,7 +128,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Name of the Gem
                   </label>
-                  <input type="text" name="title" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                  <input type="text" name="title" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                 </div>
               </div>
 
@@ -137,7 +137,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     price 
                   </label>
-                  <input type="number" required name="price" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                  <input type="number" required name="price" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                 </div>
             </div>
               
@@ -155,7 +155,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Shape of the Gem 
                   </label>
-                  <input type="text" name="shape" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="">
+                  <input type="text" name="shape" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 "  value="">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -163,7 +163,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Carat 
                   </label>
-                  <input type="number" name="carat" step="0.01" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                  <input type="number" name="carat" step="0.01" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                 </div>
               </div>
               
@@ -177,7 +177,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Width of tHE gem (mm)
                   </label>
-                  <input type="number" name="width" step="0.01" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="">
+                  <input type="number" name="width" step="0.01" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 "  value="">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -185,7 +185,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     length of tHE gem (mm)
                   </label>
-                  <input type="number" name="length" step="0.01" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                  <input type="number" name="length" step="0.01" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                 </div>
               </div>
               
@@ -198,7 +198,7 @@
                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Image of The gem
                 </label>
-                <input type="file" name="image" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="">
+                <input type="file" name="image" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 "  value="">
                 </div>
             </div>
             <div class="w-full lg:w-6/12 px-4">
@@ -206,7 +206,7 @@
                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     contact no
                 </label>
-                <input type="tel" name="contact_no" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                <input type="tel" name="contact_no" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                 </div>
             </div>
         </div>
@@ -218,30 +218,22 @@
               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                 Description 
               </label>
-              <textarea type="text" name="description" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4"> </textarea>
+              <textarea type="text" name="description" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " rows="4"> </textarea>
             </div>
           </div>
-
+          <div style="width: 100%; display:flex; justify-content:center; margin-top: 40px; margin-bottom: 10px">
+            <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" style="width: 200px" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded" type="button">
+                Add
+            </button>
+            
+        </div>
 
     </div>
 
         
 
-
-
-
-        
-
         <div class="flex flex-wrap">
           
-
-            <div style="width: 100%; display:flex; justify-content:center; margin-top: 0px; margin-bottom: 20px">
-                <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" style="width: 200px" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button">
-                    Add
-                </button>
-                
-            </div>
-
             <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative p-4 w-full max-w-md max-h-full">
                     <div class="relative bg-white rounded-lg shadow">

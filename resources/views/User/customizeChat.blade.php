@@ -125,10 +125,10 @@
           <div class="flex flex-col mt-8">
           
             <div role="alert">
-              <div class="bg-yellow-500 text-white font-bold rounded-t px-4 py-2">
+              <div class="bg-yellow-500 text-black font-bold rounded-t px-4 py-2">
                 Request Details
               </div>
-              <div class="border border-t-0 border-yellow-400 rounded-b bg-yellow-100 px-4 py-3 text-yellow-700">
+              <div class="border border-t-0 border-yellow-400 rounded-b bg-yellow-50 px-4 py-3 text-yellow-700">
                 <p style="margin-top: 20px" > <strong> Gender: </strong> {{$request->gender}}  </p>
                 <p style="margin-top: 20px"> <strong> Style: </strong>   
                   @if ($request->style == 'snake' || $request->style == 'box' ||$request->style == 'figaro' || $request->style == 'rope')
@@ -176,18 +176,10 @@
 
           
       
-      <div class="flex flex-col h-full overflow-x-auto mb-4">
-          <div class="flex flex-col h-full">
-            <div id="chat-container" class="overflow-y-auto h-[calc(100vh-4rem)]">
+      <div class="formbg flex flex-col h-full overflow-x-auto mb-4">
+          <div class=" flex flex-col h-full">
+            <div id="chat-container" class=" overflow-y-auto h-[calc(100vh-4rem)]">
             <div id="chat-messages" class="grid grid-cols-12 gap-y-2">
-              
-             
-              
-              
-
-
-
-
               
               
             </div>
@@ -211,7 +203,7 @@
                         response.messages.forEach(function(message) {
                             // Determine message container based on owner
                     var messageContainerClass = (message.owner === 'manager') ? 'col-start-1 col-end-8' : 'col-start-6 col-end-13';
-                    var messageStyleClass = (message.owner === 'manager') ? 'bg-white' : 'bg-yellow-100';
+                    var messageStyleClass = (message.owner === 'manager') ? 'bg-white' : 'bg-yellow-300';
 
                     // Build HTML based on owner
                     messagesHtml += '<div class="' + messageContainerClass + ' p-3 rounded-lg">';

@@ -116,7 +116,7 @@
 							onclick="closeModal()"
 						  >&times;</span>
 						</div>
-					  </div>
+					</div>
 					  <script>
 						function openModal() {
 							document.getElementById('imageModal').classList.remove('hidden');

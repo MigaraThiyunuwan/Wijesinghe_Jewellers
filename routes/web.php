@@ -108,6 +108,7 @@ Route::post('manager/changecusgemprice', [ManagerController::class, 'changecusge
 
 //Routes for Gem Business Owner
 Route::get('gem/profile', [GemBusinessController::class, 'profile'])->name('gem.profile');
+Route::get('gem/test', [GemBusinessController::class, 'test'])->name('gem.test');
 Route::get('gem/register', [GemBusinessController::class, 'register'])->name('gem.register');
 Route::get('gem/login', [GemBusinessController::class, 'login'])->name('gem.login');
 Route::get('gem/edit', [GemBusinessController::class, 'edit'])->name('gem.edit');
@@ -164,6 +165,7 @@ Route::get('cart/cancel', [CartController::class, 'cancel'])->name('cart.cancel'
 Route::get('events/home', [EventController::class, 'home'])->name('events.home'); 
 Route::get('events/wedding', [EventController::class, 'wedding'])->name('events.wedding'); 
 Route::get('events/panchayudha', [EventController::class, 'panchayudha'])->name('events.panchayudha'); 
+Route::get('events/apala', [EventController::class, 'apala'])->name('events.apala'); 
 Route::post('events/save', [EventController::class, 'save'])->name('events.save');
 Route::post('events/receiverdetails', [EventController::class, 'receiverdetails'])->name('events.receiverdetails');
 Route::post('events/receiverdetailsSave', [EventController::class, 'receiverdetailsSave'])->name('events.receiverdetailsSave');

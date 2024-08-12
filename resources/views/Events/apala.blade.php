@@ -15,16 +15,16 @@
 	  $gemBusiness = session()->get('gemBusiness');
     @endphp
     <style>
-        .formbg1{
-                background-color: rgba(255, 253, 242, 0.9);
-                background-image: url('{{ asset('images/logo_no_bg.png') }}'); 
-                background-repeat: no-repeat; 
-                /* background-size: cover; */
-                background-position: center;
-                background-blend-mode: overlay;
-                position: relative;
-            }
-        </style>
+    .formbg1{
+            background-color: rgba(255, 253, 242, 0.9);
+            background-image: url('{{ asset('images/logo_no_bg.png') }}'); 
+            background-repeat: no-repeat; 
+            /* background-size: cover; */
+            background-position: center;
+            background-blend-mode: overlay;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
 
@@ -77,7 +77,7 @@
 	</nav>
 	<!-- / navigation -->
 
-    <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl" >
+    <article x-data="slider" class="relative w-full flex flex-shrink-0 overflow-hidden shadow-2xl">
         <div class="rounded-full bg-gray-600 text-white absolute top-5 right-5 text-sm px-2 text-center z-10">
             
         </div>
@@ -91,7 +91,7 @@
                     class="absolute inset-0 z-10 h-full w-full object-cover opacity-70" />
                 <figcaption
                     class="absolute inset-x-0 bottom-1 z-20 w-96 mx-auto p-4 font-light text-sm text-center tracking-widest leading-snug bg-gray-300 bg-opacity-25">
-                    <h1 style="font-size: 50px;">Panchayudha</h1>
+                    <h1 style="font-size: 50px;">APALA</h1>
                     Where Elegance Meets Excellence: Discover Your Timeless Beauty Here.
                 </figcaption>
             </figure>
@@ -118,7 +118,7 @@
     @if (count($eventList) > 0)
         
         @foreach ($eventList as $event)
-            <div class="item formbg1"  style="border: 2px solid rgb(223, 222, 222); margin-bottom: 20px; margin-right: 200px; margin-left: 200px; padding-left: 20px; padding-right: 20px; ">
+            <div class="item formbg1" style="border: 2px solid rgb(223, 222, 222); margin-bottom: 20px; margin-right: 200px; margin-left: 200px; padding-left: 20px; padding-right: 20px; ">
                 <div class="container">
                     
                     <div id="content" class="full">

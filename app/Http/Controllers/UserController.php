@@ -36,6 +36,8 @@ class UserController extends Controller
             $orderList = $order->getOrderList($user->id);
             return view('user.profile', compact('orderList','eventOrderList','orderItem','item'));
             
+        }else{
+            return redirect()->route('userlogin')->with('error', 'You need to login as a customer to access this page.');
         }
         
     }

@@ -112,7 +112,7 @@
         })
     </script>
     <br>
-    <div style="border: 1px solid; font-family:Novecentowide"  class="mb-5 mt-5 bg-yellow-50 grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32"  >
+    <div style="border: 1px solid; font-family:Novecentowide"  class="mb-5 mt-5 formbg grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32"  >
 		<div class="mr-5"> 
 			<div class="py-6 md:py-0 md:px-6">
                 <h1 class="text-4xl" style="color: goldenrod">Get in touch</h1>

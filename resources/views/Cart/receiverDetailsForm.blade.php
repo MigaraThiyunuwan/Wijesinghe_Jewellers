@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <script src="https://cdn.tailwindcss.com"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	
 	
@@ -62,7 +62,7 @@
 	</nav>
 	<!-- / navigation -->
     
-    <div id="body">
+    <div id="body" class="formbg">
         
 		
             
@@ -88,8 +88,8 @@
 
 					<section class=" py-1 ">
 						<div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
-							<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-							  <div class="rounded-t bg-white mb-0 px-6 py-6">
+							<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg  border-0">
+							  <div class="rounded-t bg-yellow-100 mb-0 px-6 py-6">
 								<div class="text-center flex justify-between">
 								  <h6 class="text-blueGray-700 text-xl font-bold">
 									Delivery Details 
@@ -104,7 +104,7 @@
 						  
 								</div>
 							  </div>
-							  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+							  <div class="formbg flex-auto px-4 lg:px-10 py-10 pt-0">
 						  
 								  @if($errors->any())
 								  <div class="alert alert-danger">
@@ -148,7 +148,7 @@
 											<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
 												Receiver's Name <span style="color: red">*</span>
 											</label>
-											<input type="text" name="receiverName" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('receiverName') }}">
+											<input type="text" name="receiverName" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 "  value="{{ old('receiverName') }}">
 										  </div>
 										</div>
 										<div class="w-full lg:w-6/12 px-4">
@@ -156,7 +156,7 @@
 											<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
 											  Contact Number <span style="color: red">*</span>
 											</label>
-											<input type="phone" name="contact_no" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('contact_no') }}">
+											<input type="phone" name="contact_no" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('contact_no') }}">
 										  </div>
 										</div>
 									
@@ -165,7 +165,7 @@
 										<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
 										  Delivery Address <span style="color: red">*</span>
 										</label>
-										<input type="address" name="deliveryAddress" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('deliveryAddress') }}">
+										<input type="address" name="deliveryAddress" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('deliveryAddress') }}">
 									  </div>
 									</div>
 
@@ -174,8 +174,8 @@
 										  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
 											Select Your Country <span style="color: red">*</span>
 										  </label>
-										  {{-- <input type="address" name="deliveryAddress" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('deliveryAddress') }}"> --}}
-										  <select name="countries" id="countries" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+										  {{-- <input type="address" name="deliveryAddress" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('deliveryAddress') }}"> --}}
+										  <select name="countries" id="countries" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 ">
 											<option value="Afghanistan">Afghanistan</option>
 											<option value="Albania">Albania</option>
 											<option value="Algeria">Algeria</option>

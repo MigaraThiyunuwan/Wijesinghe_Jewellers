@@ -16,17 +16,18 @@
       $user = session()->get('user');
     @endphp
     @if (!$user)
-      @php
-          $loginUrl = route('user.login') . '?error=You need to login to access this page.';
-          header("Location: $loginUrl");
-          exit();
-      @endphp
+    @php
+        $loginUrl = route('userlogin') . '?error=You need to login to access this page.';
+        header("Location: $loginUrl");
+        exit();
+    @endphp
     @endif
 
     
     <title>Wijesinghe jewelry</title>
 
     <style>
+      
         .hidden {
             display: none;
         }
@@ -167,21 +168,7 @@
   </style>
   
   <script>
-    // document.addEventListener("DOMContentLoaded", function() {
-    //     const sections = document.querySelectorAll(".section");
-    //     const links = document.querySelectorAll(".nav-link");
-
-    //     // Show the inventory section by default
-    //     document.getElementById("inventory").classList.remove("hidden");
-
-    //     links.forEach(link => {
-    //         link.addEventListener("click", function() {
-    //             sections.forEach(section => section.classList.add("hidden"));
-    //             document.getElementById(this.dataset.target).classList.remove("hidden");
-    //         });
-    //     });
-    // });
-
+    
     document.addEventListener("DOMContentLoaded", function() {
         const sections = document.querySelectorAll(".section");
         const links = document.querySelectorAll(".nav-link");
@@ -303,7 +290,7 @@
     </aside>
     
  
- <div class="flex bg-gray-100 min-h-screen ">
+ <div  class="flex formbg min-h-screen">
   
     <div class="flex-grow text-gray-900">
       
@@ -369,36 +356,7 @@
                       </div>
                   @endif
 
-                
-
-                  {{-- @if (session('managerError'))
-
-                    <div id="alert-2" class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 " role="alert">
-                      <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                      </svg>
-                      <span class="sr-only">Info</span>
-                      <div class="ms-3 text-sm font-medium">
-                        {{ session('managerError') }}
-                      </div>
-                      <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-2" aria-label="Close">
-                        <span class="sr-only">Close</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                      </button>
-                    </div>
-                     
-                  @endif --}}
-            
-            
-
-            {{-- <button class="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3">
-              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-              </svg>
-              Manage dashboard
-            </button> --}}
+              
 
             <a href="{{ route('user.customize') }}">
             <button class="inline-flex px-5 py-3 text-white bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 rounded-md ml-6 mb-3">
@@ -425,38 +383,7 @@
 
 <hr>
         
-          {{-- <div class="flex items-center p-8 ">
-            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Add Manager 
-            </button>
-          </div>
-          <div class="flex items-center p-8 ">
-            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Add Manager 
-            </button>
-          </div>
-          <div class="flex items-center p-8 ">
-            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Add Manager 
-            </button>
-          </div>
-          <div class="flex items-center p-8 ">
-            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Add Manager 
-            </button>
-          </div> --}}
+          
       
 <div id="inventory" style="font-family:Novecentowide" class="section hidden relative mt-4 mx-4">
     @if(count($eventOrderList)>0)

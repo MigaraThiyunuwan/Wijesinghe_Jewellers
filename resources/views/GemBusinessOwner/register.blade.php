@@ -68,8 +68,8 @@
 <section class=" py-1 bg-blueGray-50">
 <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
   <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-    <div class="rounded-t bg-white mb-0 px-6 py-6">
-      <div class="text-center flex justify-between">
+    <div class="rounded-t bg-yellow-100 mb-0 px-6 py-6">
+      <div class="text-center ">
         <h6 class="text-blueGray-700 text-xl font-bold">
           Gem Business Registration
         </h6>
@@ -79,7 +79,7 @@
 
       </div>
     </div>
-    <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+    <div class="formbg flex-auto px-4 lg:px-10 py-10 pt-0">
 
         @if($errors->any())
         <div class="alert alert-danger">
@@ -111,7 +111,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Market Name <span style="opacity: 0.4">(Ex- Vinil Manik)</span>
                   </label>
-                  <input type="text" name="market_name"  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('market_name') }}">
+                  <input type="text" name="market_name"  class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 "  value="{{ old('market_name') }}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -119,7 +119,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Owner's Name <span style="color: red">*</span>
                   </label>
-                  <input type="text" name="owner_name" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('owner_name') }}">
+                  <input type="text" name="owner_name" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('owner_name') }}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -127,7 +127,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Jem and Jewellery Association Number <span style="color: red">*</span>
                   </label>
-                  <input type="text" name="gem_asso_num" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('gem_asso_num') }}">
+                  <input type="text" name="gem_asso_num" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 "  value="{{ old('gem_asso_num') }}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -135,7 +135,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Business Registration Number
                   </label>
-                  <input type="text" name="business_num" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('business_num') }}">
+                  <input type="text" name="business_num" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('business_num') }}">
                 </div>
               </div>
         </div>
@@ -151,7 +151,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Address <span style="color: red">*</span>
                   </label>
-                  <input type="address" required name="address" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('address') }}">
+                  <input type="address" required name="address" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('address') }}">
                 </div>
             </div>
             <div class="w-full lg:w-6/12 px-4">
@@ -159,7 +159,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Email <span style="color: red">*</span>
                   </label>
-                  <input type="email" name="email" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"  value="{{ old('email') }}">
+                  <input type="email" name="email" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 "  value="{{ old('email') }}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -167,7 +167,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Contact No <span style="color: red">*</span>
                   </label>
-                  <input type="tel" name="contact_no" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('contact_no') }}">
+                  <input type="tel" name="contact_no" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('contact_no') }}">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -175,7 +175,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Business Registration Certificate <span style="color: red">*</span>
                   </label>
-                  <input type="file" name="certificate_image" required class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('certificate_image') }}">
+                  <input type="file" name="certificate_image" required class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('certificate_image') }}">
                 </div>
               </div>
 
@@ -191,7 +191,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     From
                   </label>
-                  <input type="time" name="time_from" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('start_time') }}">
+                  <input type="time" name="time_from" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('start_time') }}">
                 </div>
               </div>
               <div class="w-full lg:w-3/12 px-4">
@@ -199,7 +199,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     To
                   </label>
-                  <input type="time" name="time_to" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('end_time') }}">
+                  <input type="time" name="time_to" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="{{ old('end_time') }}">
                 </div>
               </div>
               
@@ -218,7 +218,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Password <span style="color: red">*</span>
                   </label>
-                  <input type="password" name="password" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                  <input type="password" name="password" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -226,7 +226,7 @@
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Confirm Password <span style="color: red">*</span>
                   </label>
-                  <input type="password" name="password_confirmation" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                  <input type="password" name="password_confirmation" class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                 </div>
               </div>
         </div>

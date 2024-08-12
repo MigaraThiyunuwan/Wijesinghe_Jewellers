@@ -100,7 +100,7 @@
                       <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                   </svg>
                   <span class="sr-only">Info</span>
-                  <div class="ms-3 text-sm font-medium">
+                  <div class="ms-3 text-sm font-bold">
                       {{ $error }}
                   </div>
                   <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#alert-{{ $index }}" aria-label="Close">
@@ -115,7 +115,7 @@
         </div>
         @endif
 
-        {{-- Show Registration Success Messsage --}}
+        {{-- Show Registration unsuccess Messsage --}}
         @if (session('unsuccess'))
         <div style="display: flex; justify-content: center">
           <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -125,7 +125,7 @@
           </div>
         </div>
       @endif
-      {{-- Show Registration Success Messsage End --}}
+      {{-- Show Registration unsuccess Messsage End --}}
 
         
 
