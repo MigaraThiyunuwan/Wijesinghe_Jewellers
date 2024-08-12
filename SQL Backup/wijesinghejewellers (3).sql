@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2024 at 05:34 PM
+-- Generation Time: Aug 12, 2024 at 08:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -42,6 +42,19 @@ CREATE TABLE `advertisements` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `advertisements`
+--
+
+INSERT INTO `advertisements` (`id`, `gem_businesses_id`, `title`, `description`, `price`, `image`, `shape`, `carat`, `width`, `length`, `contact_no`, `created_at`, `updated_at`) VALUES
+(2, 2, 'Ruby Gem', 'A stunning deep red ruby with excellent clarity and brilliance.', 50000.00, 'advertisements/2_2.png', 'Rectangle', 23.00, 6.50, 8.00, '0771416968', '2024-08-06 10:43:56', '2024-08-06 10:43:56'),
+(3, 2, 'Blue Sapphire', 'A vivid blue sapphire with a perfect round cut and great sparkle.', 48000.00, 'advertisements/2_3.png', 'Square', 12.00, 7.00, 7.00, '0771415627', '2024-08-06 10:44:54', '2024-08-06 10:44:54'),
+(4, 2, 'Emerald', 'A vibrant green emerald with a beautiful rectangular cut.', 38900.00, 'advertisements/2_4.png', 'Heart', 15.00, 6.00, 9.00, '0771416934', '2024-08-06 10:46:11', '2024-08-06 10:46:11'),
+(5, 2, 'Amethyst', 'A brilliant pear-shaped topaz with a golden-yellow color.', 30000.00, 'advertisements/2_5.png', 'Oval', 24.00, 6.00, 6.00, '0771416962', '2024-08-06 10:47:34', '2024-08-06 10:47:34'),
+(6, 2, 'Garnet Gem', 'A rich, dark red garnet with excellent clarity and a fiery sparkle.', 40000.00, 'advertisements/2_6.png', 'Oval', 22.00, 7.50, 5.50, '0772517289', '2024-08-12 09:51:03', '2024-08-12 09:51:03'),
+(7, 2, 'Peridot Gem', 'A vibrant green peridot with a fresh, lively hue and superb clarity.', 28000.00, 'advertisements/2_7.png', 'Cushion', 19.00, 9.00, 7.00, '0714256182', '2024-08-12 09:52:25', '2024-08-12 09:52:25'),
+(8, 2, 'Aquamarine Gem', 'A stunning pale blue aquamarine with crystal-clear clarity and an icy brilliance.', 55000.00, 'advertisements/2_8.png', 'Emerald Cut', 25.00, 10.00, 5.00, '0762516722', '2024-08-12 09:53:21', '2024-08-12 09:53:21');
 
 -- --------------------------------------------------------
 
@@ -124,7 +137,9 @@ INSERT INTO `customize_chats` (`id`, `cus_req_id`, `owner`, `type`, `message`, `
 (51, 4, 'manager', 'text', '❤️', '2024-07-23 07:12:49', '2024-07-23 07:12:49'),
 (52, 7, 'user', 'text', 'Hellow!, I need to customize a Ring With Gems', '2024-07-25 01:57:38', '2024-07-25 01:57:38'),
 (53, 8, 'user', 'text', 'Hellow!, I need to customize a necklace.', '2024-07-25 02:02:01', '2024-07-25 02:02:01'),
-(54, 9, 'user', 'text', 'Hellow!, I need to customize a Ring With Gems', '2024-08-04 08:14:08', '2024-08-04 08:14:08');
+(54, 9, 'user', 'text', 'Hellow!, I need to customize a Ring With Gems', '2024-08-04 08:14:08', '2024-08-04 08:14:08'),
+(55, 3, 'user', 'text', 'okay 👍', '2024-08-05 12:22:53', '2024-08-05 12:22:53'),
+(56, 9, 'user', 'text', 'hi', '2024-08-12 01:58:28', '2024-08-12 01:58:28');
 
 -- --------------------------------------------------------
 
@@ -214,7 +229,7 @@ CREATE TABLE `cus_gem_prices` (
 --
 
 INSERT INTO `cus_gem_prices` (`id`, `gem_type_id`, `gem_size_id`, `price`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 4000.00, '2024-07-17 05:38:23', '2024-07-17 00:45:13'),
+(1, 1, 1, 400.00, '2024-07-17 05:38:23', '2024-08-11 04:49:14'),
 (2, 1, 2, 200.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
 (3, 1, 3, 300.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
 (4, 1, 4, 400.00, '2024-07-17 05:38:23', '2024-07-17 05:38:23'),
@@ -313,7 +328,7 @@ CREATE TABLE `cus_materials` (
 --
 
 INSERT INTO `cus_materials` (`id`, `name`, `price`, `created_at`, `updated_at`) VALUES
-(1, 'Gold 14K', 1500.00, '2024-07-16 18:14:23', '2024-07-16 18:14:23'),
+(1, 'Gold 14K', 2000.00, '2024-07-16 18:14:23', '2024-08-11 04:49:46'),
 (2, 'Gold 18K', 65000.00, '2024-07-16 18:14:23', '2024-07-16 12:59:33'),
 (3, 'Gold 22K', 1800.00, '2024-07-16 18:14:23', '2024-07-16 18:14:23'),
 (4, 'Silver', 5000.00, '2024-07-16 18:14:23', '2024-07-16 18:14:23'),
@@ -363,7 +378,17 @@ INSERT INTO `events` (`id`, `category`, `price`, `image`, `name`, `description`,
 (17, 'Panchayudha', 34000.00, 'events/17.png', 'Round Shape Panchayudha', 'A round-shaped pendant adorned with a small sapphire, perfect for the little princess in your life.', '14K gold, crown shape, 0.10 carat sapphire, 14-inch chain, secure clasp, child-friendly design.', 'Ideal for princess fans. The crown symbolizes royalty and specialness, making it a delightful gift for a little girl.', 'none', 0.00, '2024-08-03 23:24:44', '2024-08-03 23:24:44'),
 (18, 'Panchayudha', 28000.00, 'events/18.png', 'Girls Sweet Pendent', 'A sparkling round-shaped pendant designed for children, symbolizing their bright future and endless possibilities.', '14K gold, heart shape, 0.05 carat diamond, 14-inch chain, secure clasp, child-safe design.', 'Perfect for young dreamers. making it an inspiring gift for children.', 'none', 0.00, '2024-08-03 23:28:58', '2024-08-03 23:28:58'),
 (19, 'Panchayudha', 34000.00, 'events/19.png', 'Little Princess Pendant', 'A round-shaped pendant adorned with a small sapphire, perfect for the little princess in your life.', '14K gold, heart shape, 0.05 carat diamond, 14-inch chain, secure clasp, child-safe design.', 'Ideal for princess fans. The crown symbolizes royalty and specialness, making it a delightful gift for a little girl.', 'none', 0.00, '2024-08-03 23:38:37', '2024-08-03 23:38:37'),
-(20, 'Panchayudha', 40000.00, 'events/20.png', 'Happy Heart Pendant', 'A heart-shaped pendant with a tiny diamond, representing the love and joy children bring into our lives.', '14K gold, heart shape, 0.05 carat diamond, 14-inch chain, secure clasp, child-safe design.', 'Ideal for showing affection. The heart pendant is a sweet and meaningful gift for a beloved child.', 'none', 0.00, '2024-08-03 23:41:03', '2024-08-03 23:41:03');
+(20, 'Panchayudha', 40000.00, 'events/20.png', 'Happy Heart Pendant', 'A heart-shaped pendant with a tiny diamond, representing the love and joy children bring into our lives.', '14K gold, heart shape, 0.05 carat diamond, 14-inch chain, secure clasp, child-safe design.', 'Ideal for showing affection. The heart pendant is a sweet and meaningful gift for a beloved child.', 'none', 0.00, '2024-08-03 23:41:03', '2024-08-03 23:41:03'),
+(21, 'Apala', 20000.00, 'events/21.png', 'Amethyst Serenity Ring', 'Features a calming amethyst gemstone, designed to bring peace, clarity, and alleviate stress.', 'Round-cut amethyst in sterling silver (925), sizes 5-10, simple band.', 'Promotes tranquility, spiritual growth, and emotional balance.', 'none', 0.00, '2024-08-12 07:34:46', '2024-08-12 07:34:46'),
+(22, 'Apala', 15000.00, 'events/22.png', 'Citrine Prosperity Ring', 'Shines with golden citrine, attracting prosperity and joy.', 'Oval-cut citrine in sterling silver (925), elegant band.', 'Symbolizes success and wealth, enhancing financial and personal growth.', 'none', 0.00, '2024-08-12 07:35:41', '2024-08-12 07:35:41'),
+(23, 'Apala', 14500.00, 'events/23.png', 'Blue Sapphire Wisdom Ring', 'Enhances wisdom and spiritual insight, perfect for clarity and truth seekers.', 'Princess-cut blue sapphire in silver, sizes 5-11, classic band.', 'Improves focus and wisdom, ideal for knowledge and self-discovery.', 'none', 0.00, '2024-08-12 07:36:39', '2024-08-12 07:36:39'),
+(24, 'Apala', 12000.00, 'events/24.png', 'Rose Quartz Love Ring', 'Embrace love and healing with the gentle pink rose quartz.', 'Heart-shaped rose quartz in 14K rose gold.', 'Promotes love, self-care, and emotional healing, perfect for improving relationships.', 'none', 0.00, '2024-08-12 07:37:17', '2024-08-12 07:37:17'),
+(25, 'Apala', 18000.00, 'events/25.png', 'Ruby Vitality Ring', 'Radiates with intense ruby, symbolizing vitality, passion, and protection.', 'Radiant-cut ruby set in silver, finely crafted band.', 'Ruby offers protection, vitality, strength, and courage.', 'none', 0.00, '2024-08-12 07:37:51', '2024-08-12 07:37:51'),
+(26, 'Apala', 17500.00, 'events/26.png', 'Garnet Radiance Ring', 'Features a stunning deep red garnet, symbolizing strength and passion.', 'Pear-shaped garnet in an 18K yellow gold setting.', 'Garnet boosts confidence and resilience with protective and energizing properties.', 'none', 0.00, '2024-08-12 07:39:37', '2024-08-12 07:39:37'),
+(27, 'Apala', 11600.00, 'events/27.png', 'Pink Tourmaline Harmony Ring', 'Exudes elegance with vibrant pink tourmaline, symbolizing love, compassion, and emotional healing.', 'Oval-cut pink tourmaline set in Silver', 'Nurtures emotional healing and positive relationships, ideal for enhancing well-being.', 'none', 0.00, '2024-08-12 07:40:19', '2024-08-12 07:40:19'),
+(28, 'Apala', 13000.00, 'events/28.png', 'Tricolor Harmony Ring', 'Blends pink tourmaline, orange sapphire, and blue topaz, symbolizing balance, creativity, and emotional well-being.', 'Oval-cut pink tourmaline, round-cut orange sapphire, and pear-cut blue topaz in a silver setting.', 'Pink tourmaline aids emotional healing, orange sapphire boosts creativity, and blue topaz enhances clarity.', 'none', 0.00, '2024-08-12 07:41:29', '2024-08-12 07:41:29'),
+(29, 'Apala', 9000.00, 'events/29.png', 'Rainbow Harmony Ring', 'Features six vibrant gemstones—pink tourmaline, orange sapphire, yellow citrine, green emerald, blue topaz, and purple amethyst.', 'tourmaline, sapphire, citrine, emerald,topaz, and purple amethyst in sterling silver', 'Provides emotional healing, creativity, positivity, renewal, clarity, and tranquility.', 'none', 0.00, '2024-08-12 07:41:59', '2024-08-12 07:41:59'),
+(30, 'Apala', 11000.00, 'events/30.png', 'Aurora Harmony Ring', 'Features six gemstones—pink tourmaline, orange sapphire, yellow citrine, green peridot, blue topaz, and purple amethyst.', 'pink tourmaline, orange sapphire,yellow citrine, green peridot, blue topaz, and purple amethyst in sterling silver.', 'Each gemstone enhances emotional healing, creativity, positivity, renewal, clarity, and tranquility. Clean regularly and store separately.', 'none', 0.00, '2024-08-12 07:42:28', '2024-08-12 07:42:28');
 
 -- --------------------------------------------------------
 
@@ -392,7 +417,8 @@ CREATE TABLE `event_orders` (
 INSERT INTO `event_orders` (`id`, `event_id`, `user_id`, `status`, `price`, `payment`, `receiverName`, `deliveryAddress`, `contact_no`, `created_at`, `updated_at`) VALUES
 (6, 13, 1, 'pending', 38500.00, 'success', 'Migara Thiyunuwan', '58/1, waragoda, attanagalla.', '0771416968', '2024-08-03 23:48:34', '2024-08-03 23:51:15'),
 (7, 3, 1, 'accept', 15000.00, 'success', 'Tharindu lakshan', 'No 26, Temple Road, Kelaniya', '0771527182', '2024-08-04 04:58:18', '2024-08-04 05:07:01'),
-(8, 16, 1, 'pending', 45000.00, 'success', 'malki madhubhashini', 'abcd', '0771526789', '2024-08-04 05:04:48', '2024-08-04 05:05:09');
+(8, 16, 1, 'pending', 45000.00, 'success', 'malki madhubhashini', 'abcd', '0771526789', '2024-08-04 05:04:48', '2024-08-04 05:05:09'),
+(9, 2, 1, 'pending', 25000.00, 'pending', 'Migara Thiyunuwan', '58/1, waragoda, attanagalla.', '0771416968', '2024-08-12 02:53:22', '2024-08-12 02:53:22');
 
 -- --------------------------------------------------------
 
@@ -485,7 +511,7 @@ INSERT INTO `items` (`id`, `name`, `category`, `price`, `quantity`, `image`, `cu
 (14, 'Festoon Necklace', 'Necklace', 110000.00, 0, 'necklaces/14.jpg', 'false', 'A garland or draped design that hangs gracefully around the neck. Often elaborate and vintage-inspired.', 'Can include multiple draped chains, often with pearls or gemstones.', '2024-06-11 09:35:07', '2024-06-11 09:35:07'),
 (15, 'Torque Necklace', 'Necklace', 90000.00, 11, 'necklaces/15.jpg', 'true', 'A rigid, open-ended metal collar that wraps around the neck. Bold and minimalist.', 'Typically made of metal, can be plain or adorned with simple designs.', '2024-06-11 09:37:18', '2024-07-03 08:30:42'),
 (16, 'Bead Necklace', 'Necklace', 40000.00, 13, 'necklaces/16.jpg', 'false', 'Composed of a series of beads, which can be of any material. Length and style vary widely.', 'Versatile in style, can be simple or elaborate.', '2024-06-11 09:39:10', '2024-07-03 08:30:49'),
-(21, 'Eternal Diamond Ring', 'Ring', 12000.00, 5, 'necklaces/21.png', 'false', 'A timeless diamond ring symbolizing eternal love, featuring a solitaire diamond set in a platinum band. Perfect for engagements and special anniversaries.', 'Platinum band, 1-carat round diamond, size 6-9, GIA certified, 4-prong setting, polished finish.', '2024-07-10 12:26:46', '2024-07-13 03:58:51'),
+(21, 'Eternal Diamond Ring', 'Ring', 12000.00, 6, 'necklaces/21.png', 'false', 'A timeless diamond ring symbolizing eternal love, featuring a solitaire diamond set in a platinum band. Perfect for engagements and special anniversaries.', 'Platinum band, 1-carat round diamond, size 6-9, GIA certified, 4-prong setting, polished finish.', '2024-07-10 12:26:46', '2024-08-11 05:09:02'),
 (22, 'Sapphire Halo Ring', 'Ring', 10000.00, 0, 'necklaces/22.png', 'true', 'Stunning sapphire encircled by diamonds on a white gold band, ideal for special occasions or daily elegance.', '14k white gold, 0.5-carat sapphire, 0.25-carat diamonds, size 5-8, prong setting, polished finish, hypoallergenic.', '2024-07-10 12:27:24', '2024-07-10 12:27:24'),
 (23, 'Rose Gold Twist Ring', 'Ring', 8000.00, 5, 'necklaces/23.png', 'true', 'Elegant rose gold band with a twisted design, offering a modern and stylish look for any occasion.', '18k rose gold, twisted design, size 5-9, polished finish, hypoallergenic, comfort fit, available in custom sizes.', '2024-07-10 12:28:13', '2024-07-12 07:05:11'),
 (24, 'Vintage Emerald Ring', 'Ring', 14000.00, 8, 'necklaces/24.png', 'true', 'Antique-style ring featuring a large emerald and intricate detailing, bringing a touch of vintage charm to any outfit.', 'Sterling silver, 1.2-carat emerald, size 6-10, filigree detailing, antique finish, hypoallergenic, bezel setting.', '2024-07-10 12:29:04', '2024-07-26 08:42:16'),
@@ -505,7 +531,7 @@ INSERT INTO `items` (`id`, `name`, `category`, `price`, `quantity`, `image`, `cu
 (38, 'Charm Bracelet', 'Bracelet', 18500.00, 14, 'necklaces/38.png', 'true', 'Customizable charm bracelet in sterling silver, allowing for personalized charms and designs.', 'Sterling silver, lobster clasp, hypoallergenic, polished finish, adjustable length, customizable, secure closure.', '2024-07-11 07:12:20', '2024-07-11 10:16:37'),
 (39, 'Cuff Bracelet', 'Bracelet', 25000.00, 15, 'necklaces/39.png', 'false', 'Stylish cuff bracelet in rose gold, perfect for a modern and chic look.', '18k rose gold, adjustable size, hypoallergenic, polished finish, lightweight, secure fit, modern design.', '2024-07-11 07:12:53', '2024-07-11 10:16:45'),
 (40, 'Beaded Bracelet', 'Bracelet', 19500.00, 10, 'necklaces/40.png', 'true', 'Colorful beaded bracelet with semi-precious stones, perfect for casual wear.', 'Semi-precious stones, stretch fit, hypoallergenic, polished finish, 7-inch length, lightweight, vibrant colors.', '2024-07-11 07:13:32', '2024-07-11 10:16:50'),
-(41, 'Infinity Bracelet', 'Bracelet', 22500.00, 2, 'necklaces/41.png', 'true', 'Elegant infinity bracelet in sterling silver, symbolizing everlasting love and friendship.', 'Sterling silver, infinity symbol, lobster clasp, hypoallergenic, polished finish, adjustable length, secure closure.', '2024-07-11 07:14:48', '2024-07-11 10:16:54'),
+(41, 'Infinity Bracelet', 'Bracelet', 22500.00, 0, 'necklaces/41.png', 'true', 'Elegant infinity bracelet in sterling silver, symbolizing everlasting love and friendship.', 'Sterling silver, infinity symbol, lobster clasp, hypoallergenic, polished finish, adjustable length, secure closure.', '2024-07-11 07:14:48', '2024-08-11 05:10:39'),
 (42, 'Bangle Bracelet', 'Bracelet', 16500.00, 10, 'necklaces/42.png', 'false', 'Classic bangle bracelet in gold, perfect for stacking or wearing alone.', '14k gold, slip-on style, hypoallergenic, polished finish, 7-inch length, lightweight, classic design.', '2024-07-11 07:20:05', '2024-07-11 10:16:57'),
 (43, 'Leather Wrap Bracelet', 'Bracelet', 23400.00, 10, 'necklaces/43.png', 'false', 'Stylish leather wrap bracelet with a silver clasp, perfect for a casual look.', 'Genuine leather, sterling silver clasp, hypoallergenic, adjustable length, secure closure, lightweight, stylish design.', '2024-07-11 07:20:34', '2024-07-11 10:17:02'),
 (44, 'Pearl Strand Bracelet', 'Bracelet', 27900.00, 19, 'necklaces/44.png', 'false', 'Elegant pearl strand bracelet, perfect for formal occasions or adding sophistication to any outfit.', 'Freshwater pearls, 7-inch length, hypoallergenic, polished finish, secure clasp, classic design, lightweight.', '2024-07-11 07:21:12', '2024-07-11 10:17:07'),
@@ -517,10 +543,10 @@ INSERT INTO `items` (`id`, `name`, `category`, `price`, `quantity`, `image`, `cu
 (50, 'Topaz Charm Bracelet', 'Bracelet', 18900.00, 14, 'necklaces/50.png', 'false', 'Elegant topaz charm bracelet in a gold setting, perfect for adding a touch of glamour.', '14k gold, 1-carat topaz, lobster clasp, hypoallergenic, polished finish, adjustable length, secure closure.', '2024-07-11 07:31:15', '2024-07-11 10:17:59'),
 (51, 'Peridot Cuff Bracelet', 'Bracelet', 20000.00, 15, 'necklaces/51.png', 'false', 'Stunning peridot cuff bracelet in a silver setting, perfect for adding a touch of elegance.', 'Sterling silver, 1-carat peridot, adjustable size, hypoallergenic, polished finish, lightweight, secure fit.', '2024-07-11 07:31:48', '2024-07-11 10:17:55'),
 (52, 'Moonstone Beaded Bracelet', 'Bracelet', 23400.00, 14, 'necklaces/52.png', 'false', 'Mystical moonstone beaded bracelet, perfect for adding a touch of boho-chic.', 'Moonstone beads, stretch fit, hypoallergenic, polished finish, 7-inch length, lightweight, vibrant colors.', '2024-07-11 07:32:17', '2024-07-11 10:18:05'),
-(53, 'Diamond Stud Earrings', 'Earring', 17500.00, 0, 'necklaces/53.png', 'false', 'Classic diamond stud earrings in white gold, perfect for everyday elegance and timeless style.', '14k white gold, 0.5-carat diamonds, 4-prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:45:14', '2024-07-11 09:45:14'),
+(53, 'Diamond Stud Earrings', 'Earring', 17500.00, 13, 'necklaces/53.png', 'false', 'Classic diamond stud earrings in white gold, perfect for everyday elegance and timeless style.', '14k white gold, 0.5-carat diamonds, 4-prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:45:14', '2024-08-11 05:07:18'),
 (54, 'Pearl Drop Earrings', 'Earring', 13000.00, 0, 'necklaces/54.png', 'true', 'Elegant pearl drop earrings with a gold setting, adding sophistication to any outfit.', '14k gold, 7mm pearls, French hook, hypoallergenic, polished finish, secure closure, timeless design.', '2024-07-11 09:45:55', '2024-07-11 09:45:55'),
 (55, 'Sapphire Hoop Earrings', 'Earring', 20000.00, 0, 'necklaces/55.png', 'true', 'Sparkling sapphire hoop earrings in sterling silver, ideal for special occasions.', 'Sterling silver, 0.3-carat sapphires, hinged back, hypoallergenic, polished finish, secure clasp, lightweight.', '2024-07-11 09:46:29', '2024-07-11 09:46:29'),
-(56, 'Emerald Stud Earrings', 'Earring', 18500.00, 0, 'necklaces/56.png', 'false', 'Stunning emerald stud earrings in white gold, perfect for adding a pop of color.', '14k white gold, 0.5-carat emeralds, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:47:02', '2024-07-11 09:47:03'),
+(56, 'Emerald Stud Earrings', 'Earring', 18500.00, 14, 'necklaces/56.png', 'false', 'Stunning emerald stud earrings in white gold, perfect for adding a pop of color.', '14k white gold, 0.5-carat emeralds, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:47:02', '2024-08-11 06:33:57'),
 (57, 'Ruby Teardrop Earrings', 'Earring', 17500.00, 0, 'necklaces/57.png', 'false', 'Gorgeous ruby teardrop earrings in a gold setting, perfect for a bold statement.', '14k gold, 0.7-carat rubies, French hook, hypoallergenic, polished finish, secure closure, teardrop shape.', '2024-07-11 09:47:48', '2024-07-11 09:47:48'),
 (58, 'Amethyst Stud Earrings', 'Earring', 18300.00, 0, 'necklaces/58.png', 'false', 'Elegant amethyst stud earrings in a silver setting, perfect for adding a touch of color and elegance.', 'Sterling silver, 0.4-carat amethysts, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:48:23', '2024-07-11 09:48:23'),
 (59, 'Topaz Dangle Earrings', 'Earring', 21000.00, 0, 'necklaces/59.png', 'true', 'Beautiful topaz dangle earrings in gold, adding a touch of glamour to any outfit.', '14k gold, 1-carat topaz, French hook, hypoallergenic, polished finish, secure closure, dangle design.', '2024-07-11 09:49:43', '2024-07-11 09:49:43'),
@@ -531,7 +557,7 @@ INSERT INTO `items` (`id`, `name`, `category`, `price`, `quantity`, `image`, `cu
 (65, 'Aquamarine Stud Earrings', 'Earring', 24200.00, 0, 'necklaces/65.png', 'false', 'Light blue aquamarine stud earrings in a gold setting, perfect for March birthdays.', '14k gold, 0.5-carat aquamarines, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:53:28', '2024-07-11 09:53:28'),
 (66, 'Tanzanite Hoop Earrings', 'Earring', 14900.00, 0, 'necklaces/66.png', 'true', 'Elegant tanzanite hoop earrings in sterling silver, perfect for adding a touch of luxury.', 'Sterling silver, 0.3-carat tanzanites, hinged back, hypoallergenic, polished finish, secure clasp, lightweight.', '2024-07-11 09:54:33', '2024-07-11 09:54:33'),
 (67, 'Moonstone Dangle Earrings', 'Earring', 16400.00, 0, 'necklaces/67.png', 'true', 'Mystical moonstone dangle earrings in a silver setting, adding a touch of boho-chic.', 'Sterling silver, 1-carat moonstones, French hook, hypoallergenic, polished finish, secure closure, dangle design.', '2024-07-11 09:55:11', '2024-07-11 09:55:11'),
-(69, 'Morganite Stud Earrings', 'Earring', 18500.00, 0, 'necklaces/69.png', 'false', 'Blush pink morganite stud earrings in a rose gold setting, perfect for adding romance.', '14k rose gold, 0.5-carat morganites, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:56:13', '2024-07-11 09:56:13'),
+(69, 'Morganite Stud Earrings', 'Earring', 18500.00, 10, 'necklaces/69.png', 'false', 'Blush pink morganite stud earrings in a rose gold setting, perfect for adding romance.', '14k rose gold, 0.5-carat morganites, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:56:13', '2024-08-11 05:06:04'),
 (70, 'Tourmaline Stud Earrings', 'Earring', 19000.00, 0, 'necklaces/70.png', 'false', 'Elegant tourmaline stud earrings in a gold setting, perfect for adding a touch of sophistication.', '14k gold, 0.5-carat tourmalines, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:56:49', '2024-07-11 09:56:49');
 
 -- --------------------------------------------------------
@@ -809,7 +835,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `address`, `city`, `country`, `contact_no`, `about`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Migara', 'Thiyunuwan', 'migara99', '58/1,waragoda,attanagalla.', 'Attanagalla.', 'Sri Lanka.', '+94771416968', 'Hello! I\'m Migara Thiyunuwan passionate computer science undergraduate at Uva Wellassa University.', 'migarathiyunuwan@gmail.com', NULL, '$2y$10$eJ1fu7RUkZD1TPk2STSZwOxzkW/FOJZ6nUa4UPiA1MVOwILHvOlB6', NULL, '2024-05-10 01:26:33', '2024-05-14 22:32:30'),
+(1, 'Migara', 'Thiyunuwan', 'migara99', '58/1,waragoda,attanagalla.', 'Attanagalla.', 'Sri Lanka.', '+94771416968', 'Hello! I\'m Migara Thiyunuwan passionate computer science undergraduate at Uva Wellassa University.', 'migarathiyunuwan@gmail.com', NULL, '$2y$10$.RRr.6FBlIUN.hp0hB79QOWSlgGA/uB7QKmqPXMMK5MmdwuXvp.lK', NULL, '2024-05-10 01:26:33', '2024-08-12 00:37:03'),
 (2, 'Malki', 'Madhubhashini', 'malki2001', 'kotiyakubura, ruwanwella', 'Kegalla', 'Sri Lanka', '0771415627', 'malki', 'malki@gmail.com', NULL, '$2y$10$EjT9UaKNuRa7ClFaDHK8cuR26tDPBkDjwt2l5eVMoVBiouqNUTfOK', NULL, '2024-05-10 01:31:00', '2024-05-10 01:31:00'),
 (9, 'Tharindu', 'siriwardana', 'tharindu', '58/1, waragoda, attanagalla.', 'Attanagalla', 'Sri Lanka', '0771416923', 'hii im tharindu', 'tharindu@gmail.com', NULL, '$2y$10$e4GsbsvhUDzj2FeDfLDd9.u5IKwBElpq4qWltweX6hGEiWNX5humy', NULL, '2024-07-07 10:01:48', '2024-07-07 10:01:48'),
 (10, 'Pasindu', 'Gunawardana', 'pasindu846', 'No.26, Temple Road, Kelaniya', 'Kelaniya', 'Sri Lanka', '0712381925', 'Hellow! I\'m Pasindu', 'pasindu@gmail.com', NULL, '$2y$10$q01MMgs0epPsG72YurgyOOix46paa4cEi3H34iYbjistWXrOG0Ie.', NULL, '2024-07-07 12:30:59', '2024-07-07 12:30:59');
@@ -978,19 +1004,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `customize_chats`
 --
 ALTER TABLE `customize_chats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `customize_orders`
@@ -1032,13 +1058,13 @@ ALTER TABLE `cus_materials`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `event_orders`
 --
 ALTER TABLE `event_orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1056,13 +1082,13 @@ ALTER TABLE `gem_businesses`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `leaders`
 --
 ALTER TABLE `leaders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `managers`
