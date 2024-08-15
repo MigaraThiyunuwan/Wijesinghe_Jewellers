@@ -535,9 +535,12 @@
                                   <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="10000.00" required="">
                               </div>
                               <div class="col-span-2 sm:col-span-1">
-                                <label for="customize" class="block mb-2 text-sm font-medium text-gray-900 ">Customize</label>
-                                
-                                <div class="flex items-center mb-2">
+                                {{-- <label for="customize" class="block mb-2 text-sm font-medium text-gray-900 ">Customize</label> --}}
+                                <div class="col-span-2 sm:col-span-1">
+                                  <label for="item_image" class="block mb-2 text-sm font-medium text-gray-900 ">Customize Image</label>
+                                  <input type="file" name="customize" id="item_image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="$2999" required="">
+                                </div>
+                                {{-- <div class="flex items-center mb-2">
                                   <input type="radio" name="customize" id="true-option" value="true" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 " required>
                                   <label for="true-option" class="ml-2 text-sm font-medium text-gray-900 ">True</label>
                                 </div>
@@ -545,12 +548,12 @@
                                 <div class="flex items-center">
                                   <input type="radio" name="customize" id="false-option" value="false" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 " required>
                                   <label for="false-option" class="ml-2 text-sm font-medium text-gray-900 ">False</label>
-                                </div>
+                                </div> --}}
                               </div>
                               <div class="col-span-2 sm:col-span-1">
                                 <label for="item_image" class="block mb-2 text-sm font-medium text-gray-900 ">Image</label>
                                 <input type="file" name="image" id="item_image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="$2999" required="">
-                            </div>
+                              </div>
                               <div class="col-span-2 sm:col-span-1">
                                   <label for="category" class="block mb-2 text-sm font-medium text-gray-900 ">Category</label>
                                   <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">

@@ -102,8 +102,8 @@
 			<div id="content" class="full">
 				<div style="display: flex;" class="product">
 					
-					<div class="mt-5 mb-5" onclick="openModal()" style="border: 1px solid; width: 420px; height: 335px;;" >
-						<img src="{{ asset('storage/' . $item->image) }}"  alt="">
+					<div class="mt-5 mb-5 " onclick="openModal()" style="border: 1px solid; width: 420px; height: 420px;" >
+						<img style=" width: 420px; height: 420px;" src="{{ asset('storage/' . $item->image) }}"  alt="">
 
 					</div>
 					<div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-75">
@@ -173,57 +173,78 @@
 
 
 						<h4>Rs.{{$item->price}}</h4>
-						<div class="entry">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-							<div class="tabs">
-								<div class="nav">
-									<ul>
-										<li style="height: 40px; justify-content: center; display: flex; padding-top: 5px; background-color: rgb(248, 244, 233)" class="" onclick="changeTab('desc{{$item->id}}', this)"><strong>Description</strong></li>
-										<li style="height: 40px; justify-content: center; display: flex; padding-top: 5px; background-color: rgb(248, 244, 233)" onclick="changeTab('spec{{$item->id}}', this)"><strong>Specification</strong></li>
-										<li style="height: 40px; justify-content: center; display: flex; padding-top: 5px; background-color: rgb(248, 244, 233)" onclick="changeTab('ret{{$item->id}}', this)"><strong>Customize</strong></li>
-									</ul>
-								</div>
-								<div class="tab-content active" id="desc{{$item->id}}">
-									<p>{{$item->description}} </p>
-								</div>
-								<div class="tab-content" id="spec{{$item->id}}">
-									<p>{{$item->specification}} </p>
-								</div>
-								<div class="tab-content" id="ret{{$item->id}}">
-									<p>
-										@if($item->customize == "true")
-											<a href="#" class="btn-grey">Make Customize Request</a>
-										@else
-											<p>Customization not available</p>
-										@endif
-	
-									</p>
-								</div>
+						<div style="width: 1000px" class="entry">
+							{{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+							 --}}
+							
+							 <div class="mb-4 border-b border-gray-200">
+								<ul class="flex w-full -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+									<li class="flex-1 mt-3" role="presentation">
+										<button class="inline-block w-full p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Description</button>
+									</li>
+									<li class="flex-1" role="presentation">
+										<button class="inline-block w-full p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Specification</button>
+									</li>
+									<li class="flex-1" role="presentation">
+										<button class="inline-block w-full p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Try on me</button>
+									</li>
+								</ul>
 							</div>
-							<script>
-								function changeTab(tabId, clickedTab) {
-									// Find the parent .tabs element
-									var tabsContainer = clickedTab.closest('.tabs');
-	
-									// Hide all tab contents within this specific tabs container
-									var tabContents = tabsContainer.querySelectorAll('.tab-content');
-									tabContents.forEach(function(content) {
-										content.classList.remove('active');
-									});
-	
-									// Remove active class from all tabs within this specific tabs container
-									var tabs = tabsContainer.querySelectorAll('.nav ul li');
-									tabs.forEach(function(tab) {
-										tab.classList.remove('active');
-									});
-	
-									// Show the selected tab content
-									tabsContainer.querySelector('#' + tabId).classList.add('active');
-	
-									// Add active class to the clicked tab
-									clickedTab.classList.add('active');
-								}
-							</script>
+
+							<div class="w-full flex flex-col" id="default-tab-content" >
+							
+								<div   class="hidden p-4 rounded-lg bg-yellow-50 w-full" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+									<p class="text-sm text-gray-500 ">{{$item->description}} </p>
+								</div>
+								<div class="hidden p-4 rounded-lg bg-yellow-50 w-full" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+									<p class="text-sm text-gray-500 ">{{$item->specification}} </p>
+								</div>
+								<div class="hidden p-4 rounded-lg bg-yellow-50 w-full" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+									{{-- <p class="text-sm text-gray-500 ">This is some placeholder content the <strong class="font-medium text-gray-800 ">Contacts tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p> --}}
+									<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="inline-flex px-5 py-3 text-white bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 rounded-md ml-6 mb-3">
+											
+										Test
+									</button>
+									
+									<div id="crud-modal" style="margin-top: 70px" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+										<div class="relative p-4 w-full max-w-md max-h-full">
+											<div class="relative bg-white rounded-lg shadow ">
+												<div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
+													<h3 class="text-lg font-semibold text-gray-900 ">
+														Add New Item
+													</h3>
+													<button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+														<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+															<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+														</svg>
+														<span class="sr-only">Close modal</span>
+													</button>
+												</div>
+												<form class="p-4 md:p-5" action="{{ route('upload.image') }}" method="POST" enctype="multipart/form-data">
+													@csrf
+												  <div class="grid gap-4 mb-4 grid-cols-1">
+														
+														
+														<div class="col-span-2 sm:col-span-1">
+														  <label for="item_image" class="block mb-2 text-sm font-medium text-gray-900 ">Image</label>
+														  <input type="file" name="image" id="item_image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="$2999" required="">
+														</div>
+														
+														
+													</div>
+													<input type="hidden" name="necklace_image" value="{{$item->customize}}">
+													<button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+													  <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+														  <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+													  </svg>
+													  Add new product
+													</button>
+											  </form>
+											</div>
+										</div>
+									  </div>
+								</div>
+							</div>	
 						</div>
 						<div style="display: flex; justify-content: flex-end" class="">
 							{{-- <label><h1>Buy Now </h1></label> --}}

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\CustomizationController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GemBusinessController;
+use App\Http\Controllers\ImageProcessingController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LeaderController;
@@ -171,3 +172,11 @@ Route::post('events/receiverdetails', [EventController::class, 'receiverdetails'
 Route::post('events/receiverdetailsSave', [EventController::class, 'receiverdetailsSave'])->name('events.receiverdetailsSave');
 Route::post('events/retrypayment', [EventController::class, 'retrypayment'])->name('events.retrypayment');
 Route::post('events/changestatus', [EventController::class, 'changestatus'])->name('events.changestatus');
+
+
+
+Route::post('/upload-image', [ImageProcessingController::class, 'processImage'])->name('upload.image');
+
+Route::get('/upload', function () {
+    return view('upload');
+})->name('upload.form');

@@ -54,7 +54,7 @@ class ItemController extends Controller
             'category' => 'required|string|max:255',
             'price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
             'image' => 'required|file|mimes:jpg,png,jpeg|max:2048',
-            'customize' => 'required|string|max:255',
+            'customize' => 'required|file|mimes:jpg,png,jpeg|max:2048',
             'description' => 'required|string|max:255',
             'specification' => 'required|string|max:255',
         ];
@@ -73,6 +73,12 @@ class ItemController extends Controller
         $fileName = $id . '.' . $file->getClientOriginalExtension();
         $filePath = $file->storeAs('public/necklaces', $fileName);
         $item->image = 'necklaces/' . $fileName;
+        $item->save();
+
+        $file = $request->file('customize');
+        $fileName = $id . '.' . $file->getClientOriginalExtension();
+        $filePath = $file->storeAs('public/customize', $fileName);
+        $item->customize = 'customize/' . $fileName;
         $item->save();
         
         if($item)
