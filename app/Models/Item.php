@@ -114,4 +114,9 @@ class Item extends Model
             return false;
         }
     }
+
+    public function getNewArrivals()
+    {
+        return self::orderBy('created_at', 'desc')->take(4)->get();
+    }
 }
