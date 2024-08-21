@@ -202,7 +202,11 @@ def detect_face_and_neck(image):
         neck_x = x + int(w * 0.03) 
         neck_y = y + int(h * 1.06)
         neck_w = w
-        neck_h = int(h * 0.5)
+        neck_h = int(h * 0.7)
+        # neck_x = x + int(w * 0.05) 
+        # neck_y = y + int(h * 0.9)
+        # neck_w = int(w * 0.8) 
+        # neck_h = int(h * 0.6)
         return (neck_x, neck_y, neck_w, neck_h)
     
     return None

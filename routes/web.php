@@ -174,9 +174,5 @@ Route::post('events/retrypayment', [EventController::class, 'retrypayment'])->na
 Route::post('events/changestatus', [EventController::class, 'changestatus'])->name('events.changestatus');
 
 
-
+//Routes for image Processing
 Route::post('/upload-image', [ImageProcessingController::class, 'processImage'])->name('upload.image');
-
-Route::get('/upload', function () {
-    return view('upload');
-})->name('upload.form');
