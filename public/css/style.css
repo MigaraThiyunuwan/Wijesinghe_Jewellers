@@ -1907,7 +1907,36 @@ h1 {
 
 }
 
+
+@media only screen and (min-width: 481px) {
+	.who-we-are{
+		color: black;
+		margin-left: 200px;
+		margin-right: 200px;
+		font-size: 20px;
+	}
+	.home-customize{
+		margin-left: 200px;
+		margin-right: 200px;
+	}
+	.product-details-mobile{
+		display: none;
+	}
+}
 @media screen and (max-width: 480px) {
+
+	.product-details{
+		display: none;
+	}
+
+	.who-we-are{
+	color: black;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 20px;
+	text-align: justify;
+	}
+
 	#sidebar {
 		padding-bottom: 40px;
 	}

@@ -100,7 +100,7 @@
     <div style="margin-top: 70px; margin-bottom: 20px" class="text-center mb-5">
         <div class="text-center mt-5 mb-5">
             <h1 style="font-size: 36px; font-weight: 600; margin-bottom: 20px">Who We Are</h1>
-            <p class="mb-3" style="color: black; margin-right: 200px; margin-left: 200px; font-size: 20px">"Wijesinghe Jewellers" is renowned for its exquisite craftsmanship, 
+            <p class="mb-3 who-we-are" >"Wijesinghe Jewellers" is renowned for its exquisite craftsmanship, 
                 creating jewelry pieces that exude elegance and sophistication. With decades of experience, their skilled 
                 artisans blend traditional techniques with contemporary designs, resulting in unique and timeless creations. 
                 Committed to quality and customer satisfaction, they offer personalized services, ensuring each client receives 
@@ -191,7 +191,7 @@
         <div style="margin-top: 70px; margin-bottom: 20px" class="text-center mb-5">
             <div class="text-center mt-5 mb-5">
                 <h1 style="font-size: 36px; font-weight: 600; margin-bottom: 20px">Customize your own jewellery</h1>
-                <div style="margin-left: 200px; margin-right: 200px" class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">
+                <div  class="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row home-customize">
                     <img src="{{ asset('images/home/img1.jpg') }}" alt="" style="width: 600px; height: 400px;" class="border border-gray-900 rounded-md p-2 inline-block">
                     <div class="flex-col justify-center  p-6 ">
                         
@@ -215,7 +215,12 @@
                              into a stunning, one-of-a-kind masterpiece that’s made just for you.
                              <br><br>
                             </p>
-                        <a href="{{ route('user.customize') }}" class="bg-yellow-500 text-white py-4 px-4 rounded-md w-48">Customize Now</a>
+                            @if ($user)
+                                <a href="{{ route('user.customize') }}" class="bg-yellow-500 text-white py-4 px-4 rounded-md w-48">Customize Now</a>
+                            @else
+                            <a href="{{ route('userlogin') }}" class="bg-yellow-500 text-white py-4 px-4 rounded-md w-48">Login to Customize </a>
+                            @endif
+                        
                     </div>
                 </div>
             </div>
