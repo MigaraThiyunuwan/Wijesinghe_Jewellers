@@ -1907,8 +1907,7 @@ h1 {
 
 }
 
-
-@media only screen and (min-width: 481px) {
+@media only screen and (min-width: 760px) {
 	.who-we-are{
 		color: black;
 		margin-left: 200px;
@@ -1919,13 +1918,26 @@ h1 {
 		margin-left: 200px;
 		margin-right: 200px;
 	}
+	
+}
+
+@media only screen and (min-width: 481px) {
+	
 	.product-details-mobile{
+		display: none;
+	}
+
+	.wedding-mobile{
 		display: none;
 	}
 }
 @media screen and (max-width: 480px) {
 
 	.product-details{
+		display: none;
+	}
+
+	.wedding{
 		display: none;
 	}
 

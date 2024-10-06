@@ -10,6 +10,7 @@
     <link rel="stylesheet" media="all" href="{{ asset('css/about.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     @php
         $user = session()->get('user');
         $manager = session()->get('manager');
@@ -239,6 +240,7 @@
     
 
 
+          
 
     <footer id="footer">
         <div class="container">
@@ -284,4 +286,5 @@
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
 	<script src="../js/plugins.js"></script>
 	<script src="../js/main.js"></script>
+    
 </body>
