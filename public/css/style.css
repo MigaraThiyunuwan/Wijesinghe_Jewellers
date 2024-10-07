@@ -1930,6 +1930,13 @@ h1 {
 	.wedding-mobile{
 		display: none;
 	}
+	.chat{
+		display: flex;
+	}
+
+	.chat-profile{
+		width: 400px;
+	}
 }
 @media screen and (max-width: 480px) {
 
@@ -1941,6 +1948,19 @@ h1 {
 		display: none;
 	}
 
+	.chat{
+		display: flex;
+		flex-direction: column;
+	}
+	.chat-profile{
+		width: 95%;
+	}
+	.necklace-cus{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 	.who-we-are{
 	color: black;
 	margin-left: 20px;

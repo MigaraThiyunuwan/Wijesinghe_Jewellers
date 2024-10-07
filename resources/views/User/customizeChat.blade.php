@@ -84,8 +84,8 @@
   
   
   <div id="messages" class="flex h-screen antialiased text-gray-800">
-      <div class="flex flex-row h-full w-full overflow-x-hidden">
-        <div class="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
+      <div class=" h-full w-full overflow-x-hidden chat">  
+        <div class="flex flex-col py-8 pl-6 pr-2 bg-white flex-shrink-0 chat-profile">
           <div class="flex flex-row items-center justify-center h-12 w-full">
             <div
               class="flex items-center justify-center rounded-2xl text-yellow-700 bg-yellow-100 h-10 w-10"
@@ -268,33 +268,6 @@
         
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
             <div
               class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
             >

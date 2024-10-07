@@ -8,6 +8,7 @@
 	
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
 	@php
       $user = session()->get('user');
 	  $manager = session()->get('manager');
@@ -64,6 +65,7 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
+            <ul>
 			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
           <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
           <li><a href="{{ route('shop.rings') }}">Rings</a></li>
@@ -72,6 +74,7 @@
           <li><a href="{{ route('aboutus') }}">About</a></li>
           <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
           <li><a href="{{ route('contactus') }}">Contact Us</a></li>
+            </ul>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -112,7 +115,7 @@
         })
     </script>
 
-<div id="body" class="formbg">
+<div id="body" class="formbg wedding">
 
 
     @if (count($eventList) > 0)
@@ -199,7 +202,7 @@
                                         <input type="hidden" name="event_id" value="{{$event->id}}">
                                         <input type="hidden" name="price" value="{{$event->price}}">
                                         <input type="hidden" name="user_id" value="{{$user->id}}">
-                                        <button type="submit" class="btn-grey">Buy Now</button>
+                                        <button type="submit" class="inline-flex px-5 py-3 text-white bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 rounded-md ml-6 mb-3">Buy Now</button>
 
                                     </form>
                                         {{-- <a class="btn-grey">Buy Now </a> --}}
@@ -229,6 +232,147 @@
     
    
 </div>
+
+<div id="body" class="formbg1 wedding-mobile">
+	<section class=" py-8 antialiased  md:py-12">
+		<div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+		  <div class="mb-4 grid gap-4 sm:grid-cols-2  md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
+			@foreach($eventList as $item)
+
+
+			<div style="border: 1px solid" class="
+			@if ($item->quantity == 0)
+					outofstock
+				@endif
+			rounded-lg border  border-gray-200
+			@if ($item->quantity != 0)
+					hover:bg-yellow-100
+			@endif
+			 bg-yellow-0 p-6 shadow-sm ">
+
+			  <div style="" class="h-56 w-full">
+				
+				  <img class="mx-auto h-full scale-100" src="{{ asset('storage/' . $item->image) }}" alt="" />
+				  
+				</a>
+			  </div>
+	  
+			  <div class="p-3 rounded">
+				
+	  
+				<div class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">{{$item->name}}</div>
+	  
+				
+                
+				
+	  
+				<div class="mt-4 flex items-center justify-between gap-4">
+				  <p class="text-md font-extrabold leading-tight text-gray-900 ">Rs {{$item->price}}</p>
+					{{-- <a href="{{ route('shop.productDetails', $item->id) }}">
+						<button type="button" class="inline-flex items-center rounded-lg bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 ">
+						
+							<svg class="-ms-2 me-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+							Details
+						</button>
+					</a> --}}
+
+                    @if ($user == null)
+                       
+                                    <div style="display: flex; justify-content: flex-end">
+                                        <div class="flex items-center bg-yellow-500 text-white text-sm font-bold px-4 py-3" role="alert">
+                                            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/></svg>
+                                            <p> login to buy this item.</p>
+                                        </div>
+                                    </div>
+                                    @else
+
+                                    <form action="{{route('events.receiverdetails')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="event_id" value="{{$item->id}}">
+                                        <input type="hidden" name="price" value="{{$item->price}}">
+                                        <input type="hidden" name="user_id" value="{{$user->id}}">
+                                        {{-- <button type="submit" class="inline-flex px-5 py-3 text-white bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 rounded-md ml-6 mb-3">Buy Now</button> --}}
+                                        <button type="submit" class="inline-flex items-center rounded-lg bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 ">
+						
+                                            
+                                            Buy now
+                                        </button>
+                                    </form>
+                                        {{-- <a class="btn-grey">Buy Now </a> --}}
+                                        
+        
+                                    @endif
+				</div>
+			  </div>
+              
+              <div id="accordion-collapse{{$item->id}}" data-accordion="collapse{{$item->id}}">
+                <h2 id="accordion-collapse-heading-{{$item->id}}">
+                  <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 " data-accordion-target="#accordion-collapse-body-{{$item->id}}" aria-expanded="true" aria-controls="accordion-collapse-body-{{$item->id}}">
+                    <span>Description</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                    </svg>
+                  </button>
+                </h2>
+                <div id="accordion-collapse-body-{{$item->id}}" class="hidden" aria-labelledby="accordion-collapse-heading-{{$item->id}}">
+                  <div class="p-5 border border-b-0 border-gray-200 ">
+                    <p class="mb-2 text-gray-500 ">{{$item->description}}</p>
+                    
+                  </div>
+                </div>
+
+                <h2 id="accordion-collapse-heading-{{$item->id+500}}">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 " data-accordion-target="#accordion-collapse-body-{{$item->id+500}}" aria-expanded="false" aria-controls="accordion-collapse-body-{{$item->id+500}}">
+                      <span>Specification</span>
+                      <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                      </svg>
+                    </button>
+                  </h2>
+                  <div id="accordion-collapse-body-{{$item->id+500}}" class="hidden" aria-labelledby="accordion-collapse-heading-{{$item->id+500}}">
+                    <div class="p-5 border border-b-0 border-gray-200 ">
+                      <p class="mb-2 text-gray-500 ">{{$item->specification}}</p>
+                      
+                    </div>
+                  </div>
+
+                  <h2 id="accordion-collapse-heading-{{$item->id+1000}}">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 " data-accordion-target="#accordion-collapse-body-{{$item->id+1000}}" aria-expanded="false" aria-controls="accordion-collapse-body-{{$item->id+1000}}">
+                      <span>Notes</span>
+                      <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                      </svg>
+                    </button>
+                  </h2>
+                  <div id="accordion-collapse-body-{{$item->id+1000}}" class="hidden" aria-labelledby="accordion-collapse-heading-{{$item->id+1000}}">
+                    <div class="p-5 border border-t-0 border-gray-200 ">
+                      <p class="mb-2 text-gray-500 ">{{$item->note}}</p>
+                      
+                    </div>
+                  </div>
+                
+            </div>
+  
+			</div>
+			
+
+
+			@endforeach
+		  </div>
+		  {{-- <div class="w-full text-center">
+			<button type="button" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 ">Show more</button>
+		  </div> --}}
+		</div>
+		
+	</section>
+    
+    
+</div>
+
+
+
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const items = document.querySelectorAll('.item');
@@ -318,4 +462,5 @@
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
 	<script src="../js/plugins.js"></script>
 	<script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 </body>

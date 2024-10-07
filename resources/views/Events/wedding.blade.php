@@ -290,8 +290,8 @@
 
                                     <form action="{{route('events.receiverdetails')}}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="event_id" value="{{$event->id}}">
-                                        <input type="hidden" name="price" value="{{$event->price}}">
+                                        <input type="hidden" name="event_id" value="{{$item->id}}">
+                                        <input type="hidden" name="price" value="{{$item->price}}">
                                         <input type="hidden" name="user_id" value="{{$user->id}}">
                                         {{-- <button type="submit" class="inline-flex px-5 py-3 text-white bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 rounded-md ml-6 mb-3">Buy Now</button> --}}
                                         <button type="submit" class="inline-flex items-center rounded-lg bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 ">

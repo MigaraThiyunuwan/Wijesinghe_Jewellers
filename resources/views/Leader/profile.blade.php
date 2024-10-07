@@ -186,6 +186,7 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
+      <ul>
 			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
           <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
           <li><a href="{{ route('shop.rings') }}">Rings</a></li>
@@ -194,6 +195,7 @@
           <li><a href="{{ route('aboutus') }}">About</a></li>
           <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
           <li><a href="{{ route('contactus') }}">Contact Us</a></li>
+      </ul>
 		</div>
 		<!-- / container -->
 	</nav>

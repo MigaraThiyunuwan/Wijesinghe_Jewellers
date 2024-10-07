@@ -55,6 +55,7 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
+            <ul>
 			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
           <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
           <li><a href="{{ route('shop.rings') }}">Rings</a></li>
@@ -63,6 +64,7 @@
           <li><a href="{{ route('aboutus') }}">About</a></li>
           <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
           <li><a href="{{ route('contactus') }}">Contact Us</a></li>
+            </ul>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -179,7 +181,7 @@
                                             Choose Necklace Style
                                         </label>
                                         
-                                        <div class="flex items-center space-x-28">
+                                        <div class="flex items-center space-x-28 necklace-cus">
                                             <label  class="cursor-pointer relative"> 
                                                 <input type="radio" name="necklace_style" value="box"  />
                                                 <img style="width: 500px; height: 200px;" src="{{ asset('images/customize/box_chain.jpg') }}" alt="Necklace Option 1" class="w-24 h-24 object-cover rounded-full border border-gray-300">
@@ -285,7 +287,7 @@
                                                 Choose Ring Style
                                             </label>
                                             
-                                            <div class="flex items-center space-x-28">
+                                            <div class="flex items-center space-x-28 necklace-cus">
                                                 <label  class="cursor-pointer relative"> 
                                                     <input type="radio" name="ring_style" value="bypass"  />
                                                     <img style="width: 500px; height: 200px;" src="{{ asset('images/customize/bypass_ring.png') }}" alt="Necklace Option 1" class="w-24 h-24 object-cover rounded-full border border-gray-300">
