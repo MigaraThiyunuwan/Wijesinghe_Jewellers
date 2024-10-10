@@ -234,6 +234,7 @@ class CustomizationController extends Controller
         }
 
         $newFolderName = $request->input('cus_req_id');
+        $cus_req_id = $request->input('cus_req_id');
 
         // Storage path for folder1
         $folder1Path = 'public/models/' . $newFolderName;
@@ -250,6 +251,12 @@ class CustomizationController extends Controller
             // Store the file in storage
             $file->storeAs($folder1Path, $fileName);
         }
+
+
+        $order = new CustomizeOrder();
+        $cusOrder = $order->getOrderDetail($cus_req_id);
+        $cusOrder->model = 'ready';
+        $cusOrder->save();
 
 
         // Storage path for folder2 (textures)
