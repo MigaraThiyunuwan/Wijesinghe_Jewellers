@@ -132,10 +132,34 @@
         
                             </div>
                             <div style="padding-left: 50px; margin-top: 30px" class="details">
-                                <h1>
-                                    {{$event->name}}
-                                </h1>
+                                <div style="display: flex; justify-content: space-between">
+                                    <h1>
+                                        {{$event->name}}
+                                    </h1>
+                                    @if ($event->discountPrice != 0.00)
+                                    <h1 style="color: red;">{{(int)$event->discountPrice }} % Discount</h1>
+                                    @endif
+                                </div>
+                                @if ($event->discountPrice == 0.00)
                                 <h4>Rs.{{$event->price}}</h4>
+
+                                @else
+                                @php
+                                    $discount = $event->price * $event->discountPrice / 100;
+                                    $discountedPrice = $event->price - $discount;
+                                @endphp
+                                <div style="display: flex">
+                                    <h4 style="font-size: 20px" class="line-through">Rs {{$event->price}} </h4>
+                                    
+                                    <h4 class="ml-5" style="color: rgb(255, 0, 0)"> Rs {{$discountedPrice}}.00 </h4>
+                                </div>
+                                @endif
+                                {{-- <h4>Rs.{{$event->price}}
+
+                                    @if ($event->discountPrice == 10.00)
+                                        <span class="text-sm font-normal text-gray-500 line-through">Rs {{$event->discountPrice}}</span>
+                                    @endif
+                                </h4> --}}
                                 <div class="entry">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                                     <div class="tabs">
@@ -202,7 +226,11 @@
                                     <form action="{{route('events.receiverdetails')}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="event_id" value="{{$event->id}}">
+                                        @if ($event->discountPrice == 0.00)
                                         <input type="hidden" name="price" value="{{$event->price}}">
+                                        @else
+                                        <input type="hidden" name="price" value="{{$discountedPrice}}">
+                                        @endif
                                         <input type="hidden" name="user_id" value="{{$user->id}}">
                                         <button type="submit" class="inline-flex px-5 py-3 text-white bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 rounded-md ml-6 mb-3">Buy Now</button>
 
@@ -262,21 +290,36 @@
 			  <div class="p-3 rounded">
 				
 	  
-				<div class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">{{$item->name}}</div>
+				<div class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">{{$item->name}}
+                    @if ($item->discountPrice != 0.00)
+                    <br>
+                    <p style="color: red; margin-top: 10px"> ({{(int)$item->discountPrice}}% Discount)</p>
+                    @endif
+
+                </div>
 	  
-				
                 
-				
+                    @if ($item->discountPrice == 0.00)
+                    <div class="mt-4" style="display: flex; justify-content: space-between">
+                        <p class="text-md font-extrabold leading-tight text-gray-900 ">Rs {{$item->price}}</p>
+                    </div>
+                    @else
+                    <div class="mt-4" style="display: flex; justify-content: space-between">
+                        @php
+                            $discount = $item->price * $item->discountPrice / 100;
+                            $discountedPrice = $item->price - $discount;
+                        @endphp
+                        <p class="text-md font-extrabold leading-tight text-gray-900 line-through">Rs {{$item->price}}</p>
+                        <p style="color: red" class="text-md font-extrabold leading-tight text-gray-900 ">Rs {{$discountedPrice}}.00</p>
+                    </div>
+
+                    @endif
+                    
+                
 	  
 				<div class="mt-4 flex items-center justify-between gap-4">
-				  <p class="text-md font-extrabold leading-tight text-gray-900 ">Rs {{$item->price}}</p>
-					{{-- <a href="{{ route('shop.productDetails', $item->id) }}">
-						<button type="button" class="inline-flex items-center rounded-lg bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 ">
-						
-							<svg class="-ms-2 me-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
-							Details
-						</button>
-					</a> --}}
+				  
+					
 
                     @if ($user == null)
                        
@@ -291,7 +334,11 @@
                                     <form action="{{route('events.receiverdetails')}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="event_id" value="{{$item->id}}">
+                                        @if ($item->discountPrice == 0.00)
                                         <input type="hidden" name="price" value="{{$item->price}}">
+                                        @else
+                                        <input type="hidden" name="price" value="{{$discountedPrice}}">
+                                        @endif
                                         <input type="hidden" name="user_id" value="{{$user->id}}">
                                         {{-- <button type="submit" class="inline-flex px-5 py-3 text-white bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 rounded-md ml-6 mb-3">Buy Now</button> --}}
                                         <button type="submit" class="inline-flex items-center rounded-lg bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 ">

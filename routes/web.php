@@ -87,6 +87,9 @@ Route::get('manager/gembusiness', [ManagerController::class, 'gembusiness'])->na
 Route::get('manager/necklace', [ManagerController::class, 'managernecklace'])->name('manager.necklace');
 Route::get('manager/bracelet', [ManagerController::class, 'managerbracelet'])->name('manager.bracelet');
 Route::get('manager/earring', [ManagerController::class, 'managerearring'])->name('manager.earring');
+Route::get('manager/wedding', [ManagerController::class, 'managerwedding'])->name('manager.wedding');
+Route::get('manager/panchayudha', [ManagerController::class, 'managerpanchayudha'])->name('manager.panchayudha');
+Route::get('manager/apala', [ManagerController::class, 'managerapala'])->name('manager.apala');
 Route::get('manager/ring', [ManagerController::class, 'managerring'])->name('manager.ring');
 Route::get('manager/pendingrequest', [ManagerController::class, 'pendingrequest'])->name('manager.unverifiedgembusiness');
 Route::get('manager/pendingorders', [ManagerController::class, 'pendingorders'])->name('manager.pendingorders');
@@ -103,6 +106,8 @@ Route::post('manager/deletegembusiness', [ManagerController::class, 'deletegembu
 Route::post('manager/removeitem', [ManagerController::class, 'removeitem'])->name('manager.removeitem'); 
 Route::post('manager/changequntity', [ManagerController::class, 'changeQuntity'])->name('manager.changequntity');
 Route::post('manager/changeprice', [ManagerController::class, 'changePrice'])->name('manager.changeprice');
+Route::post('manager/changeeventPrice', [ManagerController::class, 'changeEventPrice'])->name('manager.changeeventPrice');
+Route::post('manager/changepercentage', [ManagerController::class, 'changePercentage'])->name('manager.changepercentage');
 Route::post('manager/changematerialprice', [ManagerController::class, 'changematerialprice'])->name('manager.changematerialprice');
 Route::post('manager/changecusgemprice', [ManagerController::class, 'changecusgemprice'])->name('manager.changecusgemprice');
 

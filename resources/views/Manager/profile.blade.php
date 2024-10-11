@@ -802,6 +802,21 @@
                     <td class="px-6 py-4">{{$item->getNumberOfItemsPerCategory('Bracelet')}}</td>
                     <td class="px-6 py-4"><a href="{{ route('manager.bracelet') }}" class="font-medium text-blue-600 hover:underline">View</a></td>
                 </tr>
+                <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+                  <td class="px-6 py-4">Wedding packages</td>
+                  <td class="px-6 py-4">{{$eventObj->getCategoryCount('Wedding')}}</td>
+                  <td class="px-6 py-4"><a href="{{ route('manager.wedding') }}" class="font-medium text-blue-600 hover:underline">View</a></td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+                  <td class="px-6 py-4">Panchayudha packages</td>
+                  <td class="px-6 py-4">{{$eventObj->getCategoryCount('Panchayudha')}}</td>
+                  <td class="px-6 py-4"><a href="{{ route('manager.panchayudha') }}" class="font-medium text-blue-600 hover:underline">View</a></td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+                  <td class="px-6 py-4">Apala packages</td>
+                  <td class="px-6 py-4">{{$eventObj->getCategoryCount('Apala')}}</td>
+                  <td class="px-6 py-4"><a href="{{ route('manager.apala') }}" class="font-medium text-blue-600 hover:underline">View</a></td>
+                </tr>
             </tbody>
         </table>
     </div>

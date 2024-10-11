@@ -205,7 +205,7 @@
 		<div class="container">
 			<ul>
 				<li><a href="{{route('manager.profile')}}">Manager</a></li>
-				<li>Necklaces</li>
+				<li>Apala packages</li>
 			</ul>
 		</div>
 		<!-- / container -->
@@ -219,13 +219,13 @@
 
 
         <!-- necklace Table -->
-        @if(count($itemList) > 0)
+        @if(count($eventList) > 0)
         <div style="font-family:Novecentowide; " class="mt-4 mx-4">
           
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="flex flex-wrap items-center px-4 py-2">
               <div class="md:col-span-2 xl:col-span-3">
-                <h3 class="text-lg font-semibold">Necklaces </h3>
+                <h3 class="text-lg font-semibold">Apala packages </h3>
 
                 @if (session('managerSuccess'))
 
@@ -257,8 +257,8 @@
                   <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3">Name</th>
                     <th class="px-4 py-3">Price</th>
-                    <th class="px-4 py-3">Quantity</th>
-                    <th class="px-4 py-3">View Necklace</th>
+                    <th class="px-4 py-3">Discount %</th>
+                    <th class="px-4 py-3">View Item</th>
                     <th class="px-4 py-3">Remove</th>
                   </tr>
                 </thead>
@@ -266,17 +266,12 @@
                   @php
                     $count = 0;
                   @endphp
-                  @foreach($itemList as $item)
+                  @foreach($eventList as $item)
                   
                   @php
                     $count = $count + 1;
                   @endphp
-                  <tr 
-                  @if ($item->quantity < 5)
-                      style="background-color: rgb(250, 222, 222)"
-                  @endif
-                  
-                  class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
                     <td class="px-4 py-3">
                       <div class="flex items-center text-sm">
                         {{-- <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
@@ -286,11 +281,11 @@
                         <div>
                           <p class="font-semibold">{{ $item->name }}</p>
                           <p class="text-xs text-gray-600 dark:text-gray-400">Customizable: 
-                            @if ($item->customize == 'false')
+                            {{-- @if ($item->customize == 'false')
                                 NO
                             @else
                                 YES
-                            @endif
+                            @endif --}}
 
 
                           </p>
@@ -299,7 +294,7 @@
                     </td>
                     <td class="px-4 py-3 text-sm">{{$item->price}} &nbsp;&nbsp; <button data-modal-target="authentication-modal1{{$item->id}}" data-modal-toggle="authentication-modal1{{$item->id}}" > <i class="fa-solid fa-pen-to-square"></i> </button> </td>
                     
-                    <td  class="px-4 py-3 text-sm">{{$item->quantity}} &nbsp;&nbsp; <button data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"> <i class="fa-solid fa-pen-to-square"></i> </button> </td>
+                    <td  class="px-4 py-3 text-sm">{{$item->discountPrice}}  &nbsp;&nbsp; <button data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"> <i class="fa-solid fa-pen-to-square"></i> </button> </td>
 
                     <td class="px-4 py-3 text-xs">
                         <button data-modal-target="popup-modal1{{$item->id}}" data-modal-toggle="popup-modal1{{$item->id}}" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">View</button>
@@ -379,7 +374,7 @@
                           <!-- Modal header -->
                           <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                               <h3 class="text-xl font-semibold text-gray-900">
-                                  Change Item Qunatity
+                                  Change Discount Percentage
                               </h3>
                               <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal{{$item->id}}">
                                   <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -390,15 +385,15 @@
                           </div>
                           <!-- Modal body -->
                           <div class="p-4 md:p-5">
-                            <form class="space-y-4" action="{{route('manager.changequntity')}}" method="POST">
+                            <form class="space-y-4" action="{{route('manager.changepercentage')}}" method="POST">
                               @csrf
                                   <div>
-                                      <label for="new_quantity" class="block mb-2 text-sm font-medium text-gray-900">Enter New Quantity</label>
-                                      <input type="number" name="new_quantity" id="new_quantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="{{$item->quantity}}" required />
+                                      <label for="new_percentage" class="block mb-2 text-sm font-medium text-gray-900">Enter New Percentage</label>
+                                      <input type="number" name="new_percentage" id="new_percentage" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="{{$item->discountPrice}}" required />
                                   </div>
-                                  <input type="hidden" name="item_id" value="{{$item->id}}" >
+                                  <input type="hidden" name="event_id" value="{{$item->id}}" >
                                   
-                                  <button style="margin-top: 20px" type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Confirm Change Qunatity</button>
+                                  <button style="margin-top: 20px" type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Confirm Change Percentage</button>
                                   
                             </form>
                                   
@@ -427,13 +422,13 @@
                           </div>
                           <!-- Modal body -->
                           <div class="p-4 md:p-5">
-                            <form class="space-y-4" action="{{route('manager.changeprice')}}" method="POST">
+                            <form class="space-y-4" action="{{route('manager.changeeventPrice')}}" method="POST">
                               @csrf
                                   <div>
                                       <label for="new_price" class="block mb-2 text-sm font-medium text-gray-900">Enter New Price</label>
                                       <input type="number" name="new_price" id="new_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="{{$item->price}}" required />
                                   </div>
-                                  <input type="hidden" name="item_id" value="{{$item->id}}" >
+                                  <input type="hidden" name="event_id" value="{{$item->id}}" >
                                   
                                   <button style="margin-top: 20px" type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Confirm Change Price</button>
                                   
@@ -456,7 +451,7 @@
           </div>
         </div>
         @else
-        <p>No Registered Users found.</p>
+        <p>No wedding items found.</p>
         @endif
         <!-- ./necklace Table -->
 
