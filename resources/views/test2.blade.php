@@ -1,17 +1,5 @@
 {{-- -------------------------------------------------Malki -------------------------------------------------------------}}
 
-jnsklnklndlkdnflkn @{{ djiuwdjinfjdn
-jdnfjdnjndscd }}]
-mcd msd vjnd sjmvn jmlsdn vjsdnvjnsdjnvc
-cmsmssckancknskncjsdn <var>
-    mksackdnjdnv
-
-
-mckdnnk</var>
-
-
-
-
 
 
 
