@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2024 at 08:56 PM
+-- Generation Time: Oct 12, 2024 at 07:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -139,7 +139,12 @@ INSERT INTO `customize_chats` (`id`, `cus_req_id`, `owner`, `type`, `message`, `
 (53, 8, 'user', 'text', 'Hellow!, I need to customize a necklace.', '2024-07-25 02:02:01', '2024-07-25 02:02:01'),
 (54, 9, 'user', 'text', 'Hellow!, I need to customize a Ring With Gems', '2024-08-04 08:14:08', '2024-08-04 08:14:08'),
 (55, 3, 'user', 'text', 'okay 👍', '2024-08-05 12:22:53', '2024-08-05 12:22:53'),
-(56, 9, 'user', 'text', 'hi', '2024-08-12 01:58:28', '2024-08-12 01:58:28');
+(56, 9, 'user', 'text', 'hi', '2024-08-12 01:58:28', '2024-08-12 01:58:28'),
+(57, 5, 'manager', 'text', 'okayyyy', '2024-10-07 06:44:19', '2024-10-07 06:44:19'),
+(58, 5, 'user', 'text', 'thank you!', '2024-10-07 06:46:36', '2024-10-07 06:46:36'),
+(59, 5, 'user', 'image', 'chats/57382593816.jpg', '2024-10-07 06:47:26', '2024-10-07 06:47:26'),
+(60, 9, 'manager', 'image', 'chats/91685176311.png', '2024-10-10 07:33:54', '2024-10-10 07:33:54'),
+(61, 9, 'manager', 'image', 'chats/92290972372.png', '2024-10-10 07:34:07', '2024-10-10 07:34:07');
 
 -- --------------------------------------------------------
 
@@ -164,11 +169,11 @@ CREATE TABLE `customize_orders` (
 --
 
 INSERT INTO `customize_orders` (`id`, `cus_req_id`, `user_id`, `status`, `transaction`, `model`, `totalBill`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-14 09:21:08', '2024-07-14 09:21:08'),
+(1, 1, 1, 'polish', 'pending', 'ready', 350000.00, '2024-07-14 09:21:08', '2024-10-10 07:21:10'),
 (2, 2, 1, 'reject', 'pending', 'pending', 0.00, '2024-07-14 10:00:04', '2024-07-15 11:44:55'),
-(3, 3, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-14 10:06:11', '2024-07-14 10:06:11'),
-(4, 4, 1, 'quality', 'pending', 'pendin', 300000.00, '2024-07-14 10:06:11', '2024-08-01 00:24:31'),
-(5, 5, 1, 'sold', 'success', 'ready', 40000.00, '2024-07-14 23:36:33', '2024-08-01 00:24:38'),
+(3, 3, 1, 'accept', 'pending', 'ready', 330000.00, '2024-07-14 10:06:11', '2024-10-10 01:28:01'),
+(4, 4, 1, 'stone', 'pending', 'pendin', 300000.00, '2024-07-14 10:06:11', '2024-10-07 07:08:16'),
+(5, 5, 1, 'polish', 'success', 'ready', 40000.00, '2024-07-14 23:36:33', '2024-10-07 07:06:37'),
 (6, 6, 1, 'cad', 'success', 'ready', 45000.00, '2024-07-17 02:07:46', '2024-07-25 23:29:17'),
 (7, 7, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-25 01:57:38', '2024-07-25 01:57:38'),
 (8, 8, 1, 'pending', 'pending', 'pending', 0.00, '2024-07-25 02:02:01', '2024-07-25 02:02:01'),
@@ -360,9 +365,9 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `category`, `price`, `image`, `name`, `description`, `specification`, `note`, `discount`, `discountPrice`, `created_at`, `updated_at`) VALUES
-(2, 'Wedding', 25000.00, 'events/2.png', 'Eternal Romance Package', 'Includes two platinum rings and a diamond necklace. Symbolizes everlasting love and commitment with timeless elegance.', 'Platinum rings, diamond necklace, total 1.00 carat diamond weight, elegant designs.', 'Perfect for couples seeking timeless elegance. This beautiful set symbolizes eternal love.', 'none', 0.00, '2024-08-01 02:43:43', '2024-08-01 02:43:44'),
+(2, 'Wedding', 30000.00, 'events/2.png', 'Eternal Romance Package', 'Includes two platinum rings and a diamond necklace. Symbolizes everlasting love and commitment with timeless elegance.', 'Platinum rings, diamond necklace, total 1.00 carat diamond weight, elegant designs.', 'Perfect for couples seeking timeless elegance. This beautiful set symbolizes eternal love.', 'none', 10.00, '2024-08-01 02:43:43', '2024-10-11 11:21:09'),
 (3, 'Wedding', 15000.00, 'events/3.png', 'Forever Yours Set', 'Two white gold rings and a sapphire necklace. Celebrates your forever bond with modern sophistication.', '14K white gold rings, sapphire necklace, total 0.75 carat sapphire weight, modern designs.', 'Ideal for modern couples. This set is an affordable yet luxurious choice for your special day.', 'none', 0.00, '2024-08-01 02:45:35', '2024-08-01 02:45:35'),
-(4, 'Wedding', 20000.00, 'events/4.png', 'Classic Elegance Bundle', 'Includes two yellow gold rings and a ruby necklace. Embrace classic elegance with traditional charm.', '18K yellow gold rings, ruby necklace, total 1.00 carat ruby weight, traditional designs.', 'Perfect for traditionalists. This set exudes timeless charm and sophistication.', 'none', 0.00, '2024-08-01 02:54:57', '2024-08-01 02:54:57'),
+(4, 'Wedding', 20000.00, 'events/4.png', 'Classic Elegance Bundle', 'Includes two yellow gold rings and a ruby necklace. Embrace classic elegance with traditional charm.', '18K yellow gold rings, ruby necklace, total 1.00 carat ruby weight, traditional designs.', 'Perfect for traditionalists. This set exudes timeless charm and sophistication.', 'none', 0.00, '2024-08-01 02:54:57', '2024-10-11 12:16:59'),
 (5, 'Wedding', 30000.00, 'events/5.png', 'Radiant Love Package', 'Two rose gold rings and an emerald necklace. Reflects your radiant love with unique beauty.', '14K rose gold rings, emerald necklace, total 0.80 carat emerald weight, elegant designs.', 'Great for those who love unique beauty. This beautifully radiant set is perfect for your wedding day.', 'none', 0.00, '2024-08-01 03:05:42', '2024-08-01 03:05:42'),
 (6, 'Wedding', 23000.00, 'events/6.png', 'Timeless Treasure Set', 'Two vintage-style rings and a pearl necklace. Captures timeless beauty with intricate design.', 'Vintage rings, pearl necklace, intricate designs, 0.50 carat total diamond weight.', 'Ideal for vintage enthusiasts. This set is perfect for celebrating your timeless love.', 'none', 0.00, '2024-08-01 03:06:26', '2024-08-01 03:06:26'),
 (7, 'Wedding', 24500.00, 'events/7.png', 'Enchanted Harmony Bundle', 'Includes two two-tone rings and an opal necklace. Harmonizes your love with unique design.', 'Two-tone rings, opal necklace, unique designs, 0.60 carat total diamond weight.', 'Great for unique couples. This harmonious and beautiful set is ideal for your wedding day.', 'none', 0.00, '2024-08-01 03:08:03', '2024-08-01 03:08:03'),
@@ -370,7 +375,7 @@ INSERT INTO `events` (`id`, `category`, `price`, `image`, `name`, `description`,
 (9, 'Wedding', 22000.00, 'events/9.png', 'Royal Splendor Set', 'Two regal rings and a diamond necklace. Exude royal elegance with luxurious design.', 'Regal rings, diamond necklace, 1.00 carat total diamond weight, luxurious designs.', 'Ideal for those who love luxury. This set is fit for royalty, perfect for your special day.', 'none', 0.00, '2024-08-01 03:10:14', '2024-08-01 03:10:14'),
 (10, 'Wedding', 32000.00, 'events/10.png', 'Nature’s Whisper Bundle', 'Two nature-inspired rings and a turquoise necklace. Celebrate nature’s beauty with organic design.', 'Nature-inspired rings, turquoise necklace, 0.50 carat total diamond weight, organic designs.', 'Great for nature lovers. This set captures the beauty of nature.', 'none', 0.00, '2024-08-01 03:11:54', '2024-08-01 03:11:54'),
 (11, 'Wedding', 18200.00, 'events/11.png', 'Mystical Beauty Package', 'Two black diamond rings and a moonstone necklace. Embrace mystical beauty with enchanting design.', 'Black diamond rings, moonstone necklace, 0.75 carat total diamond weight, mystical designs.', 'Perfect for those who love unique gems. This set exudes mystical charm.', 'none', 0.00, '2024-08-01 03:13:10', '2024-08-01 03:13:10'),
-(12, 'Panchayudha', 32000.00, 'events/12.png', 'Box Shape Baby Pendent', 'A sparkling star-shaped pendant designed for children, symbolizing their bright future and endless possibilities.', 'Sterling gold, star shape, 0.10 carat total diamond weight, 14-inch chain, secure clasp, lightweight design.', 'Perfect for young dreamers. The star symbolizes aspirations and achievements, making it an inspiring gift for children.', 'none', 0.00, '2024-08-03 23:05:59', '2024-08-03 23:05:59'),
+(12, 'Panchayudha', 34000.00, 'events/12.png', 'Box Shape Baby Pendent', 'A sparkling star-shaped pendant designed for children, symbolizing their bright future and endless possibilities.', 'Sterling gold, star shape, 0.10 carat total diamond weight, 14-inch chain, secure clasp, lightweight design.', 'Perfect for young dreamers. The star symbolizes aspirations and achievements, making it an inspiring gift for children.', 'none', 10.00, '2024-08-03 23:05:59', '2024-10-11 12:36:59'),
 (13, 'Panchayudha', 38500.00, 'events/13.png', 'Boy Pendent With Dharmachakra', 'An adorable elephant-shaped pendant, symbolizing strength and wisdom, designed to inspire and protect children.', 'Sterling silver, elephant shape, 0.05 carat diamond, 14-inch chain, secure clasp, lightweight design.', 'Ideal for cheerful children. The sun pendant represents warmth and positivity, making it a joyful gift for young ones.', 'none', 0.00, '2024-08-03 23:10:43', '2024-08-03 23:10:43'),
 (14, 'Panchayudha', 32900.00, 'events/14.png', 'Girl Flower Shape Pendent', 'A delicate flower-shaped pendant, symbolizing growth and beauty, designed to enchant and inspire children.', 'Sterling silver, flower shape, 0.08 carat total diamond weight, 14-inch chain, secure clasp, lightweight design.', 'Perfect for nature lovers. The flower represents growth and beauty, making it a charming gift for young ones.', 'none', 0.00, '2024-08-03 23:12:31', '2024-08-03 23:12:31'),
 (15, 'Panchayudha', 40000.00, 'events/15.png', 'Boo Kola Shape Pendent', 'A delicate boo kola-shaped pendant, symbolizing transformation and growth, designed to charm and delight young ones.', '14K gold, crown shape, 0.10 carat sapphire, 14-inch chain, secure clasp, child-friendly design.', 'Ideal for showing affection. This pendant is a sweet and meaningful gift for a beloved child.', 'none', 0.00, '2024-08-03 23:17:06', '2024-08-03 23:17:06'),
@@ -379,7 +384,7 @@ INSERT INTO `events` (`id`, `category`, `price`, `image`, `name`, `description`,
 (18, 'Panchayudha', 28000.00, 'events/18.png', 'Girls Sweet Pendent', 'A sparkling round-shaped pendant designed for children, symbolizing their bright future and endless possibilities.', '14K gold, heart shape, 0.05 carat diamond, 14-inch chain, secure clasp, child-safe design.', 'Perfect for young dreamers. making it an inspiring gift for children.', 'none', 0.00, '2024-08-03 23:28:58', '2024-08-03 23:28:58'),
 (19, 'Panchayudha', 34000.00, 'events/19.png', 'Little Princess Pendant', 'A round-shaped pendant adorned with a small sapphire, perfect for the little princess in your life.', '14K gold, heart shape, 0.05 carat diamond, 14-inch chain, secure clasp, child-safe design.', 'Ideal for princess fans. The crown symbolizes royalty and specialness, making it a delightful gift for a little girl.', 'none', 0.00, '2024-08-03 23:38:37', '2024-08-03 23:38:37'),
 (20, 'Panchayudha', 40000.00, 'events/20.png', 'Happy Heart Pendant', 'A heart-shaped pendant with a tiny diamond, representing the love and joy children bring into our lives.', '14K gold, heart shape, 0.05 carat diamond, 14-inch chain, secure clasp, child-safe design.', 'Ideal for showing affection. The heart pendant is a sweet and meaningful gift for a beloved child.', 'none', 0.00, '2024-08-03 23:41:03', '2024-08-03 23:41:03'),
-(21, 'Apala', 20000.00, 'events/21.png', 'Amethyst Serenity Ring', 'Features a calming amethyst gemstone, designed to bring peace, clarity, and alleviate stress.', 'Round-cut amethyst in sterling silver (925), sizes 5-10, simple band.', 'Promotes tranquility, spiritual growth, and emotional balance.', 'none', 0.00, '2024-08-12 07:34:46', '2024-08-12 07:34:46'),
+(21, 'Apala', 20000.00, 'events/21.png', 'Amethyst Serenity Ring', 'Features a calming amethyst gemstone, designed to bring peace, clarity, and alleviate stress.', 'Round-cut amethyst in sterling silver (925), sizes 5-10, simple band.', 'Promotes tranquility, spiritual growth, and emotional balance.', 'none', 10.00, '2024-08-12 07:34:46', '2024-10-11 12:42:51'),
 (22, 'Apala', 15000.00, 'events/22.png', 'Citrine Prosperity Ring', 'Shines with golden citrine, attracting prosperity and joy.', 'Oval-cut citrine in sterling silver (925), elegant band.', 'Symbolizes success and wealth, enhancing financial and personal growth.', 'none', 0.00, '2024-08-12 07:35:41', '2024-08-12 07:35:41'),
 (23, 'Apala', 14500.00, 'events/23.png', 'Blue Sapphire Wisdom Ring', 'Enhances wisdom and spiritual insight, perfect for clarity and truth seekers.', 'Princess-cut blue sapphire in silver, sizes 5-11, classic band.', 'Improves focus and wisdom, ideal for knowledge and self-discovery.', 'none', 0.00, '2024-08-12 07:36:39', '2024-08-12 07:36:39'),
 (24, 'Apala', 12000.00, 'events/24.png', 'Rose Quartz Love Ring', 'Embrace love and healing with the gentle pink rose quartz.', 'Heart-shaped rose quartz in 14K rose gold.', 'Promotes love, self-care, and emotional healing, perfect for improving relationships.', 'none', 0.00, '2024-08-12 07:37:17', '2024-08-12 07:37:17'),
@@ -418,7 +423,8 @@ INSERT INTO `event_orders` (`id`, `event_id`, `user_id`, `status`, `price`, `pay
 (6, 13, 1, 'pending', 38500.00, 'success', 'Migara Thiyunuwan', '58/1, waragoda, attanagalla.', '0771416968', '2024-08-03 23:48:34', '2024-08-03 23:51:15'),
 (7, 3, 1, 'accept', 15000.00, 'success', 'Tharindu lakshan', 'No 26, Temple Road, Kelaniya', '0771527182', '2024-08-04 04:58:18', '2024-08-04 05:07:01'),
 (8, 16, 1, 'pending', 45000.00, 'success', 'malki madhubhashini', 'abcd', '0771526789', '2024-08-04 05:04:48', '2024-08-04 05:05:09'),
-(9, 2, 1, 'pending', 25000.00, 'pending', 'Migara Thiyunuwan', '58/1, waragoda, attanagalla.', '0771416968', '2024-08-12 02:53:22', '2024-08-12 02:53:22');
+(9, 2, 1, 'pending', 25000.00, 'pending', 'Migara Thiyunuwan', '58/1, waragoda, attanagalla.', '0771416968', '2024-08-12 02:53:22', '2024-08-12 02:53:22'),
+(10, 21, 1, 'pending', 20000.00, 'success', 'Migara Thiyunuwan', '58/1, waragoda, attanagalla.', '0771416968', '2024-10-05 09:13:05', '2024-10-05 09:13:47');
 
 -- --------------------------------------------------------
 
@@ -558,7 +564,8 @@ INSERT INTO `items` (`id`, `name`, `category`, `price`, `quantity`, `image`, `cu
 (66, 'Tanzanite Hoop Earrings', 'Earring', 14900.00, 0, 'necklaces/66.png', 'true', 'Elegant tanzanite hoop earrings in sterling silver, perfect for adding a touch of luxury.', 'Sterling silver, 0.3-carat tanzanites, hinged back, hypoallergenic, polished finish, secure clasp, lightweight.', '2024-07-11 09:54:33', '2024-07-11 09:54:33'),
 (67, 'Moonstone Dangle Earrings', 'Earring', 16400.00, 0, 'necklaces/67.png', 'true', 'Mystical moonstone dangle earrings in a silver setting, adding a touch of boho-chic.', 'Sterling silver, 1-carat moonstones, French hook, hypoallergenic, polished finish, secure closure, dangle design.', '2024-07-11 09:55:11', '2024-07-11 09:55:11'),
 (69, 'Morganite Stud Earrings', 'Earring', 18500.00, 10, 'necklaces/69.png', 'false', 'Blush pink morganite stud earrings in a rose gold setting, perfect for adding romance.', '14k rose gold, 0.5-carat morganites, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:56:13', '2024-08-11 05:06:04'),
-(70, 'Tourmaline Stud Earrings', 'Earring', 19000.00, 0, 'necklaces/70.png', 'false', 'Elegant tourmaline stud earrings in a gold setting, perfect for adding a touch of sophistication.', '14k gold, 0.5-carat tourmalines, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:56:49', '2024-07-11 09:56:49');
+(70, 'Tourmaline Stud Earrings', 'Earring', 19000.00, 0, 'necklaces/70.png', 'false', 'Elegant tourmaline stud earrings in a gold setting, perfect for adding a touch of sophistication.', '14k gold, 0.5-carat tourmalines, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-07-11 09:56:49', '2024-07-11 09:56:49'),
+(74, 'migaratest1', 'Necklace', 12312.00, 0, 'necklaces/74.png', 'customize/74.png', 'Elegant tourmaline stud earrings in a gold setting, perfect for adding a touch of sophistication.', '14k gold, 0.5-carat tourmalines, prong setting, butterfly backs, hypoallergenic, polished finish, round cut.', '2024-08-15 07:51:25', '2024-08-15 07:51:25');
 
 -- --------------------------------------------------------
 
@@ -1010,13 +1017,13 @@ ALTER TABLE `advertisements`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `customize_chats`
 --
 ALTER TABLE `customize_chats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `customize_orders`
@@ -1064,7 +1071,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `event_orders`
 --
 ALTER TABLE `event_orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1082,7 +1089,7 @@ ALTER TABLE `gem_businesses`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `leaders`
