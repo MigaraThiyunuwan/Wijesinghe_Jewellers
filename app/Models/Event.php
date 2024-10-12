@@ -34,4 +34,44 @@ class Event extends Model
         return self::find($id);
     }
 
+    public function getEventList($category)
+    {
+        return self::where('category', $category)->get();
+    }
+
+    public function getCategoryCount($category)
+    {
+        return self::where('category', $category)->count();
+    }
+
+    public function changePrice($id, $newPrice)
+    {
+        $event = self::find($id);
+        if($event)
+        {
+            $event->price = $newPrice;
+            $event->save();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
+    public function changePercentage($id, $newPercentage)
+    {
+        $event = self::find($id);
+        if($event)
+        {
+            $event->discountPrice = $newPercentage;
+            $event->save();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

@@ -29,6 +29,13 @@ class EventController extends Controller
         return view('Events.panchayudha', compact('eventList'));
     }
 
+    public function apala()
+    {
+        $event = new Event();
+        $eventList = $event->getNoneDiscountEventList('Apala');
+        return view('Events.apala', compact('eventList'));
+    }
+
     public function receiverdetails(Request $request)
     {
         $eventOrder = new EventOrder();

@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head>
 	<meta charset="utf-8">
-	<title>Jiwesinghe Jewellery</title>
+	<title>Wijesinghe Jewellery</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" media="all" href="{{ asset('css/about.css') }}">
@@ -16,6 +16,26 @@
     @endphp
 
 <style>
+	.outofstock{
+        background-color: rgba(255, 253, 242, 0.8);
+        background-image: url('{{ asset('images/out_of_stock.png') }}'); 
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+		width:100%;
+        position: relative;
+      }
+
+	  .formbg1{
+        background-color: rgba(255, 253, 242, 0.97);
+        background-image: url('{{ asset('images/logo_no_bg.png') }}'); 
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+        position: relative;
+      }
     #content .products .row {
         display: flex;
         flex-wrap: wrap;
@@ -75,6 +95,7 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
+			<ul>
 			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
           <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
           <li><a href="{{ route('shop.rings') }}">Rings</a></li>
@@ -83,6 +104,7 @@
           <li><a href="{{ route('aboutus') }}">About</a></li>
           <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
           <li><a href="{{ route('contactus') }}">Contact Us</a></li>
+			</ul>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -101,39 +123,83 @@
 	</div>
     
 
-<div id="body">
-    
-    <!-- / container -->
-    <div id="content" style="margin: 20px">
-        <section class="products">
-            <div class="row">
-                @foreach($itemList as $item)
-                    <article >
-                        <a href="{{ route('shop.productDetails', $item->id) }}"><img src="{{ asset('storage/' . $item->image) }}" alt=""></a>
-                        <h3><a href="{{ route('shop.productDetails', $item->id) }}">{{$item->name}}</a></h3>
-                        @if ($item->quantity == 0)
-                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-1 mt-2 rounded relative" role="alert">
-                                <strong class="font-bold">Out of Stock!</strong>
-                            </div>
-                        @endif
-                        <h4><a href="{{ route('shop.productDetails', $item->id) }}">Rs. {{$item->price}}</a></h4>
+<div id="body" class="formbg1">
 
-						
-							
-								<div style="display: flex; justify-content: center">
+	<section class=" py-8 antialiased  md:py-12">
+		<div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+		  <div class="mb-4 grid gap-4 sm:grid-cols-2  md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
+			@foreach($itemList as $item)
+
+
+			<div style="border: 1px solid" class="
+			@if ($item->quantity == 0)
+					outofstock
+				@endif
+			rounded-lg border  border-gray-200
+			@if ($item->quantity != 0)
+					hover:bg-yellow-100
+			@endif
+			 bg-yellow-0 p-6 shadow-sm ">
+			  <div style="" class="h-56 w-full">
+				<a href="{{ route('shop.productDetails', $item->id) }}">
+				  <img class="mx-auto h-full " src="{{ asset('storage/' . $item->image) }}" alt="" />
+				  <img class="mx-auto hidden h-full " src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/iphone-dark.svg" alt="" />
+				</a>
+			  </div>
+	  
+			  <div class="p-3 rounded">
 				
-									{{-- <button style="width: 100%" type="submit" class="btn-add">Add to cart</button> --}}
-								<a style="width: 100%" href="{{ route('shop.productDetails', $item->id) }}" class="btn-add" >View Details </a>
-							</div>
-							
+	  
+				<a href="{{ route('shop.productDetails', $item->id) }}" class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">{{$item->name}}</a>
+	  
+				<div class="mt-2 flex items-center gap-2">
+				  
+	  
+				  <p class="text-sm font-medium text-gray-500">{{$orderItemObj->getSoldCount($item->id)}}</p>
+				  <p class="text-sm font-medium text-gray-900">items sold</p>
+				  @if ($item->quantity == 0)
+                            {{-- <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-1 mt-2 rounded relative" role="alert">
+                                <strong class="font-bold">Out of Stock!</strong>
+                            </div> --}}
+					{{-- <p class="text-sm font-bold text-red-900">Out of Stock</p> --}}
+					<div id="alert" class="flex items-center pr-3 text-yellow-800  bg-red-400" role="alert">
 						
-                        
-                    </article>
-                @endforeach
-                
-            </div>
-        </section>
-    </div>
+						<div class="ms-3 text-sm font-medium">
+							Out Of Stock
+						</div>
+						
+					</div>
+                   @endif
+				  
+				</div>
+	  
+				
+	  
+				<div class="mt-4 flex items-center justify-between gap-4">
+				  <p class="text-md font-extrabold leading-tight text-gray-900 ">Rs {{$item->price}}</p>
+					<a href="{{ route('shop.productDetails', $item->id) }}">
+						<button type="button" class="inline-flex items-center rounded-lg bg-yellow-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 ">
+						
+							<svg class="-ms-2 me-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+							Details
+						</button>
+					</a>
+				</div>
+			  </div>
+			</div>
+			
+
+
+			@endforeach
+		  </div>
+		  {{-- <div class="w-full text-center">
+			<button type="button" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 ">Show more</button>
+		  </div> --}}
+		</div>
+		
+	</section>
+    
+   
 </div>
 <!-- / body -->
 

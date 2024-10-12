@@ -84,11 +84,11 @@
   
   
   <div id="messages" class="flex h-screen antialiased text-gray-800">
-      <div class="flex flex-row h-full w-full overflow-x-hidden">
-        <div class="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
+      <div class=" h-full w-full overflow-x-hidden chat">  
+        <div class="flex flex-col py-8 pl-6 pr-2 bg-white flex-shrink-0 chat-profile">
           <div class="flex flex-row items-center justify-center h-12 w-full">
             <div
-              class="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10"
+              class="flex items-center justify-center rounded-2xl text-yellow-700 bg-yellow-100 h-10 w-10"
             >
               <svg
                 class="w-6 h-6"
@@ -109,7 +109,7 @@
             
           </div>
           <div
-            class="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg"
+            class="flex flex-col items-center bg-yellow-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg"
           >
             <div class="h-20 w-20 rounded-full border overflow-hidden">
               <img
@@ -125,10 +125,10 @@
           <div class="flex flex-col mt-8">
           
             <div role="alert">
-              <div class="bg-blue-500 text-white font-bold rounded-t px-4 py-2">
+              <div class="bg-yellow-500 text-black font-bold rounded-t px-4 py-2">
                 Request Details
               </div>
-              <div class="border border-t-0 border-blue-400 rounded-b bg-blue-100 px-4 py-3 text-blue-700">
+              <div class="border border-t-0 border-yellow-400 rounded-b bg-yellow-50 px-4 py-3 text-yellow-700">
                 <p style="margin-top: 20px" > <strong> Gender: </strong> {{$request->gender}}  </p>
                 <p style="margin-top: 20px"> <strong> Style: </strong>   
                   @if ($request->style == 'snake' || $request->style == 'box' ||$request->style == 'figaro' || $request->style == 'rope')
@@ -176,18 +176,10 @@
 
           
       
-      <div class="flex flex-col h-full overflow-x-auto mb-4">
-          <div class="flex flex-col h-full">
-            <div id="chat-container" class="overflow-y-auto h-[calc(100vh-4rem)]">
+      <div class="formbg flex flex-col h-full overflow-x-auto mb-4">
+          <div class=" flex flex-col h-full">
+            <div id="chat-container" class=" overflow-y-auto h-[calc(100vh-4rem)]">
             <div id="chat-messages" class="grid grid-cols-12 gap-y-2">
-              
-             
-              
-              
-
-
-
-
               
               
             </div>
@@ -211,7 +203,7 @@
                         response.messages.forEach(function(message) {
                             // Determine message container based on owner
                     var messageContainerClass = (message.owner === 'manager') ? 'col-start-1 col-end-8' : 'col-start-6 col-end-13';
-                    var messageStyleClass = (message.owner === 'manager') ? 'bg-white' : 'bg-indigo-100';
+                    var messageStyleClass = (message.owner === 'manager') ? 'bg-white' : 'bg-yellow-300';
 
                     // Build HTML based on owner
                     messagesHtml += '<div class="' + messageContainerClass + ' p-3 rounded-lg">';
@@ -220,14 +212,14 @@
                     if(message.type === 'text'){
                         if (message.owner === 'manager') {
                             messagesHtml += '<div class="flex flex-row items-center">' +
-                                                '<div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">A</div>' +
+                                                '<div class="flex items-center justify-center h-10 w-10 rounded-full bg-yellow-500 flex-shrink-0">A</div>' +
                                                 '<div class="relative ml-3 text-sm ' + messageStyleClass + ' py-2 px-4 shadow rounded-xl">' +
                                                     '<div>' + message.message + '</div>' +
                                                 '</div>' +
                                             '</div>';
                         } else { // For user's messages
                             messagesHtml += '<div class="flex items-center justify-start flex-row-reverse">' +
-                                '<div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">A</div>' +
+                                '<div class="flex items-center justify-center h-10 w-10 rounded-full bg-yellow-500 flex-shrink-0">A</div>' +
                                                 '<div class="relative mr-3 text-sm ' + messageStyleClass + ' py-2 px-4 shadow rounded-xl">' +
                                                     '<div>' + message.message + '</div>' +
                                                 '</div>' +
@@ -237,14 +229,14 @@
                     }else{
                       if (message.owner === 'manager') {
                             messagesHtml += '<div class="flex flex-row items-center">' +
-                                                '<div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">A</div>' +
+                                                '<div class="flex items-center justify-center h-10 w-10 rounded-full bg-yellow-500 flex-shrink-0">A</div>' +
                                                 '<div class="relative ml-3 text-sm ' + messageStyleClass + ' py-2 px-4 shadow rounded-xl">' +
                                                     '<div> <img class="h-auto max-w-full" style="width: 300px; height: 200px;" src="/storage/' +message.message+ '" alt="image description"></div>' +
                                                 '</div>' +
                                             '</div>';
                         } else { // For user's messages
                             messagesHtml += '<div class="flex items-center justify-start flex-row-reverse">' +
-                                '<div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">A</div>' +
+                                '<div class="flex items-center justify-center h-10 w-10 rounded-full bg-yellow-500 flex-shrink-0">A</div>' +
                                                 '<div class="relative mr-3 text-sm ' + messageStyleClass + ' py-2 px-4 shadow rounded-xl">' +
                                                     '<div> <img class="h-auto max-w-full" style="width: 300px; height: 200px;" src="/storage/' +message.message+ '" alt="image description"></div>' +
                                                 '</div>' +
@@ -276,33 +268,6 @@
         
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
             <div
               class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
             >
@@ -383,7 +348,7 @@
                   name="message"
                   autocomplete="off"
                     type="text"
-                    class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                    class="flex w-full border rounded-xl focus:outline-none focus:border-yellow-300 pl-4 h-10"
                   />
                   <button
                     class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600"
@@ -394,7 +359,7 @@
               </div>
               <div class="ml-4">
                 <button
-                  class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+                  class="flex items-center justify-center bg-yellow-500 hover:bg-yellow-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
                 >
                   <span>Send</span>
                   <span class="ml-2">

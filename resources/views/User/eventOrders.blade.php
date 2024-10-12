@@ -80,11 +80,11 @@
 		<!-- / container -->
 	</div>
 
-    <main class="profile-page">
+    <main class="profile-page formbg">
         
         
 
-        <div class="container mb-4">
+        <div style="font-family:Novecentowide; "  class="container mb-4">
           
           @if(count($eventOrderList)>0)
           <div style="justify-content: center; display: flex">

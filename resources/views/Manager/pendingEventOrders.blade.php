@@ -217,7 +217,7 @@
 
         <!-- Order Table -->
         @if(count($eventOrderList) > 0)
-        <div class="mt-4 mx-4">
+        <div style="font-family:Novecentowide"  class="mt-4 mx-4">
           
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="flex flex-wrap items-center px-4 py-2">
@@ -233,11 +233,11 @@
               <table class="w-full">
                 <thead>
                   <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                    <th class="px-4 py-3">Reciever</th>
-                    <th class="px-4 py-3">Date</th>
-                    <th class="px-4 py-3">View Order</th>
-                    <th class="px-4 py-3">Confirm Order</th>
-                    <th class="px-4 py-3">Reject Order</th>
+                    <th class="px-4 py-3"><strong>Reciever </strong> </th>
+                    <th class="px-4 py-3"><strong> Date</strong></th>
+                    <th class="px-4 py-3"><strong>View Order </strong></th>
+                    <th class="px-4 py-3"><strong>Confirm Order </strong></th>
+                    <th class="px-4 py-3"><strong>Reject Order </strong></th>
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\GemBusiness;
+use App\Models\Item;
 use App\Models\Leader;
 use App\Models\Manager;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -27,7 +29,11 @@ class Controller extends BaseController
     }
     
     public function home(){
-        return view('home');
+        $item = new Item();
+        $orderItemObj = new OrderItem();
+        $itemList = $item->getNewArrivals(); 
+        return view('home', compact('itemList','orderItemObj'));
+   
     }
 
     public function contactus()
@@ -206,6 +212,5 @@ class Controller extends BaseController
 
         
     }
-  
 
 }

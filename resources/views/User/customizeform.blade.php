@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head>
 	<meta charset="utf-8">
-	<title>Jiwesinghe Jewellery</title>
+	<title>Wijesinghe Jewellery</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
 
@@ -18,6 +18,15 @@
 
     <style>
         .hidden { display: none; }
+        .formbg{
+        background-color: rgba(255, 253, 242, 0.96);
+        background-image: url('{{ asset('images/logo_no_bg.png') }}'); 
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+        position: relative;
+    }
     </style>
 </head>
 <body>
@@ -46,6 +55,7 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
+            <ul>
 			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
           <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
           <li><a href="{{ route('shop.rings') }}">Rings</a></li>
@@ -54,6 +64,7 @@
           <li><a href="{{ route('aboutus') }}">About</a></li>
           <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
           <li><a href="{{ route('contactus') }}">Contact Us</a></li>
+            </ul>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -66,8 +77,8 @@
 
     <section class=" py-1 bg-blueGray-50">
         <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
-        <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-          <div class="rounded-t bg-white mb-0 px-6 py-6">
+        <div style="border: 1px solid; box-shadow: 10px 10px 10px" class="formbg relative flex flex-col min-w-0 break-words w-full mb-6  bg-blueGray-100 border-0">
+          <div class="rounded-t bg-yellow-100 mb-0 px-6 py-6">
             <div class="text-center flex justify-between">
               <h6 class="text-blueGray-700 text-xl font-bold">
                 Jewellery Customization
@@ -77,22 +88,29 @@
           </div>
           <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
       
-              @if($errors->any())
-              <div class="alert alert-danger">
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                      {{-- <li>{{$error}}</li> --}}
-                      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                  
-                          <strong class="font-bold">{{$error}}</strong>
-                          
-                          
+            @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $index => $error)
+                  <div style="font-family:Novecentowide"  id="alert-{{ $index }}" class="flex items-center p-4 mb-4 mt-2 text-red-800 rounded-lg bg-red-100" role="alert">
+                      <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                      </svg>
+                      <span class="sr-only">Info</span>
+                      <div class="ms-3 text-sm font-medium">
+                          {{ $error }}
                       </div>
-                          
-                      @endforeach
-                  </ul>
-              </div>
-              @endif
+                      <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#alert-{{ $index }}" aria-label="Close">
+                          <span class="sr-only">Close</span>
+                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                          </svg>
+                      </button>
+                  </div>
+              @endforeach
+                </ul>
+            </div>
+            @endif
       
               {{-- Show Registration Success Messsage --}}
               @if (session('unsuccess'))
@@ -120,7 +138,7 @@
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="category">
                                     Category
                                 </label>
-                                <select id="category" name="category" >
+                                <select id="category" name="category" class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " >
                                    
                                     <option value="necklace">Necklace</option>
                                     <option value="ring">Ring</option>
@@ -132,7 +150,7 @@
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="category">
                                     Gender
                                 </label>
-                                <select id="gender" name="gender" >
+                                <select id="gender" name="gender" class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 ">
                                    
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -163,7 +181,7 @@
                                             Choose Necklace Style
                                         </label>
                                         
-                                        <div class="flex items-center space-x-28">
+                                        <div class="flex items-center space-x-28 necklace-cus">
                                             <label  class="cursor-pointer relative"> 
                                                 <input type="radio" name="necklace_style" value="box"  />
                                                 <img style="width: 500px; height: 200px;" src="{{ asset('images/customize/box_chain.jpg') }}" alt="Necklace Option 1" class="w-24 h-24 object-cover rounded-full border border-gray-300">
@@ -192,7 +210,7 @@
                                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                                     Material 
                                                 </label>
-                                                <select name="necklace_material" >
+                                                <select name="necklace_material" class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 ">
                                                     @foreach ($materialList as $material)
                                                         <option value="{{$material->id}}">{{$material->name}}</option>
                                                     @endforeach
@@ -205,7 +223,7 @@
                                               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                                 Length in centimeter
                                               </label>
-                                              <input type="number" step="0.01" name="necklace_length" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                                              <input type="number" step="0.01" name="necklace_length" class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                                             </div>
                                           </div>
                                     </div>
@@ -216,7 +234,7 @@
                                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                                   Weight in Pavan
                                                 </label>
-                                                <input type="number" step="0.01" name="necklace_weight" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                                                <input type="number" step="0.01" name="necklace_weight" class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                                               </div>
                                           </div>
                                           <div class="w-full lg:w-3/12 px-4">
@@ -224,7 +242,7 @@
                                               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                                 Convert gram into pavan here 
                                               </label>
-                                              <input type="number" step="0.01" id="gram"  onchange="convertGramToPavan1(this.value)" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                                              <input type="number" step="0.01" id="gram"  onchange="convertGramToPavan1(this.value)" class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                                             </div>
                                           </div> 
                                           <div class="w-full lg:w-3/12 px-4">
@@ -232,7 +250,7 @@
                                               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                                 Convert gram into pavan
                                               </label>
-                                              <input type="number"  step="0.01" value="" id="pavan1"  disabled class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" >
+                                              <input type="number"  step="0.01" value="" id="pavan1"  disabled class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " >
                                             </div>
                                           </div>
 
@@ -269,7 +287,7 @@
                                                 Choose Ring Style
                                             </label>
                                             
-                                            <div class="flex items-center space-x-28">
+                                            <div class="flex items-center space-x-28 necklace-cus">
                                                 <label  class="cursor-pointer relative"> 
                                                     <input type="radio" name="ring_style" value="bypass"  />
                                                     <img style="width: 500px; height: 200px;" src="{{ asset('images/customize/bypass_ring.png') }}" alt="Necklace Option 1" class="w-24 h-24 object-cover rounded-full border border-gray-300">
@@ -298,7 +316,7 @@
                                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                                         Material 
                                                     </label>
-                                                    <select name="ring_material" >
+                                                    <select name="ring_material" class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 ">
                                                         @foreach ($materialList as $material)
                                                         <option value="{{$material->id}}">{{$material->name}}</option>
                                                         @endforeach
@@ -311,12 +329,12 @@
                                                     Circumference in milimeter  
                                                   </label>
                                                   
-                                                  <input type="number" step="0.01" min="0" name="ring_circumference" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                                                  <input type="number" step="0.01" min="0" name="ring_circumference" class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                                                 </div>
                                               </div>
                                               <div class="w-full lg:w-2/12 px-4">
                                                 <div class="relative w-full mt-5">
-                                                  <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="bg-blue-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
+                                                  <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="bg-yellow-500 text-white active:bg-yellow-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
                                                                                     How to Find Circumference
                                                                                 </button>
                                                   
@@ -346,7 +364,7 @@
                                                         </div>
                                                         <!-- Modal footer -->
                                                         <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                                            <button data-modal-hide="static-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">OK</button>
+                                                            <button data-modal-hide="static-modal" type="button" class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">OK</button>
                                                             
                                                         </div>
                                                     </div>
@@ -360,7 +378,7 @@
                                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                                       Weight in Pavan
                                                     </label>
-                                                    <input type="number" step="0.01" name="ring_weight" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                                                    <input type="number" step="0.01" name="ring_weight" class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                                                   </div>
                                               </div>
                                               <div class="w-full lg:w-3/12 px-4">
@@ -368,7 +386,7 @@
                                                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                                     enter gram value to get pavan value 
                                                   </label>
-                                                  <input type="number" step="0.01" id="gram"  onchange="convertGramToPavan(this.value)" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="">
+                                                  <input type="number" step="0.01" id="gram"  onchange="convertGramToPavan(this.value)" class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " value="">
                                                 </div>
                                               </div> 
                                               <div class="w-full lg:w-3/12 px-4">
@@ -376,7 +394,7 @@
                                                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                                                      pavan value
                                                   </label>
-                                                  <input type="number"  step="0.01" value="" id="pavan2"  disabled class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" >
+                                                  <input type="number"  step="0.01" value="" id="pavan2"  disabled class="border border-gray-400 text-gray-900 text-sm  focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " >
                                                 </div>
                                               </div>
     
@@ -400,7 +418,7 @@
                             <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                                 if you need to add gems to your ring select follow gem information
                             </h6>
-                            <button data-modal-target="static-modal2" data-modal-toggle="static-modal2" class="bg-blue-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
+                            <button data-modal-target="static-modal2" data-modal-toggle="static-modal2" class="bg-yellow-500 text-white active:bg-yellow-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
                                 View Gem size chart
                               </button>
                               <div id="static-modal2" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -427,7 +445,7 @@
                                         </div>
                                         <!-- Modal footer -->
                                         <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                            <button data-modal-hide="static-modal2" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">OK</button>
+                                            <button data-modal-hide="static-modal2" type="button" class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">OK</button>
                                             
                                         </div>
                                     </div>

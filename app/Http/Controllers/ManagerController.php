@@ -26,6 +26,10 @@ class ManagerController extends Controller
     {
         // Get unverified businesses from session
         // $unverifiedBusinesses = session('unverifiedBusinesses', []);
+        $manager = session()->get('manager');
+        if (!$manager) {
+            return redirect()->route('userlogin')->with('error', 'You need to login as a manager to access this page.');
+        }
 
         $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
         $userList = User::getAllUsers();
@@ -74,52 +78,6 @@ class ManagerController extends Controller
        // return view('manager.profile', compact('unverifiedBusinesses','userList','orderList','item','orderItem','pendingOrderCount','UnVerifiedbusiness','ordertobedelivered'));
     }
 
-    public function managertest()
-    {
-        $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();
-        $userList = User::getAllUsers();
-        $orderList = Order::getAllOrders();
-        $item = new Item();
-        $orderItem = new OrderItem();
-        $pendingOrderCount = Order::getPendingOrderCount();
-        $UnVerifiedbusiness = GemBusiness::getUnVerifiedGemBusiness();
-        $ordertobedelivered = Order::getorderstobedeliveredCount();
-        $userCount = User::getUserCount();
-        $deliveredOrders = Order::getDeliveredOrderCount();
-        $income = Order::getTotalIncome();
-        $verifiedGemBusiness = GemBusiness::getVerifiedGemBusinessCount();
-        $allUserCount = User::getAllUserCount();
-        $leaderCount = Leader::getLeaderCount();
-        $materialList = CusMaterial::getMaterialList();
-        $gemList = CusGemType::getGemList();
-        $gemSizeList = CusGemSize::getSizeList();
-        $eventOrder = new EventOrder();
-        $eventObj = new Event();
-        $eventOrderList = $eventOrder->getAllOrders();
-
-        $data = compact(
-                    'unverifiedBusinesses',
-                    'userList',
-                    'orderList',
-                    'item',
-                    'orderItem',
-                    'pendingOrderCount',
-                    'UnVerifiedbusiness',
-                    'ordertobedelivered',
-                    'userCount',
-                    'deliveredOrders',
-                    'income',
-                    'verifiedGemBusiness',
-                    'allUserCount',
-                    'materialList',
-                    'gemList',
-                    'gemSizeList',
-                    'leaderCount',
-                    'eventOrderList',
-                    'eventObj'
-                );
-        return view('Manager.managertest', $data);
-    }
 
     public function users()
     {
@@ -208,6 +166,27 @@ class ManagerController extends Controller
         $item = new Item();
         $itemList = $item->getListOfCategory('Ring');
         return view('Manager.ring', compact('itemList'));
+    }
+
+    public function managerwedding()
+    {
+        $event = new Event();
+        $eventList = $event->getEventList('Wedding');
+        return view('Manager.wedding', compact('eventList'));
+    }
+
+    public function managerpanchayudha()
+    {
+        $event = new Event();
+        $eventList = $event->getEventList('Panchayudha');
+        return view('Manager.panchayudha', compact('eventList'));
+    }
+    
+    public function managerapala()
+    {
+        $event = new Event();
+        $eventList = $event->getEventList('Apala');
+        return view('Manager.apala', compact('eventList'));
     }
 
     public function pendingeventorders()
@@ -307,6 +286,66 @@ class ManagerController extends Controller
            
         }else{
             return redirect()->route('manager.necklace')->with('managerError', 'Item not found!');
+        }
+    }
+
+    public function changeEventPrice(Request $request)
+    {
+        $rules = [
+            'event_id' => 'required',
+            'new_price' => 'required|numeric|min:0',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $event = Event::where('id',$request->event_id)->first();
+        if($event){
+            if($event->changePrice($event->id, $request->new_price))
+            {
+                if ($event->category == 'Wedding') {
+                    return redirect()->route('manager.wedding')->with('managerSuccess', 'Price Changed!');
+                } else if($event->category == 'Apala')
+                {
+                    return redirect()->route('manager.apala')->with('managerSuccess', 'Price Changed!');
+                }else{
+                    return redirect()->route('manager.panchayudha')->with('managerSuccess', 'Price Changed!');
+                }
+                
+            }
+           
+        }else{
+            return redirect()->route('manager.wedding')->with('managerError', 'Event not found!');
+        }
+    }
+
+    public function changePercentage(Request $request)
+    {
+        $rules = [
+            'event_id' => 'required',
+            'new_percentage' => 'required|numeric|min:0|max:100',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $event = Event::where('id',$request->event_id)->first();
+        if($event){
+            if($event->changePercentage($event->id, $request->new_percentage))
+            {
+                if ($event->category == 'Wedding') {
+                    return redirect()->route('manager.wedding')->with('managerSuccess', 'Discount Changed!');
+                } else if($event->category == 'Apala')
+                {
+                    return redirect()->route('manager.apala')->with('managerSuccess', 'Discount Changed!');
+                }else{
+                    return redirect()->route('manager.panchayudha')->with('managerSuccess', 'Discount Changed!');
+                }
+                
+            }
+           
+        }else{
+            return redirect()->route('manager.wedding')->with('managerError', 'Event not found!');
         }
     }
 

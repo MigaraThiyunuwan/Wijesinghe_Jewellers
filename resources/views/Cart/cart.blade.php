@@ -2,11 +2,13 @@
 <html lang="en"> 
 <head>
 	<meta charset="utf-8">
-	<title>Jiwesinghe Jewellery</title>
+	<title>Wijesinghe Jewellery</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	@php
       $user = session()->get('user');
@@ -45,14 +47,16 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
+			<ul>
 			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
           <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
           <li><a href="{{ route('shop.rings') }}">Rings</a></li>
-			    <li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
+			<li><a href="{{ route('shop.necklaces') }}">necklaces</a></li>
           <li><a href="{{ route('events.home') }}">Events</a></li>
           <li><a href="{{ route('aboutus') }}">About</a></li>
           <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
           <li><a href="{{ route('contactus') }}">Contact Us</a></li>
+			</ul>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -60,51 +64,86 @@
     
     <div id="body">
         
-		<div class="container">
+		<div style="display: flex; justify-content: center" class="container">
             
 			<div id="content" class="full">
 
 					@if (session('removeItemError'))
-					  <div style="display: flex; justify-content: center; color: red; background-color: rgb(245, 215, 215)">
-						<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-				  
-						  <strong class="font-bold">{{ session('removeItemError') }}</strong>
-						  
+					<div id="alert-2"  style="font-family:Novecentowide; " class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-100 " role="alert">
+						<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+						  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+						</svg>
+						<span class="sr-only">Info</span>
+						<div class="ms-3 text-sm font-medium">
+							{{ session('removeItemError') }}
 						</div>
+						<button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-2" aria-label="Close">
+						  <span class="sr-only">Close</span>
+						  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+						  </svg>
+						</button>
 					  </div>
+					  
 					@endif		
 
 					@if (session('removeItemSuccess'))
                       
-                      <div style="display: flex; justify-content: center; color:green; background-color: rgb(182, 245, 182)">
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                  
-                          <strong class="font-bold">{{ session('removeItemSuccess') }}</strong>
-                          
+					<div id="alert-3"  style="font-family:Novecentowide; " class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-100 " role="alert">
+                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div class="ms-3 text-sm font-medium">
+							{{ session('removeItemSuccess') }}
                         </div>
-                      </div>
+                        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-100 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-3" aria-label="Close">
+                          <span class="sr-only">Close</span>
+                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                          </svg>
+                        </button>
+                    </div>
+                      
                   	@endif
 
                
                 	@if (session('updateItemError'))
-					  <div style="display: flex; justify-content: center; color: red; background-color: rgb(245, 215, 215)">
-						<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-				  
-						  <strong class="font-bold">{{ session('updateItemError') }}</strong>
-						  
+					  
+					  <div id="alert-2"  style="font-family:Novecentowide; " class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-100 " role="alert">
+						<svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+						  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+						</svg>
+						<span class="sr-only">Info</span>
+						<div class="ms-3 text-sm font-medium">
+							{{ session('updateItemError') }}
 						</div>
+						<button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-2" aria-label="Close">
+						  <span class="sr-only">Close</span>
+						  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+						  </svg>
+						</button>
 					  </div>
 					@endif		
 
 					@if (session('updateItemSuccess'))
-                      
-                      <div style="display: flex; justify-content: center; color:green; background-color: rgb(182, 245, 182)">
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                  
-                          <strong class="font-bold">{{ session('updateItemSuccess') }}</strong>
-                          
+					<div id="alert-3"  style="font-family:Novecentowide; " class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-100 " role="alert">
+                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div class="ms-3 text-sm font-medium">
+							{{ session('updateItemSuccess') }}
                         </div>
-                      </div>
+                        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-100 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-3" aria-label="Close">
+                          <span class="sr-only">Close</span>
+                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                          </svg>
+                        </button>
+                    </div>
+                     
                   	@endif
                 @php
                     
@@ -118,7 +157,7 @@
 
 					
                     
-					<table>
+					<table style=" font-family:Novecentowide;">
 						<tr>
 							<th class="items">Items</th>
 							<th class="price">Price</th>
@@ -209,9 +248,11 @@
 				</div>
             
             @else
-            <div class="total-count">
-                
-                <h3><strong>Your Cart is Empty</strong></h3>
+            <div class="">
+                <img src="{{ asset('images/empty_cart.png') }}" alt=""> 
+				<div class="mb-5 text-center">
+                	<h3 class="text-xl"><strong>Your Cart is Currently Empty</strong></h3>
+				</div>
                 
             </div>
 
@@ -273,4 +314,8 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
+<script src="../js/plugins.js"></script>
+<script src="../js/main.js"></script>
 </body>

@@ -186,6 +186,7 @@
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
+      <ul>
 			<li><a href="{{ route('shop.bracelet') }}">Bracelet</a></li>
           <li><a href="{{ route('shop.earrings') }}">Earrings</a></li>
           <li><a href="{{ route('shop.rings') }}">Rings</a></li>
@@ -194,6 +195,7 @@
           <li><a href="{{ route('aboutus') }}">About</a></li>
           <li><a href="{{ route('advertisement') }}">Advertisement</a></li>
           <li><a href="{{ route('contactus') }}">Contact Us</a></li>
+      </ul>
 		</div>
 		<!-- / container -->
 	</nav>
@@ -218,7 +220,7 @@
 
         <!-- necklace Table -->
         @if(count($itemList) > 0)
-        <div class="mt-4 mx-4">
+        <div style="font-family:Novecentowide; " class="mt-4 mx-4">
           
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="flex flex-wrap items-center px-4 py-2">
@@ -226,15 +228,23 @@
                 <h3 class="text-lg font-semibold">Necklaces </h3>
 
                 @if (session('managerSuccess'))
-                      
-                      <div style="display: flex; justify-content: center">
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                  
-                          <strong class="font-bold">{{ session('managerSuccess') }}</strong>
-                          
+
+                      <div id="alert-3"  style="font-family:Novecentowide; " class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-100 " role="alert">
+                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div class="ms-3 text-sm font-medium">
+                          {{ session('managerSuccess') }}
                         </div>
+                        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-100 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-3" aria-label="Close">
+                          <span class="sr-only">Close</span>
+                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                          </svg>
+                        </button>
                       </div>
-                @endif
+                  @endif
                   
               </div>
 
@@ -248,7 +258,7 @@
                     <th class="px-4 py-3">Name</th>
                     <th class="px-4 py-3">Price</th>
                     <th class="px-4 py-3">Quantity</th>
-                    <th class="px-4 py-3">View </th>
+                    <th class="px-4 py-3">View Necklace</th>
                     <th class="px-4 py-3">Remove</th>
                   </tr>
                 </thead>
@@ -263,7 +273,7 @@
                   @endphp
                   <tr 
                   @if ($item->quantity < 5)
-                      style="background-color: rgb(250, 204, 204)"
+                      style="background-color: rgb(250, 222, 222)"
                   @endif
                   
                   class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">

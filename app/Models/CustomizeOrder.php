@@ -23,6 +23,7 @@ class CustomizeOrder extends Model
         return $this->belongsTo(User::class);
     }
 
+   
     public function customizeRequest()
     {
         return $this->belongsTo(CustomizeRequest::class, 'cus_req_id');

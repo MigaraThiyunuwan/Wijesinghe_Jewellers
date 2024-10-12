@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head>
 	<meta charset="utf-8">
-	<title>Jiwesinghe Jewellery</title>
+	<title>Wijesinghe Jewellery</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -61,13 +61,13 @@
 <section class=" py-1 bg-blueGray-50">
 <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
   <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-    <div class="rounded-t bg-white mb-0 px-6 py-6">
+    <div class="rounded-t bg-yellow-100 mb-0 px-6 py-6">
       <div class="text-center flex justify-between">
         <h6 class="text-blueGray-700 text-xl font-bold">
           Edit Details
         </h6>
         
-        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="bg-blue-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
+        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="bg-yellow-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">
           Change Password
         </button>
        
@@ -147,7 +147,7 @@
 
       </div>
     </div>
-    <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+    <div class="flex-auto px-4 lg:px-10 py-10 pt-0 formbg">
 
         @if($errors->any())
         <div class="alert alert-danger">
@@ -241,7 +241,7 @@
 
         <div class="flex flex-wrap">
             <div style="width: 100%; display:flex; justify-content:center; margin-top: 20px">
-                <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" style="width: 200px" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button">
+                <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" style="width: 200px" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 border border-yellow-700 rounded" type="button">
                     Save
                 </button>
                 

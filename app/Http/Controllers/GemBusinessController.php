@@ -14,9 +14,23 @@ class GemBusinessController extends Controller
     public function profile()
     {
         $gemBusiness = session()->get('gemBusiness');
+        if (!$gemBusiness) {
+            return redirect()->route('userlogin')->with('error', 'You need to login as a gem business to access this page.');
+        }
         $advertisement = new Advertisement();
         $myAddList = $advertisement->getSpecificAdd($gemBusiness->id);
         return view('GemBusinessOwner.profile', compact('myAddList'));
+    }
+
+    public function test()
+    {
+        $gemBusiness = session()->get('gemBusiness');
+        if (!$gemBusiness) {
+            return redirect()->route('userlogin')->with('error', 'You need to login as a gem business to access this page.');
+        }
+        $advertisement = new Advertisement();
+        $myAddList = $advertisement->getSpecificAdd($gemBusiness->id);
+        return view('GemBusinessOwner.test', compact('myAddList'));
     }
     
     public function register()
@@ -50,7 +64,9 @@ class GemBusinessController extends Controller
     {
         $advertisement = new Advertisement();
         $gem = $advertisement->getAddDetail($gemId);
-        return view('GemBusinessOwner.gemdetails', compact('gem'));
+        $gemBusiness = new GemBusiness();
+        $ownerName = $gemBusiness->getGemBusiness($gem->gem_businesses_id)->market_name;
+        return view('GemBusinessOwner.gemdetails', compact('gem','ownerName'));
     }
     
     // function for handling register new Grm Business

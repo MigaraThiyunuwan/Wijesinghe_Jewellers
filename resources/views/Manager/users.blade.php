@@ -202,7 +202,7 @@
 		<div class="container">
 			<ul>
 				<li><a href="{{route('manager.profile')}}">Manager</a></li>
-				<li>All Users</li>
+				<li>All Customers</li>
 			</ul>
 		</div>
 		<!-- / container -->
@@ -217,12 +217,12 @@
 
         <!-- User Table -->
         @if(count($userList) > 0)
-        <div class="mt-4 mx-4">
+        <div style="font-family:Novecentowide" class="mt-4 mx-4">
           
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div class="flex flex-wrap items-center px-4 py-2">
               <div class="md:col-span-2 xl:col-span-3">
-                <h3 class="text-lg font-semibold">Registered Users</h3> 
+                <h3 class="text-lg font-semibold">Registered Customers</h3> 
               </div>
 
              
@@ -232,11 +232,11 @@
               <table class="w-full">
                 <thead>
                   <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                    <th class="px-4 py-3">Name</th>
-                    <th class="px-4 py-3">country</th>
-                    <th class="px-4 py-3">contact No</th>
-                    <th class="px-4 py-3">View Details</th>
-                    <th class="px-4 py-3">Remove</th>
+                    <th class="px-4 py-3"><strong>Name </strong> </th>
+                    <th class="px-4 py-3"><strong>country </strong></th>
+                    <th class="px-4 py-3"><strong> contact No</strong></th>
+                    <th class="px-4 py-3"><strong>View Details </strong></th>
+                    <th class="px-4 py-3"><strong>Remove  </strong></th>
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">

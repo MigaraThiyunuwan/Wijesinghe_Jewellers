@@ -29,4 +29,9 @@ class OrderItem extends Model
     {
         return self::where('order_id', $order_id)->get();
     }
+
+    public function getSoldCount($item_id)
+    {
+        return self::where('item_id', $item_id)->sum('itemQuantity');
+    }
 }

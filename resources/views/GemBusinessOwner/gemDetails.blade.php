@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head>
 	<meta charset="utf-8">
-	<title>Jiwesinghe Jewellery</title>
+	<title>Wijesinghe Jewellery</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<link rel="stylesheet" media="all" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" media="all" href="{{ asset('css/about.css') }}">
@@ -16,6 +16,17 @@
     @endphp
 
 <style>
+
+    .formbg1{
+            background-color: rgba(255, 253, 242, 0.9);
+            background-image: url('{{ asset('images/logo_no_bg.png') }}'); 
+            background-repeat: no-repeat; 
+            /* background-size: cover; */
+            background-position: center;
+            background-blend-mode: overlay;
+            position: relative;
+        }
+   
     #content .products .row {
         display: flex;
         flex-wrap: wrap;
@@ -90,42 +101,66 @@
    
 
 
-<div id="body">
+<div id="body" class="formbg">
 	
-    <div class="container">
-		
-        <div id="content" class="full">
-            <div class="product">
-				
-                <div class="image">
-                    <img src="{{ asset('storage/' . $gem->image) }}" alt="">
+	<div class="item formbg1" style="border: 2px solid rgb(223, 222, 222); margin-bottom: 20px; margin-right: 200px; margin-left: 200px; padding-left: 20px; padding-right: 20px; ">
+		<div class="container">
+			
+			<div id="content" class="full">
+				<div style="display: flex;" class="product">
+					
+					<div style=" margin: 30px" onclick="openModal()" >
+						<img style="width: 400px; height: 400px;" src="{{ asset('storage/' . $gem->image) }}" alt="">
 
-                </div>
-                <div class="details">
-                    <h1>{{$gem->title}} </h1>
-                    <h4>Rs. {{$gem->price}}</h4>
-                    <div class="entry">
-                        <p>{{$gem->description}}
-                            <ul>
-                                <li><strong> shape: </strong>{{$gem->shape}} </li>
-                                <li><strong>Weight:</strong> {{$gem->carat}} CTS</li>
-                                <li><strong>Size:</strong> {{$gem->length}}mm x {{$gem->width}}mm</li>
-                                <li><strong>Contact:</strong> {{$gem->contact_no}}</li>
-                            </ul>
-
-
-                        </p>
-                        
+					</div>
+	
+					<div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-75">
+						<div class="relative bg-white">
+						  <!-- Large Image -->
+						  <img id="modalImage" class="max-w-full max-h-full" style="width: 650px; width: 650px" src="{{ asset('storage/' . $gem->image) }}" alt="Large Image" />
+						  <!-- Close Button -->
+						  <span
+							class="absolute top-0 right-0 m-4 text-gray text-3xl cursor-pointer"
+							onclick="closeModal()"
+						  >&times;</span>
+						</div>
+					</div>
+					  <script>
+						function openModal() {
+							document.getElementById('imageModal').classList.remove('hidden');
+						}
 						
-                    </div>
-                    
-					
-					
-                </div>
-            </div>
-        </div>
-        <!-- / content -->
-    </div>
+						function closeModal() {
+							document.getElementById('imageModal').classList.add('hidden');
+						}
+					  </script>
+					<div style="padding-left: 50px; margin-top: 30px" class="details">
+						<h1>
+							{{$gem->title}}
+						</h1>
+						<h4>Rs.{{$gem->price}}</h4>
+						<div class="entry">
+							<p>{{$gem->description}}
+								<ul>
+									<li><strong> shape: </strong>{{$gem->shape}} </li>
+									<li><strong>Weight:</strong> {{$gem->carat}} CTS</li>
+									<li><strong>Size:</strong> {{$gem->length}}mm x {{$gem->width}}mm</li>
+									<li><strong>Contact:</strong> {{$gem->contact_no}}</li>
+									<li><strong> Posted By: </strong>{{$ownerName}} </li>
+								</ul>
+	
+							</p>
+							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<!-- / content -->
+		</div>
+	</div>
+
+
 </div>
 <!-- / body -->
 

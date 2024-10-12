@@ -109,4 +109,9 @@ class GemBusiness extends Model
     {
         return self::where('verified', 'accepted')->count();
     }
+
+    public function getGemBusiness($id)
+    {
+        return self::find($id);
+    }
 }

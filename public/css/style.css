@@ -343,6 +343,15 @@ a:hover {
 	background: url(../images/logo.png) no-repeat;
 }
 
+.formbg{
+	background-color: rgba(255, 253, 242, 0.96);
+	background-image: url(../images/logo_no_bg.png); 
+	background-repeat: no-repeat; 
+	background-size: cover;
+	background-position: center;
+	background-blend-mode: overlay;
+	position: relative;
+  }
 
 /* Navigation
 ------------------------------------------------------------------------------*/
@@ -369,8 +378,12 @@ a:hover {
 ------------------------------------------------------------------------------*/
 
 #breadcrumbs {
-	background: #383838;
-	color: #d9d9d9;
+	/* #383838;	 */
+	/* #d9d9d9; */
+	font-family:Novecentowide;
+	font-weight: 500;
+	background: #a8934e;
+	color: #000000;
 	font-size: 14px;
 	overflow: hidden;
 	padding: 12px 0;
@@ -381,16 +394,18 @@ a:hover {
 }
 
 #breadcrumbs a {
-	color: #a5a5a5;
+	color: #000000;
+	/* #a5a5a5; */
 }
 
 #breadcrumbs li+li:before {
 	content: "";
-	margin: 13px 13px 0 15px;
+	margin: 2px 13px 0 15px;
 	float: left;
-	background: url(../images/ico_arrow.png) no-repeat;
-	width: 9px;
-	height: 5px;
+	background: url(../images/ico_black_arrow.png) no-repeat;
+	background-size: 20px 20px;
+	width: 30px;
+	height: 20px;
 }
 
 #body {
@@ -1892,7 +1907,68 @@ h1 {
 
 }
 
+@media only screen and (min-width: 760px) {
+	.who-we-are{
+		color: black;
+		margin-left: 200px;
+		margin-right: 200px;
+		font-size: 20px;
+	}
+	.home-customize{
+		margin-left: 200px;
+		margin-right: 200px;
+	}
+	
+}
+
+@media only screen and (min-width: 481px) {
+	
+	.product-details-mobile{
+		display: none;
+	}
+
+	.wedding-mobile{
+		display: none;
+	}
+	.chat{
+		display: flex;
+	}
+
+	.chat-profile{
+		width: 400px;
+	}
+}
 @media screen and (max-width: 480px) {
+
+	.product-details{
+		display: none;
+	}
+
+	.wedding{
+		display: none;
+	}
+
+	.chat{
+		display: flex;
+		flex-direction: column;
+	}
+	.chat-profile{
+		width: 95%;
+	}
+	.necklace-cus{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.who-we-are{
+	color: black;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 20px;
+	text-align: justify;
+	}
+
 	#sidebar {
 		padding-bottom: 40px;
 	}

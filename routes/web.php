@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\CustomizationController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GemBusinessController;
+use App\Http\Controllers\ImageProcessingController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LeaderController;
@@ -60,6 +61,7 @@ Route::post('user/update', [UserController::class, 'update'])->name('user.update
 Route::post('user/paymentconfirm', [UserController::class, 'paymentconfirm'])->name('user.paymentconfirm');
 Route::get('user/edit', [UserController::class, 'userEdit'])->name('user.edit');
 Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
+Route::get('user/profiletest', [UserController::class, 'profiletest'])->name('user.profiletest');
 Route::get('user/chat', [UserController::class, 'chat'])->name('user.chat');
 Route::post('user/model', [UserController::class, 'model'])->name('user.model');
 Route::get('/getModelId', [UserController::class, 'getModelId']);
@@ -76,7 +78,6 @@ Route::get('/get-chat-messages/{cus_req_id}', [CustomizationController::class, '
 
 //Routes for Manager
 Route::get('manager/profile', [ManagerController::class, 'profile'])->name('manager.profile');
-Route::get('manager/managertest', [ManagerController::class, 'managertest'])->name('manager.managertest');
 Route::get('manager/register', [ManagerController::class, 'register'])->name('manager.register');
 Route::post('manager/save', [ManagerController::class, 'save'])->name('manager.save');
 Route::get('manager/users', [ManagerController::class, 'users'])->name('manager.users');
@@ -86,6 +87,9 @@ Route::get('manager/gembusiness', [ManagerController::class, 'gembusiness'])->na
 Route::get('manager/necklace', [ManagerController::class, 'managernecklace'])->name('manager.necklace');
 Route::get('manager/bracelet', [ManagerController::class, 'managerbracelet'])->name('manager.bracelet');
 Route::get('manager/earring', [ManagerController::class, 'managerearring'])->name('manager.earring');
+Route::get('manager/wedding', [ManagerController::class, 'managerwedding'])->name('manager.wedding');
+Route::get('manager/panchayudha', [ManagerController::class, 'managerpanchayudha'])->name('manager.panchayudha');
+Route::get('manager/apala', [ManagerController::class, 'managerapala'])->name('manager.apala');
 Route::get('manager/ring', [ManagerController::class, 'managerring'])->name('manager.ring');
 Route::get('manager/pendingrequest', [ManagerController::class, 'pendingrequest'])->name('manager.unverifiedgembusiness');
 Route::get('manager/pendingorders', [ManagerController::class, 'pendingorders'])->name('manager.pendingorders');
@@ -102,12 +106,15 @@ Route::post('manager/deletegembusiness', [ManagerController::class, 'deletegembu
 Route::post('manager/removeitem', [ManagerController::class, 'removeitem'])->name('manager.removeitem'); 
 Route::post('manager/changequntity', [ManagerController::class, 'changeQuntity'])->name('manager.changequntity');
 Route::post('manager/changeprice', [ManagerController::class, 'changePrice'])->name('manager.changeprice');
+Route::post('manager/changeeventPrice', [ManagerController::class, 'changeEventPrice'])->name('manager.changeeventPrice');
+Route::post('manager/changepercentage', [ManagerController::class, 'changePercentage'])->name('manager.changepercentage');
 Route::post('manager/changematerialprice', [ManagerController::class, 'changematerialprice'])->name('manager.changematerialprice');
 Route::post('manager/changecusgemprice', [ManagerController::class, 'changecusgemprice'])->name('manager.changecusgemprice');
 
 
 //Routes for Gem Business Owner
 Route::get('gem/profile', [GemBusinessController::class, 'profile'])->name('gem.profile');
+Route::get('gem/test', [GemBusinessController::class, 'test'])->name('gem.test');
 Route::get('gem/register', [GemBusinessController::class, 'register'])->name('gem.register');
 Route::get('gem/login', [GemBusinessController::class, 'login'])->name('gem.login');
 Route::get('gem/edit', [GemBusinessController::class, 'edit'])->name('gem.edit');
@@ -164,8 +171,13 @@ Route::get('cart/cancel', [CartController::class, 'cancel'])->name('cart.cancel'
 Route::get('events/home', [EventController::class, 'home'])->name('events.home'); 
 Route::get('events/wedding', [EventController::class, 'wedding'])->name('events.wedding'); 
 Route::get('events/panchayudha', [EventController::class, 'panchayudha'])->name('events.panchayudha'); 
+Route::get('events/apala', [EventController::class, 'apala'])->name('events.apala'); 
 Route::post('events/save', [EventController::class, 'save'])->name('events.save');
 Route::post('events/receiverdetails', [EventController::class, 'receiverdetails'])->name('events.receiverdetails');
 Route::post('events/receiverdetailsSave', [EventController::class, 'receiverdetailsSave'])->name('events.receiverdetailsSave');
 Route::post('events/retrypayment', [EventController::class, 'retrypayment'])->name('events.retrypayment');
 Route::post('events/changestatus', [EventController::class, 'changestatus'])->name('events.changestatus');
+
+
+//Routes for image Processing
+Route::post('/upload-image', [ImageProcessingController::class, 'processImage'])->name('upload.image');

@@ -18,6 +18,21 @@ class LeaderController extends Controller
 
     public function save(Request $request)
     {
+        $rules = [
+            'first_name' => 'string|max:255',
+            'last_name' => 'string|max:255',
+            'contact_no' => 'regex:/^\+?\d{7,15}$/',
+            'address' => 'string|max:255',
+            'email' => 'string|email|unique:leaders|max:255',
+            'password' => 'required|confirmed|min:6',
+            'nic' => ['regex:/^[\d]{9}[VX]{1}|[\d]{12}$/'], 
+           
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         $leader = new Leader();
         $leader->Register($request);
 

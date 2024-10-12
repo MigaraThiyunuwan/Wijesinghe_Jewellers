@@ -17,7 +17,7 @@
     @endphp
     @if (!$manager)
       @php
-          $loginUrl = route('manager.login') . '?error=You need to login to access this page.';
+          $loginUrl = route('userlogin') . '?error=You need to login to access this page.';
           header("Location: $loginUrl");
           exit();
       @endphp
@@ -255,7 +255,7 @@
         <div class="h-full px-3 py-4 overflow-y-auto bg-white border-r border-gray-200">
           
           <div
-            class="flex flex-col items-center bg-indigo-100 border border-gray-200 mb-5  w-full py-6 px-4 rounded-lg"
+            class="flex flex-col items-center bg-yellow-100 border border-gray-200 mb-5  w-full py-6 px-4 rounded-lg"
           >
             <div class="h-20 w-20 rounded-full border overflow-hidden">
               <img
@@ -263,7 +263,9 @@
                 alt="Avatar"
                 class="h-full w-full"
               />
+              
             </div>
+           
             <ul  class="text-sm mt-1 text-gray-500">
               <li style="display: flex; justify-content: center; font-family:Novecentowide"><strong >@ {{$manager->username}} </strong> </li>
               {{-- <li>NIC:  </li>
@@ -342,7 +344,7 @@
     </aside>
     
  
- <div class="flex bg-gray-100 min-h-screen ">
+ <div class="flex formbg min-h-screen ">
   
     <div class="flex-grow text-gray-800">
       
@@ -352,7 +354,7 @@
             <h1 class="text-4xl font-semibold mb-2">{{$manager->first_name}} {{$manager->last_name}}</h1>
             {{-- <h2 class="text-gray-600 ml-0.5">nic: {{$manager->nic}} | Contact: {{$manager->contact_no}}</h2> --}}
             <a class="ml-3" href="{{ route('manager.edit') }}">
-            <button class="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3">
+            <button class="inline-flex px-5 py-3 text-yellow-600 hover:text-yellow-700 focus:text-yellow-700 hover:bg-yellow-100 focus:bg-yellow-100 border border-yellow-600 rounded-md mb-3">
               <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 ">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
               </svg>
@@ -364,34 +366,32 @@
           
 
             @if($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            {{-- <li>{{$error}}</li> --}}
-                            <div id="alert-2" class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 " role="alert">
-                              <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                              </svg>
-                              <span class="sr-only">Info</span>
-                              <div class="ms-3 text-sm font-medium">
-                                {{$error}}
-                              </div>
-                              <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-2" aria-label="Close">
-                                <span class="sr-only">Close</span>
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                </svg>
-                              </button>
-                            </div>
-                                
-                            @endforeach
-                        </ul>
+              <div class="alert alert-danger">
+                  <ul>
+                    @foreach ($errors->all() as $index => $error)
+                    <div id="alert-{{ $index }}" class="flex items-center p-4 mb-4 mt-2 text-red-800 rounded-lg bg-red-100" role="alert">
+                        <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div class="ms-3 text-sm font-medium">
+                            {{ $error }}
+                        </div>
+                        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#alert-{{ $index }}" aria-label="Close">
+                            <span class="sr-only">Close</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                        </button>
                     </div>
-                  @endif
+                @endforeach
+                  </ul>
+              </div>
+            @endif
 
                   @if (session('managerSuccess'))
 
-                      <div id="alert-3" class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 " role="alert">
+                      <div id="alert-3"  style="font-family:Novecentowide; " class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-100 " role="alert">
                         <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                         </svg>
@@ -399,7 +399,7 @@
                         <div class="ms-3 text-sm font-medium">
                           {{ session('managerSuccess') }}
                         </div>
-                        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-3" aria-label="Close">
+                        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-100 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-3" aria-label="Close">
                           <span class="sr-only">Close</span>
                           <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -410,7 +410,7 @@
 
                   @if (session('managerError'))
 
-                    <div id="alert-2" class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 " role="alert">
+                    <div id="alert-2"  style="font-family:Novecentowide; " class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-100 " role="alert">
                       <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
                       </svg>
@@ -418,7 +418,7 @@
                       <div class="ms-3 text-sm font-medium">
                         {{ session('managerError') }}
                       </div>
-                      <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-2" aria-label="Close">
+                      <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 " data-dismiss-target="#alert-2" aria-label="Close">
                         <span class="sr-only">Close</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -429,16 +429,8 @@
                   @endif
             
             
-
-            {{-- <button class="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3">
-              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-              </svg>
-              Manage dashboard
-            </button> --}}
-
             <a href="{{ asset('manager/register') }}">
-            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
+            <button class="inline-flex px-5 py-3 text-white bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 rounded-md ml-6 mb-3">
               <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
@@ -447,7 +439,7 @@
             </a>
 
             <a href="{{ route('leader.register') }}">
-            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
+            <button class="inline-flex px-5 py-3 text-white bg-yellow-500 hover:bg-yellow-600 focus:bg-yellow-700 rounded-md ml-6 mb-3">
               <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
@@ -458,10 +450,11 @@
           </div>
           
         </div>
+        <hr>
         <section style="font-family:Novecentowide" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           <div class="flex items-center p-8 bg-white shadow rounded-lg">
-            <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-blue-600 bg-blue-100 rounded-full mr-6">
-                <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600 bg-yellow-100 rounded-full mr-6">
+                <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-yellow-800  transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             </div>
             <div>
               <span class="block text-2xl font-bold">{{$userCount}}</span>
@@ -470,9 +463,9 @@
             
           </div>
           <div class="flex items-center p-8 bg-white shadow rounded-lg">
-            <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-blue-600 bg-blue-100 rounded-full mr-6">
+            <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600 bg-yellow-100 rounded-full mr-6">
                
-                    <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-yellow-800  transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                 
             </div>
             <div>
@@ -481,11 +474,11 @@
             </div>
           </div>
           <div class="flex items-center p-8 bg-white shadow rounded-lg">
-            <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-blue-600 bg-blue-100 rounded-full mr-6">
+            <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600 bg-yellow-100 rounded-full mr-6">
               {{-- <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
               </svg> --}}
-              <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+              <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-yellow-800  transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
             </div>
             <div>
               <span class="inline-block text-2xl font-bold">{{$deliveredOrders}}</span>
@@ -493,12 +486,12 @@
             </div>
           </div>
           <div class="flex items-center p-8 bg-white shadow rounded-lg">
-            <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-blue-600 bg-blue-100 rounded-full mr-6">
+            <div class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600 bg-yellow-100 rounded-full mr-6">
               {{-- <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg> --}}
               
-                <div width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"> <i class="fa-regular fa-gem fa-xl"></i></div>
+                <div width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-yellow-800 transform transition-transform duration-500 ease-in-out"> <i class="fa-regular fa-gem fa-xl"></i></div>
               
             </div>
             <div>
@@ -510,7 +503,7 @@
 
       
           <div style="display: flex; justify-content: space-between; margin-left: 70px; margin-right: 80px">
-            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3">
+            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="inline-flex px-5 py-3 text-yellow-600 hover:text-yellow-700 focus:text-yellow-700 hover:bg-yellow-100 focus:bg-yellow-100 border border-yellow-600 rounded-md mb-3">
               <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
@@ -542,9 +535,12 @@
                                   <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="10000.00" required="">
                               </div>
                               <div class="col-span-2 sm:col-span-1">
-                                <label for="customize" class="block mb-2 text-sm font-medium text-gray-900 ">Customize</label>
-                                
-                                <div class="flex items-center mb-2">
+                                {{-- <label for="customize" class="block mb-2 text-sm font-medium text-gray-900 ">Customize</label> --}}
+                                <div class="col-span-2 sm:col-span-1">
+                                  <label for="item_image" class="block mb-2 text-sm font-medium text-gray-900 ">Customize Image</label>
+                                  <input type="file" name="customize" id="item_image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="$2999" required="">
+                                </div>
+                                {{-- <div class="flex items-center mb-2">
                                   <input type="radio" name="customize" id="true-option" value="true" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 " required>
                                   <label for="true-option" class="ml-2 text-sm font-medium text-gray-900 ">True</label>
                                 </div>
@@ -552,12 +548,12 @@
                                 <div class="flex items-center">
                                   <input type="radio" name="customize" id="false-option" value="false" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 " required>
                                   <label for="false-option" class="ml-2 text-sm font-medium text-gray-900 ">False</label>
-                                </div>
+                                </div> --}}
                               </div>
                               <div class="col-span-2 sm:col-span-1">
                                 <label for="item_image" class="block mb-2 text-sm font-medium text-gray-900 ">Image</label>
                                 <input type="file" name="image" id="item_image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="$2999" required="">
-                            </div>
+                              </div>
                               <div class="col-span-2 sm:col-span-1">
                                   <label for="category" class="block mb-2 text-sm font-medium text-gray-900 ">Category</label>
                                   <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
@@ -587,7 +583,7 @@
               </div>
             </div>
 
-            <button data-modal-target="crud-modal1" data-modal-toggle="crud-modal1" class="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3">
+            <button data-modal-target="crud-modal1" data-modal-toggle="crud-modal1" class="inline-flex px-5 py-3 text-yellow-600 hover:text-yellow-700 focus:text-yellow-700 hover:bg-yellow-100 focus:bg-yellow-100 border border-yellow-600 rounded-md mb-3">
               <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
@@ -637,7 +633,7 @@
             </div>
   
 
-            <button data-modal-target="crud-modal2" data-modal-toggle="crud-modal2" class="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3">
+            <button data-modal-target="crud-modal2" data-modal-toggle="crud-modal2" class="inline-flex px-5 py-3 text-yellow-600 hover:text-yellow-700 focus:text-yellow-700 hover:bg-yellow-100 focus:bg-yellow-100 border border-yellow-600 rounded-md mb-3">
               <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
@@ -697,11 +693,11 @@
 
 
 
-            <button data-modal-target="crud-modal3" data-modal-toggle="crud-modal3" class="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3">
+            <button data-modal-target="crud-modal3" data-modal-toggle="crud-modal3" class="inline-flex px-5 py-3 text-yellow-600 hover:text-yellow-700 focus:text-yellow-700 hover:bg-yellow-100 focus:bg-yellow-100 border border-yellow-600 rounded-md mb-3">
               <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
-              Add New Item
+              Add New Event Item
             </button>
             <div id="crud-modal3" style="margin-top: 70px" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
               <div class="relative p-4 w-full max-w-md max-h-full">
@@ -765,38 +761,8 @@
               </div>
             </div>
           </div>
-          {{-- <div class="flex items-center p-8 ">
-            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Add Manager 
-            </button>
-          </div>
-          <div class="flex items-center p-8 ">
-            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Add Manager 
-            </button>
-          </div>
-          <div class="flex items-center p-8 ">
-            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Add Manager 
-            </button>
-          </div>
-          <div class="flex items-center p-8 ">
-            <button class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Add Manager 
-            </button>
-          </div> --}}
+          <hr>
+      
       
 
 
@@ -811,7 +777,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr >
                     <th style="font-weight: bold" scope="col" class="px-6 py-3">Category</th>
-                    <th style="font-weight: bold" scope="col" class="px-6 py-3">Number of Models</th>
+                    <th style="font-weight: bold" scope="col" class="px-6 py-3">Number of Items</th>
                     <th style="font-weight: bold" scope="col" class="px-6 py-3">View</th>
                 </tr>
             </thead>
@@ -835,6 +801,21 @@
                     <td class="px-6 py-4">Bracelet</td>
                     <td class="px-6 py-4">{{$item->getNumberOfItemsPerCategory('Bracelet')}}</td>
                     <td class="px-6 py-4"><a href="{{ route('manager.bracelet') }}" class="font-medium text-blue-600 hover:underline">View</a></td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+                  <td class="px-6 py-4">Wedding packages</td>
+                  <td class="px-6 py-4">{{$eventObj->getCategoryCount('Wedding')}}</td>
+                  <td class="px-6 py-4"><a href="{{ route('manager.wedding') }}" class="font-medium text-blue-600 hover:underline">View</a></td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+                  <td class="px-6 py-4">Panchayudha packages</td>
+                  <td class="px-6 py-4">{{$eventObj->getCategoryCount('Panchayudha')}}</td>
+                  <td class="px-6 py-4"><a href="{{ route('manager.panchayudha') }}" class="font-medium text-blue-600 hover:underline">View</a></td>
+                </tr>
+                <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+                  <td class="px-6 py-4">Apala packages</td>
+                  <td class="px-6 py-4">{{$eventObj->getCategoryCount('Apala')}}</td>
+                  <td class="px-6 py-4"><a href="{{ route('manager.apala') }}" class="font-medium text-blue-600 hover:underline">View</a></td>
                 </tr>
             </tbody>
         </table>
@@ -894,7 +875,7 @@
           </div>
 
           <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-            <a href="{{ route('manager.users') }}"> <button class="bg-blue-500  text-white active:bg-blue-600 dark:text-gray-800 dark:active:text-gray-700 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
+            <a href="{{ route('manager.users') }}"> <button class="bg-yellow-500  text-white active:bg-yellow-600  text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
           </div>
         </div>
         
@@ -1022,9 +1003,10 @@
                                 </div>
                             </div>
                             </div>
-                            
-                            <button data-modal-hide="popup-modal1{{$user->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Close</button>
-                        </div>
+                            <div class="text-center">
+                                <button data-modal-hide="popup-modal1{{$user->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Close</button>
+                            </div>
+                          </div>
                     </div>
                 </div>
                 
@@ -1084,7 +1066,7 @@
           </div> 
 
           <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-            <a href="{{ route('manager.unverifiedgembusiness') }}"> <button class="bg-blue-500 text-white active:bg-blue-600  text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
+            <a href="{{ route('manager.unverifiedgembusiness') }}"> <button class="bg-yellow-500 text-white active:bg-yellow-600  text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
           </div>
         </div>
         
@@ -1117,7 +1099,7 @@
                 </td>
                 <td class="px-4 py-3 text-sm">{{$business->gem_asso_num}}</td>
                 
-                <td class="px-4 py-3 text-sm"><button data-modal-target="static-modal{{$business->id}}" data-modal-toggle="static-modal{{$business->id}}"  type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">VIEW</button></td>
+                <td class="px-4 py-3 text-sm"><button data-modal-target="static-modal{{$business->id}}" data-modal-toggle="static-modal{{$business->id}}"  type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">VIEW certificate</button></td>
                 
                 <div id="static-modal{{$business->id}}" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                   <div class="relative p-4 w-full max-w-2xl max-h-full">
@@ -1142,9 +1124,10 @@
 
                           </div>
                           <!-- Modal footer -->
-                          <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b ">
-                              <button data-modal-hide="static-modal{{$business->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">OK</button>
-                              
+                          <div style="display: flex; justify-content: center">
+                            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b ">
+                                <button data-modal-hide="static-modal{{$business->id}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">OK</button>
+                            </div>
                           </div>
                       </div>
                   </div>
@@ -1245,7 +1228,7 @@
           </div>
 
           <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-            <a href="{{ route('manager.pendingorders') }}"> <button class="bg-blue-500  text-white active:bg-blue-600   text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
+            <a href="{{ route('manager.pendingorders') }}"> <button class="bg-yellow-500  text-white active:bg-yellow-600   text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
           </div>
         </div>
         
@@ -1294,7 +1277,7 @@
                 </td>
                 <td class="px-4 py-3 text-sm">{{$order->created_at}}</td>
                 
-                <td class="px-4 py-3 text-sm"><button data-modal-target="static-modal22{{$order->id}}" data-modal-toggle="static-modal22{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">VIEW</button></td>
+                <td class="px-4 py-3 text-sm"><button data-modal-target="static-modal22{{$order->id}}" data-modal-toggle="static-modal22{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">VIEW order</button></td>
                 
                 <div id="static-modal22{{$order->id}}" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                   <div class="relative p-4 w-full max-w-2xl max-h-full">
@@ -1474,7 +1457,7 @@
       </div>
 
       <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-        <a href="{{ route('manager.orderstobedelivered') }}"> <button class="bg-blue-500  text-white active:bg-blue-600   text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
+        <a href="{{ route('manager.orderstobedelivered') }}"> <button class="bg-yellow-500  text-white active:bg-yellow-600   text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
       </div>
     </div>
     
@@ -1482,12 +1465,12 @@
       <table class="w-full">
         <thead>
           <tr style="background-color: rgb(224, 224, 224)" class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
-            <th class="px-4 py-3 boldtext">Reciever</th>
-            <th class="px-4 py-3 boldtext">Placed</th>
-            <th class="px-4 py-3 boldtext">Processed</th>
-            <th class="px-4 py-3 boldtext">Shipped</th>
-            <th class="px-4 py-3 boldtext">Out for Delivery</th>
-            <th class="px-4 py-3 boldtext">Delivered</th>
+            <th class="px-4 py-3"><strong> Reciever</strong> </th>
+            <th class="px-4 py-3"><strong> Placed</strong> </th>
+            <th class="px-4 py-3"><strong>Processed </strong> </th>
+            <th class="px-4 py-3"><strong>Shipped </strong> </th>
+            <th class="px-4 py-3"><strong> Out for Delivery</strong> </th>
+            <th class="px-4 py-3"><strong> Delivered</strong> </th>
           </tr>
         </thead>
         <tbody class="bg-white divide-y ">
@@ -1539,176 +1522,176 @@
             </td>
 
             {{-- Accept Modal --}}
-          <div id="popup-modal100{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <form action="{{route('order.changecolumn')}}" method="POST">
-              @csrf
+              <div id="popup-modal100{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <form action="{{route('order.changecolumn')}}" method="POST">
+                  @csrf
 
-            <div class="relative p-4 w-full max-w-md max-h-full">
-                <div class="relative bg-white rounded-lg shadow ">
-                    <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal100{{$order->id}}">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="p-4 md:p-5 text-center">
-                        <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                        </svg>
-                        <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to confirm the process of this Order?</h3>
-                        <input type="hidden" name="columnName" value="processed_at">
-                        <input type="hidden" name="order_id" value="{{$order->id}}">
-                        <button type="submit" data-modal-hide="popup-modal100{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                            Yes, I'm sure
+                <div class="relative p-4 w-full max-w-md max-h-full">
+                    <div class="relative bg-white rounded-lg shadow ">
+                        <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal100{{$order->id}}">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
                         </button>
-                        <button data-modal-hide="popup-modal100{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">No, cancel</button>
+                        <div class="p-4 md:p-5 text-center">
+                            <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                            </svg>
+                            <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to confirm the process of this Order?</h3>
+                            <input type="hidden" name="columnName" value="processed_at">
+                            <input type="hidden" name="order_id" value="{{$order->id}}">
+                            <button type="submit" data-modal-hide="popup-modal100{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                Yes, I'm sure
+                            </button>
+                            <button data-modal-hide="popup-modal100{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">No, cancel</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            </form>
-        </div>
-            
-            {{-- SHIPPED --}}
-
-        <td class="px-4 py-3 text-sm">
-          @if ($order->processed_at == null)
-          <span class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">PENDING</span>
-          
-          @elseif ($order->processed_at != null && $order->shipped_at == null)
-          <button data-modal-target="popup-modal200{{$order->id}}" data-modal-toggle="popup-modal200{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">CONFIRM</button>
-          
-          @elseif ($order->shipped_at != null)
-          <span class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">DONE</span>
-          @endif
-          
-        
-        </td>
-          {{-- Accept Modal --}}
-          <div id="popup-modal200{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <form action="{{route('order.changecolumn')}}" method="POST">
-              @csrf
-
-            <div class="relative p-4 w-full max-w-md max-h-full">
-                <div class="relative bg-white rounded-lg shadow ">
-                    <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal200{{$order->id}}">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="p-4 md:p-5 text-center">
-                        <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                        </svg>
-                        <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to confirm the Shipping of this Order?</h3>
-                        <input type="hidden" name="columnName" value="shipped_at">
-                        <input type="hidden" name="order_id" value="{{$order->id}}">
-                        <button type="submit" data-modal-hide="popup-modal200{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                            Yes, I'm sure
-                        </button>
-                        <button data-modal-hide="popup-modal200{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">No, cancel</button>
-                    </div>
-                </div>
-            </div>
-            </form>
-        </div>
-
-
-        {{-- OUT FOR DELIVERY --}}
-
-
-        <td class="px-4 py-3 text-sm">
-          @if ($order->shipped_at == null)
-          <span class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">PENDING</span>
-          
-          @elseif ($order->shipped_at != null && $order->out_at == null)
-          <button data-modal-target="popup-modal300{{$order->id}}" data-modal-toggle="popup-modal300{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">CONFIRM</button>
-          
-          @elseif ($order->out_at != null)
-          <span class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">DONE</span>
-          @endif
-          
-        
-        </td>
-
-          {{-- Accept Modal --}}
-          <div id="popup-modal300{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <form action="{{route('order.changecolumn')}}" method="POST">
-              @csrf
-
-            <div class="relative p-4 w-full max-w-md max-h-full">
-                <div class="relative bg-white rounded-lg shadow ">
-                    <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal300{{$order->id}}">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="p-4 md:p-5 text-center">
-                        <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                        </svg>
-                        <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to confirm the Out for the delivery of this Order?</h3>
-                        <input type="hidden" name="columnName" value="out_at">
-                        <input type="hidden" name="order_id" value="{{$order->id}}">
-                        <button type="submit" data-modal-hide="popup-modal300{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                            Yes, I'm sure
-                        </button>
-                        <button data-modal-hide="popup-modal300{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">No, cancel</button>
-                    </div>
-                </div>
-            </div>
-            </form>
-        </div>
-
-        {{-- Confirm Delivery --}}
-
-        <td class="px-4 py-3 text-sm">
-          @if ($order->out_at == null)
-          <span class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">PENDING</span>
-          
-          @elseif ($order->out_at != null && $order->delivered_at == null)
-          <button data-modal-target="popup-modal400{{$order->id}}" data-modal-toggle="popup-modal400{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">CONFIRM</button>
-          
-          @elseif ($order->delivered_at != null)
-          <span class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">DONE</span>
-          @endif
-          
-        
-        </td>
-
-        {{-- Accept Modal --}}
-        <div id="popup-modal400{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-          <form action="{{route('order.changecolumn')}}" method="POST">
-            @csrf
-
-          <div class="relative p-4 w-full max-w-md max-h-full">
-              <div class="relative bg-white rounded-lg shadow ">
-                  <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal400{{$order->id}}">
-                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                      </svg>
-                      <span class="sr-only">Close modal</span>
-                  </button>
-                  <div class="p-4 md:p-5 text-center">
-                      <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                      </svg>
-                      <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to confirm the the delivery of this Order?</h3>
-                      <input type="hidden" name="columnName" value="delivered_at">
-                      <input type="hidden" name="order_id" value="{{$order->id}}">
-                      <button type="submit" data-modal-hide="popup-modal400{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                          Yes, I'm sure
-                      </button>
-                      <button data-modal-hide="popup-modal400{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">No, cancel</button>
-                  </div>
+                </form>
               </div>
-          </div>
-          </form>
-      </div>
+            
+                  {{-- SHIPPED --}}
+
+              <td class="px-4 py-3 text-sm">
+                @if ($order->processed_at == null)
+                <span class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">PENDING</span>
+                
+                @elseif ($order->processed_at != null && $order->shipped_at == null)
+                <button data-modal-target="popup-modal200{{$order->id}}" data-modal-toggle="popup-modal200{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">CONFIRM</button>
+                
+                @elseif ($order->shipped_at != null)
+                <span class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">DONE</span>
+                @endif
+                
+              
+              </td>
+                {{-- Accept Modal --}}
+                <div id="popup-modal200{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                  <form action="{{route('order.changecolumn')}}" method="POST">
+                    @csrf
+
+                  <div class="relative p-4 w-full max-w-md max-h-full">
+                      <div class="relative bg-white rounded-lg shadow ">
+                          <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal200{{$order->id}}">
+                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                              </svg>
+                              <span class="sr-only">Close modal</span>
+                          </button>
+                          <div class="p-4 md:p-5 text-center">
+                              <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                              </svg>
+                              <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to confirm the Shipping of this Order?</h3>
+                              <input type="hidden" name="columnName" value="shipped_at">
+                              <input type="hidden" name="order_id" value="{{$order->id}}">
+                              <button type="submit" data-modal-hide="popup-modal200{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                  Yes, I'm sure
+                              </button>
+                              <button data-modal-hide="popup-modal200{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">No, cancel</button>
+                          </div>
+                      </div>
+                  </div>
+                  </form>
+                </div>
+
+
+                  {{-- OUT FOR DELIVERY --}}
+
+
+                  <td class="px-4 py-3 text-sm">
+                    @if ($order->shipped_at == null)
+                    <span class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">PENDING</span>
+                    
+                    @elseif ($order->shipped_at != null && $order->out_at == null)
+                    <button data-modal-target="popup-modal300{{$order->id}}" data-modal-toggle="popup-modal300{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">CONFIRM</button>
+                    
+                    @elseif ($order->out_at != null)
+                    <span class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">DONE</span>
+                    @endif
+                    
+                  
+                  </td>
+
+                    {{-- Accept Modal --}}
+                    <div id="popup-modal300{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                      <form action="{{route('order.changecolumn')}}" method="POST">
+                        @csrf
+
+                      <div class="relative p-4 w-full max-w-md max-h-full">
+                          <div class="relative bg-white rounded-lg shadow ">
+                              <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal300{{$order->id}}">
+                                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                  </svg>
+                                  <span class="sr-only">Close modal</span>
+                              </button>
+                              <div class="p-4 md:p-5 text-center">
+                                  <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                  </svg>
+                                  <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to confirm the Out for the delivery of this Order?</h3>
+                                  <input type="hidden" name="columnName" value="out_at">
+                                  <input type="hidden" name="order_id" value="{{$order->id}}">
+                                  <button type="submit" data-modal-hide="popup-modal300{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                      Yes, I'm sure
+                                  </button>
+                                  <button data-modal-hide="popup-modal300{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">No, cancel</button>
+                              </div>
+                          </div>
+                      </div>
+                      </form>
+                  </div>
+
+                  {{-- Confirm Delivery --}}
+
+                  <td class="px-4 py-3 text-sm">
+                    @if ($order->out_at == null)
+                    <span class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">PENDING</span>
+                    
+                    @elseif ($order->out_at != null && $order->delivered_at == null)
+                    <button data-modal-target="popup-modal400{{$order->id}}" data-modal-toggle="popup-modal400{{$order->id}}" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">CONFIRM</button>
+                    
+                    @elseif ($order->delivered_at != null)
+                    <span class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 ">DONE</span>
+                    @endif
+                    
+                  
+                  </td>
+
+                  {{-- Accept Modal --}}
+                  <div id="popup-modal400{{$order->id}}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <form action="{{route('order.changecolumn')}}" method="POST">
+                      @csrf
+
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                        <div class="relative bg-white rounded-lg shadow ">
+                            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal400{{$order->id}}">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                            <div class="p-4 md:p-5 text-center">
+                                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                </svg>
+                                <h3 style="font-weight: bold" class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure to confirm the the delivery of this Order?</h3>
+                                <input type="hidden" name="columnName" value="delivered_at">
+                                <input type="hidden" name="order_id" value="{{$order->id}}">
+                                <button type="submit" data-modal-hide="popup-modal400{{$order->id}}" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                    Yes, I'm sure
+                                </button>
+                                <button data-modal-hide="popup-modal400{{$order->id}}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">No, cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                  </div>
         
         
-      @endif
+          @endif
           @endforeach
           
         </tbody>
@@ -1733,7 +1716,7 @@
       
 
       <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-        <a href="{{ route('manager.pendingeventorders') }}"> <button class="bg-blue-500 text-white active:bg-blue-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
+        <a href="{{ route('manager.pendingeventorders') }}"> <button class="bg-yellow-500 text-white active:bg-yellow-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
       </div>
     </div>
     
@@ -1945,7 +1928,7 @@
       
 
       <div class="relative w-full max-w-full flex-grow flex-1 text-right">
-        <a href="{{ route('manager.specialorderstobedelivered') }}"> <button class="bg-blue-500  text-white active:bg-blue-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
+        <a href="{{ route('manager.specialorderstobedelivered') }}"> <button class="bg-yellow-500  text-white active:bg-yellow-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">See all</button></a>
       </div>
     </div>
     
