@@ -28,7 +28,7 @@ class ManagerController extends Controller
         // $unverifiedBusinesses = session('unverifiedBusinesses', []);
         $manager = session()->get('manager');
         if (!$manager) {
-            return redirect()->route('userlogin')->with('error', 'You need to login as a manager to access this page.');
+            return redirect()->route('loginallusers')->with('error', 'You need to login as a manager to access this page.');
         }
 
         $unverifiedBusinesses = GemBusiness::getUnverifiedBusinesses();

@@ -92,7 +92,6 @@
 		<!-- / container -->
 	</header>
 	<!-- / header -->
-
     <nav id="menu">
 		<div class="container">
 			<div class="trigger"></div>
@@ -129,6 +128,7 @@
     <section class=" py-8 antialiased  md:py-12">
 		<div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
 		  <div class="mb-4 grid gap-4 sm:grid-cols-2  md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
+			
 			@foreach($itemList as $item)
 
 
@@ -210,11 +210,11 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="{{ route('faq') }}">How can I customize a piece of jewelry?</a></li>
+                        <li><a href="{{ route('faq') }}">What types of jewelry can I customize? </a></li>
+                        <li><a href="{{ route('faq') }}">How long does it take to create a custom piece of jewelry?</a></li>
+                        <li><a href="{{ route('faq') }}">Do you offer international shipping?  </a></li>
+                        <li><a href="{{ route('faq') }}">More FAQs</a></li>
                     </ul>
 				</div>
 				<div class="col media">
