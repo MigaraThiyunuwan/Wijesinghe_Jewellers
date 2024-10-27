@@ -333,10 +333,7 @@
         <div class="w-full overflow-hidden rounded-lg shadow-xs">
             <div style="justify-content: space-between; display: flex">
                 <h1 style="font-size: 30px; font-weight: bold">My Advertisements</h1>
-                <a href="#"> <button class="bg-yellow-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-                  See All orders
-                </button>
-              </a>
+                
               </div>
           
           <div  class="relative overflow-x-auto shadow-md sm:rounded-lg">

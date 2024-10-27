@@ -199,8 +199,8 @@ def detect_face_and_neck(image):
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
     
     for (x, y, w, h) in faces:
-        neck_x = x + int(w * 0.03) 
-        neck_y = y + int(h * 1.06)
+        neck_x = x + int(w * 0.02) 
+        neck_y = y + int(h * 1.05)
         neck_w = w
         neck_h = int(h * 0.7)
         # neck_x = x + int(w * 0.05) 

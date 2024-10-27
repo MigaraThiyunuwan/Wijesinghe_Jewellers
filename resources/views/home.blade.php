@@ -229,17 +229,6 @@
 
 
 
-
-
-
-
-
-
-
-
-    
-
-
           
 
     <footer id="footer">
@@ -248,11 +237,11 @@
                 <div class="col">
                     <h3>Frequently Asked Questions</h3>
                     <ul>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="{{ route('faq') }}">How can I customize a piece of jewelry?</a></li>
+                        <li><a href="{{ route('faq') }}">What types of jewelry can I customize? </a></li>
+                        <li><a href="{{ route('faq') }}">How long does it take to create a custom piece of jewelry?</a></li>
+                        <li><a href="{{ route('faq') }}">Do you offer international shipping?  </a></li>
+                        <li><a href="{{ route('faq') }}">More FAQs</a></li>
                     </ul>
                 </div>
                 <div class="col media">
@@ -286,5 +275,6 @@
 	<script>window.jQuery || document.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")</script>
 	<script src="../js/plugins.js"></script>
 	<script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     
 </body>

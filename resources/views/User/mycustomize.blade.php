@@ -1956,11 +1956,11 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="{{ route('faq') }}">How can I customize a piece of jewelry?</a></li>
+                        <li><a href="{{ route('faq') }}">What types of jewelry can I customize? </a></li>
+                        <li><a href="{{ route('faq') }}">How long does it take to create a custom piece of jewelry?</a></li>
+                        <li><a href="{{ route('faq') }}">Do you offer international shipping?  </a></li>
+                        <li><a href="{{ route('faq') }}">More FAQs</a></li>
                     </ul>
 				</div>
 				<div class="col media">

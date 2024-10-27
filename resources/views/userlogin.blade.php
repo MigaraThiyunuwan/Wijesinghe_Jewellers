@@ -22,7 +22,9 @@
 			}
 		}
 
-		
+		.lowercase-input {
+			text-transform: lowercase !important;
+		}
       .formbg{
         background-color: rgba(255, 253, 242, 0.96);
         background-image: url('{{ asset('images/logo_no_bg.png') }}'); 
@@ -157,13 +159,14 @@
 				@endif
 			
 	
-				<div class="relative w-full mb-3">
-					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+				<div style="" class="lowercase-input relative w-full mb-3">
+					<label class="block  text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
 					  Email
 					</label> 
-					<input type="email" id="email" name="email" value="{{ old('email') }}" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " required />
+					<input  type="email" id="email" name="email" value="{{ old('email') }}" class=" lowercase-inputborder border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 " style="text-transform: lowercase"  required />
 					{{-- <input type="email" name="email" value="{{ old('email') }}" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" > --}}
 				</div>
+				
 	
 				<div class="relative w-full mb-3">
 					<label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
@@ -238,11 +241,11 @@
 				<div class="col">
 					<h3>Frequently Asked Questions</h3>
 					<ul>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
-                        <li><a href="#">FAQ Should add here </a></li>
+                        <li><a href="{{ route('faq') }}">How can I customize a piece of jewelry?</a></li>
+                        <li><a href="{{ route('faq') }}">What types of jewelry can I customize? </a></li>
+                        <li><a href="{{ route('faq') }}">How long does it take to create a custom piece of jewelry?</a></li>
+                        <li><a href="{{ route('faq') }}">Do you offer international shipping?  </a></li>
+                        <li><a href="{{ route('faq') }}">More FAQs</a></li>
                     </ul>
 				</div>
 				<div class="col media">

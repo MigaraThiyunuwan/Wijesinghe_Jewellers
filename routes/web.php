@@ -51,6 +51,7 @@ Route::get('contactus', [Controller::class, 'contactus'])->name('contactus');
 Route::get('logout', [Controller::class, 'logout'])->middleware('web')->name('logout');
 Route::get('aboutus', [Controller::class, 'aboutus'])->name('aboutus');
 Route::get('userlogin', [Controller::class, 'userlogin'])->name('userlogin');
+Route::get('faq', [Controller::class, 'faq'])->name('faq');
 Route::post('loginallusers', [Controller::class, 'loginallusers'])->name('loginallusers');
 
 
