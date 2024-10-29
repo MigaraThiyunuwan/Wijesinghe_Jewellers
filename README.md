@@ -56,3 +56,11 @@ Our platform revolutionizes the jewelry manufacturing industry by allowing custo
 1. **Start the development server:**
    ```bash
    php artisan serve
+
+## License
+This project is licensed under the MIT License.
+
+## Contact
+For questions or feedback, feel free to reach out.
+- **My Website:** ***https://www.migarathiyunuwan.me/***
+
