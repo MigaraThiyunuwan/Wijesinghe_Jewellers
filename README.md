@@ -44,7 +44,7 @@ Our platform revolutionizes the jewelry manufacturing industry by allowing custo
    composer install
 
 4. **Set up your environment variables:**
-   ```bash
+
 - Copy .env.example to .env and configure your database and other settings.
 
 5. **Run migrations:**
